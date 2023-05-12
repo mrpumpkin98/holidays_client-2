@@ -1,7 +1,3 @@
-export default function ClassWritePage(){
-
-    return(
-
-        <></>
-    )
+export default function ClassWritePage() {
+  return <></>; //ysy
 }
