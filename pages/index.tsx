@@ -14,7 +14,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.description}>
           <p>
-            3팀 프론트엔드 &nbsp;
+            3팀 프론트엔드. &nbsp;
             <code className={styles.code}>pages/index.js</code>
           </p>
           <div>
