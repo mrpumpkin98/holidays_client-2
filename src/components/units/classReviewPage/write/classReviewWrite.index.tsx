@@ -1,6 +1,6 @@
 import * as S from "./classReviewWrite.styles";
 
-export default function ClassReviewWriteUI() {
+export default function ClassReviewWrite() {
   return (
     <>
       <S.Wrapper>

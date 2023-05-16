@@ -1,7 +1,7 @@
-import ClassDetail from "../../../src/components/units/classPage/detail/classDetail.container";
-import ClassQuestion from "../../../src/components/units/classQuestionPage/classQuestion.container";
+import ClassDetail from "../../../src/components/units/classPage/detail/classDetail.index";
+import ClassQuestionUI from "../../../src/components/units/classQuestionPage/classQuestion.index";
 import ClassReviewList from "../../../src/components/units/classReviewPage/list/classReviewList.container";
-import ClassReviewWrite from "../../../src/components/units/classReviewPage/write/classReviewWrite.container";
+import ClassReviewWrite from "../../../src/components/units/classReviewPage/write/classReviewWrite.index";
 
 export default function ClassDetailPage() {
   return (
@@ -9,7 +9,7 @@ export default function ClassDetailPage() {
       <ClassDetail />
       <ClassReviewWrite />
       <ClassReviewList />
-      <ClassQuestion />
+      <ClassQuestionUI />
     </>
   );
 }

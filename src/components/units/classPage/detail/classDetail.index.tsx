@@ -1,7 +1,7 @@
-import Calendar from "../calender/calendar.container";
+import CalendarUI from "../calendar/calendar.index";
 import * as S from "./classDetail.styles";
 
-export default function ClassDetailUI() {
+export default function ClassDetail() {
   return (
     <>
       <S.Wrapper>
@@ -63,7 +63,7 @@ export default function ClassDetailUI() {
 
           {/* 달력 */}
           <S.Wrapper_body_right>
-            <Calendar />
+            <CalendarUI />
           </S.Wrapper_body_right>
         </S.Wrapper_body>
 
