@@ -1,4 +1,4 @@
-import Calendar from "../calender/calendar.container";
+import Calendar from "../calendar/calendar.container";
 import * as S from "./classDetail.styles";
 
 export default function ClassDetailUI() {

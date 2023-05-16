@@ -3,20 +3,22 @@ import type { SizeType } from "antd/es/config-provider/SizeContext";
 import * as S from "./calendar.styles";
 import { Calendar, theme } from "antd";
 import type { CalendarMode } from "antd/es/calendar/generateCalendar";
-import { Modal } from "antd";
+// import { Modal } from "antd";
 import type { Dayjs } from "dayjs";
+
+import Modal from "./Modal/modal";
+import Backdrop from "./Modal/Backdrop";
 
 export default function CalendarUI() {
   // 예약하기 버튼 눌렀을 때 뜨는 모달
-  const [isOpen, setIsOpen] = useState(false); // 모달
+  const [showModal, setShowModal] = useState(false);
 
-  const onToggleModal = (): void => {
-    // setIsOpen(true);
-    setIsOpen((prev) => !prev);
+  const handleModalOpen = (): void => {
+    setShowModal(true);
   };
 
-  const handleComplete = (): void => {
-    onToggleModal();
+  const handleModalClose = (): void => {
+    setShowModal(false);
   };
 
   // ----------------
@@ -96,7 +98,7 @@ export default function CalendarUI() {
         {/* ------------ */}
 
         {/* 예약하기 버튼 눌렀을 때 뜨는 모달 */}
-        {isOpen && (
+        {/* {isOpen && (
           <Modal open={isOpen} onOk={onToggleModal} onCancel={onToggleModal}>
             <S.Modal_wrapper>
               <S.Modal_row>
@@ -113,7 +115,10 @@ export default function CalendarUI() {
               </S.Modal_row>
             </S.Modal_wrapper>
           </Modal>
-        )}
+        )} */}
+
+        {showModal && <Modal onClose={handleModalClose} />}
+        {showModal && <Backdrop onClick={handleModalClose} />}
 
         {/* ------------ */}
 
@@ -162,7 +167,9 @@ export default function CalendarUI() {
             <S.Price>₩ 714,065</S.Price>
           </S.Row>
         </S.Contents>
-        <S.BtnWrapper onClick={onToggleModal}>예약하기</S.BtnWrapper>
+        {/* <S.BtnWrapper onClick={onToggleModal}>예약하기</S.BtnWrapper> */}
+        <S.BtnWrapper onClick={handleModalOpen}>예약하기</S.BtnWrapper>
+
         {/* <div>{value.format("YYYY-MM-DD")}</div> */}
       </S.Wrapper>
     </>
