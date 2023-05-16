@@ -9,6 +9,13 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media only screen and (max-width: 768px) {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 interface ILayoutProps {

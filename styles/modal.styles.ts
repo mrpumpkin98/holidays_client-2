@@ -9,6 +9,7 @@ export const ModalWrapper = styled.div`
   padding: 20px;
   z-index: 100;
   border-radius: 15px;
+  height: 1000px;
 `;
 
 export const Wrapper = styled.div`
@@ -54,8 +55,8 @@ export const CloseButton = styled.button`
 `;
 
 export const MainImage = styled.img`
-  width: 700px;
-  height: 400px;
+  width: 600px;
+  height: 300px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px gray;
 `;
