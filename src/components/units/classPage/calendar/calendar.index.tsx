@@ -151,7 +151,7 @@ export default function CalendarUI() {
               min={1}
               max={100}
               defaultValue={1}
-              onChange={onChangeNumber}
+              // onChange={onChangeNumber}
             />
           </S.NumberBox>
 

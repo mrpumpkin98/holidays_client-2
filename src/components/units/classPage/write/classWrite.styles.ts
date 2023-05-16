@@ -10,15 +10,10 @@ export const Wrapper = styled.div`
 `;
 
 export const Wrapper_header = styled.div`
-  background-color: white;
   width: 728px;
-  padding-top: 50px;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  position: fixed;
+  margin-top: 150px;
+  margin-bottom: 30px;
 `;
 
 export const Wrapper_header_left = styled.div`
@@ -27,13 +22,6 @@ export const Wrapper_header_left = styled.div`
 
   font-size: 30px;
   font-weight: 700;
-`;
-
-export const Wrapper_header_right = styled.div`
-  width: 200px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 `;
 
 // 취소 버튼
@@ -80,10 +68,7 @@ export const SubmitBtn = styled.div`
 `;
 
 // 작성 시작
-export const Wrapper_body = styled.div`
-  /* background-color: beige; */
-  padding-top: 150px;
-`;
+export const Wrapper_body = styled.div``;
 
 export const Label = styled.div`
   font-size: 15px;

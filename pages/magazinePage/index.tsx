@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "./Modal/modal";
 import Backdrop from "./Backdrop/Backdrop";
-import * as S from "./magazine.styles";
+import * as S from "../../styles/magazine.styles";
 
 export default function Magazine(): JSX.Element {
   const [showModal, setShowModal] = useState(false);
