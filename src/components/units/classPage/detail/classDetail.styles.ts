@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 
 export const Wrapper_header = styled.div`
   width: 1113px;
-  padding-top: 50px;
+  padding-top: 100px;
 
   display: flex;
   flex-direction: column;
@@ -62,8 +62,8 @@ export const Slick = styled.div`
   border-radius: 15px;
 `;
 
-export const Wrapper_body = styled.div`
-  border: 2px solid green;
+export const Wrapper_body_left = styled.div`
+  width: 711px;
 `;
 
 export const Wrapper_body_header = styled.div`
@@ -72,7 +72,7 @@ export const Wrapper_body_header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* padding: 40px 0px 20px 0px; */
+  margin-top: 30px;
 `;
 
 export const Title = styled.div`
@@ -105,11 +105,7 @@ export const Wrapper_body_bottom_left = styled.div`
 `;
 
 // 달력 위치
-export const Wrapper_body_bottom_right = styled.div`
-  background-color: pink;
-  width: 390px;
-  border: 1px solid black;
-`;
+export const Wrapper_body_bottom_right = styled.div``;
 
 export const Remarks = styled.div`
   color: rgba(189, 189, 189, 1);
@@ -164,24 +160,38 @@ export const SubLabel = styled.div`
 export const Contents_wrapper = styled.div``;
 
 export const Contents = styled.div`
-  background-color: skyblue;
+  /* background-color: skyblue; */
   height: 1000px;
-  border: 1px solid black;
 `;
 
 // 클래스 위치
-export const Wrapper_footer = styled.div``;
+export const Wrapper_footer = styled.div`
+  margin-top: 100px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(189, 189, 189, 1);
+`;
 
 // 지도
 export const Map = styled.div`
   width: 1113px;
   height: 478px;
-  border: 1px solid blue;
+  background-color: beige;
+  border-radius: 5px;
 `;
 
 export const AddressDetail = styled.div`
   padding: 25px 0px 70px 0px;
   font-size: 17px;
   border-bottom: 1px solid rgba(189, 189, 189, 1);
-  margin-bottom: 100px;
+  margin-bottom: 80px;
+`;
+
+// ------
+export const Wrapper_body_right = styled.div`
+  margin-top: 20px;
+`;
+
+export const Wrapper_body = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;

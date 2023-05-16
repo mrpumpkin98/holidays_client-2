@@ -222,6 +222,7 @@ export const Contents = styled.div`
 // 클래스 일정(달력)
 export const Spaced = styled(Space)`
   margin-bottom: 10px;
+  width: 291px;
 `;
 
 export const { RangePicker } = DatePicker;

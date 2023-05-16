@@ -1,3 +1,4 @@
+import Calendar from "../calender/calendar.container";
 import * as S from "./classDetail.styles";
 
 export default function ClassDetailUI() {
@@ -16,51 +17,59 @@ export default function ClassDetailUI() {
         </S.Wrapper_header>
         <S.Slick />
         <S.Wrapper_body>
-          <S.Wrapper_body_header>
-            <S.Title>클래스 한줄 요약ㅇㅇㅇ</S.Title>
-            <S.Heart />
-            {/* <Heart_fill /> */}
-          </S.Wrapper_body_header>
-          <S.Wrapper_body_bottom>
-            <S.Wrapper_body_bottom_left>
-              <S.ClassInfo_wrapper>
-                <S.ClassInfo_container>
-                  <S.Icon src="/classPage/calender.png" />
-                  <S.ClassInfo_container_right>
-                    <S.Label>클래스 진행</S.Label>
-                    <S.SubLabel>매주 화, 목</S.SubLabel>
-                  </S.ClassInfo_container_right>
-                </S.ClassInfo_container>
+          <S.Wrapper_body_left>
+            <S.Wrapper_body_header>
+              <S.Title>클래스 한줄 요약ㅇㅇㅇ</S.Title>
+              <S.Heart />
 
-                <S.ClassInfo_container>
-                  <S.Icon src="/classPage/clock.png" />
-                  <S.ClassInfo_container_right>
-                    <S.Label>진행 시간</S.Label>
-                    <S.SubLabel>100시간</S.SubLabel>
-                  </S.ClassInfo_container_right>
-                </S.ClassInfo_container>
+              {/* <Heart_fill /> */}
+            </S.Wrapper_body_header>
 
-                <S.ClassInfo_container>
-                  <S.Icon src="/classPage/category.png" />
-                  <S.ClassInfo_container_right>
-                    <S.Label>카테고리</S.Label>
-                    <S.SubLabel>운동</S.SubLabel>
-                  </S.ClassInfo_container_right>
-                </S.ClassInfo_container>
-              </S.ClassInfo_wrapper>
+            <S.Wrapper_body_bottom>
+              <S.Wrapper_body_bottom_left>
+                <S.ClassInfo_wrapper>
+                  <S.ClassInfo_container>
+                    <S.Icon src="/classPage/calender.png" />
+                    <S.ClassInfo_container_right>
+                      <S.Label>클래스 진행</S.Label>
+                      <S.SubLabel>매주 화, 목</S.SubLabel>
+                    </S.ClassInfo_container_right>
+                  </S.ClassInfo_container>
 
-              <S.Contents_wrapper>
-                <S.Title>클래스 소개</S.Title>
-                <S.Contents>ggg</S.Contents>
-              </S.Contents_wrapper>
-            </S.Wrapper_body_bottom_left>
+                  <S.ClassInfo_container>
+                    <S.Icon src="/classPage/clock.png" />
+                    <S.ClassInfo_container_right>
+                      <S.Label>진행 시간</S.Label>
+                      <S.SubLabel>100시간</S.SubLabel>
+                    </S.ClassInfo_container_right>
+                  </S.ClassInfo_container>
 
-            <S.Wrapper_body_bottom_right>달력 위치</S.Wrapper_body_bottom_right>
-          </S.Wrapper_body_bottom>
+                  <S.ClassInfo_container>
+                    <S.Icon src="/classPage/category.png" />
+                    <S.ClassInfo_container_right>
+                      <S.Label>카테고리</S.Label>
+                      <S.SubLabel>운동</S.SubLabel>
+                    </S.ClassInfo_container_right>
+                  </S.ClassInfo_container>
+                </S.ClassInfo_wrapper>
+
+                <S.Contents_wrapper>
+                  <S.Title>클래스 소개</S.Title>
+                  <S.Contents>ggg</S.Contents>
+                </S.Contents_wrapper>
+              </S.Wrapper_body_bottom_left>
+            </S.Wrapper_body_bottom>
+          </S.Wrapper_body_left>
+
+          {/* 달력 */}
+          <S.Wrapper_body_right>
+            <Calendar />
+          </S.Wrapper_body_right>
         </S.Wrapper_body>
+
         <S.Wrapper_footer>
           <S.Title>클래스 위치</S.Title>
-          <S.Map>카카오지도</S.Map>
+          <S.Map />
           <S.AddressDetail>서울특별시 구로구 ㅇㅇㅇㅇㅇ</S.AddressDetail>
         </S.Wrapper_footer>
       </S.Wrapper>
