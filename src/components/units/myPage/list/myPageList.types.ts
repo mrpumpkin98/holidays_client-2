@@ -1,3 +1,5 @@
 import { MouseEvent } from "react";
 
-export interface ImyPageListUIProps {}
+export interface ImyPageListUIProps {
+  listItems: any;
+}

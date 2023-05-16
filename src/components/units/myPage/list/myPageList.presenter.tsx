@@ -15,7 +15,7 @@ export default function ClassListUI(props: ImyPageListUIProps) {
       </S.MyBox>
       <S.Line />
       <S.MyPageList>
-        {props.listItems.map((item, index) => (
+        {props.listItems.map((item: any, index: any) => (
           <S.MyPageListBox key={index}>
             <S.ListName>{item.name}</S.ListName>
             <S.ListDetailed>{item.detailed}</S.ListDetailed>
