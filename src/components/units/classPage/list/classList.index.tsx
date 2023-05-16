@@ -1,6 +1,8 @@
-import * as S from "./classList.styles";
-import { IClassListUIProps } from "./classList.types";
 import { useState } from "react";
+import Backdrop from "../../../commons/modals/classListModal/Backdrop/Backdrop";
+import Modal1 from "../../../commons/modals/classListModal/Modal/modal";
+import Modal2 from "../../../commons/modals/areaListModal/Modal/modal";
+import * as S from "./classList.styles";
 
 const initialPremiumPost = {
   src: "/classPage/list.png",
@@ -71,18 +73,46 @@ const Post = ({ post }: any) => (
   </S.Posts>
 );
 
-export default function ClassListUI(props: IClassListUIProps) {
+export default function StaticRoutingPage() {
+  // 서비스 모달기능
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalOpen = (): void => {
+    setShowModal(true);
+  };
+
+  const handleModalClose = (): void => {
+    setShowModal(false);
+  };
+
+  // 지역 모달기능
+
+  const [showModal2, setShowModal2] = useState(false);
+
+  const handleModalOpen2 = (): void => {
+    setShowModal2(true);
+  };
+
+  const handleModalClose2 = (): void => {
+    setShowModal2(false);
+  };
+
   return (
     <S.Wrapper>
+      {showModal && <Modal1 onClose={handleModalClose} />}
+      {showModal && <Backdrop onClick={handleModalClose} />}
+      {showModal2 && <Modal2 onClose={handleModalClose2} />}
+      {showModal2 && <Backdrop onClick={handleModalClose2} />}
       <S.Banner>
         <S.Box>
           <S.SearchTitle>검색</S.SearchTitle>
           <S.ServiceAreaWrapper>
-            <S.Service>
+            <S.Service onClick={handleModalOpen}>
               <S.ServiceText>서비스</S.ServiceText>
               <S.Expand src="/classPage/expand-button.png" />
             </S.Service>
-            <S.Area>
+            <S.Area onClick={handleModalOpen2}>
               <S.AreaText>지역</S.AreaText>
               <S.Expand src="/classPage/expand-button.png" />
             </S.Area>

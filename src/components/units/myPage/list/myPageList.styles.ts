@@ -91,8 +91,19 @@ export const MyPageListBox = styled.div`
   }
 `;
 
+export const ListNameIconWrapper = styled.div`
+  display: flex;
+`;
+
 export const ListName = styled.h2`
   font-size: 26px;
+`;
+
+export const Icon = styled.img`
+  width: 23px;
+  height: 23px;
+  margin-top: 9px;
+  margin-left: 10px;
 `;
 
 export const ListDetailed = styled.p`
