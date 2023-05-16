@@ -7,6 +7,7 @@ import {
 import { Modal } from "antd";
 
 export const Wrapper = styled.div`
+  width: 1920px;
   height: 233px;
   background: #f5f5f5;
   display: flex;

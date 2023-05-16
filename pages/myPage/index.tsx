@@ -1,26 +1,9 @@
-import React, { useState } from "react";
-import MultipleDatePicker from "react-multiple-datepicker";
-// import "react-multiple-datepicker/dist/index.css";
+import MyPage from "../../src/components/units/myPage/list/myPageList.container";
 
-export default function App() {
-  const [selectedDates, setSelectedDates] = useState([]);
-
-  const handleDateSelect = (dates: any) => {
-    setSelectedDates(dates);
-  };
-
+export default function GraphqlMutationPage() {
   return (
     <div>
-      <h1>Select Dates</h1>
-      <MultipleDatePicker onSubmit={handleDateSelect} />
-      <div>
-        <h2>Selected Dates</h2>
-        <ul>
-          {selectedDates.map((date) => (
-            <li key={date.toISOString()}>{date.toLocaleDateString()}</li>
-          ))}
-        </ul>
-      </div>
+      <MyPage />
     </div>
   );
 }

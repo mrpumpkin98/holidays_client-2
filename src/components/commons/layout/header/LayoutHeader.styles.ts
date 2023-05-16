@@ -7,11 +7,14 @@ import {
 import { Modal } from "antd";
 
 export const Wrapper = styled.div`
+  width: 1920px;
   height: 80px;
   display: flex;
   flex-direction: row;
   align-items: center;
   background-color: #faf8f2;
+  position: fixed;
+  z-index: 9999;
 `;
 
 export const InnerWrapper = styled.div`
