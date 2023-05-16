@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Modal from "./Modal/modal";
 import Backdrop from "./Backdrop/Backdrop";
@@ -59,3 +60,4 @@ export default function Magazine(): JSX.Element {
     </>
   );
 }
+

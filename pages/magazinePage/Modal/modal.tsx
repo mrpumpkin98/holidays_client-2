@@ -1,3 +1,4 @@
+
 import React from "react";
 import * as S from "../../../styles/modal.styles";
 
@@ -44,3 +45,4 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
 };
 
 export default Modal;
+

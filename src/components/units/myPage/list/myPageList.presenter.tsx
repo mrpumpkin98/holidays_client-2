@@ -1,3 +1,4 @@
+
 import * as S from "./myPageList.styles";
 import { ImyPageListUIProps } from "./myPageList.types";
 
@@ -25,3 +26,4 @@ export default function ClassListUI(props: ImyPageListUIProps) {
     </S.Wrapper>
   );
 }
+

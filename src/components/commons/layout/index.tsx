@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 const HIDDEN = ["/Login", "/Login/SignUp"];
 
 const Body = styled.div`
-  width: 1920px;
   display: flex;
   flex-direction: column;
   align-items: center;
