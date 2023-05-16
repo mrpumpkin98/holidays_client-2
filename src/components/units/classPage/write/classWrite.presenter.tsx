@@ -67,9 +67,11 @@ export default function ClassWriteUI() {
 
   // 달력 크기 지정
   const [size] = useState<SizeType>("large");
+  const [state, setState] = useState(); // 달력 값 담기
 
-  // 일정 onchange
+  // 달력 onchange
   const onChangeDate = (dates: any, dateStrings: [string, string]) => {
+    setState(dateStrings);
     console.log("Selected Range:", dates);
     console.log("Range Strings:", dateStrings);
   };
@@ -197,9 +199,12 @@ export default function ClassWriteUI() {
           <S.Contents />
           <S.Error>에러</S.Error>
           <S.Label>클래스 일정을 선택해주세요</S.Label>
+
           <S.Spaced direction="vertical">
             <S.RangePicker size={size} onChange={onChangeDate} />
           </S.Spaced>
+
+          {/* <div>{state}</div> */}
           <S.Error>에러</S.Error>
         </S.Wrapper_body>
       </S.Wrapper>

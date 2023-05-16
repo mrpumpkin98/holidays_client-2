@@ -1,12 +1,15 @@
 import styled from "@emotion/styled";
-import { Input, Rate } from "antd";
+import { Input } from "antd";
 
 export const Wrapper = styled.div`
   width: 1113px;
   display: flex;
   flex-direction: column;
   margin: auto; // 가운데 정렬
-  margin-bottom: 50px;
+  margin-bottom: 150px;
+  /* border: 1px solid blue; */
+  padding-top: 90px;
+  border-top: 1px solid rgba(189, 189, 189, 1);
 `;
 
 export const Wrapper_body = styled.div`
@@ -17,11 +20,6 @@ export const Wrapper_body = styled.div`
 export const Wrapper_body_header = styled.div`
   font-size: 22px;
   font-weight: 400;
-  margin-bottom: 10px;
-`;
-
-// 별점
-export const Star = styled(Rate)`
   margin-bottom: 10px;
 `;
 
