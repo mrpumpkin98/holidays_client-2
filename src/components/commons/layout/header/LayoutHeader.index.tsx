@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import * as S from "./LayoutHeader.styles";
+import Backdrop from "../../../commons/modals/writePostModal/Backdrop/Backdrop";
+import Modal1 from "../../../commons/modals/writePostModal/Modal/modal";
 import { useQuery } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
 
@@ -16,7 +18,7 @@ export default function LayoutHeader(): JSX.Element {
 
   const NAVIGATION_MENUS = [
     { name: "클래스", page: "/classPage" },
-    { name: "사랑방", page: "/Market" },
+    { name: "사랑방", page: "/communityPage" },
     { name: "메거진", page: "/magazinePage" },
   ];
 
@@ -24,8 +26,22 @@ export default function LayoutHeader(): JSX.Element {
     void router.push(event.currentTarget.id);
   };
 
+  // 서비스 모달기능
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalOpen = (): void => {
+    setShowModal(true);
+  };
+
+  const handleModalClose = (): void => {
+    setShowModal(false);
+  };
+
   return (
     <S.Wrapper>
+      {showModal && <Modal1 onClose={handleModalClose} />}
+      {showModal && <Backdrop onClick={handleModalClose} />}
       <S.InnerWrapper>
         <S.Logo src="/images/logo.png" />
         <S.NaviWrapper>
@@ -43,7 +59,9 @@ export default function LayoutHeader(): JSX.Element {
             <S.Icon src="/images/bell.png" />
             <S.Icon src="/images/user.png" />
             <S.InnerButton>마이페이지</S.InnerButton>
-            <S.InnerButton className="OrangeButton">글쓰기</S.InnerButton>
+            <S.InnerButton className="OrangeButton" onClick={handleModalOpen}>
+              글쓰기
+            </S.InnerButton>
           </S.ButtonTie>
         ) : (
           <S.ButtonTie>
