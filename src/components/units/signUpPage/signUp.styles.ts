@@ -1,10 +1,15 @@
 import styled from "@emotion/styled";
+import { mobile } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 1920px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media ${mobile} {
+    width: 100vw;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -12,6 +17,10 @@ export const ContentWrapper = styled.div`
   width: 640px;
   padding-bottom: 30px;
   box-shadow: 0px 0px 5px gray;
+
+  @media ${mobile} {
+    width: 90vw;
+  }
 `;
 
 export const HeaderTitle = styled.div`
@@ -21,6 +30,10 @@ export const HeaderTitle = styled.div`
   justify-content: center;
   padding-top: 50px;
   margin-bottom: 50px;
+
+  @media ${mobile} {
+    font-size: 2rem;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -138,6 +151,11 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+
+  @media ${mobile} {
+    width: 65vw;
+    margin-left: 12vw;
+  }
 `;
 
 export const SignUpButton = styled.button`

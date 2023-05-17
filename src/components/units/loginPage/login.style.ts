@@ -16,12 +16,13 @@ export const Wrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  /* margin-top: 100px; */
+  margin-top: 100px;
   width: 640px;
   padding-bottom: 30px;
   box-shadow: 0px 0px 5px gray;
   @media ${mobile} {
     width: 90%;
+    margin-top: 10vh;
   }
 `;
 
@@ -45,6 +46,11 @@ export const InputWrapper = styled.div`
   padding-left: 80px;
   padding-right: 80px;
   margin-bottom: 40px;
+
+  @media ${mobile} {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
 `;
 
 export const Label = styled.div`

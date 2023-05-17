@@ -1,10 +1,15 @@
 import styled from "@emotion/styled";
+import { mobile } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 1920px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media ${mobile} {
+    width: 100vw;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -12,6 +17,10 @@ export const ContentWrapper = styled.div`
   width: 640px;
   padding-bottom: 30px;
   box-shadow: 0px 0px 5px gray;
+
+  @media ${mobile} {
+    width: 90vw;
+  }
 `;
 
 export const HeaderTitle = styled.div`
@@ -36,6 +45,10 @@ export const Label = styled.div`
   font-size: 24px;
   font-weight: 600px;
   margin-bottom: 10px;
+
+  @media ${mobile} {
+    font-size: 1rem;
+  }
 `;
 
 export const defaultInput = styled.input`
@@ -48,52 +61,23 @@ export const defaultInput = styled.input`
   font-size: 16px;
   border: none;
   background: #f5f5f5;
-`;
 
-export const EmailWrapper = styled.div`
-  width: 100%;
-  display: flex;
-`;
-
-export const FirstEmail = styled.input`
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  margin-right: 30px;
-  border-radius: 5px;
-  font-size: 16px;
-  width: 300px;
-  border: none;
-  background: #f5f5f5;
-`;
-
-export const EmailConnector = styled.div`
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  margin-right: 30px;
-`;
-
-export const LastEmail = styled.select`
-  width: 300px;
-  border-radius: 5px;
-  color: gray;
-  font-size: 16px;
-  padding-left: 10px;
-`;
-
-export const defaultAddress = styled.option`
-  color: gray;
+  @media ${mobile} {
+    font-size: 0.6rem;
+  }
 `;
 
 export const FindButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+  width: 100%;
+  padding-left: 80px;
+  padding-right: 80px;
 `;
 
 export const FindButton = styled.button`
-  width: 480px;
+  width: 100%;
   height: 50px;
   border: none;
   font-size: 24px;
