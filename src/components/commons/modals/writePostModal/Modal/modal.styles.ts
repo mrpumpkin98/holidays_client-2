@@ -3,23 +3,28 @@ import styled from "@emotion/styled";
 
 export const ModalWrapper = styled.div`
   position: fixed;
-  top: 46%;
-  left: 50%;
+  top: 180px;
+  left: 1520px;
   transform: translate(-50%, -50%);
   background-color: white;
   z-index: 9999;
+  border: 1px solid rgb(218, 221, 224);
+  border-radius: 6px;
+  box-shadow: rgb(63 71 77 / 20%) 0px 4px 10px 0px;
+  border-radius: 6px;
 `;
 
 export const Wrapper = styled.div`
-  width: 400px;
+  width: 200px;
   background: #ffffff;
   display: flex;
   flex-direction: column;
+  border-radius: 6px;
 `;
 
 export const TitleWrapper = styled.div`
   display: flex;
-  padding: 20px 0px 20px 20px;
+  padding: 20px 20px 20px 20px;
 `;
 
 export const Title = styled.div`
@@ -43,14 +48,14 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const ContentsWrapper = styled.div`
-  margin-bottom: 150px;
+  margin: 10px 0px;
 `;
 
 export const Contents = styled.div`
   font-size: 15px;
-  padding: 15px 0px 15px 20px;
+  font-weight: 500;
+  padding: 15px 15px 15px 20px;
   overflow: auto;
-  border-bottom: 1px solid #f2f2f2;
   margin: 0px 10px;
   cursor: pointer;
   :hover {
