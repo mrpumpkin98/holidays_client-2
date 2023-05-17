@@ -39,45 +39,15 @@ export const Label = styled.div`
 `;
 
 export const Subtitle = styled.div`
-  font-size: 18px;
+  font-size: 0.7rem;
   color: #888888;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 `;
 
-export const EmailWrapper = styled.div`
+export const SubtitleLine = styled.div`
   width: 100%;
-  display: flex;
-`;
-
-export const FirstEmail = styled.input`
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  margin-right: 30px;
-  border-radius: 5px;
-  font-size: 16px;
-  width: 300px;
-  border: none;
-  background: #f5f5f5;
-`;
-
-export const EmailConnector = styled.div`
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  margin-right: 30px;
-`;
-
-export const LastEmail = styled.select`
-  width: 300px;
-  border-radius: 5px;
-  color: gray;
-  font-size: 16px;
-  padding-left: 10px;
-`;
-
-export const defaultAddress = styled.option`
-  color: gray;
+  border: 0.3px dotted #888888;
+  margin-bottom: 1vh;
 `;
 
 export const defaultInput = styled.input`

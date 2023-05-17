@@ -1,5 +1,6 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import { mobile } from "../../../commons/styles/breakPoints";
 
 const bounce = keyframes`
   0% {
@@ -38,7 +39,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   background: rgba(255, 255, 204, 0.3);
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: max-content;
     /* height: 800px; */
     display: flex;
@@ -52,7 +53,7 @@ export const Wrapper = styled.div`
 
 export const ContentWrapper = styled.div`
   /* background: rgba(255, 255, 204, 0.3); */
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
   }
 `;
 
@@ -60,7 +61,7 @@ export const TitleIconWrapper = styled.div`
   width: 500px;
   display: flex;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 90vw;
   }
 `;
@@ -77,7 +78,7 @@ export const TitleIcon = styled.img`
 
   animation: ${bounce} 3s ease-in-out;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 10vw;
     height: 10vh;
 
@@ -101,7 +102,7 @@ export const TitleWrapper = styled.div`
 
   /* background-color: #f28316; */
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -119,7 +120,7 @@ export const TitleContentWrapper = styled.div`
   align-items: center;
   color: #f28316;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 90vw;
     /* background-color: #f28316; */
     display: flex;
@@ -137,7 +138,7 @@ export const Title = styled.div`
   animation-fill-mode: forwards;
   animation: ${fadeInAnimation} 2s ease-in-out 3s forwards;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 2.8rem;
 
     opacity: 0;
@@ -156,7 +157,7 @@ export const Subtitle = styled.div`
   animation-fill-mode: forwards;
   animation: ${fadeInAnimation} 2s ease-in-out 4s forwards;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 1.8rem;
 
     color: black;
@@ -181,7 +182,7 @@ export const InformWrapper = styled.div`
   align-items: flex-start;
   margin-top: 50px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     margin-bottom: 7vh;
     margin-top: 7vh;
     margin-left: 13vw;
@@ -192,7 +193,7 @@ export const Label = styled.div`
   font-size: 24px;
   margin-bottom: 10px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 0.8rem;
     margin-bottom: 10px;
   }
@@ -208,7 +209,7 @@ export const ButtonWrapper = styled.div`
   margin-top: 50px;
   margin-bottom: 150px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: calc(100% - 100px);
     display: flex;
     justify-content: center;
@@ -239,7 +240,7 @@ export const PaymentButton = styled.button`
   animation-fill-mode: forwards;
   animation: ${fadeInAnimation} 2s ease-in-out 6s forwards;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 80vw;
     height: 10vh;
     margin-left: 18vw;
@@ -260,7 +261,7 @@ export const PaymentInformationImage = styled.img`
 
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 90vw;
     height: 40vh;
     border-radius: 5px;
@@ -281,7 +282,7 @@ export const PaymentInformHeader = styled.div`
   margin-top: 10px;
   /* background: #ffffff; */
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 90vw;
     font-size: 14px;
     /* color: gray; */

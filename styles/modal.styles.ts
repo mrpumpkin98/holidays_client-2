@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mobile } from "../src/commons/styles/breakPoints";
 
 export const ModalWrapper = styled.div`
   position: fixed;
@@ -10,6 +11,10 @@ export const ModalWrapper = styled.div`
   z-index: 100;
   border-radius: 15px;
   height: 1000px;
+
+  @media ${mobile} {
+    height: 80vh;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -20,6 +25,10 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 30px 30px 30px 30px;
+
+  @media ${mobile} {
+    width: 70vw;
+  }
 `;
 
 export const Title = styled.div`
@@ -34,6 +43,10 @@ export const ButtonWrapper = styled.div`
   justify-content: flex-end;
   width: calc(100% - 30px);
   margin-bottom: 20px;
+
+  @media ${mobile} {
+    display: none;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -52,6 +65,12 @@ export const CloseButton = styled.button`
     background-color: #e97100;
     color: #ffffff;
   }
+
+  @media ${mobile} {
+    font-size: 1.2rem;
+    width: 15vw;
+    height: 1vh;
+  }
 `;
 
 export const MainImage = styled.img`
@@ -59,6 +78,11 @@ export const MainImage = styled.img`
   height: 300px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px gray;
+
+  @media ${mobile} {
+    width: 55vw;
+    height: 20vh;
+  }
 `;
 
 export const Contents = styled.div`
@@ -69,6 +93,12 @@ export const Contents = styled.div`
 
   height: 500px;
   overflow: auto;
+
+  @media ${mobile} {
+    height: 25svh;
+    padding: none;
+    font-size: 0.9rem;
+  }
 `;
 
 export const SubtitleWrapper = styled.div``;
@@ -79,10 +109,19 @@ export const Subtitle = styled.div`
   display: flex;
   justify-content: flex-end;
   color: #333333;
+
+  @media ${mobile} {
+    width: 100%;
+    margin-top: 1rem;
+  }
 `;
 
 export const DivideLine = styled.div`
   width: 700px;
   border: 1px solid #333333;
   margin: 10px 0px 40px 0px;
+
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
