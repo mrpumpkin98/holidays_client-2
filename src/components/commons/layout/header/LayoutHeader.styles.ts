@@ -35,16 +35,19 @@ export const Logo = styled.img`
   cursor: pointer;
 `;
 
+export const NaviWrapper = styled.div`
+  display: flex;
+  width: 400px;
+`;
+
 export const MenuWrapper = styled.div`
   display: flex;
-  margin-right: 100px;
+  margin-right: 80px;
 `;
 
 export const Menu = styled.div`
-  margin-right: 0px;
   font-weight: 700;
   font-size: 18px;
-  margin-right: 40px;
   cursor: pointer;
   :hover {
     color: #e97100;

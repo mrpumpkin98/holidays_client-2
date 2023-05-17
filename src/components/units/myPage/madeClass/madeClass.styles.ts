@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { SlideBottom } from "../../../../commons/styles/keyframes";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -71,4 +72,124 @@ export const Button = styled.div`
   :hover {
     background-color: #e97100;
   }
+`;
+
+// 리스트
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1215px;
+  margin-top: 60px;
+`;
+
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 1215px;
+`;
+
+export const PremiumAD = styled.div``;
+
+export const Title = styled.div`
+  margin-bottom: 25px;
+  font-weight: 700;
+`;
+
+export const PremiumWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: ${SlideBottom} 0.7s ease-in-out both;
+  margin-bottom: 300px;
+`;
+
+export const PremiumPosts = styled.div`
+  width: 280px;
+  cursor: pointer;
+`;
+
+export const PremiumPostBody = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PremiumTemplate = styled.article`
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+`;
+
+export const PremiumPostImg = styled.img`
+  width: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease-in-out;
+  :hover {
+    transform: scale(1.08);
+  }
+`;
+
+export const PremiumPostTitle = styled.div`
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 5px;
+`;
+
+export const PremiumPostContent = styled.div``;
+
+export const PremiumPostInfo = styled.div``;
+
+export const PremiumUserName = styled.div`
+  color: #f28316;
+  font-weight: 700;
+  font-size: 14px;
+`;
+
+export const PremiumAvatarContentTie = styled.div``;
+
+export const PremiumContent = styled.div`
+  font-size: 16px;
+  margin-bottom: 5px;
+`;
+
+export const PremiumPriceTie = styled.div``;
+
+export const PremiumPrice = styled.div`
+  text-align: end;
+`;
+
+export const ButtonTie = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+`;
+
+export const AdButton = styled.button`
+  width: 133px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 4px;
+  background-color: #f28316;
+  border: none;
+  color: white;
+  :hover {
+    background-color: #e97100;
+  }
+`;
+
+export const DeleteButton = styled.button`
+  width: 133px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 4px;
+  background-color: #f2f2f2;
+  border: none;
 `;

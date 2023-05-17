@@ -2,38 +2,46 @@ import { useState } from "react";
 import * as S from "./myPageList.styles";
 import Modal1 from "../../../commons/modals/editProFileModal/Modal/modal";
 import Backdrop from "../../../commons/modals/editProFileModal/Backdrop/Backdrop";
+import { useRouter } from "next/router";
 
 export default function StaticRoutingPage() {
+  const router = useRouter();
   const [listItems, setListItems] = useState([
     {
       name: "내가 만든 클래스",
       detailed: "내가 만든 클래스로 수익을 만들어보세요",
       src: "/myPage/presentation.png",
+      go: `/Market`,
     },
     {
       name: "내가 신청한 클래스",
       detailed: "취향에 맞는 클래스를 추천해 드려요",
       src: "/myPage/basket.png",
+      go: `/Market`,
     },
     {
       name: "위시리스트",
       detailed: "내가 픽한 클래스",
       src: "/myPage/love-heart.png",
+      go: `/Market`,
     },
     {
       name: "내 사랑방 리스트",
       detailed: "내가 작성한 사랑방 리스트",
       src: "/myPage/options-list.png",
+      go: `/Market`,
     },
     {
       name: "예약 관리",
       detailed: "클래스 예약 신청을 확인해주세요",
       src: "/myPage/user-options.png",
+      go: `/Market`,
     },
     {
       name: "회원 탈퇴",
       detailed: "홀리데이즈 회원 탈퇴",
       src: "/myPage/emergency-exit.png",
+      go: `/Market`,
     },
   ]);
 

@@ -14,15 +14,29 @@ export default function LayoutHeader(): JSX.Element {
     setContents(false);
   };
 
+  const NAVIGATION_MENUS = [
+    { name: "클래스", page: "/classPage" },
+    { name: "사랑방", page: "/Market" },
+    { name: "메거진", page: "/magazinePage" },
+  ];
+
+  const onClickMenu = (event: any): void => {
+    void router.push(event.currentTarget.id);
+  };
+
   return (
     <S.Wrapper>
       <S.InnerWrapper>
         <S.Logo src="/images/logo.png" />
-        <S.MenuWrapper>
-          <S.Menu>클래스</S.Menu>
-          <S.Menu>사랑방</S.Menu>
-          <S.Menu>메거진</S.Menu>
-        </S.MenuWrapper>
+        <S.NaviWrapper>
+          {NAVIGATION_MENUS.map((el) => (
+            <S.MenuWrapper key={el.page}>
+              <S.Menu id={el.page} onClick={onClickMenu}>
+                {el.name}
+              </S.Menu>
+            </S.MenuWrapper>
+          ))}
+        </S.NaviWrapper>
         {userName ? (
           <S.ButtonTie>
             <S.InnerButton onClick={onClickLogOut}>로그아웃</S.InnerButton>
