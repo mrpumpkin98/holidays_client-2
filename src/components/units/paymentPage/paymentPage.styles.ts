@@ -39,21 +39,30 @@ export const Wrapper = styled.div`
   background: rgba(255, 255, 204, 0.3);
 
   @media screen and (max-width: 768px) {
-    width: 768px;
+    width: max-content;
     /* height: 800px; */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background: rgba(255, 255, 204, 0.3);
+
+    /* padding-left: 25vw; */
   }
 `;
 
 export const ContentWrapper = styled.div`
   /* background: rgba(255, 255, 204, 0.3); */
+  @media screen and (max-width: 768px) {
+  }
 `;
 
 export const TitleIconWrapper = styled.div`
   width: 500px;
   display: flex;
+
+  @media screen and (max-width: 768px) {
+    width: 90vw;
+  }
 `;
 
 export const TitleIcon = styled.img`
@@ -69,12 +78,12 @@ export const TitleIcon = styled.img`
   animation: ${bounce} 3s ease-in-out;
 
   @media screen and (max-width: 768px) {
-    width: 70px;
-    height: 70px;
+    width: 10vw;
+    height: 10vh;
 
     position: relative;
-    top: 15px;
-    left: 10px;
+    top: 1.1rem;
+    left: 1rem;
     transform: rotate(-20deg);
     transform-origin: left bottom;
 
@@ -98,7 +107,7 @@ export const TitleWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 15vh;
   }
 `;
 
@@ -111,7 +120,7 @@ export const TitleContentWrapper = styled.div`
   color: #f28316;
 
   @media screen and (max-width: 768px) {
-    width: 700px;
+    width: 90vw;
     /* background-color: #f28316; */
     display: flex;
     flex-direction: column;
@@ -129,7 +138,7 @@ export const Title = styled.div`
   animation: ${fadeInAnimation} 2s ease-in-out 3s forwards;
 
   @media screen and (max-width: 768px) {
-    font-size: 64px;
+    font-size: 2.8rem;
 
     opacity: 0;
     animation-delay: 3s;
@@ -148,7 +157,7 @@ export const Subtitle = styled.div`
   animation: ${fadeInAnimation} 2s ease-in-out 4s forwards;
 
   @media screen and (max-width: 768px) {
-    font-size: 36px;
+    font-size: 1.8rem;
 
     color: black;
     opacity: 0;
@@ -171,6 +180,12 @@ export const InformWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   margin-top: 50px;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 7vh;
+    margin-top: 7vh;
+    margin-left: 13vw;
+  }
 `;
 
 export const Label = styled.div`
@@ -178,7 +193,7 @@ export const Label = styled.div`
   margin-bottom: 10px;
 
   @media screen and (max-width: 768px) {
-    font-size: 18px;
+    font-size: 0.8rem;
     margin-bottom: 10px;
   }
 `;
@@ -197,8 +212,8 @@ export const ButtonWrapper = styled.div`
     width: calc(100% - 100px);
     display: flex;
     justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 150px;
+    margin-top: 10vh;
+    margin-bottom: 20vh;
   }
 `;
 
@@ -225,8 +240,9 @@ export const PaymentButton = styled.button`
   animation: ${fadeInAnimation} 2s ease-in-out 6s forwards;
 
   @media screen and (max-width: 768px) {
-    width: 100%;
-    margin-left: 100px;
+    width: 80vw;
+    height: 10vh;
+    margin-left: 18vw;
   }
 `;
 
@@ -245,8 +261,8 @@ export const PaymentInformationImage = styled.img`
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
   @media screen and (max-width: 768px) {
-    width: 500px;
-    height: 300px;
+    width: 90vw;
+    height: 40vh;
     border-radius: 5px;
     margin-top: 30px;
 
@@ -266,13 +282,13 @@ export const PaymentInformHeader = styled.div`
   /* background: #ffffff; */
 
   @media screen and (max-width: 768px) {
-    width: 500px;
+    width: 90vw;
     font-size: 14px;
     /* color: gray; */
     font-weight: 500;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    margin-top: 10px;
+    margin-top: 2vh;
   }
 `;
