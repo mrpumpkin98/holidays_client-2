@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   z-index: 9999;
 
   @media screen and (max-width: 768px) {
-    width: 100%;
+    width: 100vw;
   }
 `;
 

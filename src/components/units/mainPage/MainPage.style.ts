@@ -114,8 +114,8 @@ export const MainCategoryIcon = styled.img`
   }
 
   @media screen and (max-width: 768px) {
-    width: 90px;
-    height: 90px;
+    width: 10vw;
+    height: 10vh;
 
     transition: all 0.2s ease-in-out;
 
@@ -128,6 +128,10 @@ export const MainCategoryIcon = styled.img`
 export const MainCategoryLabel = styled.div`
   font-size: 30px;
   margin-top: 15px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Body = styled.div`
@@ -137,7 +141,7 @@ export const Body = styled.div`
   padding-bottom: 100px;
 
   @media screen and (max-width: 768px) {
-    width: 80%;
+    width: 100%;
   }
 `;
 
@@ -152,10 +156,10 @@ export const MainContentsLeft = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
-    padding-left: 0px;
+    padding-left: 20vw;
     justify-content: center;
     align-items: center;
   }
@@ -173,10 +177,12 @@ export const MainContentsRight = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: column;
-    padding-left: 0px;
+    padding-left: 20vw;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -195,8 +201,8 @@ export const MainContentsImageLeft = styled.img`
   }
 
   @media screen and (max-width: 768px) {
-    width: 80%;
-    height: 670px;
+    width: 100%;
+    height: 40vh;
 
     border-radius: 15px;
     box-shadow: 0px 0px 10px gray;
@@ -221,8 +227,8 @@ export const MainContentsImageRight = styled.img`
   }
 
   @media screen and (max-width: 768px) {
-    width: 80%;
-    height: 670px;
+    width: 80vw;
+    height: 40vh;
 
     border-radius: 15px;
     box-shadow: 0px 0px 10px gray;
@@ -231,8 +237,8 @@ export const MainContentsImageRight = styled.img`
     transition: all 0.5s ease-in-out;
 
     position: relative;
-    top: -200px;
-    right: 100px;
+    top: 0px;
+    right: 17vw;
   }
 `;
 

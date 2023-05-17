@@ -38,22 +38,31 @@ export const Wrapper = styled.div`
   justify-content: center;
   background: rgba(255, 255, 204, 0.3);
 
-  @media screen and (max-width: 1200px) {
-    width: 768px;
+  @media screen and (max-width: 768px) {
+    width: 100vw;
     /* height: 800px; */
     display: flex;
     justify-content: center;
     background: rgba(255, 255, 204, 0.3);
+
+    /* border: 2px solid; */
   }
 `;
 
 export const ContentWrapper = styled.div`
   /* background: rgba(255, 255, 204, 0.3); */
+  @media screen and (max-width: 768px) {
+    width: 90%;
+  }
 `;
 
 export const TitleIconWrapper = styled.div`
   width: 500px;
   display: flex;
+
+  @media screen and (max-width: 768px) {
+    width: 70vw;
+  }
 `;
 
 export const TitleIcon = styled.img`
@@ -100,6 +109,10 @@ export const TitleContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   color: #f28316;
+
+  @media screen and (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const Title = styled.div`
