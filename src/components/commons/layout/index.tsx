@@ -1,5 +1,5 @@
-import LayoutHeader from "./header/LayoutHeader.container";
-import LayoutFooter from "./footer/LayoutFooter.container";
+import LayoutHeader from "./header/LayoutHeader.index";
+import LayoutFooter from "./footer/LayoutFooter.index";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
