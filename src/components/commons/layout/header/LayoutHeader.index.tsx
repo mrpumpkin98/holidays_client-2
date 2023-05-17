@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import * as S from "./LayoutHeader.styles";
 import Backdrop from "../../../commons/modals/writePostModal/Backdrop/Backdrop";
 import Modal1 from "../../../commons/modals/writePostModal/Modal/modal";
+import Modal2 from "../../../commons/modals/myPageModal/Modal/modal";
 import { useQuery } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
 
@@ -26,7 +27,7 @@ export default function LayoutHeader(): JSX.Element {
     void router.push(event.currentTarget.id);
   };
 
-  // 서비스 모달기능
+  // 글쓰기 모달기능
 
   const [showModal, setShowModal] = useState(false);
 
@@ -38,10 +39,26 @@ export default function LayoutHeader(): JSX.Element {
     setShowModal(false);
   };
 
+  // 내정보 모달기능
+
+  const [showModal2, setShowModal2] = useState(false);
+
+  const handleModalOpen2 = (): void => {
+    setShowModal2(true);
+  };
+
+  const handleModalClose2 = (): void => {
+    setShowModal2(false);
+  };
+
   return (
     <S.Wrapper>
       {showModal && <Modal1 onClose={handleModalClose} />}
       {showModal && <Backdrop onClick={handleModalClose} />}
+      {showModal2 && (
+        <Modal2 onClose={handleModalClose2} onLogout={onClickLogOut} />
+      )}
+      {showModal2 && <Backdrop onClick={handleModalClose2} />}
       <S.InnerWrapper>
         <S.Logo src="/images/logo.png" />
         <S.NaviWrapper>
@@ -55,10 +72,8 @@ export default function LayoutHeader(): JSX.Element {
         </S.NaviWrapper>
         {userName ? (
           <S.ButtonTie>
-            <S.InnerButton onClick={onClickLogOut}>로그아웃</S.InnerButton>
             <S.Icon src="/images/bell.png" />
-            <S.Icon src="/images/user.png" />
-            <S.InnerButton>마이페이지</S.InnerButton>
+            <S.Icon src="/images/user.png" onClick={handleModalOpen2} />
             <S.InnerButton className="OrangeButton" onClick={handleModalOpen}>
               글쓰기
             </S.InnerButton>

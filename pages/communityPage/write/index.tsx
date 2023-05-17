@@ -3,7 +3,7 @@ import CommunityPage from "../../../src/components/units/communityPage/write/com
 export default function GraphqlMutationPage() {
   return (
     <div>
-      <CommunityPage />
+      <CommunityPage isEdit={false} />
     </div>
   );
 }

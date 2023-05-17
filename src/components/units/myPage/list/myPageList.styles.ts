@@ -86,9 +86,6 @@ export const MyPageListBox = styled.div`
   box-shadow: rgb(63 71 77 / 15%) 0px 2px 6px;
   border: 1px solid #f5f5f5;
   cursor: pointer;
-  :hover {
-    background: #faf8f2;
-  }
 `;
 
 export const ListNameIconWrapper = styled.div`
