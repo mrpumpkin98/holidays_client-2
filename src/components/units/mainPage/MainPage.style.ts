@@ -1,5 +1,6 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import { mobile } from "../../../commons/styles/breakPoints";
 
 const bounce = keyframes`
   0% {
@@ -25,7 +26,7 @@ const bannerAnimation = keyframes`
 export const Wrapper = styled.div`
   width: 1920px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100vw;
   }
 `;
@@ -36,7 +37,7 @@ export const Header = styled.div`
   align-items: center;
   margin-top: 100px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -52,7 +53,7 @@ export const MainBanner = styled.img`
 
   animation: ${bannerAnimation} 3s ease-in-out;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100vw;
     border-radius: 5px;
     box-shadow: 0px 0px 10px gray;
@@ -74,7 +75,7 @@ export const MainButtonWrapper = styled.div`
   justify-content: space-between;
   box-shadow: 0px 0px 10px gray;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 80%;
     height: 25vh;
     background: white;
@@ -113,7 +114,7 @@ export const MainCategoryIcon = styled.img`
     transform: scale(1.1);
   }
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 10vw;
     height: 10vh;
 
@@ -129,7 +130,7 @@ export const MainCategoryLabel = styled.div`
   font-size: 30px;
   margin-top: 15px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 1rem;
   }
 `;
@@ -140,7 +141,7 @@ export const Body = styled.div`
   /* align-items: center; */
   padding-bottom: 100px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100%;
   }
 `;
@@ -155,7 +156,7 @@ export const MainContentsLeft = styled.div`
     color: orange;
   }
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -176,7 +177,7 @@ export const MainContentsRight = styled.div`
     color: orange;
   }
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -200,7 +201,7 @@ export const MainContentsImageLeft = styled.img`
     transform: scale(1.008);
   }
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100%;
     height: 40vh;
 
@@ -226,7 +227,7 @@ export const MainContentsImageRight = styled.img`
     transform: scale(1.01);
   }
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 80vw;
     height: 40vh;
 
@@ -249,7 +250,7 @@ export const MainContentsTextWrapperLeft = styled.div`
   justify-content: flex-end;
   padding-bottom: 50px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     display: none;
   }
 `;
@@ -261,7 +262,7 @@ export const MainContentsTextWrapperRight = styled.div`
   justify-content: flex-end;
   padding-bottom: 50px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     display: none;
   }
 `;
@@ -269,7 +270,7 @@ export const MainContentsTextWrapperRight = styled.div`
 export const MainContentsLabelLeft = styled.div`
   font-size: 96px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 36px;
   }
 `;
@@ -279,7 +280,7 @@ export const MainContentsRemarksLeft = styled.div`
   margin-top: 20px;
   font-weight: 335;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 24px;
   }
 `;
@@ -297,7 +298,7 @@ export const MainContentsButtonLeft = styled.img`
     animation: ${bounce} 0.7s;
   }
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 24px;
     width: 25px;
     height: 25px;
@@ -311,7 +312,7 @@ export const MainContentsButtonLeft = styled.img`
 export const MainContentsLabelRight = styled.div`
   font-size: 96px;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 36px;
   }
 `;
@@ -321,7 +322,7 @@ export const MainContentsRemarksRight = styled.div`
   margin-top: 20px;
   font-weight: 335;
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 24px;
   }
 `;
@@ -339,7 +340,7 @@ export const MainContentsButtonRight = styled.img`
     animation: ${bounce} 0.7s;
   }
 
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 24px;
     width: 25px;
     height: 25px;

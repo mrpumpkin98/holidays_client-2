@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
+import { mobile } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 1920px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media only screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -19,7 +20,7 @@ export const ContentWrapper = styled.div`
   width: 640px;
   padding-bottom: 30px;
   box-shadow: 0px 0px 5px gray;
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 90%;
   }
 `;
@@ -31,7 +32,7 @@ export const HeaderTitle = styled.div`
   justify-content: center;
   padding-top: 50px;
   margin-bottom: 50px;
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100%;
     font-size: 48px;
   }
@@ -50,7 +51,7 @@ export const Label = styled.div`
   font-size: 24px;
   font-weight: 600px;
   margin-bottom: 10px;
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     font-size: 24px;
     font-weight: 550px;
     margin-bottom: 10px;
@@ -73,7 +74,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100%;
   }
 `;
@@ -89,7 +90,7 @@ export const LoginButton = styled.button`
     background: orange;
     color: white;
   }
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 89%;
   }
 `;
@@ -115,7 +116,7 @@ export const SocialWrapper = styled.div`
   align-items: center;
   margin-top: 50px;
   margin-bottom: 30px;
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 100%;
   }
 `;
@@ -132,7 +133,7 @@ export const SocialNaverWrapper = styled.div`
   &:hover {
     color: orange;
   }
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 89%;
   }
 `;
@@ -149,7 +150,7 @@ export const SocialKakaoWrapper = styled.div`
   &:hover {
     color: orange;
   }
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 89%;
   }
 `;
@@ -166,7 +167,7 @@ export const SocialGoogleWrapper = styled.div`
   &:hover {
     color: orange;
   }
-  @media screen and (max-width: 768px) {
+  @media ${mobile} {
     width: 89%;
   }
 `;

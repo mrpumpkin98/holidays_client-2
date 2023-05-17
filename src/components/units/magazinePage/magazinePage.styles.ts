@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mobile } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   /* height: 1000px;  */
@@ -8,7 +9,7 @@ export const Wrapper = styled.div`
   align-items: center;
   padding-top: 70px;
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     width: max-content;
     padding-top: 8rem;
   }
@@ -24,7 +25,7 @@ export const HeaderLogo = styled.img`
   height: 50px;
   margin-bottom: 10px;
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     width: 55vw;
     height: 10vh;
     margin-bottom: 1rem;
@@ -33,7 +34,7 @@ export const HeaderLogo = styled.img`
 export const HeaderTitle = styled.div`
   font-size: 24px;
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     font-size: 1.2rem;
   }
 `;
@@ -43,7 +44,7 @@ export const Editor = styled.div`
   justify-content: flex-end;
   margin-top: 30px;
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     width: 90vw;
     margin-top: 1.5rem;
   }
@@ -53,7 +54,7 @@ export const divideLine = styled.div`
   border: 1px solid;
   margin-bottom: 30px;
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     width: 90vw;
     border: 0.04em solid;
   }
@@ -65,7 +66,7 @@ export const Body = styled.div`
   align-items: center;
   padding-bottom: 100px;
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     width: 95vw;
     padding-bottom: 3rem;
   }
@@ -76,7 +77,7 @@ export const ContentsLeft = styled.div`
   margin-top: 100px;
   padding-left: 100px;
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     width: 95vw;
     padding-left: 0.5rem;
     margin-top: 5vh;
@@ -89,7 +90,7 @@ export const ContentsRight = styled.div`
   padding-right: 50px;
   margin-top: 100px;
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     width: 95vw;
     padding-left: 0rem;
     padding-right: 0rem;
@@ -109,7 +110,7 @@ export const ContentsImageLeft = styled.img`
     transform: scale(1.008);
   }
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     width: 95vw;
     height: 40vh;
     padding-left: 0rem;
@@ -129,7 +130,7 @@ export const ContentsImageRight = styled.img`
     transform: scale(1.01);
   }
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     width: 50vw;
     height: 70vh;
     margin-left: 0px;
@@ -143,7 +144,7 @@ export const ContentsTextWrapperLeft = styled.div`
   justify-content: flex-end;
   padding-bottom: 50px;
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     display: none;
   }
 `;
@@ -154,7 +155,7 @@ export const ContentsTextWrapperRight = styled.div`
   align-items: flex-end;
   padding-bottom: 110px;
 
-  @media screen and (max-width: 786px) {
+  @media ${mobile} {
     display: none;
   }
 `;

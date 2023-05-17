@@ -24,17 +24,7 @@ export default function SignUp(): JSX.Element {
           <S.HeaderTitle>회원 가입</S.HeaderTitle>
           <S.InputWrapper>
             <S.Label>아이디</S.Label>
-            <S.EmailWrapper>
-              <S.FirstEmail placeholder="이메일을 입력해 주세요" />
-              <S.EmailConnector>@</S.EmailConnector>
-              <S.LastEmail>
-                <S.defaultAddress selected disabled>
-                  주소를 선택해 주세요
-                </S.defaultAddress>
-                <option value={``}>naver.com</option>
-                <option value={``}>gmail.com</option>
-              </S.LastEmail>
-            </S.EmailWrapper>
+            <S.defaultInput placeholder="이메일을 입력해 주세요" />
             {verified ? (
               <S.VerifyFinished>이메일 인증이 완료되었습니다</S.VerifyFinished>
             ) : (
@@ -59,6 +49,8 @@ export default function SignUp(): JSX.Element {
             <S.defaultInput placeholder="비밀번호를 다시 입력해 주세요" />
           </S.InputWrapper>
           <S.InputWrapper>
+            <S.Subtitle>선택 입력 사항</S.Subtitle>
+            <S.SubtitleLine />
             <S.Label>생년월일</S.Label>
             <S.BirthWrapper>
               <S.Year placeholder="년(4자리)" />
