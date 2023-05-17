@@ -4,21 +4,28 @@ import * as S from "./modal.styles";
 
 interface ModalProps {
   onClose: () => void;
+  onLogout: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, onLogout, children }) => {
   const router = useRouter();
   const NAVIGATION_MENUS = [
-    { name: "클래스 생성하기", page: "/classPage/write" },
-    { name: "클래스 광고하기", page: "/paymentPage" },
-    { name: "사랑방 글쓰기", page: "/communityPage/write" },
-    { name: "예약 관리", page: "/myPage/reservation" },
+    { name: "마이페이지", page: "/myPage" },
+    {
+      name: "로그아웃",
+      page: "/communityPage",
+      onClick: () => {
+        onLogout();
+        onClose();
+      },
+    },
   ];
 
   const onClickMenu = (event: any): void => {
     void router.push(event.currentTarget.id);
     onClose();
   };
+
   return (
     <S.ModalWrapper>
       {children}
@@ -26,7 +33,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
         <S.NaviWrapper>
           {NAVIGATION_MENUS.map((el) => (
             <S.ContentsWrapper key={el.page}>
-              <S.Contents id={el.page} onClick={onClickMenu}>
+              <S.Contents id={el.page} onClick={el.onClick || onClickMenu}>
                 {el.name}
               </S.Contents>
             </S.ContentsWrapper>
