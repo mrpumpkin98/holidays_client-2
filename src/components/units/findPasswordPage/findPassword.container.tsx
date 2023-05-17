@@ -16,17 +16,7 @@ export default function FindPassword() {
           </S.InputWrapper>
           <S.InputWrapper>
             <S.Label>아이디</S.Label>
-            <S.EmailWrapper>
-              <S.FirstEmail placeholder="이메일을 입력해 주세요" />
-              <S.EmailConnector> @ </S.EmailConnector>
-              <S.LastEmail>
-                <S.defaultAddress selected disabled>
-                  주소를 선택해 주세요
-                </S.defaultAddress>
-                <option value={``}>naver.com</option>
-                <option value={``}>gmail.com</option>
-              </S.LastEmail>
-            </S.EmailWrapper>
+            <S.defaultInput placeholder="가입시 등록한 아이디를 입력해 주세요" />
           </S.InputWrapper>
           <S.FindButtonWrapper>
             <S.FindButton>비밀번호 찾기</S.FindButton>
