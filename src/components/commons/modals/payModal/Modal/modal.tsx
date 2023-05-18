@@ -18,6 +18,7 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
 
   const onClickGeneralPay = () => {
     // 일반결제 (이니시스 or 나이스)
+    console.log(data);
   };
 
   const onClickKakaoPay = () => {
