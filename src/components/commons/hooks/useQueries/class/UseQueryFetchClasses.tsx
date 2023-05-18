@@ -35,10 +35,10 @@ export const FETCH_CLASSES = gql`
   }
 `;
 
-export const UseQueryFetchClasses = (variables: any) => {
-  const queryFetchClasses = useQuery(FETCH_CLASSES, {
-    variables,
-  });
+// export const UseQueryFetchClasses = (variables: any) => {
+//   const queryFetchClasses = useQuery(FETCH_CLASSES, {
+//     variables,
+//   });
 
-  return queryFetchClasses;
-};
+//   return queryFetchClasses;
+// };
