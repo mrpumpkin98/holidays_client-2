@@ -5,7 +5,7 @@ export const SignUpSchema = yup.object({
     .string()
     .email("이메일 아이디를 @까지 정확하게 입력해주세요.")
     .required("이메일을 입력해주세요."),
-  password: yup
+  pwd: yup
     .string()
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&].{7,16}$/,
@@ -14,7 +14,7 @@ export const SignUpSchema = yup.object({
     .required("비밀번호를 입력해주세요."),
   passwordCheck: yup
     .string()
-    .oneOf([yup.ref("password")], "비밀번호가 일치하지 않습니다.")
+    .oneOf([yup.ref("pwd")], "비밀번호가 일치하지 않습니다.")
     .required("비밀번호를 확인해주세요."),
   name: yup.string().required("이름을 입력해주세요."),
 });

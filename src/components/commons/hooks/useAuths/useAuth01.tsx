@@ -11,6 +11,6 @@ export const useAuth01 = (): void => {
   // 로그인 여부 확인
   if (accessToken === undefined) {
     alert("로그인 후 이용해 주세요");
-    void router.push(`/login`);
+    void router.push(`/loginPage`);
   }
 };

@@ -52,7 +52,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   });
 
   const uploadLink = createUploadLink({
-    uri: "https://backend-practice.codebootcamp.co.kr/graphql",
+    uri: "http://happyholidays-server.site:3000/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });

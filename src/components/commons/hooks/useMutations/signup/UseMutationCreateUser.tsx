@@ -11,10 +11,11 @@ export const CREATE_USER = gql`
 
 interface IFormSignUpData {
   email: string;
-  password: string;
-  passwordCheck?: string;
+  pwd: string;
   name: string;
-  birth_data?: string;
+  birth_date?: string;
+  passwordCheck?: string;
+  phone?: string;
 }
 
 export const UseMutationCreateUser = () => {
@@ -39,5 +40,7 @@ export const UseMutationCreateUser = () => {
     }
   };
 
-  return SubmitCreateUser;
+  return {
+    SubmitCreateUser,
+  };
 };
