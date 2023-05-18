@@ -54,7 +54,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   // });
 
   const uploadLink = createUploadLink({
-    uri: "http://happyholidays-server.site:3000/graphql",
+    uri: "https://happyholidays-server.site/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
     credentials: "include",
   });

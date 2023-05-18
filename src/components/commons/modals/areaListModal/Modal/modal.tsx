@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import * as S from "./modal.styles";
+import { selectedRegionState } from "../../../../../commons/stores/index";
+import { useRecoilState } from "recoil";
 
 interface ModalProps {
   onClose: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
+const regions = [
+  "지역 전체",
+  "서울",
+  "세종",
+  "강원",
+  "인천",
+  "경기",
+  "충북",
+  "충남",
+  "경북",
+  "대전",
+  "대구",
+  "전북",
+  "경남",
+  "울산",
+  "광주",
+  "부산",
+  "전남",
+  "제주",
+];
+
+const ModalComponent: React.FC<ModalProps> = ({ onClose, children }) => {
+  const [selectedRegion, setSelectedRegion] =
+    useRecoilState(selectedRegionState);
+
+  const handleRegionClick = (region: string) => {
+    console.log(region);
+    setSelectedRegion(region);
+    onClose(); // 선택된 region 값을 onClose 함수와 함께 전달
+  };
+
   return (
     <S.ModalWrapper>
       {children}
@@ -16,28 +48,19 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
         </S.TitleWrapper>
         <S.DivideLine />
         <S.ContentsWrapper>
-          <S.Contents>지역 전체</S.Contents>
-          <S.Contents>서울</S.Contents>
-          <S.Contents>세종</S.Contents>
-          <S.Contents>강원</S.Contents>
-          <S.Contents>인천</S.Contents>
-          <S.Contents>경기</S.Contents>
-          <S.Contents>충북</S.Contents>
-          <S.Contents>충남</S.Contents>
-          <S.Contents>경북</S.Contents>
-          <S.Contents>대전</S.Contents>
-          <S.Contents>대구</S.Contents>
-          <S.Contents>전북</S.Contents>
-          <S.Contents>경남</S.Contents>
-          <S.Contents>울산</S.Contents>
-          <S.Contents>광주</S.Contents>
-          <S.Contents>부산</S.Contents>
-          <S.Contents>전남</S.Contents>
-          <S.Contents>제주</S.Contents>
+          {regions.map((region) => (
+            <S.Contents
+              key={region}
+              onClick={() => handleRegionClick(region)}
+              isSelected={selectedRegion === region}
+            >
+              {region}
+            </S.Contents>
+          ))}
         </S.ContentsWrapper>
       </S.Wrapper>
     </S.ModalWrapper>
   );
 };
 
-export default Modal;
+export default ModalComponent;
