@@ -4,9 +4,7 @@ import { SlideBottom } from "../../../../commons/styles/keyframes";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 1215px;
+  width: 100%;
   margin-top: 80px;
 `;
 
@@ -17,7 +15,6 @@ export const Banner = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1920px;
   height: 400px;
 `;
 
@@ -28,7 +25,7 @@ export const Box = styled.div`
   padding-left: 50px;
   padding-top: 30px;
   border-radius: 10px;
-  margin: 120px 0px 0px 650px;
+  margin: 120px 0px 0px 673px;
   opacity: 0.85;
 `;
 
@@ -96,25 +93,28 @@ export const SearchBox = styled.input`
 // Header
 
 export const Header = styled.div`
+  width: 1200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1215px;
+  margin: auto;
   margin-top: 60px;
 `;
 
 export const Line = styled.div`
   border: 1px solid #cabeb3;
-  width: 100%;
+  width: 1200px;
+  margin: auto;
   margin-top: 60px;
 `;
 
 export const Body = styled.div`
   display: flex;
+  margin: auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1215px;
+  width: 1200px;
 `;
 
 export const PremiumAD = styled.div``;
@@ -126,14 +126,14 @@ export const Title = styled.div`
 
 export const PremiumWrapper = styled.div`
   display: flex;
-  width: 1215px;
+  width: 1200px;
   justify-content: space-between;
   align-items: center;
   animation: ${SlideBottom} 0.7s ease-in-out both;
 `;
 
 export const PremiumPosts = styled.div`
-  width: 386px;
+  width: 370px;
   cursor: pointer;
 `;
 
@@ -144,14 +144,14 @@ export const PremiumPostBody = styled.div`
 
 export const PremiumTemplate = styled.article`
   width: 100%;
-  height: 295.82px;
+  height: 280px;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
 `;
 
 export const PremiumPostImg = styled.img`
-  width: 100%;
+  width: 101%;
   object-fit: cover;
   transition: all 0.4s ease-in-out;
   :hover {
@@ -210,7 +210,7 @@ export const Popularity = styled.div`
 
 export const BodyWrapper = styled.div`
   display: flex;
-  width: 1215px;
+  width: 1200px;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
@@ -221,7 +221,7 @@ export const BodyWrapper = styled.div`
 `;
 
 export const Posts = styled.div`
-  width: 288px;
+  width: 280px;
   margin-bottom: 50px;
   cursor: pointer;
 `;
@@ -232,16 +232,16 @@ export const PostBody = styled.div`
 `;
 
 export const Template = styled.article`
-  width: 287px;
-  height: 177px;
+  width: 100%;
+  height: 175px;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
 `;
 
 export const PostImg = styled.img`
-  width: 287px;
-  height: 177px;
+  width: 101%;
+  height: 175px;
   object-fit: cover;
   transition: all 0.4s ease-in-out;
   :hover {

@@ -5,7 +5,8 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 1215px;
+  width: 1200px;
+  margin: auto;
   margin-top: 80px;
 `;
 
@@ -29,7 +30,7 @@ export const InputBox = styled.input`
 
 export const BodyWrapper = styled.div`
   display: flex;
-  width: 1215px;
+  width: 1200px;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;

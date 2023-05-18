@@ -16,7 +16,7 @@ export default function Uploads01UI(props: IUploads01UIProps): JSX.Element {
         />
       ) : (
         <UploadButton onClick={props.onClickUpload}>
-          <Picture />
+          <Picture>클릭해서 사진을 업로드해주세요.</Picture>
         </UploadButton>
       )}
       <UploadFileHidden

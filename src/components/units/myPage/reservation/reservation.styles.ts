@@ -3,6 +3,7 @@ import { SlideBottom } from "../../../../commons/styles/keyframes";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin: auto;
   width: 900px;
   margin-top: 80px;
 `;
@@ -77,8 +78,6 @@ export const Button = styled.div`
 // 리스트
 export const Header = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 1215px;
   margin-top: 60px;
 `;
@@ -86,8 +85,6 @@ export const Header = styled.div`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 1215px;
 `;
 
@@ -100,63 +97,108 @@ export const Title = styled.div`
 
 export const PremiumWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   animation: ${SlideBottom} 0.7s ease-in-out both;
   margin-bottom: 300px;
+  width: 100%;
 `;
 
 export const PremiumPosts = styled.div`
-  width: 280px;
-  cursor: pointer;
+  width: 895px;
+  margin-bottom: 20px;
+  padding: 10px 20px 10px 0px;
+  border-radius: 4px;
+  :hover {
+    box-shadow: 0px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
+  }
 `;
 
 export const PremiumPostBody = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
 
 export const PremiumTemplate = styled.article`
-  width: 100%;
-  height: 200px;
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 6px;
+  padding-left: 5px;
 `;
 
 export const PremiumPostImg = styled.img`
-  width: 100%;
+  width: 150px;
+  height: 100%;
   object-fit: cover;
-  transition: all 0.4s ease-in-out;
-  :hover {
-    transform: scale(1.08);
-  }
+  border-radius: 4px;
 `;
 
 export const PremiumPostTitle = styled.div`
   font-weight: 700;
-  font-size: 24px;
-  margin-bottom: 5px;
+  font-size: 17px;
 `;
 
-export const PremiumPostContent = styled.div``;
+export const PremiumPostContent = styled.div`
+  padding: 10px;
+  width: 543px;
+`;
 
 export const PremiumPostInfo = styled.div``;
 
-export const PremiumAddress = styled.div`
+export const PremiumDate = styled.div`
   color: #4a4247;
   font-size: 14px;
-  margin-bottom: 5px;
 `;
 
 export const PremiumAvatarContentTie = styled.div``;
 
 export const PremiumContent = styled.div`
-  font-size: 16px;
-  margin-bottom: 5px;
+  color: #4a4247;
+  font-size: 14px;
 `;
 
-export const PremiumPriceTie = styled.div``;
+export const TextColor = styled.span`
+  color: #f28316;
+  font-size: 14px;
+  font-weight: 500;
+`;
 
-export const PremiumPrice = styled.div`
-  text-align: end;
+export const PremiumUserTie = styled.div``;
+
+export const PremiumUser = styled.div`
+  font-size: 14px;
+  color: #4a4247;
+`;
+
+export const ButtonTie = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const Approve = styled.button`
+  background-color: #f28316;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  color: #ffffff;
+  width: 90px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0px 5px;
+  :hover {
+    background-color: #e97100;
+  }
+`;
+
+export const Cancel = styled.button`
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  background-color: #f2f2f2;
+  width: 90px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0px 5px;
 `;

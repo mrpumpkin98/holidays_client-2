@@ -6,7 +6,8 @@ export const Wrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 1215px;
+  margin: auto;
+  width: 1200px;
   margin-top: 80px;
 `;
 

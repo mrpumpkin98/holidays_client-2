@@ -27,6 +27,12 @@ export default function LayoutHeader(): JSX.Element {
     void router.push(event.currentTarget.id);
   };
 
+  // 메인페이지 이동
+
+  const onClickMain = (event: any): void => {
+    void router.push("/");
+  };
+
   // 글쓰기 모달기능
 
   const [showModal, setShowModal] = useState(false);
@@ -60,7 +66,7 @@ export default function LayoutHeader(): JSX.Element {
       )}
       {showModal2 && <Backdrop onClick={handleModalClose2} />}
       <S.InnerWrapper>
-        <S.Logo src="/images/logo.png" />
+        <S.Logo src="/images/logo.png" onClick={onClickMain} />
         <S.NaviWrapper>
           {NAVIGATION_MENUS.map((el) => (
             <S.MenuWrapper key={el.page}>
