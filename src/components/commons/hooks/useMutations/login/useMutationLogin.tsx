@@ -1,4 +1,5 @@
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useQuery } from "@apollo/client";
+import { access } from "fs";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../../commons/stores";
@@ -15,6 +16,8 @@ export const UseMutationLogin = () => {
   const [, setAccessToken] = useRecoilState(accessTokenState);
 
   const [login] = useMutation(LOGIN);
+
+  const { data: qqq } = useQuery(FETCH_LOGIN_USER);
 
   const SubmitLogin = async (data: any) => {
     try {
@@ -33,6 +36,7 @@ export const UseMutationLogin = () => {
       }
 
       setAccessToken(accessToken);
+      localStorage.setItem("accessToken", accessToken);
 
       console.log(result);
       console.log(accessToken);

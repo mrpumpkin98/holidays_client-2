@@ -30,20 +30,3 @@ export const FETCH_CLASSES: any = gql`
   }
 `;
 
-interface ISelfFetchProductArgs {
-  category: string;
-  address_category: string;
-  search: string;
-}
-
-export const UseQueryFetchClasses = (variables: ISelfFetchProductArgs) => {
-  const { data, refetch } = useQuery(FETCH_CLASSES, {
-    variables: {
-      category: "여가",
-      address_category: "세종",
-      search: "",
-    },
-  });
-
-  return { data, refetch };
-};

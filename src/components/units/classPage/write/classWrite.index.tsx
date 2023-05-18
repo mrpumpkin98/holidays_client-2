@@ -10,7 +10,13 @@ import type { UploadFile } from "antd/es/upload/interface";
 // import MultipleDatePicker from "react-multiple-datepicker";
 import DaumPostcodeEmbed from "react-daum-postcode"; //  우편번호
 import type { Address } from "react-daum-postcode";
-import { UseMutationCreateClass } from "../../../commons/hooks/useMutations/class/useMutationCreateClass";
+import {
+  IFormCreateClassData,
+  UseMutationCreateClass,
+} from "../../../commons/hooks/useMutations/class/useMutationCreateClass";
+import { classWriteSchema } from "./classWrite.validation";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
 export default function ClassWrite() {
   // 우편 번호
@@ -115,6 +121,12 @@ export default function ClassWrite() {
   // 등록하기 버튼
   const { onClickSubmit } = UseMutationCreateClass();
 
+  const { register, handleSubmit, formState, setValue, trigger } =
+    useForm<IFormCreateClassData>({
+      resolver: yupResolver(classWriteSchema),
+      mode: "onChange",
+    });
+
   return (
     <>
       <S.Wrapper>
@@ -129,150 +141,174 @@ export default function ClassWrite() {
           <S.Wrapper_header_left>신규 클래스 개설</S.Wrapper_header_left>
         </S.Wrapper_header>
 
-        <S.Wrapper_body>
-          <S.Label>카테고리를 선택해주세요</S.Label>
-          <S.Option
-            size="large"
-            defaultValue="교육"
-            // onChange={onChangeCategory}
-            options={[
-              { value: "1", label: "교육" },
-              { value: "2", label: "여가" },
-              { value: "3", label: "운동" },
-              { value: "4", label: "요리" },
-            ]}
-          />
-          {/* <S.Error>에러</S.Error> */}
-          <S.Label>클래스 이름을 입력해주세요</S.Label>
-          <S.TextInput type="text" placeholder="클래스 이름을 입력해주세요" />
-          {/* <S.Error>에러</S.Error> */}
-          <S.Label>클래스 한줄요약을 입력해주세요</S.Label>
-          <S.TextInput
-            type="text"
-            placeholder="클래스 한줄요약을 입력해주세요"
-          />
-          {/* <S.Error>에러</S.Error> */}
-          <S.Label>대표 이미지를 올려주세요</S.Label>
-          <Upload
-            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            listType="picture-card"
-            fileList={fileList}
-            onPreview={handlePreview}
-            onChange={handleChange}
-          >
-            {fileList.length >= 8 ? null : uploadButton}
-          </Upload>
-          <Modal
-            open={previewOpen}
-            title={previewTitle}
-            footer={null}
-            onCancel={handleCancel}
-          >
-            <img alt="example" style={{ width: "100%" }} src={previewImage} />
-          </Modal>
-          {/* <S.Img_box>
+        <form onSubmit={handleSubmit(onClickSubmit)}>
+          <S.Wrapper_body>
+            <S.Label>카테고리를 선택해주세요</S.Label>
+            <S.Option
+              size="large"
+              defaultValue="교육"
+              // onChange={onChangeCategory}
+
+              options={[
+                { value: "1", label: "교육" },
+                { value: "2", label: "여가" },
+                { value: "3", label: "운동" },
+                { value: "4", label: "요리" },
+              ]}
+            />
+            {/* <S.Error>에러</S.Error> */}
+            <S.Label>클래스 이름을 입력해주세요</S.Label>
+            <S.TextInput
+              type="text"
+              placeholder="클래스 이름을 입력해주세요"
+              {...register("title")}
+            />
+            {/* <S.Error>에러</S.Error> */}
+            <S.Label>클래스 한줄요약을 입력해주세요</S.Label>
+            <S.TextInput
+              type="text"
+              placeholder="클래스 한줄요약을 입력해주세요"
+              {...register("content_summary")}
+            />
+            {/* <S.Error>에러</S.Error> */}
+            <S.Label>대표 이미지를 올려주세요</S.Label>
+            <Upload
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              listType="picture-card"
+              fileList={fileList}
+              onPreview={handlePreview}
+              onChange={handleChange}
+            >
+              {fileList.length >= 8 ? null : uploadButton}
+            </Upload>
+            <Modal
+              open={previewOpen}
+              title={previewTitle}
+              footer={null}
+              onCancel={handleCancel}
+            >
+              <img alt="example" style={{ width: "100%" }} src={previewImage} />
+            </Modal>
+            {/* <S.Img_box>
             <S.Img />
             <S.Img />
           </S.Img_box> */}
-          {/* <S.Error>에러</S.Error> */}
-          <S.Wrapper_body_middle>
-            <S.Wrapper_body_middle_left>
-              <S.Label>클래스 소요 시간을 입력해주세요</S.Label>
-              {/* <S.Time size="large" onChange={onChangeTime} /> */}
-              <S.Option
-                size="large"
-                defaultValue="1시간"
-                // onChange={onChangeTime}
-                options={[
-                  { value: "1시간", label: "1시간" },
-                  { value: "2시간", label: "2시간" },
-                  { value: "3시간", label: "3시간" },
-                  { value: "4시간", label: "4시간" },
-                ]}
-              />
-              {/* <S.Error>에러</S.Error> */}
-            </S.Wrapper_body_middle_left>
-            <S.Wrapper_body_middle_right>
-              <S.Label>클래스 최대 인원을 선택해주세요</S.Label>
-              <S.Number
-                size="large"
-                min={1}
-                max={100}
-                defaultValue={1}
-                // onChange={onChangeNumber}
-              />
-              {/* <S.Error>에러</S.Error> */}
-            </S.Wrapper_body_middle_right>
-          </S.Wrapper_body_middle>
-          <S.Label>클래스 가격을 입력해주세요</S.Label>
-          <S.TextInput type="int" placeholder="숫자만 입력해주세요" />
-          {/* <S.Error>에러</S.Error> */}
-          <S.Label>클래스 위치를 입력해주세요</S.Label>
-          <S.Wrapper_body_map>
-            <S.Map>map</S.Map>
+            {/* <S.Error>에러</S.Error> */}
+            <S.Wrapper_body_middle>
+              <S.Wrapper_body_middle_left>
+                <S.Label>클래스 소요 시간을 입력해주세요</S.Label>
+                {/* <S.Time size="large" onChange={onChangeTime} /> */}
+                <S.Option
+                  size="large"
+                  defaultValue="1시간"
+                  // onChange={onChangeTime}
+                  options={[
+                    { value: "1시간", label: "1시간" },
+                    { value: "2시간", label: "2시간" },
+                    { value: "3시간", label: "3시간" },
+                    { value: "4시간", label: "4시간" },
+                  ]}
+                />
+                {/* <S.Error>에러</S.Error> */}
+              </S.Wrapper_body_middle_left>
+              <S.Wrapper_body_middle_right>
+                <S.Label>클래스 최대 인원을 선택해주세요</S.Label>
+                <S.Number
+                  size="large"
+                  min={1}
+                  max={100}
+                  defaultValue={1}
+                  // onChange={onChangeNumber}
+                />
+                {/* <S.Error>에러</S.Error> */}
+              </S.Wrapper_body_middle_right>
+            </S.Wrapper_body_middle>
+            <S.Label>클래스 가격을 입력해주세요</S.Label>
+            <S.TextInput
+              type="int"
+              placeholder="숫자만 입력해주세요"
+              {...register("price")}
+            />
+            {/* <S.Error>에러</S.Error> */}
+            <S.Label>클래스 위치를 입력해주세요</S.Label>
+            <S.Wrapper_body_map>
+              <S.Map>map</S.Map>
 
-            <S.Wrapper_body_map_right>
-              <S.Wrapper_body_map_right_top>
-                <S.AddressInput />
-                <S.AddressBtn onClick={onToggleModal}>
-                  우편번호 검색
-                </S.AddressBtn>
-              </S.Wrapper_body_map_right_top>
+              <S.Wrapper_body_map_right>
+                <S.Wrapper_body_map_right_top>
+                  <S.AddressInput />
+                  <S.AddressBtn onClick={onToggleModal}>
+                    우편번호 검색
+                  </S.AddressBtn>
+                </S.Wrapper_body_map_right_top>
 
-              <S.Wrapper_body_map_right_bottom>
-                <S.AddressDetail_text>상세주소 입력</S.AddressDetail_text>
-                <S.AddressDetail placeholder="상세주소를 입력해주세요" />
-              </S.Wrapper_body_map_right_bottom>
-            </S.Wrapper_body_map_right>
-          </S.Wrapper_body_map>
-          {/* <S.Error>에러</S.Error> */}
-          <S.Label>클래스 세부내용을 입력해주세요</S.Label>
-          <S.Contents />
-          {/* <S.Error>에러</S.Error> */}
-          <S.Label>클래스 일정을 선택주해세요</S.Label>
-          {/* ------------ */}
+                <S.Wrapper_body_map_right_bottom>
+                  <S.AddressDetail_text>상세주소 입력</S.AddressDetail_text>
+                  <S.AddressDetail
+                    placeholder="상세주소를 입력해주세요"
+                    {...register("address_detail")}
+                  />
+                </S.Wrapper_body_map_right_bottom>
+              </S.Wrapper_body_map_right>
+            </S.Wrapper_body_map>
+            {/* <S.Error>에러</S.Error> */}
+            <S.Label>클래스 세부내용을 입력해주세요</S.Label>
+            <S.Contents {...register("content")} />
+            {/* <S.Error>에러</S.Error> */}
+            <S.Label>클래스 일정을 선택주해세요</S.Label>
+            {/* ------------ */}
 
-          {/* 달력 */}
-          {/* <MultipleDatePicker
-            onSubmit={handleDateSelect}
-            minDate={new Date()} // 현재보다 이전 날짜 선택 불가
-          />
+            {/* 달력 */}
+            {/* <MultipleDatePicker
+              onSubmit={handleDateSelect}
+              minDate={new Date()} // 현재보다 이전 날짜 선택 불가
+            />
 
-          <S.DatelistWrapper>
-            {selectedDates.map((date) => (
-              <S.Datelist key={date.toISOString()}>
-                {date.toLocaleDateString()}
-              </S.Datelist>
-            ))}
-          </S.DatelistWrapper> */}
-          {/* <S.Error>에러</S.Error> */}
+            <S.DatelistWrapper>
+              {selectedDates.map((date) => (
+                <S.Datelist key={date.toISOString()}>
+                  {date.toLocaleDateString()}
+                </S.Datelist>
+              ))}
+            </S.DatelistWrapper> */}
+            {/* <S.Error>에러</S.Error> */}
 
-          {/* ------------ */}
-          {/* <S.Error>에러</S.Error> */}
-          <S.Label>입금 계좌</S.Label>
-          <S.TextInput type="int" placeholder="'-' 빼고 숫자만 입력해주세요." />
-          {/* <S.Error>에러</S.Error> */}
-          <S.BankWrapper>
-            <div>
-              <S.Label>예금주</S.Label>
-              <S.TextInput2 type="text" placeholder="예금주를 작성해주세요" />
-              {/* <S.Error>에러</S.Error> */}
-            </div>
+            {/* ------------ */}
+            {/* <S.Error>에러</S.Error> */}
+            <S.Label>입금 계좌</S.Label>
+            <S.TextInput
+              type="int"
+              placeholder="'-' 빼고 숫자만 입력해주세요."
+              {...register("accountNum")}
+            />
+            {/* <S.Error>에러</S.Error> */}
+            <S.BankWrapper>
+              <div>
+                <S.Label>예금주</S.Label>
+                <S.TextInput2
+                  type="text"
+                  placeholder="예금주를 작성해주세요"
+                  {...register("accountName")}
+                />
+                {/* <S.Error>에러</S.Error> */}
+              </div>
 
-            <div>
-              <S.Label>입금 은행</S.Label>
-              <S.TextInput2
-                type="text"
-                placeholder="입금 은행을 작성해주세요"
-              />
-              {/* <S.Error>에러</S.Error> */}
-            </div>
-          </S.BankWrapper>
-          <S.BtnWrapper>
-            <S.CancelBtn>취소</S.CancelBtn>
-            <S.SubmitBtn>등록</S.SubmitBtn>
-          </S.BtnWrapper>
-        </S.Wrapper_body>
+              <div>
+                <S.Label>입금 은행</S.Label>
+                <S.TextInput2
+                  type="text"
+                  placeholder="입금 은행을 작성해주세요"
+                  {...register("bankName")}
+                />
+                {/* <S.Error>에러</S.Error> */}
+              </div>
+            </S.BankWrapper>
+            <S.BtnWrapper>
+              <S.CancelBtn>취소</S.CancelBtn>
+              <S.SubmitBtn>등록</S.SubmitBtn>
+            </S.BtnWrapper>
+          </S.Wrapper_body>
+        </form>
       </S.Wrapper>
     </>
   );
