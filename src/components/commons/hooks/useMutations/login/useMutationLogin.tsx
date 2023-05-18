@@ -1,15 +1,18 @@
 import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../../../commons/stores";
 import { FETCH_LOGIN_USER } from "../../useQueries/user/UseQueryFetchLoginUser";
 
 export const LOGIN = gql`
-  mutation login($email: string!, $pwd: string!) {
+  mutation login($email: String!, $pwd: String!) {
     login(email: $email, pwd: $pwd)
   }
 `;
 
 export const UseMutationLogin = () => {
   const router = useRouter();
+  const [, setAccessToken] = useRecoilState(accessTokenState);
 
   const [login] = useMutation(LOGIN);
 
@@ -22,6 +25,17 @@ export const UseMutationLogin = () => {
         refetchQueries: [{ query: FETCH_LOGIN_USER }],
       });
 
+      const accessToken = result.data?.login;
+
+      if (accessToken === undefined) {
+        alert("로그인 실패");
+        return;
+      }
+
+      setAccessToken(accessToken);
+
+      console.log(result);
+      console.log(accessToken);
       alert("로그인이 완료되었습니다");
       void router.push(`/mainPage`);
     } catch (error) {

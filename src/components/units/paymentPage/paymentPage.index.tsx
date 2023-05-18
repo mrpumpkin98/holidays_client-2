@@ -1,6 +1,20 @@
+import { useRouter } from "next/router";
+import { useState } from "react";
+import Backdrop from "../../commons/modals/payModal/Backdrop/Backdrop";
+import PayModal from "../../commons/modals/payModal/Modal/modal";
 import * as S from "./paymentPage.styles";
 
 export default function PaymentPage(): JSX.Element {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalOpen = (): void => {
+    setShowModal(true);
+  };
+
+  const handleModalClose = (): void => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <S.Wrapper>
@@ -26,7 +40,11 @@ export default function PaymentPage(): JSX.Element {
               <S.PaymentInformHeader>광고하기 버튼 클릭</S.PaymentInformHeader>
             </S.InformImageWrapper>
             <S.ButtonWrapper>
-              <S.PaymentButton>지금 광고하기</S.PaymentButton>
+              <S.PaymentButton onClick={handleModalOpen}>
+                지금 광고하기
+              </S.PaymentButton>
+              {showModal && <PayModal onClose={handleModalClose} />}
+              {showModal && <Backdrop onClick={handleModalClose} />}
             </S.ButtonWrapper>
           </S.Body>
         </S.ContentWrapper>

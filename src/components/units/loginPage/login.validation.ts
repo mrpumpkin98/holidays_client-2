@@ -5,7 +5,7 @@ export const LoginSchema = yup.object({
     .string()
     .email("이메일 아이디를 @까지 정확하게 입력해주세요.")
     .required("아이디를 확인해주세요."),
-  password: yup
+  pwd: yup
     .string()
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&].{8,16}$/,
