@@ -1,18 +1,13 @@
-import { useQuery } from "@apollo/client";
-import { gql } from "graphql-request";
+import { gql, useQuery } from "@apollo/client";
 import { string } from "yup";
 
-export const FETCH_CLASSES = gql`
+export const FETCH_CLASSES: any = gql`
   query fetchClasses(
     $category: String!
     $address_category: String!
     $search: String!
   ) {
-    fetchClasses(
-      category: $category
-      address_category: $address_category
-      search: $search
-    ) {
+    fetchClasses(category: "여가", address_category: "서울", search: "") {
       class_id
       title
       content_summary
@@ -35,10 +30,3 @@ export const FETCH_CLASSES = gql`
   }
 `;
 
-// export const UseQueryFetchClasses = (variables: any) => {
-//   const queryFetchClasses = useQuery(FETCH_CLASSES, {
-//     variables,
-//   });
-
-//   return queryFetchClasses;
-// };
