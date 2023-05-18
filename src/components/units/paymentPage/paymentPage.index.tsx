@@ -2,19 +2,15 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../commons/stores";
-import { UseQueryFetchLoginUser } from "../../commons/hooks/useQueries/user/UseQueryFetchLoginUser";
 import Backdrop from "../../commons/modals/payModal/Backdrop/Backdrop";
 import PayModal from "../../commons/modals/payModal/Modal/modal";
 import * as S from "./paymentPage.styles";
 
 export default function PaymentPage(): JSX.Element {
-  const { data } = UseQueryFetchLoginUser();
-
   const [showModal, setShowModal] = useState(false);
 
   const handleModalOpen = (): void => {
     setShowModal(true);
-    console.log(data);
   };
 
   const handleModalClose = (): void => {
