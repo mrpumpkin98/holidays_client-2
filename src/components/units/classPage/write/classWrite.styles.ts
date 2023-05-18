@@ -24,11 +24,34 @@ export const Wrapper_header_left = styled.div`
   font-weight: 700;
 `;
 
+// 예금주, 입금 은행
+export const BankWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const TextInput2 = styled(Input)`
+  width: 354px;
+  height: 61px;
+  margin-bottom: 10px;
+`;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 270px;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+`;
+
 // 취소 버튼
 export const CancelBtn = styled.div`
   background: rgba(202, 190, 179, 1);
 
-  width: 95px;
+  /* width: 95px; */
+  width: 120px;
   height: 50px;
   border-radius: 5px;
 
@@ -42,28 +65,30 @@ export const CancelBtn = styled.div`
   cursor: pointer;
 
   :hover {
-    background: rgba(203, 200, 185, 1);
+    background: #bbb0a6;
   }
 `;
 
 // 등록 버튼
 export const SubmitBtn = styled.div`
-  background: rgba(242, 131, 22, 1);
+  background-color: #f28316;
+  color: #ffffff;
   border-radius: 5px;
 
-  width: 95px;
+  /* width: 95px; */
+  width: 120px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   font-size: 14px;
-  color: #ffffff;
 
   cursor: pointer;
 
   :hover {
-    background: rgba(255, 148, 44, 1);
+    background-color: #e97100;
+    color: #ffffff;
   }
 `;
 
@@ -78,7 +103,8 @@ export const Label = styled.div`
 
 // 카테고리, 소요시간
 export const Option = styled(Select)`
-  width: 100px;
+  /* width: 100px; */
+  width: 150px;
   margin-bottom: 10px;
 `;
 
@@ -178,6 +204,8 @@ export const AddressBtn = styled.button`
   font-size: 16px;
   font-weight: 500;
   border-radius: 5px;
+
+  cursor: pointer;
 `;
 
 export const Wrapper_body_map_right_bottom = styled.div`
