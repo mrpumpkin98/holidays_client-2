@@ -1,6 +1,10 @@
-import styled from "@emotion/styled";
-import { Input, Select, InputNumber, TimePicker } from "antd";
+import styled, { StyledComponent } from "@emotion/styled";
+import { Input, Select, InputNumber, TimePicker, SelectProps } from "antd";
 import { DatePicker, Space } from "antd";
+import { DefaultOptionType } from "antd/es/cascader";
+import { BaseOptionType } from "antd/es/select";
+import { ReactNode, Ref } from "react";
+import type { UseFormRegisterReturn } from "react-hook-form";
 
 export const Wrapper = styled.div`
   width: 728px;
@@ -100,6 +104,17 @@ export const Label = styled.div`
   color: rgba(0, 0, 0, 1);
   padding: 30px 0px 20px 0px;
 `;
+
+// type qqq = UseFormRegisterReturn;
+
+// type IOptions = StyledComponent<
+//   qqq &
+//     SelectProps<unknown, BaseOptionType | DefaultOptionType> & {
+//       children?: ReactNode;
+//     } & {
+//       ref?: Ref<BaseSelectRef> | undefined;
+//     }
+// >;
 
 // 카테고리, 소요시간
 export const Option = styled(Select)`

@@ -47,7 +47,7 @@ export const UseMutationCreateClass = () => {
   const [createClass] = useMutation(CREATE_CLASS);
 
   // 등록하기 버튼
-  const onClickSubmit = async (data: IFormCreateClassData) => {
+  const createClassSubmit = async (data: IFormCreateClassData) => {
     const router = useRouter();
 
     console.log("등록하기 버튼 누름");
@@ -57,10 +57,8 @@ export const UseMutationCreateClass = () => {
           createClassInput: {
             title: data.title,
             content_summary: data.content_summary,
-            price: String(data.price),
-            // price: parseInt(data.price),
-            class_mNum: String(data.class_mNum),
-            // class_mNum: parseInt(data.class_mNum),
+            price: Number(data.price),
+            class_mNum: Number(data.class_mNum),
             address: data.address,
             address_detail: data.address_detail,
             category: data.category,
@@ -70,7 +68,7 @@ export const UseMutationCreateClass = () => {
             accountNum: data.accountNum,
             accountName: data.accountName,
             bankName: data.bankName,
-            classShedulesInput: {
+            classSchedulesInput: {
               date: data.date,
               remain: data.remain,
             },
@@ -93,5 +91,5 @@ export const UseMutationCreateClass = () => {
     }
   };
 
-  return { onClickSubmit };
+  return { createClassSubmit };
 };
