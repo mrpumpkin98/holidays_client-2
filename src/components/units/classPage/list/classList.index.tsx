@@ -3,6 +3,8 @@ import Backdrop from "../../../commons/modals/classListModal/Backdrop/Backdrop";
 import Modal1 from "../../../commons/modals/classListModal/Modal/modal";
 import Modal2 from "../../../commons/modals/areaListModal/Modal/modal";
 import * as S from "./classList.styles";
+import { useQuery } from "@apollo/client";
+import { FETCH_CLASSES } from "../../../commons/hooks/useQueries/class/UseQueryFetchClasses";
 
 const initialPremiumPost = {
   src: "/classPage/list.png",
@@ -55,7 +57,7 @@ const Post = ({ post }: any) => (
   <S.Posts>
     <S.PostBody>
       <S.Template>
-        <S.PostImg src={post.src} />
+        <S.PostImg src="/classPage/list.png" />
       </S.Template>
       <S.PostTitle>{post.title}</S.PostTitle>
       <S.PostContent>
@@ -74,6 +76,11 @@ const Post = ({ post }: any) => (
 );
 
 export default function StaticRoutingPage() {
+  const { data, refetch } = useQuery(FETCH_CLASSES);
+  const prefetchByLevel = () => {
+    console.log(data);
+  };
+
   // 서비스 모달기능
 
   const [showModal, setShowModal] = useState(false);
@@ -106,6 +113,7 @@ export default function StaticRoutingPage() {
       {showModal2 && <Backdrop onClick={handleModalClose2} />}
       <S.Banner>
         <S.Box>
+          <button onClick={prefetchByLevel}></button>
           <S.SearchTitle>검색</S.SearchTitle>
           <S.ServiceAreaWrapper>
             <S.Service onClick={handleModalOpen}>
@@ -139,7 +147,7 @@ export default function StaticRoutingPage() {
           <S.Popularity>인기순</S.Popularity>
         </S.NewestPopularity>
         <S.BodyWrapper>
-          {initialPosts.map((post: any, index: any) => (
+          {data?.fetchClasses.map((post: any, index: any) => (
             <div key={index}>
               <Post post={post} />
             </div>
