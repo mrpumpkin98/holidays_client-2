@@ -13,3 +13,8 @@ export const restoreAccessTokenLoadable = selector({
     return newAccessToken;
   },
 });
+
+export const selectedRegionState = atom<string | null>({
+  key: "selectedRegionState",
+  default: null,
+});

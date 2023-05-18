@@ -7,7 +7,11 @@ export const FETCH_CLASSES: any = gql`
     $address_category: String!
     $search: String!
   ) {
-    fetchClasses(category: "여가", address_category: "서울", search: "") {
+    fetchClasses(
+      category: $category
+      address_category: $address_category
+      search: $search
+    ) {
       class_id
       title
       content_summary
@@ -29,4 +33,3 @@ export const FETCH_CLASSES: any = gql`
     }
   }
 `;
-
