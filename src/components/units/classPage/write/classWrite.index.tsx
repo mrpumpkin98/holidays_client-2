@@ -102,30 +102,26 @@ export default function ClassWrite() {
 
   // -------------
 
-  // 카테고리 onchange
-  const onChangeCategory = (value: string) => {
-    console.log("카테고리", value);
-  };
-
-  // 소요시간 onchange
-  const onChangeTime = (value: string) => {
-    console.log("소요시간", value);
-  };
-
   // 최대인원 onchange
   const onChangeNumber = (value: number) => {
     console.log("최대인원", value);
   };
 
   // --------
-  // 등록하기 버튼
-  const { onClickSubmit } = UseMutationCreateClass();
+  // 등록
+  const { createClassSubmit } = UseMutationCreateClass();
 
-  const { register, handleSubmit, formState, setValue, trigger } =
-    useForm<IFormCreateClassData>({
-      resolver: yupResolver(classWriteSchema),
-      mode: "onChange",
-    });
+  const { register, handleSubmit } = useForm<IFormCreateClassData>({
+    resolver: yupResolver(classWriteSchema),
+    mode: "onSubmit",
+  });
+
+  // 등록하기 제출
+  const onClickSubmit = async (data: IFormCreateClassData) => {
+    console.log("onClickSubmit 클릭 되었음");
+    const { ...value } = data;
+    createClassSubmit(value);
+  };
 
   return (
     <>
@@ -144,18 +140,12 @@ export default function ClassWrite() {
         <form onSubmit={handleSubmit(onClickSubmit)}>
           <S.Wrapper_body>
             <S.Label>카테고리를 선택해주세요</S.Label>
-            <S.Option
-              size="large"
-              defaultValue="교육"
-              // onChange={onChangeCategory}
-
-              options={[
-                { value: "1", label: "교육" },
-                { value: "2", label: "여가" },
-                { value: "3", label: "운동" },
-                { value: "4", label: "요리" },
-              ]}
-            />
+            <select {...register("category")}>
+              <option value="교육">교육</option>
+              <option value="여가">여가</option>
+              <option value="운동">운동</option>
+              <option value="요리">요리</option>
+            </select>
             {/* <S.Error>에러</S.Error> */}
             <S.Label>클래스 이름을 입력해주세요</S.Label>
             <S.TextInput
@@ -198,17 +188,12 @@ export default function ClassWrite() {
               <S.Wrapper_body_middle_left>
                 <S.Label>클래스 소요 시간을 입력해주세요</S.Label>
                 {/* <S.Time size="large" onChange={onChangeTime} /> */}
-                <S.Option
-                  size="large"
-                  defaultValue="1시간"
-                  // onChange={onChangeTime}
-                  options={[
-                    { value: "1시간", label: "1시간" },
-                    { value: "2시간", label: "2시간" },
-                    { value: "3시간", label: "3시간" },
-                    { value: "4시간", label: "4시간" },
-                  ]}
-                />
+                <select {...register("total_time")}>
+                  <option value="1시간">1시간</option>
+                  <option value="2시간">2시간</option>
+                  <option value="3시간">3시간</option>
+                  <option value="4시간">4시간</option>
+                </select>
                 {/* <S.Error>에러</S.Error> */}
               </S.Wrapper_body_middle_left>
               <S.Wrapper_body_middle_right>
