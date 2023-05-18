@@ -3,6 +3,10 @@ import { useAuth01 } from "../../../hooks/useAuths/useAuth01";
 import { UseQueryFetchLoginUser } from "../../../hooks/useQueries/user/UseQueryFetchLoginUser";
 import * as S from "./modal.styles";
 
+declare const window: typeof globalThis & {
+  IMP: any;
+};
+
 interface ModalProps {
   onClose: () => void;
 }
@@ -16,7 +20,10 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
     // 일반결제 (이니시스 or 나이스)
   };
 
-  const onClickKakaoPay = () => {};
+  const onClickKakaoPay = () => {
+    // 간편결제 (카카오페이)
+  };
+
   return (
     <S.ModalWrapper>
       {children}
@@ -24,7 +31,7 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
         <S.Header>결제수단 선택</S.Header>
         <S.DivideLine />
         <S.PaymentWrapper>
-          <S.PaymentBtn>일반결제</S.PaymentBtn>
+          <S.PaymentBtn onClick={onClickGeneralPay}>일반결제</S.PaymentBtn>
           <S.PaymentBtn>카카오페이</S.PaymentBtn>
         </S.PaymentWrapper>
         <S.DivideLine />
