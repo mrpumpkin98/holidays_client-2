@@ -1,18 +1,15 @@
 import styled from "@emotion/styled";
-import { ISubmitButtonProps } from "./Boardwrite.types";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  /* height: 1847px; */
+  width: 600px;
   border: 1px solid black;
-  margin: 100px;
-  padding-top: 80px;
+  margin: auto;
+  margin-top: 150px;
+  margin-bottom: 150px;
   border-radius: 8px;
-  padding-bottom: 100px;
-  padding-left: 102px;
-  padding-right: 102px;
+  padding: 80px 64px 100px 64px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,14 +17,38 @@ export const Wrapper = styled.div`
   box-shadow: 0px 0px 10px gray;
 `;
 
+export const TitleTextWrapper = styled.div`
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+`;
+
+export const Text = styled.li`
+  width: 100%;
+  font-size: 15px;
+  margin-top: 10px;
+`;
+
+export const Box = styled.div`
+  width: 100%;
+  height: 200px;
+  box-shadow: rgb(234 235 239 / 80%) 0px 2px 4px 0px;
+  border-radius: 4px;
+  border: 1px solid rgb(218, 220, 224);
+`;
+
 export const Title = styled.div`
-  font-size: 34px;
+  font-size: 16px;
   font-weight: bold;
   font-family: "Jalnan";
+  margin-bottom: 10px;
+  margin-left: 10px;
 `;
 
 export const WriterWrapper = styled.div`
-  width: 100%;
+  width: 1000px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -35,27 +56,25 @@ export const WriterWrapper = styled.div`
 `;
 
 export const Writer = styled.input`
-  width: 486px;
+  width: 470px;
   height: 52px;
   padding-left: 16px;
-  border: 1px solid #bdbdbd;
   font-family: "SCDream4";
-  :focus {
-    outline: none;
-    border: 1px solid gold;
-  }
+  font-size: 15px;
+  box-shadow: rgb(234 235 239 / 80%) 0px 2px 4px 0px;
+  border-radius: 4px;
+  border: 1px solid rgb(218, 220, 224);
 `;
 
 export const Password = styled.input`
-  width: 486px;
+  width: 470px;
   height: 52px;
   padding-left: 16px;
-  border: 1px solid #bdbdbd;
   font-family: "SCDream4";
-  :focus {
-    outline: none;
-    border: 1px solid gold;
-  }
+  font-size: 15px;
+  box-shadow: rgb(234 235 239 / 80%) 0px 2px 4px 0px;
+  border-radius: 4px;
+  border: 1px solid rgb(218, 220, 224);
 `;
 
 export const Label = styled.div`
@@ -63,6 +82,10 @@ export const Label = styled.div`
   font-size: 16px;
   font-weight: 500;
   font-family: "SCDream4";
+
+  &.Img {
+    text-align: center;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -70,91 +93,38 @@ export const InputWrapper = styled.div`
 `;
 
 export const Subject = styled.input`
-  width: 996px;
+  width: 470px;
   height: 52px;
   padding-left: 16px;
-  border: 1px solid #bdbdbd;
   font-family: "SCDream4";
-  :focus {
-    outline: none;
-    border: 1px solid gold;
-  }
+  font-size: 15px;
+  box-shadow: rgb(234 235 239 / 80%) 0px 2px 4px 0px;
+  border-radius: 4px;
+  border: 1px solid rgb(218, 220, 224);
 `;
 
 export const Contents = styled.textarea`
-  width: 996px;
-  height: 480px;
+  width: 470px;
+  height: 280px;
   padding-left: 16px;
   padding: 14px;
-  border: 1px solid #bdbdbd;
   font-family: "SCDream4";
-  :focus {
-    outline: none;
-    border: 1px solid gold;
-  }
-`;
-
-export const ZipcodeWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-export const Zipcode = styled.input`
-  width: 77px;
-  height: 52px;
-  padding-left: 16px;
-  border: 1px solid #bdbdbd;
-  font-family: "SCDream4";
-  :focus {
-    outline: none;
-    border: 1px solid gold;
-  }
-`;
-
-export const SearchButton = styled.button`
-  width: 124px;
-  height: 52px;
-  margin-left: 16px;
   font-size: 15px;
-  font-weight: 600;
-  background-color: black;
-  cursor: pointer;
-  color: white;
-  font-family: "SCDream4";
-`;
-
-export const Address = styled.input`
-  width: 996px;
-  height: 52px;
-  margin-top: 16px;
-  padding-left: 16px;
-  border: 1px solid #bdbdbd;
-  font-family: "SCDream4";
-  :focus {
-    outline: none;
-    border: 1px solid gold;
-  }
-`;
-
-export const Youtube = styled.input`
-  width: 996px;
-  height: 52px;
-  padding-left: 16px;
-  border: 1px solid #bdbdbd;
-  font-family: "SCDream4";
-  :focus {
-    outline: none;
-    border: 1px solid gold;
-  }
+  box-shadow: rgb(234 235 239 / 80%) 0px 2px 4px 0px;
+  border-radius: 4px;
+  border: 1px solid rgb(218, 220, 224);
 `;
 
 export const ImageWrapper = styled.div`
-  width: 996px;
+  width: 470px;
   padding-top: 40px;
 `;
 
 export const UploadButton = styled.div`
   display: flex;
+  align-items: center;
+
+  width: 100%;
 `;
 
 export const OptionWrapper = styled.div`
@@ -205,8 +175,7 @@ export const SubmitButton = styled.button`
   margin-right: 12px;
   cursor: pointer;
   border-radius: 4px;
-  background-color: ${(props: ISubmitButtonProps) =>
-    props.Active ? "gold" : " #f7f8fa"};
+  background-color: ${(props: any) => (props.Active ? "gold" : " #f7f8fa")};
   font-family: "SCDream4";
 `;
 

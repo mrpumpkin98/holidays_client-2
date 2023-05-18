@@ -3,6 +3,7 @@ import { SlideBottom } from "../../../../commons/styles/keyframes";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin: auto;
   width: 900px;
   margin-top: 80px;
 `;

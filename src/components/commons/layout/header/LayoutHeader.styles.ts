@@ -7,7 +7,7 @@ import {
 import { Modal } from "antd";
 
 export const Wrapper = styled.div`
-  width: 1920px;
+  width: 100%;
   height: 80px;
   display: flex;
   flex-direction: row;
@@ -22,8 +22,8 @@ export const Wrapper = styled.div`
 `;
 
 export const InnerWrapper = styled.div`
-  width: 100%;
-  margin: 0px 347px;
+  width: 1200px;
+  margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -55,7 +55,7 @@ export const Menu = styled.div`
 `;
 
 export const InnerButton = styled.span`
-  margin: 10px;
+  margin-left: 10px;
   cursor: pointer;
   font-size: 14px;
   font-weight: 700;
@@ -104,3 +104,5 @@ export const ButtonTie = styled.div`
   align-items: center;
   width: 350px;
 `;
+
+export const Modal1 = styled.div``;

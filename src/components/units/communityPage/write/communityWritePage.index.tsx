@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export default function communityWritePage(props: any) {
   const router = useRouter();
 
-  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  const [fileUrls, setFileUrls] = useState([""]);
 
   //  이미지 등록
 
@@ -25,54 +25,19 @@ export default function communityWritePage(props: any) {
   return (
     <div>
       <S.Wrapper>
-        <S.Title>
-          {props.isEdit ? "수정글" : "게시글"}
-          등록
-        </S.Title>
-        <S.WriterWrapper>
-          <S.InputWrapper>
-            <S.Label>작성자</S.Label>
-            <S.Writer
-              type="text"
-              placeholder="이름을 적어주세요."
-              // onChange={props.onChangeWriter}
-              // value={props.data?.fetchBoard.writer}
-              // readOnly={props.data?.fetchBoard.writer}
-              // ref={props.inputRef}
-            />
-            <S.Error>{/* {props.writerError} */}</S.Error>
-          </S.InputWrapper>
-          <S.InputWrapper>
-            <S.Label>태그</S.Label>
-            <S.Password
-              type="password"
-              placeholder="비밀번호를 작성해주세요."
-              // onChange={props.onChangePassword}
-            />
-            <S.Error>{/* {props.passwordError} */}</S.Error>
-          </S.InputWrapper>
-        </S.WriterWrapper>
-        <S.InputWrapper>
-          <S.Label>제목</S.Label>
-          <S.Subject
-            type="text"
-            placeholder="제목을 작성해주세요."
-            // onChange={props.onChangeTitle}
-            // defaultValue={props.data?.fetchBoard.title}
-          />
-          <S.Error>{/* {props.titleError} */}</S.Error>
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <S.Label>내용</S.Label>
-          <S.Contents
-            placeholder="내용을 작성해주세요."
-            // onChange={props.onChangeContents}
-            // defaultValue={props.data?.fetchBoard.contents}
-          ></S.Contents>
-          <S.Error>{/* {props.contentsError} */}</S.Error>
-        </S.InputWrapper>
+        <S.Box>
+          <S.TitleTextWrapper>
+            <S.Title>작성 가이드</S.Title>
+            <S.Text>
+              클래스 혹은 제품 홍보 목적의 콘텐츠는 오픈이 불가합니다.
+            </S.Text>
+            <S.Text>
+              사진 첨부 시 용량은 장당 최대 20MB까지 업로드 가능합니다.
+            </S.Text>
+            <S.Text>타인의 지식재산권을 침해하지 않도록 유의해주세요.</S.Text>
+          </S.TitleTextWrapper>
+        </S.Box>
         <S.ImageWrapper>
-          <S.Label>사진첨부</S.Label>
           <S.UploadButton>
             {fileUrls.map((el, index) => (
               <Uploads01
@@ -84,6 +49,31 @@ export default function communityWritePage(props: any) {
             ))}
           </S.UploadButton>
         </S.ImageWrapper>
+        <S.InputWrapper>
+          <S.Label>이메일</S.Label>
+          <S.Password
+            type="text"
+            // onChange={props.onChangePassword}
+          />
+          <S.Error>{/* {props.passwordError} */}</S.Error>
+        </S.InputWrapper>
+        <S.InputWrapper>
+          <S.Label>제목</S.Label>
+          <S.Subject
+            type="text"
+            // onChange={props.onChangeTitle}
+            // defaultValue={props.data?.fetchBoard.title}
+          />
+          <S.Error>{/* {props.titleError} */}</S.Error>
+        </S.InputWrapper>
+        <S.InputWrapper>
+          <S.Label>내용</S.Label>
+          <S.Contents
+          // onChange={props.onChangeContents}
+          // defaultValue={props.data?.fetchBoard.contents}
+          ></S.Contents>
+          <S.Error>{/* {props.contentsError} */}</S.Error>
+        </S.InputWrapper>
         <S.ButtonWrapper>
           <S.SubmitButton
           // onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}

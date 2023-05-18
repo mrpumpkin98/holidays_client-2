@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 export const ModalWrapper = styled.div`
   position: fixed;
   top: 130px;
-  left: 1455px;
+  left: 1470px;
   transform: translate(-50%, -50%);
   background-color: white;
   z-index: 9999;

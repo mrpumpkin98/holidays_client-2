@@ -4,10 +4,10 @@ import * as S from "./reservation.styles";
 const initialPremiumPost = {
   src: "/classPage/list.png",
   title: "사랑방 게시물 제목",
-  address: "작성자 이름",
-  content:
-    "관절을 튼튼하게 도와주는 관절 운동 클래스 입니다!! 남녀노소 즐길 수 있어요",
-  price: "55,000원",
+  date: "2023.5.17",
+  content: "1",
+  now: "10",
+  user: "신재욱",
 };
 
 const initialPremiumPosts = Array(3).fill(initialPremiumPost);
@@ -19,18 +19,27 @@ const PremiumPost = ({ post }: any) => (
       <S.PremiumTemplate>
         <S.PremiumPostImg src={post.src} />
       </S.PremiumTemplate>
-      <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
       <S.PremiumPostContent>
+        <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
+        <S.PremiumUserTie>
+          <S.PremiumUser>
+            신청자명 : <S.TextColor>{post.user}</S.TextColor>
+          </S.PremiumUser>
+        </S.PremiumUserTie>
         <S.PremiumPostInfo>
-          <S.PremiumAddress>{post.address}</S.PremiumAddress>
+          <S.PremiumDate>신청날짜 : {post.date}</S.PremiumDate>
           <S.PremiumAvatarContentTie>
-            <S.PremiumContent>{post.content}</S.PremiumContent>
+            <S.PremiumContent>
+              신청인원 : <S.TextColor>{post.content}</S.TextColor>명
+            </S.PremiumContent>
+            <S.PremiumContent>신청현황 : {post.now}명</S.PremiumContent>
           </S.PremiumAvatarContentTie>
         </S.PremiumPostInfo>
-        <S.PremiumPriceTie>
-          <S.PremiumPrice>{post.price}</S.PremiumPrice>
-        </S.PremiumPriceTie>
       </S.PremiumPostContent>
+      <S.ButtonTie>
+        <S.Approve>승인</S.Approve>
+        <S.Cancel>취소</S.Cancel>
+      </S.ButtonTie>
     </S.PremiumPostBody>
   </S.PremiumPosts>
 );
