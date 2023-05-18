@@ -23,7 +23,7 @@ export const CREATE_CLASS = gql`
   }
 `;
 
-interface IFormCreateClassData {
+export interface IFormCreateClassData {
   title: string;
   content_summary: string;
   price: number;
