@@ -3,14 +3,15 @@ import { mobile } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   /* height: 1000px;  */
-  width: 1920px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 70px;
+  margin-top: 10vh;
 
   @media ${mobile} {
-    width: max-content;
+    /* width: max-content; */
     padding-top: 8rem;
   }
 `;
@@ -39,7 +40,7 @@ export const HeaderTitle = styled.div`
   }
 `;
 export const Editor = styled.div`
-  width: calc(100% - 500px);
+  width: 100vw;
   display: flex;
   justify-content: flex-end;
   margin-top: 30px;
@@ -50,7 +51,7 @@ export const Editor = styled.div`
   }
 `;
 export const divideLine = styled.div`
-  width: calc(100% - 500px);
+  width: 100vw;
   border: 1px solid;
   margin-bottom: 30px;
 
@@ -60,7 +61,7 @@ export const divideLine = styled.div`
   }
 `;
 export const Body = styled.div`
-  width: calc(100% - 500px);
+  width: 95vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,8 +100,8 @@ export const ContentsRight = styled.div`
   }
 `;
 export const ContentsImageLeft = styled.img`
-  width: 600px;
-  height: 400px;
+  width: 50vw;
+  height: 40vh;
   margin-right: 100px;
   border-radius: 15px;
   box-shadow: 0px 0px 10px gray;
@@ -119,8 +120,8 @@ export const ContentsImageLeft = styled.img`
   }
 `;
 export const ContentsImageRight = styled.img`
-  width: 350px;
-  height: 500px;
+  width: 30vw;
+  height: 40vh;
   margin-left: 100px;
   border-radius: 15px;
   box-shadow: 0px 0px 10px gray;
@@ -143,6 +144,7 @@ export const ContentsTextWrapperLeft = styled.div`
   /* height: 700px; */
   justify-content: flex-end;
   padding-bottom: 50px;
+  width: 30vw;
 
   @media ${mobile} {
     display: none;
@@ -154,6 +156,7 @@ export const ContentsTextWrapperRight = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
   padding-bottom: 110px;
+  width: 40vw;
 
   @media ${mobile} {
     display: none;

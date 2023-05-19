@@ -1,4 +1,3 @@
-
 import React from "react";
 import * as S from "../../../styles/modal.styles";
 
@@ -14,7 +13,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
         <S.Title>낚시의 모든 것</S.Title>
         <S.Subtitle>홀리데이즈 2023. 5</S.Subtitle>
         <S.DivideLine />
-        <S.MainImage src="magazinePage/낚시.jpeg" />
+        <S.MainImage src="/magazinePage/낚시.jpeg" />
         <S.Contents>
           &nbsp;&nbsp;&nbsp;우선 바다 낚싯대 사용에 앞서 알아야 할 몇가지가
           있습니다. 일반적으로 낚싯대 대부분은 카본 소재로 되어 있는 것이
@@ -45,4 +44,3 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
 };
 
 export default Modal;
-
