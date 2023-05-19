@@ -1,12 +1,15 @@
 import { useState } from "react";
 import Backdrop from "../../../commons/modals/classListModal/Backdrop/Backdrop";
-import Modal1 from "../../../commons/modals/classListModal/Modal/modal";
+import Modal from "../../../commons/modals/classListModal/Modal/modal";
 import ModalComponent from "../../../commons/modals/areaListModal/Modal/modal";
 import * as S from "./classList.styles";
 import { useQuery } from "@apollo/client";
 import { FETCH_CLASSES } from "../../../commons/hooks/useQueries/class/UseQueryFetchClasses";
 import { useRecoilValue } from "recoil";
-import { selectedRegionState } from "../../../../commons/stores/index";
+import {
+  selectedRegionState,
+  selectService,
+} from "../../../../commons/stores/index";
 
 const initialPremiumPost = {
   src: "/classPage/list.png",
@@ -17,16 +20,35 @@ const initialPremiumPost = {
   price: "55,000원",
 };
 
-const initialPremiumPosts = Array(3).fill(initialPremiumPost);
+const initialPremiumPosts = Array(2).fill(initialPremiumPost);
 
 export default function StaticRoutingPage() {
-  const selectedRegion = useRecoilValue(selectedRegionState);
+  // 카테고리 및 검색
 
+  const selectedRegion = useRecoilValue(selectedRegionState);
+  const selectServiceRegion = useRecoilValue(selectService);
+  const [writer, setWriter] = useState("");
+
+  const addressCategory = selectedRegion === "지역 전체" ? "" : selectedRegion;
+  const category =
+    selectServiceRegion === "서비스 전체" ? "" : selectServiceRegion;
+
+  const onChangeWriter = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setWriter(event.target.value);
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      console.log("입력된 내용:", writer);
+      setWriter("");
+    }
+  };
   const { data, refetch } = useQuery(FETCH_CLASSES, {
     variables: {
-      category: "",
-      address_category: selectedRegion || "", // selectedRegion 값을 address_category에 전달
-      search: "",
+      category: category,
+      address_category: addressCategory,
+      search: writer,
     },
   });
   const prefetchByLevel = () => {
@@ -59,16 +81,18 @@ export default function StaticRoutingPage() {
 
   return (
     <S.Wrapper>
-      {showModal && <Modal1 onClose={handleModalClose} />}
+      {showModal && (
+        <Modal
+          onClose={(selectServiceRegion) => {
+            handleModalClose();
+          }}
+        />
+      )}
       {showModal && <Backdrop onClick={handleModalClose} />}
       {showModal2 && (
         <ModalComponent
           onClose={(selectedRegion) => {
-            // 선택된 region 값을 전달하는 onClose 함수 정의
             handleModalClose2();
-            // 여기에서 selectedRegion 값을 원하는 변수에 할당하거나 사용할 수 있습니다.
-            // 예: setAddressCategory(selectedRegion);
-            //     또는 setVariables({ ...variables, address_category: selectedRegion });
           }}
         />
       )}
@@ -78,20 +102,25 @@ export default function StaticRoutingPage() {
           <S.SearchTitle>검색</S.SearchTitle>
           <S.ServiceAreaWrapper>
             <S.Service onClick={handleModalOpen}>
-              <S.ServiceText>서비스</S.ServiceText>
-              <S.Expand src="/classPage/expand-button.png" />
+              <S.ServiceText>
+                {category !== "" ? category : "서비스"}
+              </S.ServiceText>
             </S.Service>
             <S.Area onClick={handleModalOpen2}>
-              <S.AreaText>지역</S.AreaText>
-              <S.Expand src="/classPage/expand-button.png" />
+              <S.AreaText>
+                {addressCategory !== "" ? addressCategory : "지역"}
+              </S.AreaText>
             </S.Area>
           </S.ServiceAreaWrapper>
-          <S.SearchBox placeholder="검색어를 입력해 주세요" />
+          <S.SearchBox
+            placeholder="검색어를 입력해 주세요"
+            value={writer}
+            onChange={onChangeWriter}
+            onKeyPress={handleKeyPress}
+          />
         </S.Box>
-      </S.Banner>
-      <S.Header>
         <S.PremiumAD>
-          <S.Title>Premium AD</S.Title>
+          <S.Title>프리미엄 AD</S.Title>
           <S.PremiumWrapper>
             {initialPremiumPosts.map((post: any, index: any) => (
               <div key={index}>
@@ -118,7 +147,7 @@ export default function StaticRoutingPage() {
             ))}
           </S.PremiumWrapper>
         </S.PremiumAD>
-      </S.Header>
+      </S.Banner>
       <S.Line />
       <S.Body>
         <S.NewestPopularity>
