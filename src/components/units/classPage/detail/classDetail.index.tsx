@@ -7,12 +7,22 @@ import CalendarUI from "../calendar/calendar.index";
 import * as S from "./classDetail.styles";
 import DOMPurify from "dompurify";
 import { useMutationDeleteClass } from "../../../commons/hooks/useMutations/class/useMutationDeleteClass";
+import { useMutationUpdateClass } from "../../../commons/hooks/useMutations/class/useMutationUpdateClass";
+import { useRouter } from "next/router";
 
 export default function ClassDetail() {
+  const router = useRouter();
+
   const { data } = UseQueryFetchClassDetail();
   console.log(data);
 
+  // 삭제
   const { onClickClassDelete } = useMutationDeleteClass();
+
+  // 수정 페이지로 이동
+  const onClickMoveToClassEdit = () => {
+    router.push(`/classPage/${router.query.class_id}/edit`);
+  };
 
   return (
     <>
@@ -24,7 +34,7 @@ export default function ClassDetail() {
           <S.Wrapper_header_bottom>
             <S.Review_count>후기 595개</S.Review_count>
             <S.Wrapper_header_bottom_right>
-              <S.Btn>수정</S.Btn>
+              <S.Btn onClick={onClickMoveToClassEdit}>수정</S.Btn>
               <S.Btn onClick={onClickClassDelete}>삭제</S.Btn>
             </S.Wrapper_header_bottom_right>
           </S.Wrapper_header_bottom>

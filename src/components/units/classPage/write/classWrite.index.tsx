@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import * as S from "./classWrite.styles";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
 
@@ -18,7 +18,7 @@ import dynamic from "next/dynamic";
 // import MultipleDatePicker from "react-multiple-datepicker";
 import "react-quill/dist/quill.snow.css";
 import { useMutationUpdateClass } from "../../../commons/hooks/useMutations/class/useMutationUpdateClass";
-import { IFormData } from "./classWrite.types";
+import { IClassWriteProps, IFormData } from "./classWrite.types";
 
 // 웹 에디터
 const ReactQuill = dynamic(async () => await import("react-quill"), {
@@ -31,9 +31,16 @@ declare const window: typeof globalThis & {
   geocoder: any;
 };
 
-export default function ClassWrite() {
+export default function ClassWrite(props: IClassWriteProps) {
+  // const { formState, getValues } = useForm<{ name: string }>();
+  // const qqq = getValues();
+
   // --------------------------------------------------------
   // 카카오 지도
+
+  // 우편주소(카카오지도)
+  const [fulladdress, setFulladdress] = useState("");
+
   useEffect(() => {
     // script 태그 직접 만들기
     const script = document.createElement("script");
@@ -61,14 +68,14 @@ export default function ClassWrite() {
         let geocoder = new window.kakao.maps.services.Geocoder();
 
         // 주소로 좌표를 검색합니다
-
         geocoder.addressSearch(
           // props.isEdit
-          //   ? props.data?.fetchUseditem.useditemAddress?.address
+          //   ? props.data?.fetchClassDetail.address
           //   : props.fulladdress,
 
-          // `${props.fulladdress}`,
+          `${fulladdress}`,
           function (result: any, status: any) {
+            console.log("ㅎㅎㅎ", fulladdress, "ddddddddddd");
             // 정상적으로 검색이 완료됐으면
             if (status === window.kakao.maps.services.Status.OK) {
               var coords = new window.kakao.maps.LatLng(
@@ -84,11 +91,11 @@ export default function ClassWrite() {
 
               // 인포윈도우로 장소에 대한 설명을 표시합니다
               var infowindow = new window.kakao.maps.InfoWindow({
-                // content: `<div style="width:200px;text-align:center;padding:6px 0;">${
-                //   props.isEdit
-                //     ? props.data?.fetchUseditem.useditemAddress?.address
-                //     : props.fulladdress
-                // }</div>`,
+                content: `<div style="width:200px;text-align:center;padding:6px 0;">${
+                  props.isEdit
+                    ? props.data?.fetchClassDetail.address
+                    : fulladdress
+                }</div>`,
               });
               infowindow.open(map, marker);
 
@@ -99,13 +106,18 @@ export default function ClassWrite() {
         );
       });
     };
-    // }, [props.fulladdress]);
-  }, []);
+  }, [fulladdress]);
 
   // --------------------------------------------------------
 
-  // 우편 번호
   const [isOpen, setIsOpen] = useState(false);
+
+  //  추가했음7:02
+  // const onChangeAddressDetail = (
+  //   event: ChangeEvent<HTMLInputElement>
+  // ): void => {
+  //   setAddressDetail(event.target.value);
+  // };
 
   // 우편번호 모달창
   const onToggleModal = (): void => {
@@ -113,10 +125,20 @@ export default function ClassWrite() {
   };
 
   const handleComplete = (data: Address): void => {
+    console.log(data.address);
+
     onToggleModal();
+    // setFulladdress(data.address);
+
+    // setValue (주소)
+    // setFulladdress(data.address);
+
+    setFulladdress(data.address);
+
+    // console.log(fulladdress);
   };
 
-  // -------------
+  // --------------------------------------------------------
 
   // 달력
   // const [selectedDates, setSelectedDates] = useState([]);
@@ -199,17 +221,15 @@ export default function ClassWrite() {
     mode: "onChange",
   });
 
-  // 등록하기,수정하기 제출
-  const onSubmitForm = (data: IFormData) => {
-    console.log("onClickSubmit 클릭 되었음");
+  // 등록하기, 수정하기 제출
+  const onSubmitForm = async (data: IFormData) => {
     const { ...value } = data;
-    onClickClassSubmit(value);
 
-    // if (!data.isEdit) {
-    //   await onClickClassSubmit(value);
-    // } else {
-    //   await onClickClassUpdate(value);
-    // }
+    if (!props.isEdit) {
+      await onClickClassSubmit(value, fulladdress);
+    } else {
+      await onClickClassUpdate(value, fulladdress);
+    }
   };
 
   // 세부내용
@@ -232,13 +252,19 @@ export default function ClassWrite() {
         )}
 
         <S.Wrapper_header>
-          <S.Wrapper_header_left>신규 클래스 개설</S.Wrapper_header_left>
+          <S.Wrapper_header_left>
+            {props.isEdit ? "클래스 수정" : "신규 클래스 개설"}
+          </S.Wrapper_header_left>
         </S.Wrapper_header>
 
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <S.Wrapper_body>
             <S.Label>카테고리를 선택해주세요</S.Label>
-            <select {...register("category")}>
+            <select
+              {...register("category")}
+              // defaultValue={props.data?.category}
+              defaultValue={props.data?.fetchClassDetail.category}
+            >
               <option value="교육">교육</option>
               <option value="여가">여가</option>
               <option value="운동">운동</option>
@@ -252,6 +278,7 @@ export default function ClassWrite() {
               type="text"
               placeholder="클래스 이름을 입력해주세요"
               {...register("title")}
+              defaultValue={props.data?.fetchClassDetail.title}
             />
             {/* <S.Error>{formState.errors.title?.message}</S.Error> */}
 
@@ -260,6 +287,7 @@ export default function ClassWrite() {
               type="text"
               placeholder="클래스 한줄요약을 입력해주세요"
               {...register("content_summary")}
+              defaultValue={props.data?.fetchClassDetail.content_summary}
             />
             {/* <S.Error>{formState.errors.content_summary?.message}</S.Error> */}
 
@@ -290,8 +318,12 @@ export default function ClassWrite() {
             <S.Wrapper_body_middle>
               <S.Wrapper_body_middle_left>
                 <S.Label>클래스 소요 시간을 입력해주세요</S.Label>
+
                 {/* <S.Time size="large" onChange={onChangeTime} /> */}
-                <select {...register("total_time")}>
+                <select
+                  {...register("total_time")}
+                  defaultValue={props.data?.fetchClassDetail.total_time}
+                >
                   <option value="1시간">1시간</option>
                   <option value="2시간">2시간</option>
                   <option value="3시간">3시간</option>
@@ -305,6 +337,7 @@ export default function ClassWrite() {
                   type="int"
                   placeholder="클래스 최대 인원을 입력해주세요"
                   {...register("class_mNum")}
+                  defaultValue={props.data?.fetchClassDetail.class_mNum}
                 />
                 {/* <S.Error>{formState.errors.class_mNum?.message}</S.Error> */}
               </S.Wrapper_body_middle_right>
@@ -314,6 +347,7 @@ export default function ClassWrite() {
               type="int"
               placeholder="숫자만 입력해주세요"
               {...register("price")}
+              defaultValue={props.data?.fetchClassDetail.price}
             />
             {/* <S.Error>{formState.errors.price?.message}</S.Error> */}
 
@@ -324,7 +358,20 @@ export default function ClassWrite() {
               <S.Wrapper_body_map_right>
                 <S.Wrapper_body_map_right_top>
                   {/* <S.AddressInput /> */}
-                  <input type="text" readOnly {...register("address")} />
+                  <input
+                    type="text"
+                    readOnly
+                    // {...register("address")} // 이거 필요 없음
+                    // onChange={onChangeAddressDetail} // 이것도 필요 없음
+                    // defaultValue={props.data?.fetchClassDetail.address ?? ""}
+                    // value={fulladdress}
+                    // value 부분 이게 맞나??
+                    value={
+                      fulladdress !== ""
+                        ? fulladdress ?? ""
+                        : props.data?.fetchClassDetail.address ?? ""
+                    }
+                  />
                   <S.AddressBtn type="button" onClick={onToggleModal}>
                     주소 검색
                   </S.AddressBtn>
@@ -336,6 +383,7 @@ export default function ClassWrite() {
                     type="text"
                     placeholder="상세주소를 입력해주세요"
                     {...register("address_detail")}
+                    defaultValue={props.data?.fetchClassDetail.address_detail}
                   />
                 </S.Wrapper_body_map_right_bottom>
               </S.Wrapper_body_map_right>
@@ -350,6 +398,7 @@ export default function ClassWrite() {
               }}
               onChange={onChangeContents}
               placeholder="클래스 세부내용을 입력해주세요"
+              defaultValue={props.data?.fetchClassDetail.content}
             />
             {/* <S.Error>{formState.errors.content?.message}</S.Error> */}
 
@@ -379,6 +428,7 @@ export default function ClassWrite() {
               type="text"
               placeholder="'-' 빼고 숫자만 입력해주세요."
               {...register("accountNum")}
+              defaultValue={props.data?.fetchClassDetail.accountNum}
             />
             {/* <S.Error>{formState.errors.accountNum?.message}</S.Error> */}
 
@@ -389,6 +439,7 @@ export default function ClassWrite() {
                   type="text"
                   placeholder="예금주를 작성해주세요"
                   {...register("accountName")}
+                  defaultValue={props.data?.fetchClassDetail.accountName}
                 />
                 {/* <S.Error>{formState.errors.accountName?.message}</S.Error> */}
               </div>
@@ -399,13 +450,16 @@ export default function ClassWrite() {
                   type="text"
                   placeholder="입금 은행을 작성해주세요"
                   {...register("bankName")}
+                  defaultValue={props.data?.fetchClassDetail.bankName}
                 />
                 {/* <S.Error>{formState.errors.bankName?.message}</S.Error> */}
               </div>
             </S.BankWrapper>
             <S.BtnWrapper>
               <S.CancelBtn>취소</S.CancelBtn>
-              <S.SubmitBtn type="submit">등록</S.SubmitBtn>
+              <S.SubmitBtn type="submit">
+                {props.isEdit ? "수정" : "등록"}
+              </S.SubmitBtn>
             </S.BtnWrapper>
           </S.Wrapper_body>
         </form>
