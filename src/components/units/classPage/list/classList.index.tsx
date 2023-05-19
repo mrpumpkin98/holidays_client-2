@@ -61,17 +61,7 @@ export default function StaticRoutingPage() {
     <S.Wrapper>
       {showModal && <Modal1 onClose={handleModalClose} />}
       {showModal && <Backdrop onClick={handleModalClose} />}
-      {showModal2 && (
-        <ModalComponent
-          onClose={(selectedRegion) => {
-            // 선택된 region 값을 전달하는 onClose 함수 정의
-            handleModalClose2();
-            // 여기에서 selectedRegion 값을 원하는 변수에 할당하거나 사용할 수 있습니다.
-            // 예: setAddressCategory(selectedRegion);
-            //     또는 setVariables({ ...variables, address_category: selectedRegion });
-          }}
-        />
-      )}
+
       {showModal2 && <Backdrop onClick={handleModalClose2} />}
       <S.Banner>
         <S.Box>

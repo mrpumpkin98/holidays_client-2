@@ -48,12 +48,8 @@ const ModalComponent: React.FC<ModalProps> = ({ onClose, children }) => {
         </S.TitleWrapper>
         <S.DivideLine />
         <S.ContentsWrapper>
-          {regions.map((region) => (
-            <S.Contents
-              key={region}
-              onClick={() => handleRegionClick(region)}
-              isSelected={selectedRegion === region}
-            >
+          {regions.map((region: any) => (
+            <S.Contents key={region} onClick={() => handleRegionClick(region)}>
               {region}
             </S.Contents>
           ))}
