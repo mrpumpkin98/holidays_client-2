@@ -11,21 +11,19 @@ export const Wrapper = styled.div`
 // Banner
 
 export const Banner = styled.div`
-  background-image: url("/classPage/Banner.png");
   display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: auto;
   height: 400px;
+  width: 1200px;
+  margin-top: 30px;
 `;
 
 export const Box = styled.div`
-  width: 527px;
-  height: 207.9px;
-  background: #faf8f2;
+  width: 500px;
+  height: 200px;
   padding-left: 50px;
   padding-top: 30px;
   border-radius: 10px;
-  margin: 120px 0px 0px 673px;
   opacity: 0.85;
 `;
 
@@ -42,7 +40,7 @@ export const ServiceAreaWrapper = styled.div`
 `;
 
 export const Service = styled.div`
-  width: 130px;
+  width: 120px;
   height: 40px;
   border-radius: 35px;
   background-color: white;
@@ -55,32 +53,36 @@ export const Service = styled.div`
 `;
 
 export const ServiceText = styled.div`
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 export const Expand = styled.img`
+  width: 10px;
+  height: 10px;
   margin-top: 2px;
   margin-left: 5px;
 `;
 
 export const Area = styled.div`
-  width: 130px;
+  width: 120px;
   height: 40px;
   border-radius: 35px;
-  background-color: white;
   border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  /* background-color: ${(props: any) =>
+    props.addressCategory !== "지역" ? "tomato" : "black"}; */
 `;
 
 export const AreaText = styled.div`
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 export const SearchBox = styled.input`
-  width: 423px;
+  width: 300px;
   height: 40px;
   background: #ffffff;
   border: 1px solid black;
@@ -117,40 +119,43 @@ export const Body = styled.div`
   width: 1200px;
 `;
 
-export const PremiumAD = styled.div``;
+export const PremiumAD = styled.div`
+  width: 900px;
+`;
 
 export const Title = styled.div`
-  margin-bottom: 25px;
   font-weight: 700;
+  margin-top: 10px;
+  margin-left: 20px;
 `;
 
 export const PremiumWrapper = styled.div`
   display: flex;
-  width: 1200px;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-around;
   animation: ${SlideBottom} 0.7s ease-in-out both;
 `;
 
 export const PremiumPosts = styled.div`
-  width: 370px;
   cursor: pointer;
+  margin-top: 20px;
 `;
 
 export const PremiumPostBody = styled.div`
   display: flex;
   flex-direction: column;
+  width: 350px;
 `;
 
 export const PremiumTemplate = styled.article`
-  width: 100%;
-  height: 280px;
+  width: 350px;
+  height: 200px;
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 10px;
 `;
 
 export const PremiumPostImg = styled.img`
+  width: 350px;
+  height: 200px;
   width: 101%;
   object-fit: cover;
   transition: all 0.4s ease-in-out;
@@ -161,8 +166,8 @@ export const PremiumPostImg = styled.img`
 
 export const PremiumPostTitle = styled.div`
   font-weight: 700;
-  font-size: 24px;
-  margin-bottom: 5px;
+  font-size: 18px;
+  margin-top: 5px;
 `;
 
 export const PremiumPostContent = styled.div``;
@@ -171,21 +176,23 @@ export const PremiumPostInfo = styled.div``;
 
 export const PremiumAddress = styled.div`
   color: #4a4247;
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 15px;
+  margin-top: 3px;
 `;
 
-export const PremiumAvatarContentTie = styled.div``;
+export const PremiumAvatarContentTie = styled.div`
+  margin-top: 3px;
+`;
 
 export const PremiumContent = styled.div`
-  font-size: 16px;
-  margin-bottom: 5px;
+  font-size: 14px;
 `;
 
 export const PremiumPriceTie = styled.div``;
 
 export const PremiumPrice = styled.div`
   text-align: end;
+  font-size: 18px;
 `;
 
 // 클래스

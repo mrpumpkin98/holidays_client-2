@@ -16,5 +16,10 @@ export const restoreAccessTokenLoadable = selector({
 
 export const selectedRegionState = atom<string | null>({
   key: "selectedRegionState",
-  default: null,
+  default: "",
+});
+
+export const selectService = atom<string | null>({
+  key: "selectService",
+  default: "",
 });
