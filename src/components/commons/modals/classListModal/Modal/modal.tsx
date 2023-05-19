@@ -1,11 +1,33 @@
 import React from "react";
 import * as S from "./modal.styles";
+import { selectService } from "../../../../../commons/stores/index";
+import { useRecoilState } from "recoil";
 
 interface ModalProps {
   onClose: () => void;
 }
 
+const regions = [
+  "서비스 전체",
+  "레슨",
+  "홈/리빙",
+  "이벤트",
+  "비즈니스",
+  "디자인/개발",
+  "건강/미용",
+  "기타",
+];
+
 const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
+  const [selectServiceRegion, setSelectServiceRegion] =
+    useRecoilState(selectService);
+
+  const handleRegionClick = (region: string) => {
+    console.log(region);
+    setSelectServiceRegion(region);
+    onClose(); // 선택된 region 값을 onClose 함수와 함께 전달
+  };
+
   return (
     <S.ModalWrapper>
       {children}
@@ -16,14 +38,15 @@ const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
         </S.TitleWrapper>
         <S.DivideLine />
         <S.ContentsWrapper>
-          <S.Contents>서비스 전체</S.Contents>
-          <S.Contents>레슨</S.Contents>
-          <S.Contents>홈/리빙</S.Contents>
-          <S.Contents>이벤트</S.Contents>
-          <S.Contents>비즈니스</S.Contents>
-          <S.Contents>디자인/개발</S.Contents>
-          <S.Contents>건강/미용</S.Contents>
-          <S.Contents>기타</S.Contents>
+          {regions.map((region) => (
+            <S.Contents
+              key={region}
+              onClick={() => handleRegionClick(region)}
+              isSelected={selectServiceRegion === region}
+            >
+              {region}
+            </S.Contents>
+          ))}
         </S.ContentsWrapper>
       </S.Wrapper>
     </S.ModalWrapper>

@@ -33,7 +33,7 @@ const boxShadowAnimation = keyframes`
 `;
 
 export const Wrapper = styled.div`
-  width: 1400px;
+  width: 100vw;
   /* height: 800px; */
   display: flex;
   justify-content: center;

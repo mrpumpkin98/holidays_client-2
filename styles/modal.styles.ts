@@ -10,7 +10,6 @@ export const ModalWrapper = styled.div`
   padding: 20px;
   z-index: 100;
   border-radius: 15px;
-  height: 1000px;
 
   @media ${mobile} {
     height: 80vh;
@@ -18,7 +17,7 @@ export const ModalWrapper = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  width: 800px;
+  width: 50vw;
   background: #ffffff;
   border-radius: 15px;
   display: flex;

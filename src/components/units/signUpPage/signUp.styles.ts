@@ -74,45 +74,6 @@ export const defaultInput = styled.input`
   background: #f5f5f5;
 `;
 
-export const BirthWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const Year = styled.input`
-  border-radius: 5px;
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  font-size: 16px;
-  border: none;
-  background: #f5f5f5;
-  width: calc(100% / 3.5);
-`;
-
-export const Month = styled.input`
-  border-radius: 5px;
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  font-size: 16px;
-  border: none;
-  background: #f5f5f5;
-  width: calc(100% / 3.5);
-`;
-
-export const Day = styled.input`
-  border-radius: 5px;
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-bottom: 10px;
-  font-size: 16px;
-  border: none;
-  background: #f5f5f5;
-  width: calc(100% / 3.5);
-`;
-
 export const VerifyWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -151,6 +112,7 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+  margin-top: 5vh;
 
   @media ${mobile} {
     width: 65vw;
@@ -178,4 +140,12 @@ export const VerifyFinished = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
+`;
+
+export const Errors = styled.div`
+  margin-left: 5vw;
+  font-size: 0.6rem;
+  color: red;
+  margin-bottom: 2vh;
+  margin-top: -2vh;
 `;

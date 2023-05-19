@@ -68,7 +68,7 @@ export default function SignUp(): JSX.Element {
                 </S.VerifyWrapper>
               )}
             </S.InputWrapper>
-            <div>{formState.errors.email?.message}</div>
+            <S.Errors>{formState.errors.email?.message}</S.Errors>
             <S.InputWrapper>
               <S.Label>이름</S.Label>
               <S.defaultInput
@@ -77,7 +77,7 @@ export default function SignUp(): JSX.Element {
                 {...register("name")}
               />
             </S.InputWrapper>
-            <div>{formState.errors.name?.message}</div>
+            <S.Errors>{formState.errors.name?.message}</S.Errors>
             <S.InputWrapper>
               <S.Label>비밀번호</S.Label>
               <S.defaultInput
@@ -86,7 +86,7 @@ export default function SignUp(): JSX.Element {
                 {...register("pwd")}
               />
             </S.InputWrapper>
-            <div>{formState.errors.pwd?.message}</div>
+            <S.Errors>{formState.errors.pwd?.message}</S.Errors>
             <S.InputWrapper>
               <S.Label>비밀번호 확인</S.Label>
               <S.defaultInput
@@ -95,18 +95,25 @@ export default function SignUp(): JSX.Element {
                 {...register("passwordCheck")}
               />
             </S.InputWrapper>
-            <div>{formState.errors.passwordCheck?.message}</div>
+            <S.Errors>{formState.errors.passwordCheck?.message}</S.Errors>
             <S.InputWrapper>
               <S.Subtitle>선택 입력 사항</S.Subtitle>
               <S.SubtitleLine />
-              <S.Label>생년월일</S.Label>
-              <S.BirthWrapper>
-                <S.Year placeholder="년(4자리)" {...register("birth_date")} />
-                <S.Month placeholder="월" />
-                <S.Day placeholder="일" />
-              </S.BirthWrapper>
+              <S.Label>휴대전화 등록</S.Label>
+              <S.defaultInput
+                {...register("phone")}
+                placeholder="- 없이 휴대폰 번호를 입력해 주세요"
+              />
             </S.InputWrapper>
-            <input {...register("phone")} placeholder="폰번" />
+            <S.Errors>{formState.errors.phone?.message}</S.Errors>
+            <S.InputWrapper>
+              <S.Label>생년월일</S.Label>
+              <S.defaultInput
+                placeholder="주민등록번호 앞 6자리를 입력해 주세요"
+                {...register("birth_date")}
+              />
+            </S.InputWrapper>
+            <S.Errors>{formState.errors.birth_date?.message}</S.Errors>
             <S.ButtonWrapper>
               <S.SignUpButton type="submit">가입하기</S.SignUpButton>
             </S.ButtonWrapper>
