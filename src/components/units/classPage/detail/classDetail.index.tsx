@@ -1,17 +1,31 @@
+import { useQuery } from "@apollo/client";
+import {
+  FECTCH_CLASS_DETAIL,
+  UseQueryFetchClassDetail,
+} from "../../../commons/hooks/useQueries/class/useQueryFetchClassDetail";
 import CalendarUI from "../calendar/calendar.index";
 import * as S from "./classDetail.styles";
+import DOMPurify from "dompurify";
+import { useMutationDeleteClass } from "../../../commons/hooks/useMutations/class/useMutationDeleteClass";
 
 export default function ClassDetail() {
+  const { data } = UseQueryFetchClassDetail();
+  console.log(data);
+
+  const { onClickClassDelete } = useMutationDeleteClass();
+
   return (
     <>
       <S.Wrapper>
         <S.Wrapper_header>
-          <S.Wrapper_header_top>클래스 이름ㅇㅇㅇ</S.Wrapper_header_top>
+          <S.Wrapper_header_top>
+            {data?.fetchClassDetail.title}
+          </S.Wrapper_header_top>
           <S.Wrapper_header_bottom>
             <S.Review_count>후기 595개</S.Review_count>
             <S.Wrapper_header_bottom_right>
               <S.Btn>수정</S.Btn>
-              <S.Btn>삭제</S.Btn>
+              <S.Btn onClick={onClickClassDelete}>삭제</S.Btn>
             </S.Wrapper_header_bottom_right>
           </S.Wrapper_header_bottom>
         </S.Wrapper_header>
@@ -19,7 +33,7 @@ export default function ClassDetail() {
         <S.Wrapper_body>
           <S.Wrapper_body_left>
             <S.Wrapper_body_header>
-              <S.Title>클래스 한줄 요약ㅇㅇㅇ</S.Title>
+              <S.Title>{data?.fetchClassDetail.content_summary}</S.Title>
               <S.Heart />
 
               {/* <Heart_fill /> */}
@@ -40,7 +54,9 @@ export default function ClassDetail() {
                     <S.Icon src="/classPage/clock.png" />
                     <S.ClassInfo_container_right>
                       <S.Label>진행 시간</S.Label>
-                      <S.SubLabel>100시간</S.SubLabel>
+                      <S.SubLabel>
+                        {data?.fetchClassDetail.total_time}
+                      </S.SubLabel>
                     </S.ClassInfo_container_right>
                   </S.ClassInfo_container>
 
@@ -48,14 +64,22 @@ export default function ClassDetail() {
                     <S.Icon src="/classPage/category.png" />
                     <S.ClassInfo_container_right>
                       <S.Label>카테고리</S.Label>
-                      <S.SubLabel>운동</S.SubLabel>
+                      <S.SubLabel>{data?.fetchClassDetail.category}</S.SubLabel>
                     </S.ClassInfo_container_right>
                   </S.ClassInfo_container>
                 </S.ClassInfo_wrapper>
 
                 <S.Contents_wrapper>
                   <S.Title>클래스 소개</S.Title>
-                  <S.Contents>ggg</S.Contents>
+                  {typeof window !== "undefined" && (
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(
+                          data?.fetchClassDetail?.content
+                        ),
+                      }}
+                    />
+                  )}
                 </S.Contents_wrapper>
               </S.Wrapper_body_bottom_left>
             </S.Wrapper_body_bottom>
@@ -70,7 +94,10 @@ export default function ClassDetail() {
         <S.Wrapper_footer>
           <S.Title>클래스 위치</S.Title>
           <S.Map />
-          <S.AddressDetail>서울특별시 구로구 ㅇㅇㅇㅇㅇ</S.AddressDetail>
+          <S.AddressDetail>
+            {data?.fetchClassDetail.address}
+            {data?.fetchClassDetail.address_detail}
+          </S.AddressDetail>
         </S.Wrapper_footer>
       </S.Wrapper>
     </>

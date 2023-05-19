@@ -74,7 +74,7 @@ export const CancelBtn = styled.div`
 `;
 
 // 등록 버튼
-export const SubmitBtn = styled.div`
+export const SubmitBtn = styled.button`
   background-color: #f28316;
   color: #ffffff;
   border-radius: 5px;
@@ -189,7 +189,6 @@ export const Wrapper_body_map = styled.div`
 export const Map = styled.div`
   width: 340px;
   height: 201px;
-  border: 1px solid blue;
   border-radius: 5px;
 `;
 
@@ -248,9 +247,14 @@ export const Contents = styled.div`
 `;
 
 // 클래스 일정(달력)
-export const Spaced = styled(Space)`
+export const DatelistWrapper = styled.div`
+  margin-top: 10px;
   margin-bottom: 10px;
-  width: 291px;
+`;
+
+export const Datelist = styled.div`
+  margin-top: 5px;
+  font-weight: 600;
 `;
 
 export const { RangePicker } = DatePicker;

@@ -1,44 +1,28 @@
 import { gql, useMutation } from "@apollo/client";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { IFormData } from "../../../../units/classPage/write/classWrite.types";
 
-export const CREATE_CLASS = gql`
-  mutation createClass($createClassInput: CreateClassInput!) {
-    createClass(createClassInput: $createClassInput) {
+// 클래스 수정하기
+export const UPDATE_CLASS = gql`
+  mutation updateClass($updateClassInput: UpdateClassInput!) {
+    updateClass(updateClassInput: $updateClassInput) {
       class_id
-      title
-      content_summary
-      price
-      class_mNum
-      address
-      address_detail
-      category
-      address_category
-      total_time
-      content
-      accountNum
-      accountName
-      bankName
-      is_ad
     }
   }
 `;
 
-export const UseMutationCreateClass = () => {
-  const [createClass] = useMutation(CREATE_CLASS);
-  const router = useRouter();
+export const useMutationUpdateClass = () => {
+  const [updateClass] = useMutation(UPDATE_CLASS);
 
   // 우편주소(카카오지도)
   const [fulladdress, setFulladdress] = useState("");
 
-  // 등록하기 버튼
-  const onClickClassSubmit = async (data: IFormData) => {
-    console.log("등록하기 버튼 누름");
+  // 수정하기 버튼
+  const onClickClassUpdate = async (data: IFormData) => {
     try {
-      const result = await createClass({
+      const result = await updateClass({
         variables: {
-          createClassInput: {
+          updateClassInput: {
             title: data.title,
             content_summary: data.content_summary,
             price: Number(data.price),
@@ -69,17 +53,10 @@ export const UseMutationCreateClass = () => {
           },
         },
       });
-
-      alert("클래스 등록에 성공하였습니다.");
-
-      console.log(result);
-      // 클래스 디테일 페이지로 이동
-      const class_id = result.data?.createClass.class_id;
-      void router.push(`/classPage/${class_id}`);
+      alert("클래스 수정이 완료되었습니다.");
     } catch (error) {
-      if (error instanceof Error) alert(error.message);
+      if (error instanceof Error) console.log(error.message);
     }
   };
-
-  return { onClickClassSubmit };
+  return { onClickClassUpdate };
 };

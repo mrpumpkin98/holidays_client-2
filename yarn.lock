@@ -7377,7 +7377,7 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
-react-multiple-datepicker@0.1.0:
+react-multiple-datepicker@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/react-multiple-datepicker/-/react-multiple-datepicker-0.1.0.tgz#44685452c8241c7167c968ccaa6bc6f0780a06f6"
   integrity sha512-vVbLcN7BQfLeG8y+6tRIFGIwI4qahj4Xs+IJsam7BA4UjiRO4zYitt/V2r7jAgLa5LpLB0KIpW1mxYiX30am1w==
