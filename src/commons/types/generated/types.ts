@@ -156,6 +156,43 @@ export type ICreateUserInput = {
   pwd: Scalars['String'];
 };
 
+export type IFetchClasses = {
+  __typename?: 'FetchClasses';
+  address: Scalars['String'];
+  address_detail: Scalars['String'];
+  class_id: Scalars['String'];
+  content_summary: Scalars['String'];
+  price: Scalars['Int'];
+  title: Scalars['String'];
+  total_time: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type IFetchClassesPopular = {
+  __typename?: 'FetchClassesPopular';
+  address: Scalars['String'];
+  address_detail: Scalars['String'];
+  class_id: Scalars['String'];
+  content_summary: Scalars['String'];
+  price: Scalars['Int'];
+  row_count: Scalars['Int'];
+  title: Scalars['String'];
+  total_time: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type IFetchWishlists = {
+  __typename?: 'FetchWishlists';
+  address: Scalars['String'];
+  address_detail: Scalars['String'];
+  class_id: Scalars['String'];
+  content_summary: Scalars['String'];
+  price: Scalars['Int'];
+  title: Scalars['String'];
+  total_time: Scalars['String'];
+  url: Scalars['String'];
+};
+
 export type IImageInput = {
   is_main: Scalars['Int'];
   type: Scalars['Int'];
@@ -197,7 +234,7 @@ export type IMutation = {
   restoreAccessToken: Scalars['String'];
   updateBoard: Scalars['Boolean'];
   updateBoardReview: IBoardReview;
-  updateClass: IClass;
+  updateClass: Scalars['Boolean'];
   updateClassReview: IClassReview;
   updateUser: IUser;
   updateUserPwd: Scalars['Boolean'];
@@ -343,12 +380,15 @@ export type IQuery = {
   fetchClassDetail: IClass;
   fetchClassReviews: Array<IClassReview>;
   fetchClassSchedules: Array<IClassSchedule>;
-  fetchClasses: Array<IClass>;
-  fetchClassesAd: Array<IClass>;
+  fetchClasses: Array<IFetchClasses>;
+  fetchClassesAd: Array<IFetchClasses>;
+  fetchClassesOfMine: Array<IFetchClasses>;
+  fetchClassesPopular: Array<IFetchClassesPopular>;
   fetchLoginUser: IUser;
   fetchReservationsOfClass: Array<IReservation>;
   fetchReservationsOfUser: Array<IReservation>;
   fetchUserIdByPhone: IUser;
+  fetchWishlists: Array<IFetchWishlists>;
 };
 
 
@@ -380,6 +420,7 @@ export type IQueryFetchClassSchedulesArgs = {
 export type IQueryFetchClassesArgs = {
   address_category?: InputMaybe<Scalars['String']>;
   category?: InputMaybe<Scalars['String']>;
+  page?: InputMaybe<Scalars['Int']>;
   search?: InputMaybe<Scalars['String']>;
 };
 
@@ -387,6 +428,14 @@ export type IQueryFetchClassesArgs = {
 export type IQueryFetchClassesAdArgs = {
   address_category?: InputMaybe<Scalars['String']>;
   category?: InputMaybe<Scalars['String']>;
+  search?: InputMaybe<Scalars['String']>;
+};
+
+
+export type IQueryFetchClassesPopularArgs = {
+  address_category?: InputMaybe<Scalars['String']>;
+  category?: InputMaybe<Scalars['String']>;
+  page?: InputMaybe<Scalars['Int']>;
   search?: InputMaybe<Scalars['String']>;
 };
 
@@ -433,6 +482,7 @@ export type IUpdateClassInput = {
   accountName: Scalars['String'];
   accountNum: Scalars['String'];
   address: Scalars['String'];
+  address_category: Scalars['String'];
   address_detail: Scalars['String'];
   bankName: Scalars['String'];
   category: Scalars['String'];

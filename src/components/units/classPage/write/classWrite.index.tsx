@@ -1,6 +1,5 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./classWrite.styles";
-import type { SizeType } from "antd/es/config-provider/SizeContext";
 
 import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload } from "antd";
@@ -32,27 +31,19 @@ declare const window: typeof globalThis & {
 };
 
 export default function ClassWrite(props: IClassWriteProps) {
-  // const { formState, getValues } = useForm<{ name: string }>();
-  // const qqq = getValues();
-
-  // --------------------------------------------------------
-  // 카카오 지도
-
   // 우편주소(카카오지도)
   const [fulladdress, setFulladdress] = useState("");
 
   useEffect(() => {
-    // script 태그 직접 만들기
     const script = document.createElement("script");
-    // 중간에 autoload=false를 작성해줘야 한다.
+
     script.src =
       "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=a9169f002991ce2cba289e84e705d4d4&libraries=services";
-
     document.head.appendChild(script);
 
     script.onload = () => {
       window.kakao.maps.load(() => {
-        const container = document.getElementById("map"); // 지도를 담을 영역의 DOM 레퍼런스
+        const container = document.getElementById("map");
         const options = {
           center: new window.kakao.maps.LatLng(33.450701, 126.570667),
           level: 3,
@@ -69,11 +60,10 @@ export default function ClassWrite(props: IClassWriteProps) {
 
         // 주소로 좌표를 검색합니다
         geocoder.addressSearch(
-          // props.isEdit
-          //   ? props.data?.fetchClassDetail.address
-          //   : props.fulladdress,
+          fulladdress !== ""
+            ? fulladdress
+            : props.data?.fetchClassDetail?.address,
 
-          `${fulladdress}`,
           function (result: any, status: any) {
             console.log("ㅎㅎㅎ", fulladdress, "ddddddddddd");
             // 정상적으로 검색이 완료됐으면
@@ -91,10 +81,10 @@ export default function ClassWrite(props: IClassWriteProps) {
 
               // 인포윈도우로 장소에 대한 설명을 표시합니다
               var infowindow = new window.kakao.maps.InfoWindow({
-                content: `<div style="width:200px;text-align:center;padding:6px 0;">${
-                  props.isEdit
-                    ? props.data?.fetchClassDetail.address
-                    : fulladdress
+                content: `<div style="width:270px;text-align:center;padding:6px 0;">${
+                  fulladdress !== ""
+                    ? fulladdress
+                    : props.data?.fetchClassDetail?.address
                 }</div>`,
               });
               infowindow.open(map, marker);
@@ -112,13 +102,6 @@ export default function ClassWrite(props: IClassWriteProps) {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  //  추가했음7:02
-  // const onChangeAddressDetail = (
-  //   event: ChangeEvent<HTMLInputElement>
-  // ): void => {
-  //   setAddressDetail(event.target.value);
-  // };
-
   // 우편번호 모달창
   const onToggleModal = (): void => {
     setIsOpen((prev) => !prev);
@@ -128,14 +111,9 @@ export default function ClassWrite(props: IClassWriteProps) {
     console.log(data.address);
 
     onToggleModal();
-    // setFulladdress(data.address);
 
-    // setValue (주소)
-    // setFulladdress(data.address);
-
+    setValue("address", data.address);
     setFulladdress(data.address);
-
-    // console.log(fulladdress);
   };
 
   // --------------------------------------------------------

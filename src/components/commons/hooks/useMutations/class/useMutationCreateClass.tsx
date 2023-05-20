@@ -1,6 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { IFormData } from "../../../../units/classPage/write/classWrite.types";
 import { getFirstTwoChars } from "../../../../../commons/libraries/utils";
 
