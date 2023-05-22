@@ -1,5 +1,6 @@
 export const getFirstTwoChars = (address: any) => {
   return address.substring(0, 2);
+};
 export const getDate = (date: any) => {
   const _date = new Date(date);
   const yyyy = _date.getFullYear();
