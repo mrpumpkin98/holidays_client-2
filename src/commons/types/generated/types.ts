@@ -54,6 +54,7 @@ export type IClass = {
   content_summary: Scalars['String'];
   createdAt: Scalars['DateTime'];
   deletedAt: Scalars['DateTime'];
+  image_: Array<IImage>;
   is_ad: Scalars['Int'];
   lat: Scalars['Float'];
   lon: Scalars['Float'];
@@ -168,28 +169,6 @@ export type IFetchClasses = {
   url: Scalars['String'];
 };
 
-export type IFetchClassesDetail = {
-  __typename?: 'FetchClassesDetail';
-  accountName: Scalars['String'];
-  accountNum: Scalars['String'];
-  address: Scalars['String'];
-  address_category: Scalars['String'];
-  address_detail: Scalars['String'];
-  bankName: Scalars['String'];
-  category: Scalars['String'];
-  class_id: Scalars['String'];
-  class_mNum: Scalars['Int'];
-  content: Scalars['String'];
-  content_summary: Scalars['String'];
-  is_ad: Scalars['String'];
-  is_main: Scalars['Int'];
-  price: Scalars['Int'];
-  title: Scalars['String'];
-  total_time: Scalars['String'];
-  type: Scalars['Int'];
-  url: Scalars['String'];
-};
-
 export type IFetchClassesPopular = {
   __typename?: 'FetchClassesPopular';
   address: Scalars['String'];
@@ -212,6 +191,17 @@ export type IFetchWishlists = {
   price: Scalars['Int'];
   title: Scalars['String'];
   total_time: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type IImage = {
+  __typename?: 'Image';
+  board_: IBoard;
+  class_: IClass;
+  image_id: Scalars['String'];
+  is_main: Scalars['Int'];
+  magazine_: IMagazine;
+  type: Scalars['Int'];
   url: Scalars['String'];
 };
 
@@ -399,7 +389,7 @@ export type IQuery = {
   fetchBoardReviews: Array<IBoardReview>;
   fetchBoards: Array<IBoard>;
   fetchBoardsOfMine: Array<IBoard>;
-  fetchClassDetail: Array<IFetchClassesDetail>;
+  fetchClassDetail: IClass;
   fetchClassReviews: Array<IClassReview>;
   fetchClassSchedules: Array<IClassSchedule>;
   fetchClasses: Array<IFetchClasses>;

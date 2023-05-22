@@ -92,6 +92,7 @@ export const Heart = styled(HeartOutlined)`
 export const Heart_fill = styled(HeartFilled)`
   width: 18px;
   height: 20px;
+  cursor: pointer;
 `;
 
 export const Wrapper_body_bottom = styled.div`
