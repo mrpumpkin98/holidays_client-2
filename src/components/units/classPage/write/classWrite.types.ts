@@ -25,5 +25,8 @@ export interface IFormData {
   date: string;
   remain: string;
 
-  images?: string[];
+  // images?: string[];
+  // images?: [IImageInput];
+  // images?: { url: string }[];
+  // images?: IImageInput[];
 }

@@ -13,20 +13,6 @@ export const useMutationDeleteClass = () => {
   const [deleteClass] = useMutation(DELETE_CLASS);
 
   // 삭제하기 버튼
-  //   const onClickClassDelete = async (e: React.MouseEvent) => {
-  //     console.log("삭제하기 버튼 클릭 됨");
-  //     try {
-  //       const result = await deleteClass({
-  //         variables: { class_id: String(e.currentTarget.id) },
-  //       });
-  //       console.log(result);
-  //       alert("클래스 삭제가 완료되었습니다.");
-  //     } catch (error) {
-  //       if (error instanceof Error) console.log(error.message);
-  //     }
-  //   };
-
-  // 삭제하기 버튼
   const onClickClassDelete = async () => {
     console.log("삭제하기 버튼 클릭 됨");
     try {

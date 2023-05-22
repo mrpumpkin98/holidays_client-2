@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import * as S from "./classWrite.styles";
 
 import { PlusOutlined } from "@ant-design/icons";
@@ -18,6 +18,7 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useMutationUpdateClass } from "../../../commons/hooks/useMutations/class/useMutationUpdateClass";
 import { IClassWriteProps, IFormData } from "./classWrite.types";
+import { UseMutationUploadFile } from "../../../commons/hooks/useMutations/class/useMutationUploadFile";
 
 // 웹 에디터
 const ReactQuill = dynamic(async () => await import("react-quill"), {
@@ -31,101 +32,6 @@ declare const window: typeof globalThis & {
 };
 
 export default function ClassWrite(props: IClassWriteProps) {
-  // 우편주소(카카오지도)
-  const [fulladdress, setFulladdress] = useState("");
-
-  useEffect(() => {
-    const script = document.createElement("script");
-
-    script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=a9169f002991ce2cba289e84e705d4d4&libraries=services";
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      window.kakao.maps.load(() => {
-        const container = document.getElementById("map");
-        const options = {
-          center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-          level: 3,
-        };
-
-        // 지도를 생성합니다
-        const map = new window.kakao.maps.Map(container, options);
-        console.log(map);
-
-        // --------------------------------------------------------
-
-        // 주소-좌표 변환 객체를 생성합니다
-        let geocoder = new window.kakao.maps.services.Geocoder();
-
-        // 주소로 좌표를 검색합니다
-        geocoder.addressSearch(
-          fulladdress !== ""
-            ? fulladdress
-            : props.data?.fetchClassDetail?.address,
-
-          function (result: any, status: any) {
-            console.log("ㅎㅎㅎ", fulladdress, "ddddddddddd");
-            // 정상적으로 검색이 완료됐으면
-            if (status === window.kakao.maps.services.Status.OK) {
-              var coords = new window.kakao.maps.LatLng(
-                result[0].y,
-                result[0].x
-              );
-
-              // 결과값으로 받은 위치를 마커로 표시합니다
-              var marker = new window.kakao.maps.Marker({
-                map: map,
-                position: coords,
-              });
-
-              // 인포윈도우로 장소에 대한 설명을 표시합니다
-              var infowindow = new window.kakao.maps.InfoWindow({
-                content: `<div style="width:270px;text-align:center;padding:6px 0;">${
-                  fulladdress !== ""
-                    ? fulladdress
-                    : props.data?.fetchClassDetail?.address
-                }</div>`,
-              });
-              infowindow.open(map, marker);
-
-              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-              map.setCenter(coords);
-            }
-          }
-        );
-      });
-    };
-  }, [fulladdress]);
-
-  // --------------------------------------------------------
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  // 우편번호 모달창
-  const onToggleModal = (): void => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const handleComplete = (data: Address): void => {
-    console.log(data.address);
-
-    onToggleModal();
-
-    setValue("address", data.address);
-    setFulladdress(data.address);
-  };
-
-  // --------------------------------------------------------
-
-  // 달력
-  // const [selectedDates, setSelectedDates] = useState([]);
-
-  // const handleDateSelect = (dates: any) => {
-  //   setSelectedDates(dates);
-  //   console.log(dates);
-  // };
-
   // -------------
 
   // 이미지 등록
@@ -185,7 +91,95 @@ export default function ClassWrite(props: IClassWriteProps) {
     </div>
   );
 
-  // --------
+  // -----------
+
+  // 우편주소(카카오지도)
+  const [fulladdress, setFulladdress] = useState("");
+
+  useEffect(() => {
+    const script = document.createElement("script");
+
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=a9169f002991ce2cba289e84e705d4d4&libraries=services";
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.kakao.maps.load(() => {
+        const container = document.getElementById("map");
+        const options = {
+          center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+          level: 3,
+        };
+
+        // 지도를 생성합니다
+        const map = new window.kakao.maps.Map(container, options);
+        console.log(map);
+
+        let geocoder = new window.kakao.maps.services.Geocoder();
+
+        geocoder.addressSearch(
+          fulladdress !== ""
+            ? fulladdress
+            : props.data?.fetchClassDetail[0]?.address,
+
+          function (result: any, status: any) {
+            if (status === window.kakao.maps.services.Status.OK) {
+              var coords = new window.kakao.maps.LatLng(
+                result[0].y,
+                result[0].x
+              );
+
+              var marker = new window.kakao.maps.Marker({
+                map: map,
+                position: coords,
+              });
+
+              var infowindow = new window.kakao.maps.InfoWindow({
+                content: `<div style="width:270px;text-align:center;padding:6px 0;">${
+                  fulladdress !== ""
+                    ? fulladdress
+                    : props.data?.fetchClassDetail[0]?.address
+                }</div>`,
+              });
+              infowindow.open(map, marker);
+
+              map.setCenter(coords);
+            }
+          }
+        );
+      });
+    };
+  }, [fulladdress]);
+
+  // --------------------------------------------------------
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  // 우편번호 모달창
+  const onToggleModal = (): void => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleComplete = (data: Address): void => {
+    console.log(data.address);
+
+    onToggleModal();
+
+    setValue("address", data.address);
+    setFulladdress(data.address);
+  };
+
+  // --------------------------------------------------------
+
+  // 달력
+  // const [selectedDates, setSelectedDates] = useState([]);
+
+  // const handleDateSelect = (dates: any) => {
+  //   setSelectedDates(dates);
+  //   console.log(dates);
+  // };
+
+  // --------------------------------------------------------
 
   // 등록
   const { onClickClassSubmit } = UseMutationCreateClass();
@@ -202,7 +196,7 @@ export default function ClassWrite(props: IClassWriteProps) {
   // 등록하기, 수정하기 제출
   const onSubmitForm = async (data: IFormData) => {
     const { ...value } = data;
-
+    // value.images = imageUrls; // 추가함 5.21
     if (!props.isEdit) {
       await onClickClassSubmit(value, fulladdress);
     } else {
@@ -241,7 +235,7 @@ export default function ClassWrite(props: IClassWriteProps) {
             <select
               {...register("category")}
               // defaultValue={props.data?.category}
-              defaultValue={props.data?.fetchClassDetail.category}
+              defaultValue={props.data?.fetchClassDetail[0].category}
             >
               <option value="교육">교육</option>
               <option value="여가">여가</option>
@@ -256,7 +250,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               type="text"
               placeholder="클래스 이름을 입력해주세요"
               {...register("title")}
-              defaultValue={props.data?.fetchClassDetail.title}
+              defaultValue={props.data?.fetchClassDetail[0].title}
             />
             {/* <S.Error>{formState.errors.title?.message}</S.Error> */}
 
@@ -265,11 +259,12 @@ export default function ClassWrite(props: IClassWriteProps) {
               type="text"
               placeholder="클래스 한줄요약을 입력해주세요"
               {...register("content_summary")}
-              defaultValue={props.data?.fetchClassDetail.content_summary}
+              defaultValue={props.data?.fetchClassDetail[0].content_summary}
             />
             {/* <S.Error>{formState.errors.content_summary?.message}</S.Error> */}
 
             {/* <S.Error>에러</S.Error> */}
+
             <S.Label>대표 이미지를 올려주세요</S.Label>
             <Upload
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
@@ -278,7 +273,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               onPreview={handlePreview}
               onChange={handleChange}
             >
-              {fileList.length >= 8 ? null : uploadButton}
+              {fileList.length >= 5 ? null : uploadButton}
             </Upload>
             <Modal
               open={previewOpen}
@@ -289,9 +284,12 @@ export default function ClassWrite(props: IClassWriteProps) {
               <img alt="example" style={{ width: "100%" }} src={previewImage} />
             </Modal>
             {/* <S.Img_box>
-            <S.Img />
-            <S.Img />
-          </S.Img_box> */}
+              <S.Img />
+              <S.Img />
+            </S.Img_box> */}
+            {/* <S.Error>에러</S.Error> */}
+            {/* ------- */}
+
             {/* <S.Error>에러</S.Error> */}
             <S.Wrapper_body_middle>
               <S.Wrapper_body_middle_left>
@@ -300,7 +298,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                 {/* <S.Time size="large" onChange={onChangeTime} /> */}
                 <select
                   {...register("total_time")}
-                  defaultValue={props.data?.fetchClassDetail.total_time}
+                  defaultValue={props.data?.fetchClassDetail[0].total_time}
                 >
                   <option value="1시간">1시간</option>
                   <option value="2시간">2시간</option>
@@ -315,7 +313,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                   type="int"
                   placeholder="클래스 최대 인원을 입력해주세요"
                   {...register("class_mNum")}
-                  defaultValue={props.data?.fetchClassDetail.class_mNum}
+                  defaultValue={props.data?.fetchClassDetail[0].class_mNum}
                 />
                 {/* <S.Error>{formState.errors.class_mNum?.message}</S.Error> */}
               </S.Wrapper_body_middle_right>
@@ -325,7 +323,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               type="int"
               placeholder="숫자만 입력해주세요"
               {...register("price")}
-              defaultValue={props.data?.fetchClassDetail.price}
+              defaultValue={props.data?.fetchClassDetail[0].price}
             />
             {/* <S.Error>{formState.errors.price?.message}</S.Error> */}
 
@@ -339,15 +337,10 @@ export default function ClassWrite(props: IClassWriteProps) {
                   <input
                     type="text"
                     readOnly
-                    // {...register("address")} // 이거 필요 없음
-                    // onChange={onChangeAddressDetail} // 이것도 필요 없음
-                    // defaultValue={props.data?.fetchClassDetail.address ?? ""}
-                    // value={fulladdress}
-                    // value 부분 이게 맞나??
                     value={
                       fulladdress !== ""
                         ? fulladdress ?? ""
-                        : props.data?.fetchClassDetail.address ?? ""
+                        : props.data?.fetchClassDetail[0].address ?? ""
                     }
                   />
                   <S.AddressBtn type="button" onClick={onToggleModal}>
@@ -361,7 +354,9 @@ export default function ClassWrite(props: IClassWriteProps) {
                     type="text"
                     placeholder="상세주소를 입력해주세요"
                     {...register("address_detail")}
-                    defaultValue={props.data?.fetchClassDetail.address_detail}
+                    defaultValue={
+                      props.data?.fetchClassDetail[0].address_detail
+                    }
                   />
                 </S.Wrapper_body_map_right_bottom>
               </S.Wrapper_body_map_right>
@@ -376,7 +371,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               }}
               onChange={onChangeContents}
               placeholder="클래스 세부내용을 입력해주세요"
-              defaultValue={props.data?.fetchClassDetail.content}
+              defaultValue={props.data?.fetchClassDetail[0].content}
             />
             {/* <S.Error>{formState.errors.content?.message}</S.Error> */}
 
@@ -406,7 +401,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               type="text"
               placeholder="'-' 빼고 숫자만 입력해주세요."
               {...register("accountNum")}
-              defaultValue={props.data?.fetchClassDetail.accountNum}
+              defaultValue={props.data?.fetchClassDetail[0].accountNum}
             />
             {/* <S.Error>{formState.errors.accountNum?.message}</S.Error> */}
 
@@ -417,7 +412,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                   type="text"
                   placeholder="예금주를 작성해주세요"
                   {...register("accountName")}
-                  defaultValue={props.data?.fetchClassDetail.accountName}
+                  defaultValue={props.data?.fetchClassDetail[0].accountName}
                 />
                 {/* <S.Error>{formState.errors.accountName?.message}</S.Error> */}
               </div>
@@ -428,7 +423,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                   type="text"
                   placeholder="입금 은행을 작성해주세요"
                   {...register("bankName")}
-                  defaultValue={props.data?.fetchClassDetail.bankName}
+                  defaultValue={props.data?.fetchClassDetail[0].bankName}
                 />
                 {/* <S.Error>{formState.errors.bankName?.message}</S.Error> */}
               </div>

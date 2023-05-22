@@ -1,7 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 
 import { IFormData } from "../../../../units/classPage/write/classWrite.types";
-import { FECTCH_CLASS_DETAIL } from "../../useQueries/class/useQueryFetchClassDetail";
+import { FETCH_CLASS_DETAIL } from "../../useQueries/class/useQueryFetchClassDetail";
 import { useRouter } from "next/router";
 import { getFirstTwoChars } from "../../../../../commons/libraries/utils";
 
@@ -56,7 +56,7 @@ export const useMutationUpdateClass = () => {
         },
         refetchQueries: [
           {
-            query: FECTCH_CLASS_DETAIL,
+            query: FETCH_CLASS_DETAIL,
             variables: { class_id: router.query.class_id },
           },
         ],

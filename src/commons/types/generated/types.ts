@@ -17,7 +17,7 @@ export type Scalars = {
 export type IBoard = {
   __typename?: 'Board';
   board_id: Scalars['String'];
-  content: Scalars['Int'];
+  content: Scalars['String'];
   createdAt: Scalars['DateTime'];
   deletedAt: Scalars['DateTime'];
   title: Scalars['String'];
@@ -165,6 +165,28 @@ export type IFetchClasses = {
   price: Scalars['Int'];
   title: Scalars['String'];
   total_time: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type IFetchClassesDetail = {
+  __typename?: 'FetchClassesDetail';
+  accountName: Scalars['String'];
+  accountNum: Scalars['String'];
+  address: Scalars['String'];
+  address_category: Scalars['String'];
+  address_detail: Scalars['String'];
+  bankName: Scalars['String'];
+  category: Scalars['String'];
+  class_id: Scalars['String'];
+  class_mNum: Scalars['Int'];
+  content: Scalars['String'];
+  content_summary: Scalars['String'];
+  is_ad: Scalars['String'];
+  is_main: Scalars['Int'];
+  price: Scalars['Int'];
+  title: Scalars['String'];
+  total_time: Scalars['String'];
+  type: Scalars['Int'];
   url: Scalars['String'];
 };
 
@@ -377,7 +399,7 @@ export type IQuery = {
   fetchBoardReviews: Array<IBoardReview>;
   fetchBoards: Array<IBoard>;
   fetchBoardsOfMine: Array<IBoard>;
-  fetchClassDetail: IClass;
+  fetchClassDetail: Array<IFetchClassesDetail>;
   fetchClassReviews: Array<IClassReview>;
   fetchClassSchedules: Array<IClassSchedule>;
   fetchClasses: Array<IFetchClasses>;

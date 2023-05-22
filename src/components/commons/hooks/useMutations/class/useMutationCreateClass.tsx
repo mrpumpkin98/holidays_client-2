@@ -49,16 +49,19 @@ export const UseMutationCreateClass = () => {
             accountName: data.accountName,
             bankName: data.bankName,
             classSchedulesInput: {
-              // date: data.date,
-              // remain: data.remain,
               date: "ddd",
               remain: 11,
             },
             imageInput: {
-              url: "111",
+              url: "이미지url",
               type: 1,
-              is_main: 1,
+              is_main: 2,
             },
+            // imageInput: data.images?.map((image) => ({
+            //   url: image.url,
+            //   type: 1, // 클래스는 type 1
+            //   is_main: 2, // 메인이미지: 1 , 서브이미지: 2
+            // })),
           },
         },
       });
@@ -68,9 +71,10 @@ export const UseMutationCreateClass = () => {
       console.log(result);
       // 클래스 디테일 페이지로 이동
       const class_id = result.data?.createClass.class_id;
+      console.log(class_id);
       void router.push(`/classPage/${class_id}`);
     } catch (error) {
-      if (error instanceof Error) alert(error.message);
+      if (error instanceof Error) console.log(error.message);
     }
   };
 
