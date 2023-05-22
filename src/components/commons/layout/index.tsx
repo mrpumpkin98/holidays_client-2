@@ -3,7 +3,7 @@ import LayoutFooter from "./footer/LayoutFooter.index";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
-const HIDDEN = ["/Login", "/Login/SignUp", "/"];
+const HIDDEN = ["/loginPage/", "/signUpPage/", "/"];
 
 const Body = styled.div`
   display: flex;

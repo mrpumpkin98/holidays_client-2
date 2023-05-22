@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
-  width: 900px;
+  width: 830px;
   margin-top: 80px;
 `;
 
@@ -105,10 +105,16 @@ export const PremiumWrapper = styled.div`
   align-items: center;
   animation: ${SlideBottom} 0.7s ease-in-out both;
   margin-bottom: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-collapse: collapse;
+  padding: 10px;
 `;
 
 export const PremiumPosts = styled.div`
-  width: 280px;
+  margin-bottom: 50px;
   cursor: pointer;
 `;
 
@@ -119,7 +125,7 @@ export const PremiumPostBody = styled.div`
 
 export const PremiumTemplate = styled.article`
   width: 100%;
-  height: 200px;
+  height: 250px;
   border-radius: 10px;
   overflow: hidden;
 `;
@@ -170,8 +176,8 @@ export const ButtonTie = styled.div`
 `;
 
 export const AdButton = styled.button`
-  width: 133px;
-  height: 40px;
+  width: 180px;
+  height: 45px;
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
@@ -185,8 +191,8 @@ export const AdButton = styled.button`
 `;
 
 export const DeleteButton = styled.button`
-  width: 133px;
-  height: 40px;
+  width: 180px;
+  height: 45px;
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;

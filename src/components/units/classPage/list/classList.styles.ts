@@ -14,33 +14,31 @@ export const Banner = styled.div`
   display: flex;
   margin: auto;
   height: 400px;
-  width: 1200px;
+  width: 1000px;
   margin-top: 30px;
 `;
 
 export const Box = styled.div`
-  width: 500px;
-  height: 200px;
-  padding-left: 50px;
-  padding-top: 30px;
-  border-radius: 10px;
+  width: 300px;
+  height: 100%;
   opacity: 0.85;
+  padding-top: 80px;
 `;
 
 export const SearchTitle = styled.div`
-  margin-left: 10px;
   font-weight: 700;
-  font-size: 32px;
+  font-size: 31px;
   cursor: pointer;
 `;
 
 export const ServiceAreaWrapper = styled.div`
   display: flex;
-  margin: 13px 0px;
+  flex-direction: column;
+  margin-top: 30px;
 `;
 
 export const Service = styled.div`
-  width: 120px;
+  width: 160px;
   height: 40px;
   border-radius: 35px;
   background-color: white;
@@ -64,7 +62,7 @@ export const Expand = styled.img`
 `;
 
 export const Area = styled.div`
-  width: 120px;
+  width: 160px;
   height: 40px;
   border-radius: 35px;
   border: 1px solid black;
@@ -72,9 +70,7 @@ export const Area = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
-  /* background-color: ${(props: any) =>
-    props.addressCategory !== "지역" ? "tomato" : "black"}; */
+  margin-top: 10px;
 `;
 
 export const AreaText = styled.div`
@@ -82,20 +78,26 @@ export const AreaText = styled.div`
 `;
 
 export const SearchBox = styled.input`
-  width: 300px;
-  height: 40px;
-  background: #ffffff;
+  margin-top: 40px;
+  width: 100%;
+  height: 45px;
+  background-color: #f2f2f2;
   border: 1px solid black;
   border-radius: 10px;
   font-size: 14px;
   padding-left: 20px;
   padding-bottom: 3px;
+  border: none;
+  border-radius: 4px;
+  :focus {
+    outline: none;
+  }
 `;
 
 // Header
 
 export const Header = styled.div`
-  width: 1200px;
+  width: 1000px; /* 수정: 1200px에서 1000px로 변경 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,19 +106,19 @@ export const Header = styled.div`
 `;
 
 export const Line = styled.div`
-  border: 1px solid #cabeb3;
-  width: 1200px;
-  margin: auto;
-  margin-top: 60px;
+  border: 1px solid #f2f2f2;
+  width: 100%;
+  text-align: right;
+  margin-top: 20px;
 `;
-
 export const Body = styled.div`
   display: flex;
   margin: auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1200px;
+  width: 1000px;
+  margin-bottom: 100px;
 `;
 
 export const PremiumAD = styled.div`
@@ -168,9 +170,12 @@ export const PremiumPostTitle = styled.div`
   font-weight: 700;
   font-size: 18px;
   margin-top: 5px;
+  margin-left: 2px;
 `;
 
-export const PremiumPostContent = styled.div``;
+export const PremiumPostContent = styled.div`
+  padding: 0px 2px;
+`;
 
 export const PremiumPostInfo = styled.div``;
 
@@ -201,7 +206,9 @@ export const NewestPopularity = styled.div`
   display: flex;
   width: 100%;
   justify-content: end;
-  margin-top: 60px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 10px;
 `;
 
 export const Newest = styled.div`
@@ -217,43 +224,45 @@ export const Popularity = styled.div`
 
 export const BodyWrapper = styled.div`
   display: flex;
-  width: 1200px;
+  width: 725px;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  border-collapse: collapse;
   margin-top: 20px;
-  animation: ${SlideBottom} 0.7s ease-in-out both;
+  margin-left: 260px;
 `;
 
 export const Posts = styled.div`
-  width: 280px;
-  margin-bottom: 50px;
+  width: 725px;
+  border-bottom: 1px solid #e1e1e1;
+  border-radius: 4px;
   cursor: pointer;
+  :hover {
+    box-shadow: 0px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
+  }
 `;
 
 export const PostBody = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 export const Template = styled.article`
-  width: 100%;
-  height: 175px;
-  border-radius: 10px;
+  width: 150px;
+  height: 150px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
   overflow: hidden;
-  margin-bottom: 10px;
 `;
 
 export const PostImg = styled.img`
-  width: 101%;
-  height: 175px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
-  transition: all 0.4s ease-in-out;
-  :hover {
-    transform: scale(1.08);
-  }
+  padding: 8px;
 `;
 
 export const PostTitle = styled.div`
@@ -262,7 +271,11 @@ export const PostTitle = styled.div`
   margin-bottom: 5px;
 `;
 
-export const PostContent = styled.div``;
+export const PostContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+`;
 
 export const PostInfo = styled.div``;
 
@@ -282,6 +295,5 @@ export const Content = styled.div`
 export const PriceTie = styled.div``;
 
 export const Price = styled.div`
-  text-align: end;
   font-size: 16px;
 `;

@@ -7,32 +7,67 @@ export const Wrapper = styled.div`
   justify-content: center;
   width: 1200px;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 150px;
+`;
+
+export const TitleTie = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Title = styled.h1`
-  font-size: 25px;
-  margin-top: 30px;
+  font-weight: 700;
+  font-size: 31px;
+  margin-right: 100px;
+  cursor: pointer;
+  margin-bottom: 30px;
+`;
+
+export const Service = styled.div`
+  width: 130px;
+  height: 40px;
+  border-radius: 35px;
+  background-color: white;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  cursor: pointer;
+`;
+
+export const ServiceText = styled.div`
+  font-size: 14px;
 `;
 
 export const InputBox = styled.input`
-  width: 600px;
-  height: 50px;
+  margin-top: 40px;
+  width: 590px;
+  height: 45px;
+  background-color: #f2f2f2;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 14px;
+  padding-left: 20px;
+  padding-bottom: 3px;
+  border: none;
   border-radius: 4px;
-  border: 1px solid #bdbdbd;
-  font-size: 15px;
-  padding-left: 15px;
-  margin-top: 20px;
   :focus {
     outline: none;
   }
+`;
+
+export const Line = styled.div`
+  border: 1px solid #f2f2f2;
+  width: 100%;
+  text-align: right;
+  margin-top: 30px;
 `;
 
 export const BodyWrapper = styled.div`
   display: flex;
   width: 1200px;
   justify-content: space-between;
-  align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
   border-collapse: collapse;

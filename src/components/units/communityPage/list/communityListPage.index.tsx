@@ -1,5 +1,8 @@
 import { useRouter } from "next/router";
 import * as S from "./communityListPage.styles";
+import { useQuery } from "@apollo/client";
+import { FECTCH_BOARDS } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoards";
+import { formatDateString } from "../../../../commons/libraries/utils";
 
 // 임시 게시물 데이터
 
@@ -14,26 +17,36 @@ const initialPosts = Array(12).fill(initialPost);
 
 export default function communityListPage() {
   const router = useRouter();
+  const { data, refetch } = useQuery(FECTCH_BOARDS);
+  const onClickWrite = () => {
+    void router.push("/communityPage/write");
+  };
 
   return (
     <S.Wrapper>
-      <S.Title>사랑방</S.Title>
+      <S.TitleTie>
+        <S.Title>사랑방</S.Title>
+        <S.Service onClick={onClickWrite}>
+          <S.ServiceText>글쓰기</S.ServiceText>
+        </S.Service>
+      </S.TitleTie>
       <S.InputBox placeholder="검색어를 입력해 주세요" />
+      <S.Line />
       <S.BodyWrapper>
-        {initialPosts.map((post: any, index: any) => (
+        {data?.fetchBoards.map((post: any, index: any) => (
           <div key={index}>
             <S.Posts>
               <S.PostBody>
                 <S.Template>
-                  <S.PostImg src={post.src} />
+                  <S.PostImg src="/communityPage/exampleImage1.png" />
                 </S.Template>
                 <S.PostTitle>{post.title}</S.PostTitle>
                 <S.PostContent>
                   <S.PostInfo>
-                    <S.Address>{post.address}</S.Address>
+                    <S.Address>{post.user_.name}</S.Address>
                   </S.PostInfo>
                   <S.PriceTie>
-                    <S.Price>Date : {post.date}</S.Price>
+                    <S.Price>Date : {formatDateString(post.createdAt)}</S.Price>
                   </S.PriceTie>
                 </S.PostContent>
               </S.PostBody>
