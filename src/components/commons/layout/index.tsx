@@ -3,11 +3,12 @@ import LayoutFooter from "./footer/LayoutFooter.index";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 
-const HIDDEN = ["/Login", "/Login/SignUp", "/"];
+const HIDDEN = ["/Login", "/Login/SignUp", "/landingPage/"];
 
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100vw;
 
   @media only screen and (max-width: 768px) {
     width: 100vw;

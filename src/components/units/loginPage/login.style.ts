@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { mobile } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
-  width: 1920px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,8 +136,9 @@ export const SocialNaverWrapper = styled.div`
   border-radius: 5px;
   margin-bottom: 10px;
   cursor: pointer;
+
   &:hover {
-    color: orange;
+    background: orange;
   }
   @media ${mobile} {
     width: 89%;
@@ -154,7 +155,7 @@ export const SocialKakaoWrapper = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
   &:hover {
-    color: orange;
+    background: orange;
   }
   @media ${mobile} {
     width: 89%;
@@ -171,7 +172,7 @@ export const SocialGoogleWrapper = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
   &:hover {
-    color: orange;
+    background: orange;
   }
   @media ${mobile} {
     width: 89%;
@@ -184,11 +185,13 @@ export const SocialLoginImage = styled.img`
   margin-right: 10px;
 `;
 
-export const SocialLogin = styled.div`
+export const SocialLogin = styled.a`
   height: 72px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 24px;
   margin-left: 10px;
+  color: black;
+  text-decoration: none;
 `;
