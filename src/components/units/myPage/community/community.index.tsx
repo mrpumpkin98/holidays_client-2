@@ -1,44 +1,16 @@
 import { useState } from "react";
 import * as S from "./community.styles";
-
-const initialPremiumPost = {
-  src: "/classPage/list.png",
-  title: "사랑방 게시물 제목",
-  user: "작성자 이름",
-  content:
-    "관절을 튼튼하게 도와주는 관절 운동 클래스 입니다!! 남녀노소 즐길 수 있어요",
-  price: "55,000원",
-  date: "2021.02.18",
-};
-
-const initialPremiumPosts = Array(3).fill(initialPremiumPost);
-
-// 리스트
-const PremiumPost = ({ post }: any) => (
-  <S.PremiumPosts>
-    <S.PremiumPostBody>
-      <S.PremiumTemplate>
-        <S.PremiumPostImg src={post.src} />
-      </S.PremiumTemplate>
-      <S.PremiumUser>{post.user}</S.PremiumUser>
-      <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
-      <S.PremiumDate>{post.date}</S.PremiumDate>
-      <S.PremiumPostContent>
-        <S.PremiumPostInfo>
-          <S.PremiumAvatarContentTie></S.PremiumAvatarContentTie>
-        </S.PremiumPostInfo>
-        <S.PremiumPriceTie></S.PremiumPriceTie>
-      </S.PremiumPostContent>
-    </S.PremiumPostBody>
-  </S.PremiumPosts>
-);
+import { useQuery } from "@apollo/client";
+import { FECTCH_BOARDS } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoards";
+import { formatDateString } from "../../../../commons/libraries/utils";
 
 export default function ProposalClass() {
   const [Contents, setContents] = useState(false);
+  const { data, refetch } = useQuery(FECTCH_BOARDS);
   return (
     <>
       <S.Wrapper>
-        {Contents ? (
+        {!data ? (
           <>
             <S.ListNameIconWrapper>
               <S.ListName>내 사랑방 리스트</S.ListName>
@@ -60,9 +32,26 @@ export default function ProposalClass() {
             </S.ListNameIconWrapper>
             <S.Line />
             <S.PremiumWrapper>
-              {initialPremiumPosts.map((post: any, index: any) => (
+              {data?.fetchBoards.map((post: any, index: any) => (
                 <div key={index}>
-                  <PremiumPost post={post} />
+                  <S.PremiumPosts>
+                    <S.PremiumPostBody>
+                      <S.PremiumTemplate>
+                        <S.PremiumPostImg src="/classPage/list.png" />
+                      </S.PremiumTemplate>
+                      <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
+                      <S.PremiumUser>{post.user_.name}</S.PremiumUser>
+                      <S.PremiumDate>
+                        {formatDateString(post.createdAt)}
+                      </S.PremiumDate>
+                      <S.PremiumPostContent>
+                        <S.PremiumPostInfo>
+                          <S.PremiumAvatarContentTie></S.PremiumAvatarContentTie>
+                        </S.PremiumPostInfo>
+                        <S.PremiumPriceTie></S.PremiumPriceTie>
+                      </S.PremiumPostContent>
+                    </S.PremiumPostBody>
+                  </S.PremiumPosts>
                 </div>
               ))}
             </S.PremiumWrapper>

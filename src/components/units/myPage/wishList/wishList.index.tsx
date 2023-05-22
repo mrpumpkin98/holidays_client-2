@@ -1,42 +1,17 @@
 import { useState } from "react";
 import * as S from "./wishList.styles";
-
-const initialPremiumPost = {
-  src: "/classPage/list.png",
-  title: "클래스 이름",
-  user: "생성자 이름",
-  content:
-    "관절을 튼튼하게 도와주는 관절 운동 클래스 입니다!! 남녀노소 즐길 수 있어요",
-  price: "55,000원",
-};
-
-const initialPremiumPosts = Array(3).fill(initialPremiumPost);
-
-// 리스트
-const PremiumPost = ({ post }: any) => (
-  <S.PremiumPosts>
-    <S.PremiumPostBody>
-      <S.PremiumTemplate>
-        <S.PremiumPostImg src={post.src} />
-      </S.PremiumTemplate>
-      <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
-      <S.PremiumPostContent>
-        <S.PremiumPostInfo>
-          <S.PremiumUser>{post.user}</S.PremiumUser>
-          <S.PremiumAvatarContentTie></S.PremiumAvatarContentTie>
-        </S.PremiumPostInfo>
-        <S.PremiumPriceTie>
-          <S.PremiumPrice>{post.price}</S.PremiumPrice>
-        </S.PremiumPriceTie>
-      </S.PremiumPostContent>
-    </S.PremiumPostBody>
-  </S.PremiumPosts>
-);
+import { useQuery } from "@apollo/client";
+import { FECTCH_CLASS_WISHLISTS } from "../../../commons/hooks/useQueries/class/UseQueryFetchWishlists";
 
 export default function WishList() {
   const [Contents, setContents] = useState(false);
+  const { data, refetch } = useQuery(FECTCH_CLASS_WISHLISTS);
+  const onClickWrite = () => {
+    console.log(data);
+  };
   return (
     <S.Wrapper>
+      <button onClick={onClickWrite}>Go</button>
       {Contents ? (
         <>
           <S.ListNameIconWrapper>
@@ -59,9 +34,25 @@ export default function WishList() {
           </S.ListNameIconWrapper>
           <S.Line />
           <S.PremiumWrapper>
-            {initialPremiumPosts.map((post: any, index: any) => (
+            {data?.fetchWishlists.map((post: any, index: any) => (
               <div key={index}>
-                <PremiumPost post={post} />
+                <S.PremiumPosts>
+                  <S.PremiumPostBody>
+                    <S.PremiumTemplate>
+                      <S.PremiumPostImg src="/classPage/list.png" />
+                    </S.PremiumTemplate>
+                    <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
+                    <S.PremiumPostContent>
+                      <S.PremiumPostInfo>
+                        <S.PremiumUser>{post.user}</S.PremiumUser>
+                        <S.PremiumAvatarContentTie></S.PremiumAvatarContentTie>
+                      </S.PremiumPostInfo>
+                      <S.PremiumPriceTie>
+                        <S.PremiumPrice>{post.price}</S.PremiumPrice>
+                      </S.PremiumPriceTie>
+                    </S.PremiumPostContent>
+                  </S.PremiumPostBody>
+                </S.PremiumPosts>
               </div>
             ))}
           </S.PremiumWrapper>

@@ -33,6 +33,11 @@ export const UserName = styled.h2`
   font-size: 32px;
 `;
 
+export const Orange = styled.span`
+  font-size: 32px;
+  color: #f28316;
+`;
+
 export const Labal = styled.p`
   font-size: 15px;
   margin-top: 20px;

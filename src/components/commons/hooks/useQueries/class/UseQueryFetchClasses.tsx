@@ -3,33 +3,24 @@ import { string } from "yup";
 
 export const FETCH_CLASSES: any = gql`
   query fetchClasses(
-    $category: String!
-    $address_category: String!
-    $search: String!
+    $category: String = ""
+    $address_category: String = ""
+    $search: String = ""
+    $page: Int = 1
   ) {
     fetchClasses(
       category: $category
       address_category: $address_category
       search: $search
+      page: $page
     ) {
       class_id
       title
       content_summary
       price
-      class_mNum
+      total_time
       address
       address_detail
-      lat
-      lon
-      category
-      address_category
-      total_time
-      content
-      accountNum
-      accountName
-      bankName
-      is_ad
-      createdAt
     }
   }
 `;
