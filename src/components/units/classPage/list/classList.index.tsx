@@ -12,6 +12,7 @@ import {
 } from "../../../../commons/stores/index";
 import { Money } from "../../../../commons/libraries/utils";
 import InfiniteScroll from "react-infinite-scroller";
+import { useRouter } from "next/router";
 
 const initialPremiumPost = {
   src: "/classPage/list.png",
@@ -25,6 +26,8 @@ const initialPremiumPost = {
 const initialPremiumPosts = Array(2).fill(initialPremiumPost);
 
 export default function StaticRoutingPage() {
+  const router = useRouter();
+
   // 카테고리 및 검색
 
   const selectedRegion = useRecoilValue(selectedRegionState);
@@ -54,7 +57,9 @@ export default function StaticRoutingPage() {
     },
   });
 
-  // 서비스 모달기능
+  ///////////////////////////////////////////////////////////////
+  //  서비스 모달기능
+  //////////////////////////////////////////////////////////////
 
   const [showModal, setShowModal] = useState(false);
 
@@ -66,7 +71,9 @@ export default function StaticRoutingPage() {
     setShowModal(false);
   };
 
-  // 지역 모달기능
+  ///////////////////////////////////////////////////////////////
+  //  지역 모달기능
+  //////////////////////////////////////////////////////////////
 
   const [showModal2, setShowModal2] = useState(false);
 
@@ -76,6 +83,15 @@ export default function StaticRoutingPage() {
 
   const handleModalClose2 = (): void => {
     setShowModal2(false);
+  };
+
+  ///////////////////////////////////////////////////////////////
+  //  게시물 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
+    router.push(`/classPage/${event.currentTarget.id}`);
+    console.log(event.currentTarget.id);
   };
 
   ///////////////////////////////////////////////////////////////
@@ -185,7 +201,7 @@ export default function StaticRoutingPage() {
           >
             {data?.fetchClasses.map((post: any, index: any) => (
               <div key={index}>
-                <S.Posts>
+                <S.Posts id={post.class_id} onClick={onClickSubmit}>
                   <S.PostBody>
                     <S.PostContent>
                       <S.PostTitle>{post.title}</S.PostTitle>

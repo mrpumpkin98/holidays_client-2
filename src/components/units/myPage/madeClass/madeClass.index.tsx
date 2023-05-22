@@ -5,10 +5,21 @@ import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { FECTCH_CLASS_OF_MINE } from "../../../commons/hooks/useQueries/class/UseQueryFetchClassesOfMine";
 import { Money } from "../../../../commons/libraries/utils";
+import { useRouter } from "next/router";
 
 export default function madeClass() {
+  const router = useRouter();
+
   const [Contents, setContents] = useState(false);
   const { data, refetch } = useQuery(FECTCH_CLASS_OF_MINE);
+  ///////////////////////////////////////////////////////////////
+  //  게시물 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
+    router.push(`/paymentPage/${event.currentTarget.id}`);
+    console.log(event.currentTarget.id);
+  };
   return (
     <S.Wrapper>
       {Contents ? (
@@ -51,7 +62,9 @@ export default function madeClass() {
                       </S.PremiumPriceTie>
                     </S.PremiumPostContent>
                     <S.ButtonTie>
-                      <S.AdButton>광고하기</S.AdButton>
+                      <S.AdButton id={post.class_id} onClick={onClickSubmit}>
+                        광고하기
+                      </S.AdButton>
                       <S.DeleteButton>삭제하기</S.DeleteButton>
                     </S.ButtonTie>
                   </S.PremiumPostBody>
