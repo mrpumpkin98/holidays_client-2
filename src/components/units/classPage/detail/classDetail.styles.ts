@@ -179,11 +179,18 @@ export const Map = styled.div`
   border-radius: 5px;
 `;
 
-export const AddressDetail = styled.div`
+export const Address = styled.div`
   padding: 25px 0px 70px 0px;
   font-size: 17px;
   border-bottom: 1px solid rgba(189, 189, 189, 1);
   margin-bottom: 80px;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const AddressDetail = styled.div`
+  font-size: 17px;
+  margin-left: 10px;
 `;
 
 // ------

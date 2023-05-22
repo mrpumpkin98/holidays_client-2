@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
-export const FECTCH_CLASS_DETAIL = gql`
+export const FETCH_CLASS_DETAIL = gql`
   query fetchClassDetail($class_id: String!) {
     fetchClassDetail(class_id: $class_id) {
       class_id
@@ -18,6 +18,10 @@ export const FECTCH_CLASS_DETAIL = gql`
       accountNum
       accountName
       bankName
+      is_ad
+      url
+      type
+      is_main
     }
   }
 `;
@@ -25,7 +29,7 @@ export const FECTCH_CLASS_DETAIL = gql`
 export const UseQueryFetchClassDetail = () => {
   const router = useRouter();
 
-  const query = useQuery(FECTCH_CLASS_DETAIL, {
+  const query = useQuery(FETCH_CLASS_DETAIL, {
     variables: { class_id: router.query.class_id },
   });
   console.log(query);
