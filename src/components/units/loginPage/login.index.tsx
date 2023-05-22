@@ -67,15 +67,21 @@ export default function LogIn(): JSX.Element {
           <S.SocialWrapper>
             <S.SocialNaverWrapper>
               <S.SocialLoginImage src="/loginPage/naver.png" />
-              <S.SocialLogin>네이버 계정으로 로그인</S.SocialLogin>
+              <S.SocialLogin href="https://happyholidays-server.site/login/naver">
+                네이버 계정으로 로그인
+              </S.SocialLogin>
             </S.SocialNaverWrapper>
             <S.SocialKakaoWrapper>
               <S.SocialLoginImage src="/loginPage/kakao.png" />
-              <S.SocialLogin>카카오 계정으로 로그인</S.SocialLogin>
+              <S.SocialLogin href="https://happyholidays-server.site/login/kakao">
+                카카오 계정으로 로그인
+              </S.SocialLogin>
             </S.SocialKakaoWrapper>
             <S.SocialGoogleWrapper>
               <S.SocialLoginImage src="/loginPage/google.png" />
-              <S.SocialLogin>구글 계정으로 로그인 </S.SocialLogin>
+              <S.SocialLogin href="https://happyholidays-server.site/login/google">
+                구글 계정으로 로그인{" "}
+              </S.SocialLogin>
             </S.SocialGoogleWrapper>
           </S.SocialWrapper>
         </S.ContentWrapper>

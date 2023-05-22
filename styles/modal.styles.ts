@@ -5,11 +5,14 @@ export const ModalWrapper = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   background-color: white;
   padding: 20px;
   z-index: 100;
   border-radius: 15px;
+  /* width: 50vw; */
+  height: 70vh;
+  overflow: auto;
 
   @media ${mobile} {
     height: 80vh;
@@ -73,8 +76,8 @@ export const CloseButton = styled.button`
 `;
 
 export const MainImage = styled.img`
-  width: 600px;
-  height: 300px;
+  width: 35vw;
+  height: 30vh;
   border-radius: 5px;
   box-shadow: 0px 0px 10px gray;
 
@@ -90,11 +93,11 @@ export const Contents = styled.div`
   margin-top: 20px;
   margin-bottom: 10px;
 
-  height: 500px;
+  height: 30vh;
   overflow: auto;
 
   @media ${mobile} {
-    height: 25svh;
+    height: 25vh;
     padding: none;
     font-size: 0.9rem;
   }
@@ -103,24 +106,21 @@ export const Contents = styled.div`
 export const SubtitleWrapper = styled.div``;
 
 export const Subtitle = styled.div`
-  width: 700px;
+  width: 45vw;
   font-size: 18px;
   display: flex;
   justify-content: flex-end;
   color: #333333;
 
   @media ${mobile} {
-    width: 100%;
+    /* width: 100%; */
     margin-top: 1rem;
   }
 `;
 
 export const DivideLine = styled.div`
-  width: 700px;
+  /* width: 700px; */
+  width: 45vw;
   border: 1px solid #333333;
   margin: 10px 0px 40px 0px;
-
-  @media ${mobile} {
-    width: 100%;
-  }
 `;
