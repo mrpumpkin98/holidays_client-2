@@ -3,9 +3,13 @@ import * as S from "./myPageList.styles";
 import Modal1 from "../../../commons/modals/editProFileModal/Modal/modal";
 import Backdrop from "../../../commons/modals/editProFileModal/Backdrop/Backdrop";
 import { useRouter } from "next/router";
+import { useQuery } from "@apollo/client";
+import { FETCH_LOGIN_USER } from "../../../commons/hooks/useQueries/user/UseQueryFetchLoginUser";
 
 export default function StaticRoutingPage() {
   const router = useRouter();
+  const { data } = useQuery(FETCH_LOGIN_USER);
+
   const [listItems, setListItems] = useState([
     {
       name: "내가 만든 클래스",
@@ -69,11 +73,13 @@ export default function StaticRoutingPage() {
       {showModal && <Backdrop onClick={handleModalClose} />}
       <S.MyBox>
         <S.WelcomeMessage>안녕하세요</S.WelcomeMessage>
-        <S.UserName>홍길동님</S.UserName>
+        <S.UserName>
+          <S.Orange>{data?.fetchLoginUser?.name}</S.Orange>님
+        </S.UserName>
         <S.Labal>이메일</S.Labal>
-        <S.Infor>sju4486@naver.com</S.Infor>
+        <S.Infor>{data?.fetchLoginUser?.email}</S.Infor>
         <S.Labal>전화 번호</S.Labal>
-        <S.Infor>01012341234</S.Infor>
+        <S.Infor>{data?.fetchLoginUser?.phone}</S.Infor>
         <S.Button onClick={handleModalOpen}>프로필 수정</S.Button>
       </S.MyBox>
       <S.Line />

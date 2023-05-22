@@ -3,18 +3,21 @@ import * as S from "./LayoutHeader.styles";
 import Backdrop from "../../../commons/modals/writePostModal/Backdrop/Backdrop";
 import Modal1 from "../../../commons/modals/writePostModal/Modal/modal";
 import Modal2 from "../../../commons/modals/myPageModal/Modal/modal";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
+import { FETCH_LOGIN_USER } from "../../hooks/useQueries/user/UseQueryFetchLoginUser";
 
 export default function LayoutHeader(): JSX.Element {
   const router = useRouter();
+  const { data, refetch } = useQuery(FETCH_LOGIN_USER);
+  const userName = data?.fetchLoginUser.name;
 
-  const [userName, setContents] = useState(false);
   const onClickLogIn = () => {
-    setContents(true);
+    void router.push("/loginPage");
   };
-  const onClickLogOut = () => {
-    setContents(false);
+
+  const onClicksignUp = () => {
+    void router.push("/signUpPage");
   };
 
   const NAVIGATION_MENUS = [
@@ -61,9 +64,7 @@ export default function LayoutHeader(): JSX.Element {
     <S.Wrapper>
       {showModal && <Modal1 onClose={handleModalClose} />}
       {showModal && <Backdrop onClick={handleModalClose} />}
-      {showModal2 && (
-        <Modal2 onClose={handleModalClose2} onLogout={onClickLogOut} />
-      )}
+      {showModal2 && <Modal2 onClose={handleModalClose2} />}
       {showModal2 && <Backdrop onClick={handleModalClose2} />}
       <S.InnerWrapper>
         <S.Logo src="/images/logo.png" onClick={onClickMain} />
@@ -87,7 +88,9 @@ export default function LayoutHeader(): JSX.Element {
         ) : (
           <S.ButtonTie>
             <S.InnerButton onClick={onClickLogIn}>로그인</S.InnerButton>
-            <S.InnerButton className="OrangeButton">회원가입</S.InnerButton>
+            <S.InnerButton className="OrangeButton" onClick={onClicksignUp}>
+              회원가입
+            </S.InnerButton>
           </S.ButtonTie>
         )}
       </S.InnerWrapper>

@@ -10,6 +10,8 @@ import {
   selectedRegionState,
   selectService,
 } from "../../../../commons/stores/index";
+import { Money } from "../../../../commons/libraries/utils";
+import InfiniteScroll from "react-infinite-scroller";
 
 const initialPremiumPost = {
   src: "/classPage/list.png",
@@ -44,16 +46,13 @@ export default function StaticRoutingPage() {
       setWriter("");
     }
   };
-  const { data, refetch } = useQuery(FETCH_CLASSES, {
+  const { data, refetch, fetchMore } = useQuery(FETCH_CLASSES, {
     variables: {
       category: category,
       address_category: addressCategory,
       search: writer,
     },
   });
-  const prefetchByLevel = () => {
-    console.log(data);
-  };
 
   // 서비스 모달기능
 
@@ -79,11 +78,34 @@ export default function StaticRoutingPage() {
     setShowModal2(false);
   };
 
+  ///////////////////////////////////////////////////////////////
+  // 무한 스크롤
+  //////////////////////////////////////////////////////////////
+
+  const onLoadMore = (): void => {
+    if (data === undefined) return;
+    void fetchMore({
+      variables: {
+        page: Math.ceil((data?.fetchClasses.length ?? 10) / 10) + 1,
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (fetchMoreResult?.fetchClasses === undefined) {
+          return {
+            fetchClasses: [...prev.fetchClasses],
+          };
+        }
+        return {
+          fetchClasses: [...prev.fetchClasses, ...fetchMoreResult.fetchClasses],
+        };
+      },
+    });
+  };
+
   return (
     <S.Wrapper>
       {showModal && (
         <Modal
-          onClose={(selectServiceRegion) => {
+          onClose={() => {
             handleModalClose();
           }}
         />
@@ -91,7 +113,7 @@ export default function StaticRoutingPage() {
       {showModal && <Backdrop onClick={handleModalClose} />}
       {showModal2 && (
         <ModalComponent
-          onClose={(selectedRegion) => {
+          onClose={() => {
             handleModalClose2();
           }}
         />
@@ -99,7 +121,7 @@ export default function StaticRoutingPage() {
       {showModal2 && <Backdrop onClick={handleModalClose2} />}
       <S.Banner>
         <S.Box>
-          <S.SearchTitle>검색</S.SearchTitle>
+          <S.SearchTitle>클래스 찾기</S.SearchTitle>
           <S.ServiceAreaWrapper>
             <S.Service onClick={handleModalOpen}>
               <S.ServiceText>
@@ -112,12 +134,6 @@ export default function StaticRoutingPage() {
               </S.AreaText>
             </S.Area>
           </S.ServiceAreaWrapper>
-          <S.SearchBox
-            placeholder="검색어를 입력해 주세요"
-            value={writer}
-            onChange={onChangeWriter}
-            onKeyPress={handleKeyPress}
-          />
         </S.Box>
         <S.PremiumAD>
           <S.Title>프리미엄 AD</S.Title>
@@ -148,36 +164,48 @@ export default function StaticRoutingPage() {
           </S.PremiumWrapper>
         </S.PremiumAD>
       </S.Banner>
-      <S.Line />
       <S.Body>
-        <S.NewestPopularity>
-          <S.Newest>최신순</S.Newest>
-          <S.Popularity>인기순</S.Popularity>
-        </S.NewestPopularity>
         <S.BodyWrapper>
-          {data?.fetchClasses.map((post: any, index: any) => (
-            <div key={index}>
-              <S.Posts>
-                <S.PostBody>
-                  <S.Template>
+          <S.Line />
+          <S.SearchBox
+            placeholder="검색어를 입력해 주세요"
+            value={writer}
+            onChange={onChangeWriter}
+            onKeyPress={handleKeyPress}
+          />
+          <S.NewestPopularity>
+            <S.Newest>최신순</S.Newest>
+            <S.Popularity>인기순</S.Popularity>
+          </S.NewestPopularity>
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={onLoadMore}
+            hasMore={true}
+            useWindow={true}
+          >
+            {data?.fetchClasses.map((post: any, index: any) => (
+              <div key={index}>
+                <S.Posts>
+                  <S.PostBody>
+                    <S.PostContent>
+                      <S.PostTitle>{post.title}</S.PostTitle>
+                      <S.PostInfo>
+                        <S.AvatarContentTie>
+                          <S.Content>{post.content_summary}</S.Content>
+                        </S.AvatarContentTie>
+                        <S.Address>주소 : {post.address}</S.Address>
+                        <S.Address>진행시간 : {post.total_time}</S.Address>
+                      </S.PostInfo>
+                      <S.PriceTie>
+                        <S.Price>{Money(post.price)}</S.Price>
+                      </S.PriceTie>
+                    </S.PostContent>
                     <S.PostImg src="/classPage/list.png" />
-                  </S.Template>
-                  <S.PostTitle>{post.title}</S.PostTitle>
-                  <S.PostContent>
-                    <S.PostInfo>
-                      <S.Address>{post.address}</S.Address>
-                      <S.AvatarContentTie>
-                        <S.Content>{post.content}</S.Content>
-                      </S.AvatarContentTie>
-                    </S.PostInfo>
-                    <S.PriceTie>
-                      <S.Price>{post.price}</S.Price>
-                    </S.PriceTie>
-                  </S.PostContent>
-                </S.PostBody>
-              </S.Posts>
-            </div>
-          ))}
+                  </S.PostBody>
+                </S.Posts>
+              </div>
+            ))}
+          </InfiniteScroll>
         </S.BodyWrapper>
       </S.Body>
     </S.Wrapper>

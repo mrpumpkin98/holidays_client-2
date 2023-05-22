@@ -2,7 +2,9 @@ import { useRouter } from "next/router";
 import * as S from "./communityWritePage.styles";
 import { v4 as uuidv4 } from "uuid";
 import Uploads01 from "../../../../commons/uploads/01/Uploads01.container";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import { CREATE_BOARD } from "../../../commons/hooks/useMutations/board/useMutationCreateBoard";
+import { useMutation } from "@apollo/client";
 
 export default function communityWritePage(props: any) {
   const router = useRouter();
@@ -21,6 +23,45 @@ export default function communityWritePage(props: any) {
   //   const images = props.data?.fetchBoard.images;
   //   if (images !== undefined && images !== null) setFileUrls([...images]);
   // }, [props.data]);
+
+  const [createBoard] = useMutation(CREATE_BOARD);
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [email, setEmail] = useState("");
+
+  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
+  };
+
+  const onChangeContent = (event: ChangeEvent<HTMLInputElement>) => {
+    setContent(event.target.value);
+  };
+
+  const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const onClickSubmit = async () => {
+    const result = await createBoard({
+      variables: {
+        createBoardInput: {
+          title,
+          content,
+          email,
+          imageInput: [
+            {
+              url: "테스트",
+              type: 1,
+              is_main: 1,
+            },
+          ],
+        },
+      },
+    });
+    alert("클래스 등록에 성공하였습니다.");
+    console.log(result);
+  };
 
   return (
     <div>
@@ -51,17 +92,14 @@ export default function communityWritePage(props: any) {
         </S.ImageWrapper>
         <S.InputWrapper>
           <S.Label>이메일</S.Label>
-          <S.Password
-            type="text"
-            // onChange={props.onChangePassword}
-          />
+          <S.Password type="text" onChange={onChangeEmail} />
           <S.Error>{/* {props.passwordError} */}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>제목</S.Label>
           <S.Subject
             type="text"
-            // onChange={props.onChangeTitle}
+            onChange={onChangeTitle}
             // defaultValue={props.data?.fetchBoard.title}
           />
           <S.Error>{/* {props.titleError} */}</S.Error>
@@ -69,15 +107,15 @@ export default function communityWritePage(props: any) {
         <S.InputWrapper>
           <S.Label>내용</S.Label>
           <S.Contents
-          // onChange={props.onChangeContents}
-          // defaultValue={props.data?.fetchBoard.contents}
+            onChange={onChangeContent}
+            // defaultValue={props.data?.fetchBoard.contents}
           ></S.Contents>
           <S.Error>{/* {props.contentsError} */}</S.Error>
         </S.InputWrapper>
         <S.ButtonWrapper>
           <S.SubmitButton
-          // onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
-          // Active={props.isEdit ? true : props.Active}
+            onClick={onClickSubmit}
+            // Active={props.isEdit ? true : props.Active}
           >
             {props.isEdit ? "수정하기" : "등록하기"}
           </S.SubmitButton>
