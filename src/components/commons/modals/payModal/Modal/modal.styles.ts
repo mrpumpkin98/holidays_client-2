@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const ModalWrapper = styled.div`
+  border-radius: 5px;
   position: fixed;
   top: 53%;
   left: 50%;
@@ -23,12 +24,24 @@ export const Header = styled.h1`
   width: 35vw;
   display: flex;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+`;
+
+export const SubtitleWrapper = styled.div`
+  display: flex;
+`;
+
+export const Subtitle = styled.h3`
+  margin-top: 1rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 `;
 
 export const DivideLine = styled.div`
   width: 35vw;
-  border: 0.01rem solid;
+  border: 0.01rem solid #868686;
   margin-top: 1rem;
   margin-bottom: 1rem;
 `;
@@ -41,21 +54,39 @@ export const PaymentWrapper = styled.div`
 
 export const PaymentBtn = styled.button`
   width: 15vw;
-  height: 3vh;
+  height: 7vh;
 
   border-radius: 3px;
   font-size: 1rem;
+
+  border: none;
+
+  cursor: pointer;
+
+  &:hover {
+    background: #f5b221;
+    color: #ffffff;
+  }
 `;
 
 export const Button = styled.button`
-  width: 10vw;
-  height: 5vh;
+  width: 7vw;
+  height: 3vh;
   border-radius: 3px;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 400;
 
   &:hover {
-    background: #f2f2f2;
+    background: #868686;
+    color: #ffffff;
+    border: none;
   }
+`;
+
+export const HeadLogo = styled.img`
+  width: 17vw;
+  height: 5vh;
+
+  margin-bottom: 2vh;
 `;

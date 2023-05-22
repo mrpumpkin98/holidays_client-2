@@ -5,22 +5,22 @@ export default function MainPageContainer(): JSX.Element {
   const router = useRouter();
 
   const onClickEducation = (): void => {
-    router.push(`/교육`);
+    router.push(`/classPage`);
   };
   const onClickLeisure = (): void => {
-    router.push(`/여가`);
+    router.push(`/classPage`);
   };
   const onClickMagazine = (): void => {
-    router.push(`/magazine`);
+    router.push(`/classPage`);
   };
   const onClickCooking = (): void => {
-    router.push(`/class/cooking`);
+    router.push(`/classPage`);
   };
   const onClickWorkout = (): void => {
-    router.push(`/class/workout`);
+    router.push(`/classPage`);
   };
   const onClickMainClass = (): void => {
-    router.push(`/classList`);
+    router.push(`/classPage`);
   };
   const onClickMainMagazine = (): void => {
     router.push(`/magazine`);
@@ -74,22 +74,22 @@ export default function MainPageContainer(): JSX.Element {
               />
             </S.MainContentsTextWrapperLeft>
           </S.MainContentsLeft>
-          <S.MainContentsRight>
-            <S.MainContentsTextWrapperRight>
-              <S.MainContentsLabelRight>매거진</S.MainContentsLabelRight>
-              <S.MainContentsRemarksRight>
-                새로운 지식을 얻어보세요
-              </S.MainContentsRemarksRight>
-              <S.MainContentsButtonRight
-                onClick={onClickMainMagazine}
-                src="mainPage/right-arrow.png"
-              />
-            </S.MainContentsTextWrapperRight>
-            <S.MainContentsImageRight
-              onClick={onClickMainMagazine}
+          <S.MainContentsLeft>
+            <S.MainContentsImageLeft
               src="/mainPage/매거진메인.png"
+              onClick={onClickMainClass}
             />
-          </S.MainContentsRight>
+            <S.MainContentsTextWrapperLeft>
+              <S.MainContentsLabelLeft>원데이 클래스</S.MainContentsLabelLeft>
+              <S.MainContentsRemarksLeft>
+                새로운 취미를 찾아보세요
+              </S.MainContentsRemarksLeft>
+              <S.MainContentsButtonLeft
+                onClick={onClickMainClass}
+                src="/mainPage/right-arrow.png"
+              />
+            </S.MainContentsTextWrapperLeft>
+          </S.MainContentsLeft>
           <S.MainContentsLeft>
             <S.MainContentsImageLeft
               onClick={onClickMainCommunity}

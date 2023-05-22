@@ -14,6 +14,18 @@ const bounce = keyframes`
   }
 `;
 
+const buttonFall = keyframes`
+  0% {
+    transform: translateY(-100vh);
+  }
+  70% {
+    transform: translateY(5vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
 const bannerAnimation = keyframes`
   0% {
     opacity: 0.1;
@@ -24,8 +36,11 @@ const bannerAnimation = keyframes`
 `;
 
 export const Wrapper = styled.div`
-  width: 1920px;
-
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-left: 4em; */
   @media ${mobile} {
     width: 100vw;
   }
@@ -35,48 +50,54 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 0vh;
+  /* width: 90vw; */
+  /* width: 100%; */
 
   @media ${mobile} {
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 10vh;
   }
 `;
 
 export const MainBanner = styled.img`
-  width: 1700px;
+  width: 100vw;
+  height: 80vh;
   border-radius: 5px;
   box-shadow: 0px 0px 10px gray;
 
   animation: ${bannerAnimation} 3s ease-in-out;
 
   @media ${mobile} {
-    width: 100vw;
+    width: 90vw;
     border-radius: 5px;
     box-shadow: 0px 0px 10px gray;
   }
 `;
 
 export const MainButtonWrapper = styled.div`
-  width: 1500px;
-  height: 250px;
-  background: white;
+  width: 100vw;
+  height: 25vh;
+  background-color: #faf8f2;
   position: relative;
-  top: -100px;
-  border-radius: 15px;
+  top: -25vh;
+  /* border-radius: 15px; */
   display: flex;
-  padding-left: 220px;
-  padding-right: 220px;
-  padding-top: 44px;
-  padding-bottom: 50px;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
   justify-content: space-between;
+  align-items: center;
   box-shadow: 0px 0px 10px gray;
+  opacity: 0.7;
+
+  animation: ${buttonFall} 1.5s ease-in-out;
 
   @media ${mobile} {
-    width: 80%;
     height: 25vh;
     background: white;
     position: relative;
@@ -85,8 +106,6 @@ export const MainButtonWrapper = styled.div`
     display: flex;
     padding-left: 0px;
     padding-right: 0px;
-    padding-top: 40px;
-    padding-bottom: 40px;
     justify-content: space-evenly;
     align-items: center;
     box-shadow: 0px 0px 10px gray;
@@ -98,6 +117,8 @@ export const MainCategoryWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+  scale: 0.9;
+  opacity: 1;
 
   &:hover {
     color: #f28316;
@@ -105,30 +126,19 @@ export const MainCategoryWrapper = styled.div`
 `;
 
 export const MainCategoryIcon = styled.img`
-  width: 120px;
-  height: 120px;
+  width: 6vw;
+  height: 12vh;
 
   transition: all 0.2s ease-in-out;
 
   &:hover {
     transform: scale(1.1);
   }
-
-  @media ${mobile} {
-    width: 10vw;
-    height: 10vh;
-
-    transition: all 0.2s ease-in-out;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
 `;
 
 export const MainCategoryLabel = styled.div`
-  font-size: 30px;
-  margin-top: 15px;
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
 
   @media ${mobile} {
     font-size: 1rem;
@@ -138,19 +148,23 @@ export const MainCategoryLabel = styled.div`
 export const Body = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: space-evenly;
   padding-bottom: 100px;
+  position: relative;
+  top: -2vh;
 
   @media ${mobile} {
-    width: 100%;
+    width: 100vw;
   }
 `;
 
 export const MainContentsLeft = styled.div`
   display: flex;
-  justify-content: flex-start;
-  margin-top: 100px;
-  padding-left: 100px;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: flex-start; */
+  margin-top: 4rem;
+  padding-left: 4rem;
 
   &:hover {
     color: orange;
@@ -168,10 +182,11 @@ export const MainContentsLeft = styled.div`
 
 export const MainContentsRight = styled.div`
   display: flex;
-  justify-content: flex-end;
-  padding-left: 50px;
-  padding-right: 50px;
-  margin-top: 100px;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: flex-start; */
+  margin-top: 4rem;
+  padding-left: 4rem;
 
   &:hover {
     color: orange;
@@ -188,8 +203,8 @@ export const MainContentsRight = styled.div`
 `;
 
 export const MainContentsImageLeft = styled.img`
-  width: 900px;
-  height: 700px;
+  width: 80vw;
+  height: 65vh;
   margin-right: 100px;
   border-radius: 15px;
   box-shadow: 0px 0px 10px gray;
@@ -214,8 +229,8 @@ export const MainContentsImageLeft = styled.img`
 `;
 
 export const MainContentsImageRight = styled.img`
-  width: 900px;
-  height: 700px;
+  width: 40vw;
+  height: 55vh;
   margin-left: 100px;
   border-radius: 15px;
   box-shadow: 0px 0px 10px gray;
@@ -246,9 +261,16 @@ export const MainContentsImageRight = styled.img`
 export const MainContentsTextWrapperLeft = styled.div`
   display: flex;
   flex-direction: column;
-  height: 700px;
+  height: 60vh;
   justify-content: flex-end;
   padding-bottom: 50px;
+  width: 40vw;
+
+  position: relative;
+  top: -56vh;
+  left: 20vw;
+
+  color: #ffffff;
 
   @media ${mobile} {
     display: none;
@@ -258,9 +280,14 @@ export const MainContentsTextWrapperLeft = styled.div`
 export const MainContentsTextWrapperRight = styled.div`
   display: flex;
   flex-direction: column;
-  height: 700px;
+  height: 60vh;
+  width: 40vw;
   justify-content: flex-end;
   padding-bottom: 50px;
+
+  position: relative;
+  left: 4vw;
+  top: -4vh;
 
   @media ${mobile} {
     display: none;
@@ -268,17 +295,18 @@ export const MainContentsTextWrapperRight = styled.div`
 `;
 
 export const MainContentsLabelLeft = styled.div`
-  font-size: 96px;
-
+  font-size: 3.3rem;
+  /* width: 80vw; */
   @media ${mobile} {
     font-size: 36px;
   }
 `;
 
 export const MainContentsRemarksLeft = styled.div`
-  font-size: 55px;
+  font-size: 2rem;
   margin-top: 20px;
   font-weight: 335;
+  width: 50vw;
 
   @media ${mobile} {
     font-size: 24px;
@@ -286,8 +314,8 @@ export const MainContentsRemarksLeft = styled.div`
 `;
 
 export const MainContentsButtonLeft = styled.img`
-  width: 55px;
-  height: 55px;
+  width: 2rem;
+  height: 2rem;
   margin-top: 20px;
   margin-bottom: 10px;
   cursor: pointer;
@@ -299,28 +327,23 @@ export const MainContentsButtonLeft = styled.img`
   }
 
   @media ${mobile} {
-    font-size: 24px;
-    width: 25px;
-    height: 25px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-
     display: none;
   }
 `;
 
 export const MainContentsLabelRight = styled.div`
-  font-size: 96px;
-
+  font-size: 3.3rem;
+  /* width: 50vw; */
   @media ${mobile} {
     font-size: 36px;
   }
 `;
 
 export const MainContentsRemarksRight = styled.div`
-  font-size: 55px;
+  font-size: 2rem;
   margin-top: 20px;
   font-weight: 335;
+  width: 50vw;
 
   @media ${mobile} {
     font-size: 24px;
@@ -328,8 +351,8 @@ export const MainContentsRemarksRight = styled.div`
 `;
 
 export const MainContentsButtonRight = styled.img`
-  width: 55px;
-  height: 55px;
+  width: 2rem;
+  height: 2rem;
   margin-top: 20px;
   margin-bottom: 10px;
   cursor: pointer;

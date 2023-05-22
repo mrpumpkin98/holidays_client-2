@@ -65,7 +65,7 @@ const Section = styled.section`
 `;
 
 export const Section1 = styled(Section)`
-  background: url(/images/landing/1.webp) no-repeat 50% 0 fixed;
+  background: url(/mainPage/MainPage2.png) no-repeat 50% 0 fixed;
   background-size: cover;
   background-position-y: 40%;
 `;

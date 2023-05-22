@@ -3,7 +3,7 @@ import { mobile } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   /* height: 1000px;  */
-  width: 100vw;
+  width: 95vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,7 +100,7 @@ export const ContentsRight = styled.div`
   }
 `;
 export const ContentsImageLeft = styled.img`
-  width: 50vw;
+  width: 40vw;
   height: 40vh;
   margin-right: 100px;
   border-radius: 15px;
@@ -120,7 +120,7 @@ export const ContentsImageLeft = styled.img`
   }
 `;
 export const ContentsImageRight = styled.img`
-  width: 30vw;
+  width: 25vw;
   height: 40vh;
   margin-left: 100px;
   border-radius: 15px;
