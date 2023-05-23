@@ -5,11 +5,9 @@ export const FECTCH_CLASS_WISHLISTS = gql`
     fetchWishlists {
       class_id
       title
-      content_summary
       price
-      total_time
       address
-      address_detail
+      total_time
       url
     }
   }

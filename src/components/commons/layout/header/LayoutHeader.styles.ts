@@ -5,6 +5,7 @@ import {
   SmileOutlined,
 } from "@ant-design/icons";
 import { Modal } from "antd";
+import { tablet } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -16,8 +17,8 @@ export const Wrapper = styled.div`
   position: fixed;
   z-index: 9999;
 
-  @media screen and (max-width: 768px) {
-    width: 100vw;
+  @media ${tablet} {
+    height: 15vw;
   }
 `;
 
@@ -29,15 +30,24 @@ export const InnerWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
+  @media ${tablet} {
+    width: 90vw;
+  }
 `;
 
 export const Logo = styled.img`
   cursor: pointer;
+  @media ${tablet} {
+    width: 23vw;
+  }
 `;
 
 export const NaviWrapper = styled.div`
   display: flex;
   width: 400px;
+  @media ${tablet} {
+    display: none;
+  }
 `;
 
 export const MenuWrapper = styled.div`
@@ -59,6 +69,7 @@ export const InnerButton = styled.span`
   cursor: pointer;
   font-size: 14px;
   font-weight: 700;
+
   &.OrangeButton {
     background-color: #f28316;
     width: 90px;

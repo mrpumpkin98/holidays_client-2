@@ -3,10 +3,11 @@ import * as S from "./community.styles";
 import { useQuery } from "@apollo/client";
 import { FECTCH_BOARDS } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoards";
 import { formatDateString } from "../../../../commons/libraries/utils";
+import { FECTCH_BOARDS_OF_MINE } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoardsOfMine";
 
 export default function ProposalClass() {
   const [Contents, setContents] = useState(false);
-  const { data, refetch } = useQuery(FECTCH_BOARDS);
+  const { data, refetch } = useQuery(FECTCH_BOARDS_OF_MINE);
   return (
     <>
       <S.Wrapper>
@@ -32,7 +33,7 @@ export default function ProposalClass() {
             </S.ListNameIconWrapper>
             <S.Line />
             <S.PremiumWrapper>
-              {data?.fetchBoards.map((post: any, index: any) => (
+              {data?.fetchBoardsOfMine.map((post: any, index: any) => (
                 <div key={index}>
                   <S.PremiumPosts>
                     <S.PremiumPostBody>

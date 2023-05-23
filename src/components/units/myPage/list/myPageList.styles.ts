@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { SlideBottom } from "../../../../commons/styles/keyframes";
+import { tablet } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -9,6 +10,10 @@ export const Wrapper = styled.div`
   margin: auto;
   width: 1200px;
   margin-top: 80px;
+  @media ${tablet} {
+    width: 90vw;
+    flex-direction: column;
+  }
 `;
 
 export const MyBox = styled.div`
@@ -21,6 +26,10 @@ export const MyBox = styled.div`
   background: rgb(255, 255, 255);
   box-shadow: rgb(63 71 77 / 15%) 0px 2px 6px;
   border: 1px solid #f5f5f5;
+  @media ${tablet} {
+    width: 100%;
+    margin: 12vw 0vw 5vw 0vw;
+  }
 `;
 
 export const WelcomeMessage = styled.p`
@@ -70,6 +79,9 @@ export const Line = styled.div`
   margin-left: 35px;
   margin-top: 110px;
   margin-bottom: 110px;
+  @media ${tablet} {
+    display: none;
+  }
 `;
 
 export const MyPageList = styled.div`
@@ -80,6 +92,12 @@ export const MyPageList = styled.div`
   flex-wrap: wrap;
   border-collapse: collapse;
   margin-bottom: 129px;
+  @media ${tablet} {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const MyPageListBox = styled.div`
@@ -92,6 +110,11 @@ export const MyPageListBox = styled.div`
   box-shadow: rgb(63 71 77 / 15%) 0px 2px 6px;
   border: 1px solid #f5f5f5;
   cursor: pointer;
+  @media ${tablet} {
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 3vw;
+  }
 `;
 
 export const ListNameIconWrapper = styled.div`

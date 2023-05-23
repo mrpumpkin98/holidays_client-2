@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
 import { SlideBottom } from "../../../../commons/styles/keyframes";
+import { tablet } from "../../../../commons/styles/breakPoints";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
   width: 830px;
   margin-top: 80px;
+  @media ${tablet} {
+    width: 90vw;
+    flex-direction: column;
+  }
 `;
 
 export const ListNameIconWrapper = styled.div`
@@ -111,6 +116,13 @@ export const PremiumWrapper = styled.div`
   flex-wrap: wrap;
   border-collapse: collapse;
   padding: 10px;
+  @media ${tablet} {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+  }
 `;
 
 export const PremiumPosts = styled.div`
@@ -128,6 +140,7 @@ export const PremiumTemplate = styled.article`
   height: 250px;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 7px;
 `;
 
 export const PremiumPostImg = styled.img`
@@ -141,7 +154,7 @@ export const PremiumPostImg = styled.img`
 
 export const PremiumPostTitle = styled.div`
   font-weight: 700;
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 5px;
 `;
 
@@ -150,9 +163,10 @@ export const PremiumPostContent = styled.div``;
 export const PremiumPostInfo = styled.div``;
 
 export const PremiumUserName = styled.div`
+  text-align: end;
   color: #f28316;
-  font-weight: 700;
   font-size: 14px;
+  font-weight: 700;
 `;
 
 export const PremiumAvatarContentTie = styled.div``;
@@ -166,6 +180,9 @@ export const PremiumPriceTie = styled.div``;
 
 export const PremiumPrice = styled.div`
   text-align: end;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 5px 0px;
 `;
 
 export const ButtonTie = styled.div`

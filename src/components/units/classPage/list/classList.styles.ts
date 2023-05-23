@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { SlideBottom } from "../../../../commons/styles/keyframes";
+import { tablet } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -16,6 +17,11 @@ export const Banner = styled.div`
   height: 400px;
   width: 1000px;
   margin-top: 30px;
+  @media ${tablet} {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const Box = styled.div`
@@ -35,6 +41,9 @@ export const ServiceAreaWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 30px;
+  @media ${tablet} {
+    flex-direction: row;
+  }
 `;
 
 export const Service = styled.div`
@@ -71,6 +80,9 @@ export const Area = styled.div`
   justify-content: center;
   cursor: pointer;
   margin-top: 10px;
+  @media ${tablet} {
+    margin-top: 0;
+  }
 `;
 
 export const AreaText = styled.div`
@@ -92,6 +104,10 @@ export const SearchBox = styled.input`
   :focus {
     outline: none;
   }
+  @media ${tablet} {
+    width: 100%;
+    margin-top: 0px;
+  }
 `;
 
 // Header
@@ -110,6 +126,9 @@ export const Line = styled.div`
   width: 100%;
   text-align: right;
   margin-top: 20px;
+  @media ${tablet} {
+    display: none;
+  }
 `;
 export const Body = styled.div`
   display: flex;
@@ -123,6 +142,9 @@ export const Body = styled.div`
 
 export const PremiumAD = styled.div`
   width: 900px;
+  @media ${tablet} {
+    display: none;
+  }
 `;
 
 export const Title = styled.div`
@@ -169,7 +191,7 @@ export const PremiumPostImg = styled.img`
 export const PremiumPostTitle = styled.div`
   font-weight: 700;
   font-size: 18px;
-  margin-top: 5px;
+  margin-top: 7px;
   margin-left: 2px;
 `;
 
@@ -177,11 +199,13 @@ export const PremiumPostContent = styled.div`
   padding: 0px 2px;
 `;
 
-export const PremiumPostInfo = styled.div``;
+export const PremiumPostInfo = styled.div`
+  margin-top: 5px;
+`;
 
 export const PremiumAddress = styled.div`
   color: #4a4247;
-  font-size: 15px;
+  font-size: 13px;
   margin-top: 3px;
 `;
 
@@ -191,13 +215,16 @@ export const PremiumAvatarContentTie = styled.div`
 
 export const PremiumContent = styled.div`
   font-size: 14px;
+  margin-top: 5px;
 `;
 
 export const PremiumPriceTie = styled.div``;
 
 export const PremiumPrice = styled.div`
   text-align: end;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 5px 0px;
 `;
 
 // 클래스
@@ -231,6 +258,11 @@ export const BodyWrapper = styled.div`
   flex-wrap: wrap;
   margin-top: 20px;
   margin-left: 260px;
+  @media ${tablet} {
+    margin-left: 0px;
+    width: 90vw;
+    margin-top: 0vw;
+  }
 `;
 
 export const Posts = styled.div`
@@ -240,6 +272,9 @@ export const Posts = styled.div`
   cursor: pointer;
   :hover {
     box-shadow: 0px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
+  }
+  @media ${tablet} {
+    width: 90vw;
   }
 `;
 

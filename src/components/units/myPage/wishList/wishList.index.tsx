@@ -2,6 +2,7 @@ import { useState } from "react";
 import * as S from "./wishList.styles";
 import { useQuery } from "@apollo/client";
 import { FECTCH_CLASS_WISHLISTS } from "../../../commons/hooks/useQueries/class/UseQueryFetchWishlists";
+import { Money } from "../../../../commons/libraries/utils";
 
 export default function WishList() {
   const [Contents, setContents] = useState(false);
@@ -11,7 +12,6 @@ export default function WishList() {
   };
   return (
     <S.Wrapper>
-      <button onClick={onClickWrite}>Go</button>
       {Contents ? (
         <>
           <S.ListNameIconWrapper>
@@ -43,12 +43,12 @@ export default function WishList() {
                     </S.PremiumTemplate>
                     <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
                     <S.PremiumPostContent>
+                      <S.PremiumTime>{post.total_time}</S.PremiumTime>
                       <S.PremiumPostInfo>
-                        <S.PremiumUser>{post.user}</S.PremiumUser>
-                        <S.PremiumAvatarContentTie></S.PremiumAvatarContentTie>
+                        <S.PremiumUser>{post.address}</S.PremiumUser>
                       </S.PremiumPostInfo>
                       <S.PremiumPriceTie>
-                        <S.PremiumPrice>{post.price}</S.PremiumPrice>
+                        <S.PremiumPrice>{Money(post.price)}</S.PremiumPrice>
                       </S.PremiumPriceTie>
                     </S.PremiumPostContent>
                   </S.PremiumPostBody>
