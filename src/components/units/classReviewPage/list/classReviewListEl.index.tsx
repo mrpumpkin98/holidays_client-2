@@ -7,15 +7,16 @@ export default function ClassReviewListEl(props: any) {
   // 삭제 버튼
   const { onClickDelete } = UseMutationClassReview();
 
-  const [isEdit, setIsEdit] = useState(false);
+  // const [isEdit, setIsEdit] = useState(false);
 
   const onClickEdit = (): void => {
-    setIsEdit(true);
+    // data.setIsEdit(true)
+    props.setIsEdit(true); // 수정: setIsEdit 함수 호출
   };
 
   return (
     <div>
-      {!isEdit ? (
+      {!props.isEdit ? (
         <S.Row>
           {/* Row 클릭 시 handleEditClick 함수 호출 */}
           <S.Wrapper_header>
@@ -24,7 +25,8 @@ export default function ClassReviewListEl(props: any) {
               <S.Star value={props.el.grade} />
               <S.BtnWrapper>
                 <S.UpdateBtn
-                  onClick={() => props.handleEditClick(props.el.cr_id)}
+                  // onClick={() => props.handleEditClick(props.el.cr_id)}
+                  onClick={onClickEdit}
                 >
                   수정
                 </S.UpdateBtn>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IFetchClassReviews } from "../../../../commons/types/generated/types";
-import { UseMutationCreateClassReview } from "../../../commons/hooks/useMutations/class/useMutationReview";
+
 import { UseQueryFetchClassReview } from "../../../commons/hooks/useQueries/class/useQueryFetchClassReview";
 import * as S from "./classReviewList.styles";
 import { useToggle } from "../write/useToggle";
@@ -39,6 +39,7 @@ export default function ClassReviewList(props: IClassReviewListProps) {
               <ClassReviewListEl
                 el={el}
                 isEdit={isEdit}
+                setIsEdit={setIsEdit}
                 handleEditClick={handleEditClick}
               />
             </div>

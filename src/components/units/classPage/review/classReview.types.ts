@@ -1,8 +1,8 @@
-import { IClassReview } from "../../../../commons/types/generated/types";
+import { IFetchClassReviews } from "../../../../commons/types/generated/types";
 
 export interface IClassReviewWriteProps {
   isEdit: boolean;
-  el?: IClassReview;
+  el?: IFetchClassReviews;
 }
 
 export interface IFormData {

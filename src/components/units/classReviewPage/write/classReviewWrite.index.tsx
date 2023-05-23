@@ -14,7 +14,7 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
   // 등록
   const { onClickWrite, onClickUpdate } = UseMutationClassReview();
 
-  const { register, handleSubmit } = useForm<IFormData>({
+  const { register, handleSubmit, setValue } = useForm<IFormData>({
     defaultValues: {
       content: props.isEdit ? props.el?.content : "", // 초기값 설정
       grade: props.isEdit ? props.el?.grade : 0, // 초기값 설정
@@ -24,6 +24,7 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
 
   // 등록하기, 수정하기 제출
   const onSubmitForm = async (data: IFormData) => {
+    console.log(data.content);
     const { ...value } = data;
 
     if (!props.isEdit) {
@@ -33,9 +34,8 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
     }
 
     setGrade(0);
-    // setValue("content", ""); // content 필드 초기화
-    // register("content").value("");
-    // onreset; // 폼 초기화
+
+    setValue("content", ""); // content 필드 초기화
   };
 
   return (
@@ -58,6 +58,7 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
               <S.TextArea7
                 rows={10}
                 maxLength={300}
+                // value=
                 placeholder="후기를 작성해주세요"
                 {...register("content")}
               />
