@@ -5,8 +5,8 @@ import {
   IClassReviewWriteProps,
   IFormData,
 } from "../../classPage/review/classReview.types";
-import { useRouter } from "next/router";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 
 export default function ClassReviewWrite(props: IClassReviewWriteProps) {
   const [grade, setGrade] = useState<number>(0);
@@ -15,11 +15,10 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
   const { onClickWrite, onClickUpdate } = UseMutationCreateClassReview();
 
   const { register, handleSubmit } = useForm<IFormData>({
-    // defaultValues: {
-    //   cr_id: router.query.class_id,
-    //   content: props.isEdit ? props.el?.content : "",
-    //   grade: 0,
-    // },
+    defaultValues: {
+      content: props.isEdit ? props.el?.content : "", // 초기값 설정
+      grade: props.isEdit ? props.el?.grade : 0, // 초기값 설정
+    },
     mode: "onChange",
   });
 
@@ -32,6 +31,11 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
     } else {
       await onClickUpdate(value);
     }
+
+    setGrade(0);
+    // setValue("content", ""); // content 필드 초기화
+    // register("content").value("");
+    // onreset; // 폼 초기화
   };
 
   return (

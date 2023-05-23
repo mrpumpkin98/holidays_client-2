@@ -9,6 +9,10 @@ export const FETCH_CLASS_REVIEWS = gql`
       content
       grade
       createdAt
+      user_ {
+        user_id
+        name
+      }
     }
   }
 `;
@@ -18,7 +22,7 @@ export const UseQueryFetchClassReview = () => {
 
   const { data, refetch } = useQuery(FETCH_CLASS_REVIEWS, {
     variables: {
-      variables: { class_id: router.query.class_id },
+      class_id: router.query.class_id,
     },
   });
 
