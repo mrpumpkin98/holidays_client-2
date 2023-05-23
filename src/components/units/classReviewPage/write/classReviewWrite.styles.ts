@@ -35,9 +35,14 @@ export const ReviewBox = styled.div`
 `;
 
 export const { TextArea } = Input;
-export const TextAreaaa = styled(TextArea)`
+
+export const TextArea7 = styled.textarea`
   border: none;
 `;
+
+// export const TextAreaaa = styled(TextArea)`
+//   border: none;
+// `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
