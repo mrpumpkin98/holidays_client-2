@@ -1,16 +1,11 @@
-import { useQuery } from "@apollo/client";
-import {
-  FETCH_CLASS_DETAIL,
-  UseQueryFetchClassDetail,
-} from "../../../commons/hooks/useQueries/class/useQueryFetchClassDetail";
+import { UseQueryFetchClassDetail } from "../../../commons/hooks/useQueries/class/useQueryFetchClassDetail";
 import CalendarUI from "../calendar/calendar.index";
 import * as S from "./classDetail.styles";
 import DOMPurify from "dompurify";
 import { useMutationDeleteClass } from "../../../commons/hooks/useMutations/class/useMutationDeleteClass";
-import { useMutationUpdateClass } from "../../../commons/hooks/useMutations/class/useMutationUpdateClass";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { UseMutationCreateWhishList } from "../../../commons/hooks/useMutations/class/useMutationCreateWhishList";
+import { UseMutationWishList } from "../../../commons/hooks/useMutations/class/useMutationWishList";
 
 // 카카오지도
 declare const window: typeof globalThis & {
@@ -44,7 +39,7 @@ export default function ClassDetail() {
         let geocoder = new window.kakao.maps.services.Geocoder();
 
         geocoder.addressSearch(
-          `${data?.fetchClassDetail[0]?.address}`,
+          `${data?.fetchClassDetail?.address}`,
 
           function (result: any, status: any) {
             if (status === window.kakao.maps.services.Status.OK) {
@@ -59,7 +54,7 @@ export default function ClassDetail() {
               });
 
               var infowindow = new window.kakao.maps.InfoWindow({
-                content: `<div style="width:270px;text-align:center;padding:6px 0;">${data?.fetchClassDetail[0]?.address}</div>`,
+                content: `<div style="width:270px;text-align:center;padding:6px 0;">${data?.fetchClassDetail?.address}</div>`,
               });
               infowindow.open(map, marker);
 
@@ -69,13 +64,29 @@ export default function ClassDetail() {
         );
       });
     };
-  }, [data?.fetchClassDetail[0]?.address]);
+  }, [data?.fetchClassDetail?.address]);
 
   // 삭제
   const { onClickClassDelete } = useMutationDeleteClass();
 
   // 찜
-  const { onClickWishlist } = UseMutationCreateWhishList();
+  const {
+    onClickCreateWishlist,
+    onClickDeleteWishlist,
+    isWishlistActive,
+    setIsWishlistActive,
+  } = UseMutationWishList();
+
+  //  새로고침 시에도 하트 색 유지
+  useEffect(() => {
+    const isWishlistActive =
+      localStorage.getItem("isWishlistActive") === "true";
+    setIsWishlistActive(isWishlistActive);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isWishlistActive", isWishlistActive.toString());
+  }, [isWishlistActive]);
 
   // 수정 페이지로 이동
   const onClickMoveToClassEdit = () => {
@@ -87,7 +98,7 @@ export default function ClassDetail() {
       <S.Wrapper>
         <S.Wrapper_header>
           <S.Wrapper_header_top>
-            {data?.fetchClassDetail[0].title}
+            {data?.fetchClassDetail.title}
           </S.Wrapper_header_top>
           <S.Wrapper_header_bottom>
             <S.Review_count>후기 595개</S.Review_count>
@@ -101,21 +112,21 @@ export default function ClassDetail() {
         <S.Wrapper_body>
           <S.Wrapper_body_left>
             <S.Wrapper_body_header>
-              <S.Title>{data?.fetchClassDetail[0].content_summary}</S.Title>
-              <S.Heart
-                onClick={() =>
-                  onClickWishlist(data?.fetchClassDetail[0].class_id)
-                }
-              />
+              <S.Title>{data?.fetchClassDetail.content_summary}</S.Title>
 
-              {/* 찜을 했으면 검은 하트, 안했으면 빈 하트 보여주기 */}
-              {/* {data?.fetchClassDetail.isWishlisted ? (
-                <S.Heart_fill />
+              {isWishlistActive ? (
+                <S.Heart_fill
+                  onClick={() =>
+                    onClickDeleteWishlist(data?.fetchClassDetail.class_id)
+                  }
+                />
               ) : (
-                <S.Heart />
-              )} */}
-
-              {/* <S.Heart_fill /> */}
+                <S.Heart
+                  onClick={() =>
+                    onClickCreateWishlist(data?.fetchClassDetail.class_id)
+                  }
+                />
+              )}
             </S.Wrapper_body_header>
 
             <S.Wrapper_body_bottom>
@@ -134,7 +145,7 @@ export default function ClassDetail() {
                     <S.ClassInfo_container_right>
                       <S.Label>진행 시간</S.Label>
                       <S.SubLabel>
-                        {data?.fetchClassDetail[0].total_time}
+                        {data?.fetchClassDetail.total_time}
                       </S.SubLabel>
                     </S.ClassInfo_container_right>
                   </S.ClassInfo_container>
@@ -143,9 +154,7 @@ export default function ClassDetail() {
                     <S.Icon src="/classPage/category.png" />
                     <S.ClassInfo_container_right>
                       <S.Label>카테고리</S.Label>
-                      <S.SubLabel>
-                        {data?.fetchClassDetail[0].category}
-                      </S.SubLabel>
+                      <S.SubLabel>{data?.fetchClassDetail.category}</S.SubLabel>
                     </S.ClassInfo_container_right>
                   </S.ClassInfo_container>
                 </S.ClassInfo_wrapper>
@@ -156,7 +165,7 @@ export default function ClassDetail() {
                     <div
                       dangerouslySetInnerHTML={{
                         __html: DOMPurify.sanitize(
-                          data?.fetchClassDetail[0]?.content
+                          data?.fetchClassDetail?.content
                         ),
                       }}
                     />
@@ -176,9 +185,9 @@ export default function ClassDetail() {
           <S.Title>클래스 위치</S.Title>
           <S.Map id="map" />
           <S.Address>
-            {data?.fetchClassDetail[0].address}
+            {data?.fetchClassDetail.address}
             <S.AddressDetail>
-              {data?.fetchClassDetail[0].address_detail}
+              {data?.fetchClassDetail.address_detail}
             </S.AddressDetail>
           </S.Address>
         </S.Wrapper_footer>

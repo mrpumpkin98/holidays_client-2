@@ -2,6 +2,8 @@ import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IFormData } from "../../../../units/classPage/write/classWrite.types";
 import { getFirstTwoChars } from "../../../../../commons/libraries/utils";
+import { ChangeEvent, useState } from "react";
+import { useMutationUploadFile } from "./useMutationUploadFile";
 
 export const CREATE_CLASS = gql`
   mutation createClass($createClassInput: CreateClassInput!) {
@@ -29,9 +31,23 @@ export const UseMutationCreateClass = () => {
   const [createClass] = useMutation(CREATE_CLASS);
   const router = useRouter();
 
+  const [uploadFile] = useMutationUploadFile();
+
+  const [imageUrls, setImageUrls] = useState(["", "", "", "", ""]);
+  const [files, setFiles] = useState<File[]>([]);
+
   // 등록하기 버튼
   const onClickClassSubmit = async (data: IFormData, address: string) => {
     try {
+      const results = await Promise.all(
+        files.map((el) => el && uploadFile({ variables: { files: el } }))
+      );
+      console.log(results); // [resultFile0, resultFile1, resultFile2]
+
+      const resultUrls = results.map((el) =>
+        el ? el.data?.uploadFile.url : ""
+      ); // [dog1.jpg, dog2.jpg, dog3.jpg]
+
       const result = await createClass({
         variables: {
           createClassInput: {
@@ -53,7 +69,8 @@ export const UseMutationCreateClass = () => {
               remain: 11,
             },
             imageInput: {
-              url: "이미지url",
+              // url: resultUrls,
+              url: "gg",
               type: 1,
               is_main: 2,
             },
@@ -78,5 +95,28 @@ export const UseMutationCreateClass = () => {
     }
   };
 
-  return { onClickClassSubmit };
+  const onChangeFile =
+    (index: number) => async (event: ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      console.log(file);
+
+      // 2. 임시URL 생성 => (진짜URL - 다른 브라우저에서도 접근 가능)
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = (event) => {
+        if (typeof event.target?.result === "string") {
+          console.log(event.target?.result);
+
+          const tempUrls = [...imageUrls];
+          tempUrls[index] = event.target?.result;
+          setImageUrls(tempUrls);
+
+          const tempFiles = [...files];
+          tempFiles[index] = file;
+          setFiles(tempFiles);
+        }
+      };
+    };
+  return { onClickClassSubmit, onChangeFile };
 };

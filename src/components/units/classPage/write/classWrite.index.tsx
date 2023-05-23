@@ -18,7 +18,7 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useMutationUpdateClass } from "../../../commons/hooks/useMutations/class/useMutationUpdateClass";
 import { IClassWriteProps, IFormData } from "./classWrite.types";
-import { UseMutationUploadFile } from "../../../commons/hooks/useMutations/class/useMutationUploadFile";
+import { useMutationUploadFile } from "../../../commons/hooks/useMutations/class/useMutationUploadFile";
 
 // 웹 에디터
 const ReactQuill = dynamic(async () => await import("react-quill"), {
@@ -32,8 +32,12 @@ declare const window: typeof globalThis & {
 };
 
 export default function ClassWrite(props: IClassWriteProps) {
-  // -------------
+  const [imageUrls, setImageUrls] = useState(["", "", "", "", ""]);
+  const [files, setFiles] = useState<File[]>([]);
 
+  const [uploadFile] = useMutationUploadFile();
+
+  // -------------
   // 이미지 등록
   const getBase64 = (file: RcFile): Promise<string> =>
     new Promise((resolve, reject) => {
@@ -120,7 +124,7 @@ export default function ClassWrite(props: IClassWriteProps) {
         geocoder.addressSearch(
           fulladdress !== ""
             ? fulladdress
-            : props.data?.fetchClassDetail[0]?.address,
+            : props.data?.fetchClassDetail?.address,
 
           function (result: any, status: any) {
             if (status === window.kakao.maps.services.Status.OK) {
@@ -138,7 +142,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                 content: `<div style="width:270px;text-align:center;padding:6px 0;">${
                   fulladdress !== ""
                     ? fulladdress
-                    : props.data?.fetchClassDetail[0]?.address
+                    : props.data?.fetchClassDetail?.address
                 }</div>`,
               });
               infowindow.open(map, marker);
@@ -182,7 +186,7 @@ export default function ClassWrite(props: IClassWriteProps) {
   // --------------------------------------------------------
 
   // 등록
-  const { onClickClassSubmit } = UseMutationCreateClass();
+  const { onClickClassSubmit, onChangeFile } = UseMutationCreateClass();
 
   // 수정
   const { onClickClassUpdate } = useMutationUpdateClass();
@@ -235,7 +239,7 @@ export default function ClassWrite(props: IClassWriteProps) {
             <select
               {...register("category")}
               // defaultValue={props.data?.category}
-              defaultValue={props.data?.fetchClassDetail[0].category}
+              defaultValue={props.data?.fetchClassDetail.category}
             >
               <option value="교육">교육</option>
               <option value="여가">여가</option>
@@ -250,7 +254,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               type="text"
               placeholder="클래스 이름을 입력해주세요"
               {...register("title")}
-              defaultValue={props.data?.fetchClassDetail[0].title}
+              defaultValue={props.data?.fetchClassDetail.title}
             />
             {/* <S.Error>{formState.errors.title?.message}</S.Error> */}
 
@@ -259,14 +263,14 @@ export default function ClassWrite(props: IClassWriteProps) {
               type="text"
               placeholder="클래스 한줄요약을 입력해주세요"
               {...register("content_summary")}
-              defaultValue={props.data?.fetchClassDetail[0].content_summary}
+              defaultValue={props.data?.fetchClassDetail.content_summary}
             />
             {/* <S.Error>{formState.errors.content_summary?.message}</S.Error> */}
 
             {/* <S.Error>에러</S.Error> */}
 
             <S.Label>대표 이미지를 올려주세요</S.Label>
-            <Upload
+            {/* <Upload
               action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               listType="picture-card"
               fileList={fileList}
@@ -282,7 +286,20 @@ export default function ClassWrite(props: IClassWriteProps) {
               onCancel={handleCancel}
             >
               <img alt="example" style={{ width: "100%" }} src={previewImage} />
-            </Modal>
+            </Modal> */}
+
+            {/* 5.22 월 추가 */}
+            <input type="file" onChange={onChangeFile(0)} />
+            <input type="file" onChange={onChangeFile(1)} />
+            <input type="file" onChange={onChangeFile(2)} />
+            <input type="file" onChange={onChangeFile(3)} />
+            <input type="file" onChange={onChangeFile(4)} />
+            <input type="file" onChange={onChangeFile(5)} />
+
+            <img src={imageUrls[0]} />
+            <img src={imageUrls[1]} />
+            <img src={imageUrls[2]} />
+
             {/* <S.Img_box>
               <S.Img />
               <S.Img />
@@ -298,7 +315,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                 {/* <S.Time size="large" onChange={onChangeTime} /> */}
                 <select
                   {...register("total_time")}
-                  defaultValue={props.data?.fetchClassDetail[0].total_time}
+                  defaultValue={props.data?.fetchClassDetail.total_time}
                 >
                   <option value="1시간">1시간</option>
                   <option value="2시간">2시간</option>
@@ -313,7 +330,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                   type="int"
                   placeholder="클래스 최대 인원을 입력해주세요"
                   {...register("class_mNum")}
-                  defaultValue={props.data?.fetchClassDetail[0].class_mNum}
+                  defaultValue={props.data?.fetchClassDetail.class_mNum}
                 />
                 {/* <S.Error>{formState.errors.class_mNum?.message}</S.Error> */}
               </S.Wrapper_body_middle_right>
@@ -323,7 +340,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               type="int"
               placeholder="숫자만 입력해주세요"
               {...register("price")}
-              defaultValue={props.data?.fetchClassDetail[0].price}
+              defaultValue={props.data?.fetchClassDetail.price}
             />
             {/* <S.Error>{formState.errors.price?.message}</S.Error> */}
 
@@ -340,7 +357,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                     value={
                       fulladdress !== ""
                         ? fulladdress ?? ""
-                        : props.data?.fetchClassDetail[0].address ?? ""
+                        : props.data?.fetchClassDetail.address ?? ""
                     }
                   />
                   <S.AddressBtn type="button" onClick={onToggleModal}>
@@ -354,9 +371,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                     type="text"
                     placeholder="상세주소를 입력해주세요"
                     {...register("address_detail")}
-                    defaultValue={
-                      props.data?.fetchClassDetail[0].address_detail
-                    }
+                    defaultValue={props.data?.fetchClassDetail.address_detail}
                   />
                 </S.Wrapper_body_map_right_bottom>
               </S.Wrapper_body_map_right>
@@ -371,7 +386,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               }}
               onChange={onChangeContents}
               placeholder="클래스 세부내용을 입력해주세요"
-              defaultValue={props.data?.fetchClassDetail[0].content}
+              defaultValue={props.data?.fetchClassDetail.content}
             />
             {/* <S.Error>{formState.errors.content?.message}</S.Error> */}
 
@@ -401,7 +416,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               type="text"
               placeholder="'-' 빼고 숫자만 입력해주세요."
               {...register("accountNum")}
-              defaultValue={props.data?.fetchClassDetail[0].accountNum}
+              defaultValue={props.data?.fetchClassDetail.accountNum}
             />
             {/* <S.Error>{formState.errors.accountNum?.message}</S.Error> */}
 
@@ -412,7 +427,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                   type="text"
                   placeholder="예금주를 작성해주세요"
                   {...register("accountName")}
-                  defaultValue={props.data?.fetchClassDetail[0].accountName}
+                  defaultValue={props.data?.fetchClassDetail.accountName}
                 />
                 {/* <S.Error>{formState.errors.accountName?.message}</S.Error> */}
               </div>
@@ -423,7 +438,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                   type="text"
                   placeholder="입금 은행을 작성해주세요"
                   {...register("bankName")}
-                  defaultValue={props.data?.fetchClassDetail[0].bankName}
+                  defaultValue={props.data?.fetchClassDetail.bankName}
                 />
                 {/* <S.Error>{formState.errors.bankName?.message}</S.Error> */}
               </div>

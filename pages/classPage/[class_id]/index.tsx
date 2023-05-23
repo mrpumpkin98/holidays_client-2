@@ -7,7 +7,7 @@ export default function ClassDetailPage() {
   return (
     <>
       <ClassDetail />
-      <ClassReviewWrite />
+      <ClassReviewWrite isEdit={false} />
       <ClassReviewList />
       <ClassQuestionUI />
     </>

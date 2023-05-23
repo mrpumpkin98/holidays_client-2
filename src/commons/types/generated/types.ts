@@ -19,7 +19,7 @@ export type IBoard = {
   board_id: Scalars['String'];
   content: Scalars['String'];
   createdAt: Scalars['DateTime'];
-  deletedAt: Scalars['DateTime'];
+  image_: Array<IImage>;
   title: Scalars['String'];
   user_: IUser;
 };
@@ -30,14 +30,8 @@ export type IBoardReview = {
   br_id: Scalars['String'];
   content: Scalars['String'];
   createdAt: Scalars['DateTime'];
-  deletedAt: Scalars['DateTime'];
   user_: IUser;
 };
-
-export enum IClAssad_Status_Enum {
-  Cancel = 'CANCEL',
-  Payment = 'PAYMENT'
-}
 
 export type IClass = {
   __typename?: 'Class';
@@ -53,7 +47,7 @@ export type IClass = {
   content: Scalars['String'];
   content_summary: Scalars['String'];
   createdAt: Scalars['DateTime'];
-  deletedAt: Scalars['DateTime'];
+  image_: Array<IImage>;
   is_ad: Scalars['Int'];
   lat: Scalars['Float'];
   lon: Scalars['Float'];
@@ -69,7 +63,6 @@ export type IClassReview = {
   content: Scalars['String'];
   cr_id: Scalars['String'];
   createdAt: Scalars['DateTime'];
-  deletedAt: Scalars['DateTime'];
   grade: Scalars['Int'];
   user_: IUser;
 };
@@ -82,21 +75,8 @@ export type IClassSchedule = {
   remain: Scalars['Int'];
 };
 
-export type IClass_Ad = {
-  __typename?: 'Class_Ad';
-  amount: Scalars['Int'];
-  ca_id: Scalars['String'];
-  class_: IClass;
-  createdAt: Scalars['DateTime'];
-  deletedAt: Scalars['DateTime'];
-  imp_uid: Scalars['String'];
-  method: Scalars['String'];
-  status: IClAssad_Status_Enum;
-};
-
 export type ICreateBoardInput = {
   content: Scalars['String'];
-  email: Scalars['String'];
   imageInput?: InputMaybe<Array<IImageInput>>;
   title: Scalars['String'];
 };
@@ -156,6 +136,16 @@ export type ICreateUserInput = {
   pwd: Scalars['String'];
 };
 
+export type IFetchBoards = {
+  __typename?: 'FetchBoards';
+  board_id: Scalars['String'];
+  content: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  name: Scalars['String'];
+  title: Scalars['String'];
+  url: Scalars['String'];
+};
+
 export type IFetchClasses = {
   __typename?: 'FetchClasses';
   address: Scalars['String'];
@@ -165,28 +155,6 @@ export type IFetchClasses = {
   price: Scalars['Int'];
   title: Scalars['String'];
   total_time: Scalars['String'];
-  url: Scalars['String'];
-};
-
-export type IFetchClassesDetail = {
-  __typename?: 'FetchClassesDetail';
-  accountName: Scalars['String'];
-  accountNum: Scalars['String'];
-  address: Scalars['String'];
-  address_category: Scalars['String'];
-  address_detail: Scalars['String'];
-  bankName: Scalars['String'];
-  category: Scalars['String'];
-  class_id: Scalars['String'];
-  class_mNum: Scalars['Int'];
-  content: Scalars['String'];
-  content_summary: Scalars['String'];
-  is_ad: Scalars['String'];
-  is_main: Scalars['Int'];
-  price: Scalars['Int'];
-  title: Scalars['String'];
-  total_time: Scalars['String'];
-  type: Scalars['Int'];
   url: Scalars['String'];
 };
 
@@ -215,6 +183,17 @@ export type IFetchWishlists = {
   url: Scalars['String'];
 };
 
+export type IImage = {
+  __typename?: 'Image';
+  board_: IBoard;
+  class_: IClass;
+  image_id: Scalars['String'];
+  is_main: Scalars['Int'];
+  magazine_: IMagazine;
+  type: Scalars['Int'];
+  url: Scalars['String'];
+};
+
 export type IImageInput = {
   is_main: Scalars['Int'];
   type: Scalars['Int'];
@@ -233,17 +212,17 @@ export type IMagazine = {
 
 export type IMutation = {
   __typename?: 'Mutation';
-  cancelClassAd: IClass_Ad;
-  createBoard: IBoard;
-  createBoardReview: IBoardReview;
-  createClass: IClass;
-  createClassAd: IClass_Ad;
+  cancelClassAd: Scalars['Boolean'];
+  createBoard: Scalars['String'];
+  createBoardReview: Scalars['String'];
+  createClass: Scalars['String'];
+  createClassAd: Scalars['Boolean'];
   createClassInquiry: Scalars['String'];
-  createClassReview: IClassReview;
+  createClassReview: Scalars['String'];
   createImage: Array<Scalars['String']>;
   createReservation: Scalars['String'];
   createUser: IUser;
-  createWishlist: IWishlist;
+  createWishlist: Scalars['String'];
   deleteBoard: Scalars['Boolean'];
   deleteBoardReview: Scalars['Boolean'];
   deleteClass: Scalars['Boolean'];
@@ -257,7 +236,7 @@ export type IMutation = {
   updateBoard: Scalars['Boolean'];
   updateBoardReview: IBoardReview;
   updateClass: Scalars['Boolean'];
-  updateClassReview: IClassReview;
+  updateClassReview: Scalars['Boolean'];
   updateUser: IUser;
   updateUserPwd: Scalars['Boolean'];
   uploadFile: Array<Scalars['String']>;
@@ -349,7 +328,7 @@ export type IMutationDeleteReservationArgs = {
 
 
 export type IMutationDeleteWishlistArgs = {
-  wishlist_id: Scalars['String'];
+  class_id: Scalars['String'];
 };
 
 
@@ -397,9 +376,9 @@ export type IQuery = {
   __typename?: 'Query';
   fetchBoardDetail: IBoard;
   fetchBoardReviews: Array<IBoardReview>;
-  fetchBoards: Array<IBoard>;
-  fetchBoardsOfMine: Array<IBoard>;
-  fetchClassDetail: Array<IFetchClassesDetail>;
+  fetchBoards: Array<IFetchBoards>;
+  fetchBoardsOfMine: Array<IFetchBoards>;
+  fetchClassDetail: IClass;
   fetchClassReviews: Array<IClassReview>;
   fetchClassSchedules: Array<IClassSchedule>;
   fetchClasses: Array<IFetchClasses>;
@@ -410,6 +389,7 @@ export type IQuery = {
   fetchReservationsOfClass: Array<IReservation>;
   fetchReservationsOfUser: Array<IReservation>;
   fetchUserIdByPhone: IUser;
+  fetchWishlistOfMine: Scalars['Boolean'];
   fetchWishlists: Array<IFetchWishlists>;
 };
 
@@ -421,6 +401,11 @@ export type IQueryFetchBoardDetailArgs = {
 
 export type IQueryFetchBoardReviewsArgs = {
   board_id: Scalars['String'];
+};
+
+
+export type IQueryFetchBoardsArgs = {
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -469,6 +454,11 @@ export type IQueryFetchReservationsOfClassArgs = {
 
 export type IQueryFetchUserIdByPhoneArgs = {
   phone: Scalars['String'];
+};
+
+
+export type IQueryFetchWishlistOfMineArgs = {
+  class_id: Scalars['String'];
 };
 
 export enum IReservation_Status_Enum {
@@ -526,8 +516,8 @@ export type IUpdateClassReviewInput = {
 };
 
 export type IUpdateUserInput = {
-  name: Scalars['String'];
-  phone: Scalars['String'];
+  name?: InputMaybe<Scalars['String']>;
+  phone?: InputMaybe<Scalars['String']>;
 };
 
 export type IUser = {
@@ -539,11 +529,4 @@ export type IUser = {
   phone: Scalars['String'];
   type: Scalars['Int'];
   user_id: Scalars['String'];
-};
-
-export type IWishlist = {
-  __typename?: 'Wishlist';
-  class_: IClass;
-  user_: IUser;
-  wishlist_id: Scalars['String'];
 };
