@@ -22,6 +22,15 @@ export default function communityListPage() {
     void router.push("/communityPage/write");
   };
 
+  ///////////////////////////////////////////////////////////////
+  //  게시물 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
+    router.push(`/communityPage/${event.currentTarget.id}`);
+    console.log(event.currentTarget.id);
+  };
+
   return (
     <S.Wrapper>
       <S.TitleTie>
@@ -35,7 +44,7 @@ export default function communityListPage() {
       <S.BodyWrapper>
         {data?.fetchBoards.map((post: any, index: any) => (
           <div key={index}>
-            <S.Posts>
+            <S.Posts id={post.board_id} onClick={onClickSubmit}>
               <S.PostBody>
                 <S.Template>
                   <S.PostImg src="/communityPage/exampleImage1.png" />
@@ -43,7 +52,7 @@ export default function communityListPage() {
                 <S.PostTitle>{post.title}</S.PostTitle>
                 <S.PostContent>
                   <S.PostInfo>
-                    <S.Address>{post.user_.name}</S.Address>
+                    <S.Address>{post.name}</S.Address>
                   </S.PostInfo>
                   <S.PriceTie>
                     <S.Price>Date : {formatDateString(post.createdAt)}</S.Price>

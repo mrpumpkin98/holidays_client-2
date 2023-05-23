@@ -17,6 +17,13 @@ export const Wrapper = styled.div`
   box-shadow: 0px 0px 10px gray;
 `;
 
+export const TitleMain = styled.div`
+  width: 100%;
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 23px;
+`;
+
 export const TitleTextWrapper = styled.div`
   width: 100%;
   height: 200px;
@@ -195,4 +202,8 @@ export const ImageResult = styled.img`
   margin-top: 40px;
   background-size: cover;
   border: 1px solid #dbdbdb;
+`;
+
+export const WrapperReactQuill = styled.div`
+  height: 500px;
 `;

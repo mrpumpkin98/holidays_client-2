@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
-  width: 900px;
+  width: 830px;
   margin-top: 80px;
 `;
 
@@ -105,10 +105,16 @@ export const PremiumWrapper = styled.div`
   align-items: center;
   animation: ${SlideBottom} 0.7s ease-in-out both;
   margin-bottom: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-collapse: collapse;
+  padding: 10px;
 `;
 
 export const PremiumPosts = styled.div`
-  width: 280px;
+  margin-bottom: 50px;
   cursor: pointer;
 `;
 
@@ -119,9 +125,10 @@ export const PremiumPostBody = styled.div`
 
 export const PremiumTemplate = styled.article`
   width: 100%;
-  height: 200px;
+  height: 250px;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 7px;
 `;
 
 export const PremiumPostImg = styled.img`
@@ -135,7 +142,7 @@ export const PremiumPostImg = styled.img`
 
 export const PremiumPostTitle = styled.div`
   font-weight: 700;
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 5px;
 `;
 
@@ -144,6 +151,7 @@ export const PremiumPostContent = styled.div``;
 export const PremiumPostInfo = styled.div``;
 
 export const PremiumUser = styled.div`
+  text-align: end;
   color: #f28316;
   font-size: 14px;
   font-weight: 700;
@@ -160,4 +168,11 @@ export const PremiumPriceTie = styled.div``;
 
 export const PremiumPrice = styled.div`
   text-align: end;
+  font-size: 16px;
+  font-weight: 700;
+`;
+
+export const PremiumTime = styled.div`
+  font-size: 14px;
+  margin-bottom: 5px;
 `;

@@ -13,6 +13,7 @@ import {
 import { Money } from "../../../../commons/libraries/utils";
 import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
+import { FETCH_CLASSES_AD } from "../../../commons/hooks/useQueries/class/UseQueryFetchClassesAd";
 
 const initialPremiumPost = {
   src: "/classPage/list.png",
@@ -56,6 +57,8 @@ export default function StaticRoutingPage() {
       search: writer,
     },
   });
+
+  const { data: AdData, refetch: AdRefetch } = useQuery(FETCH_CLASSES_AD);
 
   ///////////////////////////////////////////////////////////////
   //  서비스 모달기능
@@ -154,23 +157,29 @@ export default function StaticRoutingPage() {
         <S.PremiumAD>
           <S.Title>프리미엄 AD</S.Title>
           <S.PremiumWrapper>
-            {initialPremiumPosts.map((post: any, index: any) => (
+            {AdData?.fetchClassesAd.map((post: any, index: any) => (
               <div key={index}>
                 <S.PremiumPosts>
                   <S.PremiumPostBody>
                     <S.PremiumTemplate>
-                      <S.PremiumPostImg src={post.src} />
+                      <S.PremiumPostImg src="/classPage/list.png" />
                     </S.PremiumTemplate>
                     <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
                     <S.PremiumPostContent>
+                      <S.PremiumContent>
+                        {post.content_summary}
+                      </S.PremiumContent>
                       <S.PremiumPostInfo>
-                        <S.PremiumAddress>{post.address}</S.PremiumAddress>
-                        <S.PremiumAvatarContentTie>
-                          <S.PremiumContent>{post.content}</S.PremiumContent>
-                        </S.PremiumAvatarContentTie>
+                        <S.PremiumAddress>
+                          진행시간 : {post.total_time}
+                        </S.PremiumAddress>
+                        <S.PremiumAddress>
+                          주소 : {post.address}
+                        </S.PremiumAddress>
+                        <S.PremiumAvatarContentTie></S.PremiumAvatarContentTie>
                       </S.PremiumPostInfo>
                       <S.PremiumPriceTie>
-                        <S.PremiumPrice>{post.price}</S.PremiumPrice>
+                        <S.PremiumPrice>{Money(post.price)}</S.PremiumPrice>
                       </S.PremiumPriceTie>
                     </S.PremiumPostContent>
                   </S.PremiumPostBody>

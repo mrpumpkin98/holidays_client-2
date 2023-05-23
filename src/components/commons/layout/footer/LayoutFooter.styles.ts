@@ -5,9 +5,10 @@ import {
   SmileOutlined,
 } from "@ant-design/icons";
 import { Modal } from "antd";
+import { tablet } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 233px;
   background: #f5f5f5;
   display: flex;
@@ -15,8 +16,8 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 768px) {
-    width: 100vw;
+  @media ${tablet} {
+    height: 30vw;
   }
 `;
 
@@ -24,16 +25,29 @@ export const InnerWrapper = styled.div`
   width: 1200px;
   display: flex;
   margin: auto;
+  @media ${tablet} {
+    width: 90vw;
+  }
 `;
 
 export const LogoWrapper = styled.div`
   margin-right: 50px;
+  @media ${tablet} {
+    margin-right: 4vw;
+  }
 `;
 
-export const Logo = styled.img``;
+export const Logo = styled.img`
+  @media ${tablet} {
+    width: 18vw;
+  }
+`;
 
 export const Text = styled.div`
   font-size: 16px;
+  @media ${tablet} {
+    font-size: 1vw;
+  }
 `;
 
 export const TextDetailMenuWrapper = styled.div`
@@ -45,6 +59,8 @@ export const TextMenuWrapper = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 10px;
+  @media ${tablet} {
+  }
 `;
 
 export const TextMenu = styled.div`
@@ -54,9 +70,15 @@ export const TextMenu = styled.div`
   :hover {
     text-decoration: underline;
   }
+  @media ${tablet} {
+    font-size: 1vw;
+  }
 `;
 
 export const TextDetail = styled.div`
   font-size: 15px;
   color: #9a9a9a;
+  @media ${tablet} {
+    font-size: 1vw;
+  }
 `;

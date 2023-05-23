@@ -1,15 +1,13 @@
 import { gql, useQuery } from "@apollo/client";
 
 export const FECTCH_BOARDS = gql`
-  query fetchBoards {
-    fetchBoards {
+  query fetchBoards($page: Int = 1) {
+    fetchBoards(page: $page) {
       board_id
       title
       content
       createdAt
-      user_ {
-        name
-      }
+      name
     }
   }
 `;

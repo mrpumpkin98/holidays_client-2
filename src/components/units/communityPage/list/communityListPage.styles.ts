@@ -5,20 +5,19 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 1200px;
+  width: 1100px;
   margin: auto;
-  margin-top: 150px;
+  margin-top: 200px;
 `;
 
 export const TitleTie = styled.div`
   display: flex;
-  flex-direction: column;
 `;
 
 export const Title = styled.h1`
   font-weight: 700;
   font-size: 31px;
-  margin-right: 100px;
+  margin-right: 370px;
   cursor: pointer;
   margin-bottom: 30px;
 `;
@@ -66,7 +65,7 @@ export const Line = styled.div`
 
 export const BodyWrapper = styled.div`
   display: flex;
-  width: 1200px;
+  width: 1100px;
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
@@ -77,7 +76,7 @@ export const BodyWrapper = styled.div`
 `;
 
 export const Posts = styled.div`
-  width: 288px;
+  width: 265px;
   margin-bottom: 30px;
   cursor: pointer;
 `;
@@ -88,7 +87,7 @@ export const PostBody = styled.div`
 `;
 
 export const Template = styled.article`
-  width: 287px;
+  width: 265px;
   height: 177px;
   border-radius: 10px;
   overflow: hidden;
@@ -96,7 +95,7 @@ export const Template = styled.article`
 `;
 
 export const PostImg = styled.img`
-  width: 287px;
+  width: 265px;
   height: 177px;
   object-fit: cover;
   transition: all 0.4s ease-in-out;
