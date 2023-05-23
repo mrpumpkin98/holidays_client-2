@@ -1,6 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth01 } from "../../../hooks/useAuths/useAuth01";
 import { UseQueryFetchLoginUser } from "../../../hooks/useQueries/user/UseQueryFetchLoginUser";
 import Head from "next/head";
@@ -8,9 +8,7 @@ import * as S from "./modal.styles";
 
 export const CREATE_CLASS_AD = gql`
   mutation createClassAd($createClassAdInput: CreateClassAdInput!) {
-    createClassAd(createClassAdInput: $createClassAdInput) {
-      amount
-    }
+    createClassAd(createClassAdInput: $createClassAdInput)
   }
 `;
 
@@ -27,15 +25,23 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
   const router = useRouter();
 
   const [createClassAd] = useMutation(CREATE_CLASS_AD);
-  const { data } = UseQueryFetchLoginUser();
+  const { data: userData } = UseQueryFetchLoginUser();
+
+  console.log(router.query.class_id);
+  console.log(userData);
+
+  useEffect(() => {
+    if (userData) {
+      console.log(userData?.name);
+    }
+  }, [userData]);
 
   const onClickGeneralPay = () => {
     // 일반결제 (이니시스 or 나이스)
-    console.log(data);
     if (typeof window.IMP === "undefined") return console.log("중지");
     const IMP = window.IMP;
 
-    IMP.init("imp70556024");
+    IMP.init("imp25268840");
 
     IMP.request_pay(
       {
@@ -43,12 +49,12 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
         pay_method: "card",
         name: "프리미엄 광고료 결제",
         amount: 15000,
-        buyer_email: data?.fetchLoginUser.email,
-        buyer_name: data?.fetchLoginUser.name,
-        buyer_tel: data?.fetchLoginUser.phone ?? "010-0000-0000",
+        buyer_email: userData?.fetchLoginUser.email ?? "odo@marine",
+        buyer_name: userData?.fetchLoginUser.name ?? "송해병",
+        buyer_tel: userData?.fetchLoginUser.phone ?? "010-0000-0000",
         buyer_addr: "서울시 강남구 봉은사로",
         buyer_postcode: "110-111",
-        m_redirect_url: "http://localhost:3000/mainPage/",
+        m_redirect_url: "http://localhost:3000/myPage/",
       },
       (rsp: any) => {
         if (rsp.success) {
@@ -59,11 +65,11 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
                   imp_uid: rsp.imp_uid,
                   amount: 15000, // Replace with your desired amount
                   method: "card", // Replace with your desired payment method
-                  class_id: "your_class_id", // Replace with your desired class ID
+                  class_id: router.query.class_id, // Replace with your desired class ID
                 },
               },
             });
-            router.push(`/mainPage`);
+            router.push(`/classPage`);
           } catch (error) {
             if (error instanceof Error) {
               console.log(error.message);
@@ -75,11 +81,15 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
     );
   };
 
-  const onClickKakaoPay = () => {
+  const onClickKakaoPay = async () => {
     // 간편결제 (카카오페이)
+    console.log(userData.fetchLoginUser.name);
+    if (userData.fetchLoginUser.name === "undefined")
+      return console.log("data 없음");
     if (typeof window.IMP === "undefined") return console.log("중지");
 
     const IMP = window.IMP;
+    IMP.init("imp25268840");
 
     IMP.request_pay(
       {
@@ -88,8 +98,8 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
         pay_method: "card",
         name: "프리미엄 광고 결제",
         amount: 15000, // 동적으로 바뀐 amount 값 사용
-        buyer_email: data.fetchLoginUser.email,
-        buyer_name: data.fetchLoginUser.name,
+        buyer_email: "odo@marine",
+        buyer_name: "송해병",
         buyer_tel: "010-4242-4242",
         buyer_addr: "서울특별시 강남구 신사동",
         buyer_postcode: "01181",
@@ -98,17 +108,18 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
       async (rsp: any): Promise<void> => {
         // callback
         if (rsp.success === true) {
-          void createClassAd({
+          const result = await createClassAd({
             variables: {
               createClassAdInput: {
                 imp_uid: rsp.imp_uid,
                 amount: 15000,
                 method: "card",
-                class_id: "8b74e352-9c85-4f3f-ad83-664c7ef202dd",
+                class_id: router.query.class_id,
               },
             },
           });
-          router.push(`/mainPage`);
+          console.log(result);
+          router.push(`/classPage`);
         } else {
           // 결제 실패 시 로직
           alert("결제가 취소되었습니다");
