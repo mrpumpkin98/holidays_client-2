@@ -1,8 +1,12 @@
+import { UseMutationClassReview } from "../../../commons/hooks/useMutations/class/useMutationReview";
 import ClassReviewWrite from "../write/classReviewWrite.index";
 import * as S from "./classReviewList.styles";
 import { useState } from "react";
 
 export default function ClassReviewListEl(props: any) {
+  // 삭제 버튼
+  const { onClickDelete } = UseMutationClassReview();
+
   const [isEdit, setIsEdit] = useState(false);
 
   const onClickEdit = (): void => {
@@ -24,7 +28,9 @@ export default function ClassReviewListEl(props: any) {
                 >
                   수정
                 </S.UpdateBtn>
-                <S.DeleteBtn>삭제</S.DeleteBtn>
+                <S.DeleteBtn onClick={() => onClickDelete(props.el.cr_id)}>
+                  삭제
+                </S.DeleteBtn>
               </S.BtnWrapper>
             </S.Wrapper_header_top>
             <S.Date>{props.el.createdAt}</S.Date>

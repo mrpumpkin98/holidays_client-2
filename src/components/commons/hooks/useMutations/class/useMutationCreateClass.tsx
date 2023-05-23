@@ -66,9 +66,9 @@ export const UseMutationCreateClass = () => {
         }
       }
 
-      console.log("^^^^^^^");
+      console.log("========");
       console.log(resultUrls);
-      console.log("^^^^^^^");
+      console.log("========");
 
       const result = await createClass({
         variables: {

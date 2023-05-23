@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { UseMutationCreateClassReview } from "../../../commons/hooks/useMutations/class/useMutationReview";
+import { UseMutationClassReview } from "../../../commons/hooks/useMutations/class/useMutationReview";
 import * as S from "./classReviewWrite.styles";
 import {
   IClassReviewWriteProps,
@@ -12,7 +12,7 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
   const [grade, setGrade] = useState<number>(0);
 
   // 등록
-  const { onClickWrite, onClickUpdate } = UseMutationCreateClassReview();
+  const { onClickWrite, onClickUpdate } = UseMutationClassReview();
 
   const { register, handleSubmit } = useForm<IFormData>({
     defaultValues: {
