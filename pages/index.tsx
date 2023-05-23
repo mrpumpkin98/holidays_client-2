@@ -2,7 +2,7 @@ import Head from "next/head";
 // import Image from "next/image";
 import styles from "/styles/Home.module.css";
 import MainPageContainer from "../src/components/units/mainPage/MainPage.index";
-import LandingPage from "../src/components/units/landingPage";
+import LandingPage from "./landingPage";
 
 export default function Home() {
   return (

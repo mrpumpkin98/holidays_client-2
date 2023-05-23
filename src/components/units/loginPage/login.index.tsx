@@ -80,7 +80,7 @@ export default function LogIn(): JSX.Element {
             <S.SocialGoogleWrapper>
               <S.SocialLoginImage src="/loginPage/google.png" />
               <S.SocialLogin href="https://happyholidays-server.site/login/google">
-                구글 계정으로 로그인{" "}
+                구글 계정으로 로그인
               </S.SocialLogin>
             </S.SocialGoogleWrapper>
           </S.SocialWrapper>
