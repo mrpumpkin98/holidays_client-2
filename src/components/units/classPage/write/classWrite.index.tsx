@@ -19,6 +19,7 @@ import "react-quill/dist/quill.snow.css";
 import { useMutationUpdateClass } from "../../../commons/hooks/useMutations/class/useMutationUpdateClass";
 import { IClassWriteProps, IFormData } from "./classWrite.types";
 import { useMutationUploadFile } from "../../../commons/hooks/useMutations/class/useMutationUploadFile";
+import ClassImage from "./classWriteImage";
 
 // 웹 에디터
 const ReactQuill = dynamic(async () => await import("react-quill"), {
@@ -32,71 +33,6 @@ declare const window: typeof globalThis & {
 };
 
 export default function ClassWrite(props: IClassWriteProps) {
-  const [imageUrls, setImageUrls] = useState(["", "", "", "", ""]);
-  const [files, setFiles] = useState<File[]>([]);
-
-  const [uploadFile] = useMutationUploadFile();
-
-  // -------------
-  // 이미지 등록
-  const getBase64 = (file: RcFile): Promise<string> =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (error) => reject(error);
-    });
-
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
-  const [fileList, setFileList] = useState<UploadFile[]>([
-    // {
-    //   uid: "-1",
-    //   name: "image.png",
-    //   status: "done",
-    //   url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    // },
-    // {
-    //   uid: "-2",
-    //   name: "image.png",
-    //   status: "done",
-    //   url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    // },
-    // {
-    //   uid: "-3",
-    //   name: "image.png",
-    //   status: "done",
-    //   url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    // },
-  ]);
-
-  const handleCancel = () => setPreviewOpen(false);
-
-  const handlePreview = async (file: UploadFile) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj as RcFile);
-    }
-
-    setPreviewImage(file.url || (file.preview as string));
-    setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url!.substring(file.url!.lastIndexOf("/") + 1)
-    );
-  };
-
-  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-    setFileList(newFileList);
-
-  const uploadButton = (
-    <div>
-      <PlusOutlined />
-      <div>Upload</div>
-    </div>
-  );
-
-  // -----------
-
   // 우편주소(카카오지도)
   const [fulladdress, setFulladdress] = useState("");
 
@@ -186,7 +122,8 @@ export default function ClassWrite(props: IClassWriteProps) {
   // --------------------------------------------------------
 
   // 등록
-  const { onClickClassSubmit, onChangeFile } = UseMutationCreateClass();
+  const { onClickClassSubmit, fileList, setFileList } =
+    UseMutationCreateClass();
 
   // 수정
   const { onClickClassUpdate } = useMutationUpdateClass();
@@ -270,35 +207,9 @@ export default function ClassWrite(props: IClassWriteProps) {
             {/* <S.Error>에러</S.Error> */}
 
             <S.Label>대표 이미지를 올려주세요</S.Label>
-            {/* <Upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              listType="picture-card"
-              fileList={fileList}
-              onPreview={handlePreview}
-              onChange={handleChange}
-            >
-              {fileList.length >= 5 ? null : uploadButton}
-            </Upload>
-            <Modal
-              open={previewOpen}
-              title={previewTitle}
-              footer={null}
-              onCancel={handleCancel}
-            >
-              <img alt="example" style={{ width: "100%" }} src={previewImage} />
-            </Modal> */}
+            <ClassImage fileList={fileList} setFileList={setFileList} />
 
-            {/* 5.22 월 추가 */}
-            <input type="file" onChange={onChangeFile(0)} />
-            <input type="file" onChange={onChangeFile(1)} />
-            <input type="file" onChange={onChangeFile(2)} />
-            <input type="file" onChange={onChangeFile(3)} />
-            <input type="file" onChange={onChangeFile(4)} />
-            <input type="file" onChange={onChangeFile(5)} />
-
-            <img src={imageUrls[0]} />
-            <img src={imageUrls[1]} />
-            <img src={imageUrls[2]} />
+            {/* --------------- */}
 
             {/* <S.Img_box>
               <S.Img />

@@ -6,6 +6,7 @@ import { useMutationDeleteClass } from "../../../commons/hooks/useMutations/clas
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { UseMutationWishList } from "../../../commons/hooks/useMutations/class/useMutationWishList";
+import ClassReviewWrite from "../../classReviewPage/write/classReviewWrite.index";
 
 // 카카오지도
 declare const window: typeof globalThis & {

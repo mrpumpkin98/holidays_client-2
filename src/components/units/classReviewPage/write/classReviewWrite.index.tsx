@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import { UseMutationCreateClassReview } from "../../../commons/hooks/useMutations/class/useMutationCreateReview";
+import { UseMutationCreateClassReview } from "../../../commons/hooks/useMutations/class/useMutationReview";
 import * as S from "./classReviewWrite.styles";
 import {
   IClassReviewWriteProps,
   IFormData,
 } from "../../classPage/review/classReview.types";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function ClassReviewWrite(props: IClassReviewWriteProps) {
   const [grade, setGrade] = useState<number>(0);
@@ -43,7 +43,9 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
       <S.Wrapper>
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <S.Wrapper_body>
-            <S.Wrapper_body_header>후기 작성하기</S.Wrapper_body_header>
+            <S.Wrapper_body_header>
+              후기 {props.isEdit ? "수정" : "등록"}하기
+            </S.Wrapper_body_header>
 
             <S.Star
               allowHalf

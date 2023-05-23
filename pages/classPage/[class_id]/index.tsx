@@ -12,7 +12,6 @@ export default function ClassDetailPage() {
     <>
       <ClassDetail />
       <ClassReviewWrite isEdit={false} />
-      {/* {data?.} */}
       <ClassReviewList data={data} />
       <ClassQuestionUI />
     </>
