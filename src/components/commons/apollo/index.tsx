@@ -55,13 +55,15 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
 
   const uploadLink = createUploadLink({
     uri: "https://happyholidays-server.site/graphql",
-    headers: { Authorization: `Bearer ${accessToken}` },
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "X-Apollo-Operation-Name": true,
+    },
     credentials: "include",
   });
 
   const client = new ApolloClient({
     link: ApolloLink.from([errorLink, uploadLink]),
-    "X-Apollo-Operation-Name": true,
     cache: GLOBAL_STATE,
   });
 

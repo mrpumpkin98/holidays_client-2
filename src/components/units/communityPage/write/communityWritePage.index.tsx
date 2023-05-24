@@ -8,13 +8,21 @@ import { useMutation, useQuery } from "@apollo/client";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { UPLOAD_FILE } from "../../../commons/hooks/useMutations/uploadFile/UseMutationUploadFile";
-import ToastUIEditor from "../../../commons/toastUI";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { WriteProductSchema } from "./validation";
 import { UseMutationCreateBoard } from "../../../commons/hooks/useMutations/board/useMutationCreateBoard";
 import { UseMutationUploadFile } from "../../../commons/hooks/useMutations/uploadFile/UseMutationUploadFile";
 import { FETCH_BOARD_DETAIL } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoardsDetail";
+import dynamic from "next/dynamic";
+
+const ToastEditor = dynamic(
+  async () => await import("../../../commons/toastUI"),
+  {
+    ssr: false,
+  }
+);
 
 interface ProductInput {
   name: string;
@@ -40,10 +48,10 @@ interface ProductInput {
   };
 }
 
-export default function communityWritePage(props: any) {
+export default function CommunityWritePage(props: any) {
   const router = useRouter();
   const [fileUrls, setFileUrls] = useState([""]);
-  const contentsRef = useRef<any>(null);
+  const contentsRef = useRef(null);
   const [createBoard] = UseMutationCreateBoard();
   const [uploadFile] = UseMutationUploadFile();
   const { data } = useQuery(FETCH_BOARD_DETAIL, {
@@ -59,32 +67,18 @@ export default function communityWritePage(props: any) {
     }
   );
 
-  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file === undefined) return;
-
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = (event) => {
-      if (typeof event.target?.result === "string") {
-        setImageUrl(event.target.result);
-        setFiles(file);
-      }
-    };
-  };
-
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
   };
-  const onChangeContents = () => {
-    const text = contentsRef?.current?.getInstance().getHTML();
-    setContent(text === "<p><br><p>" ? "" : text);
+
+  const onChangeContents = (text: any) => {
+    const editorInstance = contentsRef.current?.getInstance().getHTML();
+    setContent(text === "<p><br><p>" ? "" : editorInstance);
   };
+
   const onClickSubmit = async (data: ProductInput) => {
-    // const resultFile = await uploadFile({ variables: { file: files } });
-    // const url = resultFile.data?.uploadFile;
-    // if (!url) return;
-    await createBoard({
+    console.log(content);
+    const result = await createBoard({
       variables: {
         createBoardInput: {
           title: title,
@@ -100,13 +94,10 @@ export default function communityWritePage(props: any) {
       },
     });
     void router.push("/seller");
+    console.log(result);
   };
 
-  ///////////////////////////////////////////////////////////////
-  //  취소하기
-  //////////////////////////////////////////////////////////////
-
-  const onClickCancel = async () => {
+  const onClickCancel = () => {
     router.push(`/communityPage`);
   };
 
@@ -139,43 +130,26 @@ export default function communityWritePage(props: any) {
           </S.UploadButton>
         </S.ImageWrapper>
         <S.InputWrapper>
-          <S.Label>이메일</S.Label>
-          {/* <S.Password type="text" onChange={onChangeEmail} /> */}
-          <S.Error>{/* {props.passwordError} */}</S.Error>
-        </S.InputWrapper>
-        <S.InputWrapper>
           <S.Label>제목</S.Label>
-          <S.Subject
-            type="text"
-            onChange={onChangeTitle}
-            // defaultValue={props.data?.fetchBoard.title}
-          />
+          <S.Subject type="text" onChange={onChangeTitle} />
           <S.Error>{/* {props.titleError} */}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>내용</S.Label>
-          <S.Contents
-          // onChange={onChangeContent}
-          // defaultValue={props.data?.fetchBoard.contents}
-          ></S.Contents>
-          <S.WrapperReactQuill>
-            <S.Label>상품설명 </S.Label>
-            <ToastUIEditor
+          {/* <S.Contents onChange={onChangeTitle} /> */}
+          <S.ToastEditorWrapper>
+            <ToastEditor
               contentsRef={contentsRef}
               onChangeContents={onChangeContents}
-              // initialValue={data?.description}
+              initialValue={data?.fetchBoard.contents}
             />
-          </S.WrapperReactQuill>
+          </S.ToastEditorWrapper>
           <S.Error>{/* {props.contentsError} */}</S.Error>
         </S.InputWrapper>
         <S.ButtonWrapper>
-          <S.SubmitButton
-            onClick={onClickSubmit}
-            // Active={props.isEdit ? true : props.Active}
-          >
+          <S.SubmitButton onClick={onClickSubmit}>
             {props.isEdit ? "수정하기" : "등록하기"}
           </S.SubmitButton>
-          {/* <B.CancelButton onClick={props.onClickCancel}> */}
           <S.CancelButton onClick={onClickCancel}>취소하기</S.CancelButton>
         </S.ButtonWrapper>
       </S.Wrapper>

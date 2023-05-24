@@ -95,6 +95,10 @@ export const Label = styled.div`
   }
 `;
 
+export const ToastEditorWrapper = styled.div`
+  width: 470px;
+`;
+
 export const InputWrapper = styled.div`
   padding-top: 40px;
 `;
