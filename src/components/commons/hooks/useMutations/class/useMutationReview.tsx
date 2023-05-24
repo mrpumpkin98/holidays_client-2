@@ -6,6 +6,7 @@ import { IUpdateClassReviewInput } from "../../../../../commons/types/generated/
 import { IFormData } from "../../../../units/classPage/review/classReview.types";
 import { useState } from "react";
 import { FETCH_CLASS_REVIEWS } from "../../useQueries/class/useQueryFetchClassReview";
+import { result } from "lodash";
 
 // 작성
 export const CREATE_CLASS_REVIEW = gql`
@@ -19,18 +20,26 @@ export const CREATE_CLASS_REVIEW = gql`
   }
 `;
 
-// 후기
+// 수정
 export const UPDATE_CLASS_REVIEW = gql`
   mutation updateClassReview($updateClassReviewInput: UpdateClassReviewInput!) {
     updateClassReview(updateClassReviewInput: $UpdateClassReviewInput)
   }
 `;
 
-export const UseMutationCreateClassReview = () => {
+// 삭제
+export const DELETE_CLASS_REVIEW = gql`
+  mutation deleteClassReview($cr_id: String!) {
+    deleteClassReview(cr_id: $cr_id)
+  }
+`;
+
+export const UseMutationClassReview = () => {
   const router = useRouter();
 
   const [createClassReview] = useMutation(CREATE_CLASS_REVIEW);
   const [updateClassReview] = useMutation(UPDATE_CLASS_REVIEW);
+  const [deleteClassReview] = useMutation(DELETE_CLASS_REVIEW);
 
   // 등록하기 버튼
   const onClickWrite = async (data: IFormData, grade: number) => {
@@ -93,5 +102,31 @@ export const UseMutationCreateClassReview = () => {
     }
   };
 
-  return { onClickWrite, onClickUpdate };
+  // 삭제하기 버튼
+  const onClickDelete = async (data: any) => {
+    console.log("리뷰 삭제버튼 클릭 됨");
+    console.log("router.query.class_id: ", router.query.class_id);
+    console.log("data: ", data);
+
+    try {
+      const result = await deleteClassReview({
+        variables: {
+          // cr_id: ,
+          cr_id: data,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_CLASS_REVIEWS,
+            variables: { class_id: router.query.class_id },
+          },
+        ],
+      });
+      alert("리뷰 삭제 완료");
+      console.log(result);
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
+    }
+  };
+
+  return { onClickWrite, onClickUpdate, onClickDelete };
 };

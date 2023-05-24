@@ -6,6 +6,8 @@ import { useMutationDeleteClass } from "../../../commons/hooks/useMutations/clas
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { UseMutationWishList } from "../../../commons/hooks/useMutations/class/useMutationWishList";
+import ClassReviewWrite from "../../classReviewPage/write/classReviewWrite.index";
+import SlickPage from "./classDetailSlick";
 
 // 카카오지도
 declare const window: typeof globalThis & {
@@ -16,7 +18,7 @@ export default function ClassDetail() {
   const router = useRouter();
 
   const { data } = UseQueryFetchClassDetail();
-  console.log(data);
+  console.log(data, "~~~~~~~~~~~~~~");
 
   // 카카오지도
   useEffect(() => {
@@ -108,7 +110,9 @@ export default function ClassDetail() {
             </S.Wrapper_header_bottom_right>
           </S.Wrapper_header_bottom>
         </S.Wrapper_header>
-        <S.Slick />
+
+        <SlickPage src={data?.fetchClassDetail?.image_} />
+
         <S.Wrapper_body>
           <S.Wrapper_body_left>
             <S.Wrapper_body_header>

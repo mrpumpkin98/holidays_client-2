@@ -6,6 +6,8 @@ import Modal2 from "../../../commons/modals/myPageModal/Modal/modal";
 import { useMutation, useQuery } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
 import { FETCH_LOGIN_USER } from "../../hooks/useQueries/user/UseQueryFetchLoginUser";
+import DropdownMyPage from "../../dropdowns/myPage";
+import DropdownWriting from "../../dropdowns/writing";
 
 export default function LayoutHeader(): JSX.Element {
   const router = useRouter();
@@ -62,10 +64,6 @@ export default function LayoutHeader(): JSX.Element {
 
   return (
     <S.Wrapper>
-      {showModal && <Modal1 onClose={handleModalClose} />}
-      {showModal && <Backdrop onClick={handleModalClose} />}
-      {showModal2 && <Modal2 onClose={handleModalClose2} />}
-      {showModal2 && <Backdrop onClick={handleModalClose2} />}
       <S.InnerWrapper>
         <S.Logo src="/images/logo.png" onClick={onClickMain} />
         <S.NaviWrapper>
@@ -80,10 +78,8 @@ export default function LayoutHeader(): JSX.Element {
         {userName ? (
           <S.ButtonTie>
             <S.Icon src="/images/bell.png" />
-            <S.Icon src="/images/user.png" onClick={handleModalOpen2} />
-            <S.InnerButton className="OrangeButton" onClick={handleModalOpen}>
-              글쓰기
-            </S.InnerButton>
+            <DropdownMyPage />
+            <DropdownWriting />
           </S.ButtonTie>
         ) : (
           <S.ButtonTie>

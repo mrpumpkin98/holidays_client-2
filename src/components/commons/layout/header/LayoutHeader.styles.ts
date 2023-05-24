@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   align-items: center;
   background-color: #faf8f2;
   position: fixed;
-  z-index: 9999;
+  z-index: 9998;
 
   @media ${tablet} {
     height: 15vw;

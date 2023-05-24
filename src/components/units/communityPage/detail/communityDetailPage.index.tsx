@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import * as S from "./communityDetailPage.styles";
 import { useQuery } from "@apollo/client";
+import DOMPurify from "dompurify";
 import { FETCH_BOARD_DETAIL } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoardsDetail";
+import { replaceImageTags } from "../../../../commons/libraries/utils";
 
 export default function communityDetailPage() {
   const router = useRouter();
@@ -18,8 +20,17 @@ export default function communityDetailPage() {
           <S.Time>2023.05.23</S.Time>
         </S.UserTie>
         <S.Line />
-        <S.Contents>{data?.fetchBoardDetail?.content}</S.Contents>
-        <S.Img src="/communityPage/exampleImage1.png"></S.Img>
+        <S.WrapperContents>
+          <S.Contents
+            dangerouslySetInnerHTML={
+              data?.fetchBoardDetail?.content
+                ? {
+                    __html: DOMPurify.sanitize(data.fetchBoardDetail?.content),
+                  }
+                : undefined
+            }
+          />
+        </S.WrapperContents>
         <S.Line />
         <S.CommentWrite placeholder="댓글을 입력해 주세요" />
         <S.CommentBox>

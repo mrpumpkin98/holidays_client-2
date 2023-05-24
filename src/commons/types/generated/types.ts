@@ -57,16 +57,6 @@ export type IClass = {
   user_: IUser;
 };
 
-export type IClassReview = {
-  __typename?: 'ClassReview';
-  class_: IClass;
-  content: Scalars['String'];
-  cr_id: Scalars['String'];
-  createdAt: Scalars['DateTime'];
-  grade: Scalars['Int'];
-  user_: IUser;
-};
-
 export type IClassSchedule = {
   __typename?: 'ClassSchedule';
   class_: IClass;
@@ -136,6 +126,15 @@ export type ICreateUserInput = {
   pwd: Scalars['String'];
 };
 
+export type IFetchBoardReviews = {
+  __typename?: 'FetchBoardReviews';
+  br_id: Scalars['String'];
+  content: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  grade: Scalars['Int'];
+  name: Scalars['String'];
+};
+
 export type IFetchBoards = {
   __typename?: 'FetchBoards';
   board_id: Scalars['String'];
@@ -144,6 +143,15 @@ export type IFetchBoards = {
   name: Scalars['String'];
   title: Scalars['String'];
   url: Scalars['String'];
+};
+
+export type IFetchClassReviews = {
+  __typename?: 'FetchClassReviews';
+  content: Scalars['String'];
+  cr_id: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  grade: Scalars['Int'];
+  name: Scalars['String'];
 };
 
 export type IFetchClasses = {
@@ -237,6 +245,7 @@ export type IMutation = {
   updateBoardReview: IBoardReview;
   updateClass: Scalars['Boolean'];
   updateClassReview: Scalars['Boolean'];
+  updateReservation: Scalars['Boolean'];
   updateUser: IUser;
   updateUserPwd: Scalars['Boolean'];
   uploadFile: Array<Scalars['String']>;
@@ -358,6 +367,11 @@ export type IMutationUpdateClassReviewArgs = {
 };
 
 
+export type IMutationUpdateReservationArgs = {
+  rse_id: Scalars['String'];
+};
+
+
 export type IMutationUpdateUserArgs = {
   updateUserInput: IUpdateUserInput;
 };
@@ -375,11 +389,11 @@ export type IMutationUploadFileArgs = {
 export type IQuery = {
   __typename?: 'Query';
   fetchBoardDetail: IBoard;
-  fetchBoardReviews: Array<IBoardReview>;
+  fetchBoardReviews: Array<IFetchBoardReviews>;
   fetchBoards: Array<IFetchBoards>;
   fetchBoardsOfMine: Array<IFetchBoards>;
   fetchClassDetail: IClass;
-  fetchClassReviews: Array<IClassReview>;
+  fetchClassReviews: Array<IFetchClassReviews>;
   fetchClassSchedules: Array<IClassSchedule>;
   fetchClasses: Array<IFetchClasses>;
   fetchClassesAd: Array<IFetchClasses>;
@@ -401,6 +415,7 @@ export type IQueryFetchBoardDetailArgs = {
 
 export type IQueryFetchBoardReviewsArgs = {
   board_id: Scalars['String'];
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -416,6 +431,7 @@ export type IQueryFetchClassDetailArgs = {
 
 export type IQueryFetchClassReviewsArgs = {
   class_id: Scalars['String'];
+  page?: InputMaybe<Scalars['Int']>;
 };
 
 
