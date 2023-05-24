@@ -19,6 +19,12 @@ export const FETCH_CLASS_DETAIL = gql`
       accountName
       bankName
       is_ad
+      image_ {
+        image_id
+        url
+        type
+        is_main
+      }
       user_ {
         user_id
         name

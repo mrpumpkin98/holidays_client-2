@@ -4,26 +4,28 @@ import { IFormData } from "../../../../units/classPage/write/classWrite.types";
 import { getFirstTwoChars } from "../../../../../commons/libraries/utils";
 import { ChangeEvent, useState } from "react";
 import { useMutationUploadFile } from "./useMutationUploadFile";
+import { UploadFile } from "antd";
 
 export const CREATE_CLASS = gql`
   mutation createClass($createClassInput: CreateClassInput!) {
-    createClass(createClassInput: $createClassInput) {
-      class_id
-      title
-      content_summary
-      price
-      class_mNum
-      address
-      address_detail
-      category
-      address_category
-      total_time
-      content
-      accountNum
-      accountName
-      bankName
-      is_ad
-    }
+    createClass(createClassInput: $createClassInput)
+    # {
+    #   class_id
+    #   title
+    #   content_summary
+    #   price
+    #   class_mNum
+    #   address
+    #   address_detail
+    #   category
+    #   address_category
+    #   total_time
+    #   content
+    #   accountNum
+    #   accountName
+    #   bankName
+    #   is_ad
+    # }
   }
 `;
 
@@ -33,20 +35,40 @@ export const UseMutationCreateClass = () => {
 
   const [uploadFile] = useMutationUploadFile();
 
-  const [imageUrls, setImageUrls] = useState(["", "", "", "", ""]);
-  const [files, setFiles] = useState<File[]>([]);
+  // const [imageUrls, setImageUrls] = useState(["", "", "", "", ""]);
+  // const [files, setFiles] = useState<File[]>([]);
+
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   // 등록하기 버튼
   const onClickClassSubmit = async (data: IFormData, address: string) => {
     try {
       const results = await Promise.all(
-        files.map((el) => el && uploadFile({ variables: { files: el } }))
+        fileList.map(
+          (el) => el && uploadFile({ variables: { files: el.originFileObj } })
+        )
       );
-      console.log(results); // [resultFile0, resultFile1, resultFile2]
 
-      const resultUrls = results.map((el) =>
-        el ? el.data?.uploadFile.url : ""
-      ); // [dog1.jpg, dog2.jpg, dog3.jpg]
+      const resultUrls = [];
+      for (let i = 0; i < results.length; i++) {
+        if (i === 0) {
+          resultUrls.push({
+            url: results[i].data.uploadFile[0],
+            type: 1,
+            is_main: 1,
+          });
+        } else {
+          resultUrls.push({
+            url: results[i].data.uploadFile[0],
+            type: 1,
+            is_main: 2,
+          });
+        }
+      }
+
+      console.log("========");
+      console.log(resultUrls);
+      console.log("========");
 
       const result = await createClass({
         variables: {
@@ -68,17 +90,7 @@ export const UseMutationCreateClass = () => {
               date: "ddd",
               remain: 11,
             },
-            imageInput: {
-              // url: resultUrls,
-              url: "gg",
-              type: 1,
-              is_main: 2,
-            },
-            // imageInput: data.images?.map((image) => ({
-            //   url: image.url,
-            //   type: 1, // 클래스는 type 1
-            //   is_main: 2, // 메인이미지: 1 , 서브이미지: 2
-            // })),
+            imageInput: resultUrls,
           },
         },
       });
@@ -87,7 +99,7 @@ export const UseMutationCreateClass = () => {
 
       console.log(result);
       // 클래스 디테일 페이지로 이동
-      const class_id = result.data?.createClass.class_id;
+      const class_id = result.data?.createClass;
       console.log(class_id);
       void router.push(`/classPage/${class_id}`);
     } catch (error) {
@@ -95,28 +107,5 @@ export const UseMutationCreateClass = () => {
     }
   };
 
-  const onChangeFile =
-    (index: number) => async (event: ChangeEvent<HTMLInputElement>) => {
-      const file = event.target.files?.[0];
-      if (!file) return;
-      console.log(file);
-
-      // 2. 임시URL 생성 => (진짜URL - 다른 브라우저에서도 접근 가능)
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = (event) => {
-        if (typeof event.target?.result === "string") {
-          console.log(event.target?.result);
-
-          const tempUrls = [...imageUrls];
-          tempUrls[index] = event.target?.result;
-          setImageUrls(tempUrls);
-
-          const tempFiles = [...files];
-          tempFiles[index] = file;
-          setFiles(tempFiles);
-        }
-      };
-    };
-  return { onClickClassSubmit, onChangeFile };
+  return { onClickClassSubmit, fileList, setFileList };
 };

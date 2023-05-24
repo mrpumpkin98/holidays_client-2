@@ -64,6 +64,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
 
   const client = new ApolloClient({
     link: ApolloLink.from([errorLink, uploadLink]),
+    // "X-Apollo-Operation-Name": true,
     cache: GLOBAL_STATE,
   });
 
