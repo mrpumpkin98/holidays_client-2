@@ -1,41 +1,13 @@
 import { useState } from "react";
 import * as S from "./proposalClass.styles";
-
-const initialPremiumPost = {
-  src: "/classPage/list.png",
-  title: "클래스 이름",
-  user: "생성자 이름",
-  content: "관절을 튼튼하게 도와주는 관절 운동...",
-  price: "55,000원",
-};
-
-const initialPremiumPosts = Array(3).fill(initialPremiumPost);
-
-// 리스트
-const PremiumPost = ({ post }: any) => (
-  <S.PremiumPosts>
-    <S.PremiumPostBody>
-      <S.PremiumTemplate>
-        <S.PremiumPostImg src={post.src} />
-      </S.PremiumTemplate>
-      <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
-      <S.PremiumPostContent>
-        <S.PremiumPostInfo>
-          <S.PremiumUser>{post.user}</S.PremiumUser>
-          <S.PremiumAvatarContentTie>
-            <S.PremiumContent>{post.content}</S.PremiumContent>
-          </S.PremiumAvatarContentTie>
-        </S.PremiumPostInfo>
-        <S.PremiumPriceTie>
-          <S.PremiumPrice>{post.price}</S.PremiumPrice>
-        </S.PremiumPriceTie>
-      </S.PremiumPostContent>
-    </S.PremiumPostBody>
-  </S.PremiumPosts>
-);
+import { useQuery } from "@apollo/client";
+import { FETCH_RESERVATIONS_OF_USER } from "../../../commons/hooks/useQueries/class/UseQueryFetchReservationsOfUser";
+import { Money } from "../../../../commons/libraries/utils";
 
 export default function MypagePoint() {
   const [Contents, setContents] = useState(false);
+  const { data, refetch } = useQuery(FETCH_RESERVATIONS_OF_USER);
+
   return (
     <S.Wrapper>
       {Contents ? (
@@ -60,10 +32,43 @@ export default function MypagePoint() {
           </S.ListNameIconWrapper>
           <S.Line />
           <S.PremiumWrapper>
-            {initialPremiumPosts.map((post: any, index: any) => (
-              <div key={index}>
-                <PremiumPost post={post} />
-              </div>
+            {data?.fetchReservationsOfUser.map((post: any, index: any) => (
+              <S.Posts key={index}>
+                <S.PremiumPosts>
+                  <S.PremiumPostBody>
+                    <S.PremiumTemplate>
+                      <S.PremiumPostImg src="/classPage/list.png" />
+                    </S.PremiumTemplate>
+                    <S.PremiumPostContent>
+                      <S.PremiumPostTitle>
+                        {post.class_.title}
+                      </S.PremiumPostTitle>
+                      <S.PremiumPostInfo>
+                        <S.PremiumUser>
+                          생성자명 :{" "}
+                          <S.TextColor>{post.user_.name}</S.TextColor>
+                        </S.PremiumUser>
+                        <S.PremiumAvatarContentTie>
+                          <S.PremiumContent>
+                            신청날짜 : {post.res_date}
+                          </S.PremiumContent>
+                          <S.PremiumContent>
+                            신청인원 : {post.personnel}명
+                          </S.PremiumContent>
+                          <S.PremiumContent>
+                            예약승인 : <S.TextColor>{post.status}</S.TextColor>
+                          </S.PremiumContent>
+                        </S.PremiumAvatarContentTie>
+                      </S.PremiumPostInfo>
+                    </S.PremiumPostContent>
+                    <S.PremiumPriceTie>
+                      <S.PremiumPrice>
+                        금액 : {Money(post.class_.price * post.personnel)}
+                      </S.PremiumPrice>
+                    </S.PremiumPriceTie>
+                  </S.PremiumPostBody>
+                </S.PremiumPosts>
+              </S.Posts>
             ))}
           </S.PremiumWrapper>
         </>

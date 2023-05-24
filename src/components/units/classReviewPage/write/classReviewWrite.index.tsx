@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
-import { UseMutationClassReview } from "../../../commons/hooks/useMutations/class/useMutationReview";
+import {
+  UseMutationClassReview,
+  UseMutationClassReviewSubmit,
+} from "../../../commons/hooks/useMutations/class/useMutationReview";
 import * as S from "./classReviewWrite.styles";
 import {
   IClassReviewWriteProps,
@@ -9,15 +12,22 @@ import {
 import { useState } from "react";
 
 export default function ClassReviewWrite(props: IClassReviewWriteProps) {
-  const [grade, setGrade] = useState<number>(0);
+  // 수정 시 별점 default 값 보여주기
+  const [grade, setGrade] = useState<number>(
+    props.isEdit ? props.el?.grade || 0 : 0
+  );
 
   // 등록
-  const { onClickWrite, onClickUpdate } = UseMutationClassReview();
+  const { onClickWrite, onClickUpdate } = UseMutationClassReviewSubmit(
+    props.setIsEdit
+  );
 
   const { register, handleSubmit, setValue } = useForm<IFormData>({
     defaultValues: {
-      content: props.isEdit ? props.el?.content : "", // 초기값 설정
-      grade: props.isEdit ? props.el?.grade : 0, // 초기값 설정
+      content: props.isEdit ? props.el?.content : "",
+      grade: props.isEdit ? props.el?.grade : 0,
+      cr_id: props.el?.cr_id,
+      // grade: 3,
     },
     mode: "onChange",
   });
@@ -30,16 +40,18 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
     if (!props.isEdit) {
       await onClickWrite(value, grade);
     } else {
-      await onClickUpdate(value);
+      await onClickUpdate(value, grade);
     }
 
     setGrade(0);
-
-    setValue("content", ""); // content 필드 초기화
+    setValue("content", "");
   };
+
+  console.log("props.isEdit", props.isEdit);
 
   return (
     <>
+      asdfasfasfasfasf
       <S.Wrapper>
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <S.Wrapper_body>
@@ -58,7 +70,6 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
               <S.TextArea7
                 rows={10}
                 maxLength={300}
-                // value=
                 placeholder="후기를 작성해주세요"
                 {...register("content")}
               />
@@ -71,7 +82,7 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
               </S.ButtonWrapper>
             </S.ReviewBox>
           </S.Wrapper_body>
-          <S.Error>에러</S.Error>
+          {/* <S.Error>에러</S.Error> */}
         </form>
       </S.Wrapper>
     </>

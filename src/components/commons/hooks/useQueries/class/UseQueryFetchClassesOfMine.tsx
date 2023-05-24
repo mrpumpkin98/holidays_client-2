@@ -10,6 +10,7 @@ export const FECTCH_CLASS_OF_MINE = gql`
       total_time
       address
       address_detail
+      is_ad
       url
     }
   }

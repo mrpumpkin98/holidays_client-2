@@ -13,15 +13,16 @@ const dropdownOverlayStyle = {
 const buttonStyle = {
   marginLeft: "14px",
   cursor: "pointer",
-  fontSize: "14px",
+  fontSize: "10px",
   fontWeight: 700,
   backgroundColor: "#f28316",
-  width: "90px",
-  height: "36px",
+  width: "100px",
+  height: "40px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   borderRadius: "4px",
+  border: "none",
   color: "#ffffff",
   ":hover": {
     backgroundColor: "#e97100",
@@ -34,13 +35,21 @@ const DropdownWriting: React.FC = () => {
   const { data, refetch } = useQuery(FETCH_LOGIN_USER);
   const [logout] = useMutation(LOGOUT);
 
-  const handleMyPageClick = (event: any) => {
+  const handleMyPageWrite = (event: any) => {
     event.preventDefault();
     router.push("/classPage/write");
   };
 
-  const handleLogOutClick = (event: any) => {
+  const handlePaymentPage = (event: any) => {
     router.push("/paymentPage");
+  };
+
+  const handleCommunityPage = (event: any) => {
+    router.push("/communityPage/write");
+  };
+
+  const handleReservationPage = (event: any) => {
+    router.push("/myPage/reservation/");
   };
 
   const items: MenuProps["items"] = [
@@ -50,7 +59,7 @@ const DropdownWriting: React.FC = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          onClick={handleMyPageClick}
+          onClick={handleMyPageWrite}
           style={{ fontSize: "14px", fontWeight: 500 }}
         >
           클래스 생성하기
@@ -63,7 +72,7 @@ const DropdownWriting: React.FC = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          onClick={handleLogOutClick}
+          onClick={handlePaymentPage}
           style={{ fontSize: "14px", fontWeight: 500 }}
         >
           클래스 광고하기
@@ -76,7 +85,7 @@ const DropdownWriting: React.FC = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          onClick={handleLogOutClick}
+          onClick={handleCommunityPage}
           style={{ fontSize: "14px", fontWeight: 500 }}
         >
           사랑방 글쓰기
@@ -89,7 +98,7 @@ const DropdownWriting: React.FC = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          onClick={handleLogOutClick}
+          onClick={handleReservationPage}
           style={{ fontSize: "14px", fontWeight: 500 }}
         >
           예약 관리
@@ -104,7 +113,7 @@ const DropdownWriting: React.FC = () => {
       placement="bottom"
       overlayStyle={dropdownOverlayStyle}
     >
-      <Button style={buttonStyle} />
+      <Button style={buttonStyle}>글쓰기</Button>
     </Dropdown>
   );
 };
