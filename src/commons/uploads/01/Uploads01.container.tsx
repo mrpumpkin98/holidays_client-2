@@ -18,12 +18,12 @@ export default function Uploads01(props: IUploads01Props): JSX.Element {
   const onChangeFile = async (
     event: ChangeEvent<HTMLInputElement>
   ): Promise<void> => {
-    const file = event.target.files?.[0];
-    const isValid = checkValidationImage(file);
+    const files = event.target.files?.[0];
+    const isValid = checkValidationImage(files);
     if (!isValid) return;
 
     try {
-      const result = await uploadFile({ variables: { file } });
+      const result = await uploadFile({ variables: { files } });
       props.onChangeFileUrls(result.data.uploadFile.url, props.index);
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });

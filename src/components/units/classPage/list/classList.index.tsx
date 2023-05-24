@@ -15,17 +15,6 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
 import { FETCH_CLASSES_AD } from "../../../commons/hooks/useQueries/class/UseQueryFetchClassesAd";
 
-const initialPremiumPost = {
-  src: "/classPage/list.png",
-  title: "백세인생 관절운동",
-  address: "서울시 / 구로구",
-  content:
-    "관절을 튼튼하게 도와주는 관절 운동 클래스 입니다!! 남녀노소 즐길 수 있어요",
-  price: "55,000원",
-};
-
-const initialPremiumPosts = Array(2).fill(initialPremiumPost);
-
 export default function StaticRoutingPage() {
   const router = useRouter();
 

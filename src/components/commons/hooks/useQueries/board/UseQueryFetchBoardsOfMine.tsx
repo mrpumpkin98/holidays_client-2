@@ -7,9 +7,7 @@ export const FECTCH_BOARDS_OF_MINE = gql`
       title
       content
       createdAt
-      user_ {
-        name
-      }
+      name
     }
   }
 `;

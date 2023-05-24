@@ -41,7 +41,7 @@ export default function ProposalClass() {
                         <S.PremiumPostImg src="/classPage/list.png" />
                       </S.PremiumTemplate>
                       <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
-                      <S.PremiumUser>{post.user_.name}</S.PremiumUser>
+                      <S.PremiumUser>{post.name}</S.PremiumUser>
                       <S.PremiumDate>
                         {formatDateString(post.createdAt)}
                       </S.PremiumDate>
