@@ -109,3 +109,53 @@ export const FindButton = styled.button`
     height: 6vh;
   }
 `;
+
+export const VerifyWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0px 10px 0px;
+`;
+
+export const VerifyNumber = styled.input`
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  font-size: 0.8rem;
+  margin-right: 10px;
+  border: none;
+  background: #f5f5f5;
+  width: calc(100% / 2.7);
+`;
+
+export const VerifyButton = styled.button`
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: calc(100% / 3);
+  cursor: pointer;
+  &:hover {
+    background: orange;
+    color: white;
+  }
+`;
+
+export const VerifyFinished = styled.div`
+  font-size: 0.7rem;
+  color: #d49438;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+`;
+
+export const Error = styled.div`
+  font-size: 0.7rem;
+  color: red;
+  margin-left: 10vw;
+  margin-top: -3vh;
+  margin-bottom: 2vh;
+`;

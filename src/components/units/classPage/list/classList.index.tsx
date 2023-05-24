@@ -15,6 +15,26 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
 import { FETCH_CLASSES_AD } from "../../../commons/hooks/useQueries/class/UseQueryFetchClassesAd";
 
+const initialPremiumPost = {
+  src: "/classPage/list.png",
+  title: "백세인생 관절운동",
+  address: "서울시 / 구로구",
+  content:
+    "관절을 튼튼하게 도와주는 관절 운동 클래스 입니다!! 남녀노소 즐길 수 있어요",
+  price: "55,000원",
+};
+
+const initialPremiumPosts = Array(2).fill(initialPremiumPost);
+
+interface PostType {
+  class_id: number;
+  title: string;
+  content_summary: string;
+  address: string;
+  total_time: string;
+  price: number;
+}
+
 export default function StaticRoutingPage() {
   const router = useRouter();
 
@@ -23,6 +43,8 @@ export default function StaticRoutingPage() {
   const selectedRegion = useRecoilValue(selectedRegionState);
   const selectServiceRegion = useRecoilValue(selectService);
   const [writer, setWriter] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
 
   const addressCategory = selectedRegion === "지역 전체" ? "" : selectedRegion;
   const category =
@@ -53,8 +75,6 @@ export default function StaticRoutingPage() {
   //  서비스 모달기능
   //////////////////////////////////////////////////////////////
 
-  const [showModal, setShowModal] = useState(false);
-
   const handleModalOpen = (): void => {
     setShowModal(true);
   };
@@ -66,8 +86,6 @@ export default function StaticRoutingPage() {
   ///////////////////////////////////////////////////////////////
   //  지역 모달기능
   //////////////////////////////////////////////////////////////
-
-  const [showModal2, setShowModal2] = useState(false);
 
   const handleModalOpen2 = (): void => {
     setShowModal2(true);
@@ -91,7 +109,7 @@ export default function StaticRoutingPage() {
   //////////////////////////////////////////////////////////////
 
   const onLoadMore = (): void => {
-    if (data === undefined) return;
+    if (data === undefined || data?.fetchClasses === undefined) return;
     void fetchMore({
       variables: {
         page: Math.ceil((data?.fetchClasses.length ?? 10) / 10) + 1,
@@ -146,7 +164,7 @@ export default function StaticRoutingPage() {
         <S.PremiumAD>
           <S.Title>프리미엄 AD</S.Title>
           <S.PremiumWrapper>
-            {AdData?.fetchClassesAd.map((post: any, index: any) => (
+            {AdData?.fetchClassesAd.map((post: any, index: number) => (
               <div key={index}>
                 <S.PremiumPosts>
                   <S.PremiumPostBody>
@@ -197,9 +215,12 @@ export default function StaticRoutingPage() {
             hasMore={true}
             useWindow={true}
           >
-            {data?.fetchClasses.map((post: any, index: any) => (
+            {data?.fetchClasses.map((post: any, index: number) => (
               <div key={index}>
-                <S.Posts id={post.class_id} onClick={onClickSubmit}>
+                <S.Posts
+                  id={post.class_id}
+                  // onClick={onClickSubmit}
+                >
                   <S.PostBody>
                     <S.PostContent>
                       <S.PostTitle>{post.title}</S.PostTitle>

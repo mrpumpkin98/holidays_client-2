@@ -1,9 +1,24 @@
+import { gql, useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { UseMutationCreateUser } from "../../commons/hooks/useMutations/signup/UseMutationCreateUser";
+import { CHECK_PHONE_TOKEN } from "../../commons/hooks/useMutations/verify/checkPhoneToken";
+import { GET_TOKEN_PHONE } from "../../commons/hooks/useMutations/verify/getTokenPhone";
 import * as S from "./signUp.styles";
 import { SignUpSchema } from "./signUp.validation";
+
+export const GET_TOKEN_EMAIL = gql`
+  mutation getTokenEmail($email: String!, $method: String!) {
+    getTokenEmail(email: $email, method: $method)
+  }
+`;
+
+export const CHECK_EMAIL_TOKEN = gql`
+  mutation checkEmailToken($email: String!, $token: String!) {
+    checkEmailToken(email: $email, token: $token)
+  }
+`;
 
 interface IFormSignUpData {
   email: string;
@@ -15,32 +30,156 @@ interface IFormSignUpData {
 }
 
 export default function SignUp(): JSX.Element {
+  // 이메일 인증 관련 (1. 인증 2. 인증완료 3. 인증번호)
   const [verify, SetVerify] = useState(false);
   const [verified, SetVerified] = useState(false);
+  const [verifyNum, SetVerifyNum] = useState("");
 
-  const onClickVerify = (event: React.MouseEvent<HTMLButtonElement>): void => {
-    SetVerify(true);
+  // 휴대전화 인증 관련 (1. 인증 2. 인증완료 3. 인증번호)
+  const [phoneVerify, SetPhoneVerify] = useState(false);
+  const [phoneVerified, SetPhoneVerified] = useState(false);
+  const [phoneVerifyNum, SetPhoneVerifyNum] = useState("");
+
+  // 뮤테이션
+  const [getTokenEmail] = useMutation(GET_TOKEN_EMAIL);
+  const [checkEmailToken] = useMutation(CHECK_EMAIL_TOKEN);
+  const [getTokenPhone] = useMutation(GET_TOKEN_PHONE);
+  const [checkPhoneToken] = useMutation(CHECK_PHONE_TOKEN);
+
+  // 이메일 인증번호 입력값
+  const onChangeVerifyNum = (event: ChangeEvent<HTMLInputElement>) => {
+    SetVerifyNum(event.target.value);
   };
 
-  const onClickVerified = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ): void => {
-    SetVerified(true);
+  // 휴대전화 인증번호 입력값
+  const onChangePhoneVerifyNum = (event: ChangeEvent<HTMLInputElement>) => {
+    SetPhoneVerifyNum(event.target.value);
   };
 
-  const handleVerify = verify ? onClickVerified : onClickVerify;
+  // useForm 설정
+  const { register, handleSubmit, formState, getValues } =
+    useForm<IFormSignUpData>({
+      resolver: yupResolver(SignUpSchema),
+      mode: "onChange",
+    });
 
-  const { register, handleSubmit, formState } = useForm<IFormSignUpData>({
-    resolver: yupResolver(SignUpSchema),
-    mode: "onChange",
-  });
-
+  // createUser hooks(API) 호출
   const { SubmitCreateUser } = UseMutationCreateUser();
 
-  const onSubmitForm = (data: IFormSignUpData) => {
-    const { passwordCheck, ...value } = data;
-    void SubmitCreateUser(value);
+  // 전화번호, 이메일 입력값이 있는지 여부
+  const usePhoneNum = getValues("phone");
+  const useEmail = getValues("email");
+
+  // 최종 회원가입 요청
+  const onSubmitForm = async (data: IFormSignUpData) => {
+    if (!verified) {
+      alert("이메일을 인증해 주세요");
+      return;
+    }
+
+    if (usePhoneNum && !phoneVerified) {
+      alert("전화번호를 인증해주세요");
+      return;
+    }
+
+    const { email, passwordCheck, phone, ...value } = getValues();
+    await SubmitCreateUser({ ...value, email, phone }); // 이메일, 전화번호 값을 포함하여 전달
   };
+
+  // 이메일 인증번호 발급
+  const onClickVerify = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
+    try {
+      const email = getValues("email");
+      if (!email) return;
+      const result = await getTokenEmail({
+        variables: {
+          email,
+          method: "create",
+        },
+      });
+      console.log(result);
+      SetVerify(true);
+    } catch (error) {
+      // 에러 처리
+      console.log("이메일 인증번호 발급 실패");
+      alert("이메일을 확인해 주세요");
+    }
+  };
+
+  // 이메일 인증번호 확인
+  const onClickVerified = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
+    try {
+      const email = getValues("email");
+      const result = await checkEmailToken({
+        variables: {
+          email,
+          token: verifyNum,
+        },
+      });
+      console.log(result);
+      if (result.data.checkEmailToken) {
+        SetVerified(true);
+      } else {
+        alert("인증번호가 틀렸습니다, 다시 시도해 주세요");
+      }
+    } catch (error) {
+      console.log("번호 인증 실패");
+    }
+  };
+
+  // 인증 요청시 인증번호 확인 버튼으로 변경
+  const handleVerify = verify ? onClickVerified : onClickVerify;
+
+  // 휴대전화 인증번호 발급
+  const onClickPhoneVerify = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ): Promise<void> => {
+    try {
+      const phone = getValues("phone");
+      if (!phone) return;
+      const result = await getTokenPhone({
+        variables: {
+          phone,
+        },
+      });
+      console.log(result);
+      SetPhoneVerify(true);
+    } catch (error) {
+      // 에러 처리
+      console.log("휴대전화 인증번호 발급 실패");
+    }
+  };
+
+  // 휴대전화 인증 확인
+  const onClickPhoneVerified = async () => {
+    try {
+      const phone = getValues("phone");
+      const result = await checkPhoneToken({
+        variables: {
+          phone,
+          token: phoneVerifyNum,
+        },
+      });
+      console.log(result);
+      if (result.data.checkPhoneToken) {
+        SetPhoneVerified(true);
+      } else {
+        alert("인증번호가 틀렸습니다, 다시 시도해 주세요");
+      }
+    } catch (error) {
+      console.log("휴대전화 번호 발급 실패");
+      alert("이메일을 확인해 주세요");
+    }
+  };
+
+  // 인증 요청시 인증번호 확인 버튼으로 변경
+  const handlePhoneVerify = phoneVerify
+    ? onClickPhoneVerified
+    : onClickPhoneVerify;
 
   return (
     <>
@@ -60,8 +199,13 @@ export default function SignUp(): JSX.Element {
                   이메일 인증이 완료되었습니다
                 </S.VerifyFinished>
               ) : (
-                <S.VerifyWrapper>
-                  {verify && <S.VerifyNumber placeholder="인증번호 입력" />}
+                <S.VerifyWrapper style={!useEmail ? { display: "none" } : {}}>
+                  {verify && (
+                    <S.VerifyNumber
+                      placeholder="인증번호 입력"
+                      onChange={onChangeVerifyNum}
+                    />
+                  )}
                   <S.VerifyButton onClick={handleVerify}>
                     {verify ? "인증 완료" : "인증번호 발송"}
                   </S.VerifyButton>
@@ -104,6 +248,25 @@ export default function SignUp(): JSX.Element {
                 {...register("phone")}
                 placeholder="- 없이 휴대폰 번호를 입력해 주세요"
               />
+              {phoneVerified ? (
+                <S.VerifyFinished>
+                  전화번호 인증이 완료되었습니다
+                </S.VerifyFinished>
+              ) : (
+                <S.VerifyWrapper
+                  style={!usePhoneNum ? { display: "none" } : {}}
+                >
+                  {phoneVerify && (
+                    <S.VerifyNumber
+                      placeholder="인증번호 입력"
+                      onChange={onChangePhoneVerifyNum}
+                    />
+                  )}
+                  <S.VerifyButton onClick={handlePhoneVerify}>
+                    {phoneVerify ? "인증 완료" : "인증번호 발송"}
+                  </S.VerifyButton>
+                </S.VerifyWrapper>
+              )}
             </S.InputWrapper>
             <S.Errors>{formState.errors.phone?.message}</S.Errors>
             <S.InputWrapper>
