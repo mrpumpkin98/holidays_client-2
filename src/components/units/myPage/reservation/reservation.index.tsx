@@ -1,51 +1,25 @@
 import { useState } from "react";
 import * as S from "./reservation.styles";
-
-const initialPremiumPost = {
-  src: "/classPage/list.png",
-  title: "사랑방 게시물 제목",
-  date: "2023.5.17",
-  content: "1",
-  now: "10",
-  user: "신재욱",
-};
-
-const initialPremiumPosts = Array(3).fill(initialPremiumPost);
-
-// 리스트
-const PremiumPost = ({ post }: any) => (
-  <S.PremiumPosts>
-    <S.PremiumPostBody>
-      <S.PremiumTemplate>
-        <S.PremiumPostImg src={post.src} />
-      </S.PremiumTemplate>
-      <S.PremiumPostContent>
-        <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
-        <S.PremiumUserTie>
-          <S.PremiumUser>
-            신청자명 : <S.TextColor>{post.user}</S.TextColor>
-          </S.PremiumUser>
-        </S.PremiumUserTie>
-        <S.PremiumPostInfo>
-          <S.PremiumDate>신청날짜 : {post.date}</S.PremiumDate>
-          <S.PremiumAvatarContentTie>
-            <S.PremiumContent>
-              신청인원 : <S.TextColor>{post.content}</S.TextColor>명
-            </S.PremiumContent>
-            <S.PremiumContent>신청현황 : {post.now}명</S.PremiumContent>
-          </S.PremiumAvatarContentTie>
-        </S.PremiumPostInfo>
-      </S.PremiumPostContent>
-      <S.ButtonTie>
-        <S.Approve>승인</S.Approve>
-        <S.Cancel>취소</S.Cancel>
-      </S.ButtonTie>
-    </S.PremiumPostBody>
-  </S.PremiumPosts>
-);
+import { FETCH_RESERVATIONS_OF_CLASS } from "../../../commons/hooks/useQueries/class/UseQueryFetchReservationsOfClass";
+import { useMutation, useQuery } from "@apollo/client";
+import { UPDATE_RESERVATION } from "../../../commons/hooks/useMutations/class/useMutationUpdateReservation";
 
 export default function Reservation() {
   const [Contents, setContents] = useState(false);
+  const [rse_id, setRse_id] = useState();
+  const { data, refetch } = useQuery(FETCH_RESERVATIONS_OF_CLASS);
+  const [updateReservation] = useMutation(UPDATE_RESERVATION);
+
+  const handleUpdateReservation = (event: any) => {
+    setRse_id(event.currentTarget.id); // rse_id 업데이트
+    updateReservation({
+      variables: {
+        rse_id: String(event.currentTarget.id),
+      },
+      refetchQueries: [{ query: FETCH_RESERVATIONS_OF_CLASS }],
+    });
+    console.log(event.currentTarget.id);
+  };
   return (
     <S.Wrapper>
       {Contents ? (
@@ -70,9 +44,44 @@ export default function Reservation() {
           </S.ListNameIconWrapper>
           <S.Line />
           <S.PremiumWrapper>
-            {initialPremiumPosts.map((post: any, index: any) => (
-              <div key={index}>
-                <PremiumPost post={post} />
+            {data?.fetchReservationsOfClass.map((post: any, index: any) => (
+              <div key={post.res_id}>
+                <S.PremiumPosts>
+                  <S.PremiumPostBody>
+                    <S.PremiumTemplate>
+                      <S.PremiumPostImg src="/classPage/list.png" />
+                    </S.PremiumTemplate>
+                    <S.PremiumPostContent>
+                      <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
+                      <S.PremiumUserTie>
+                        <S.PremiumUser>
+                          신청자명 : <S.TextColor>{post.name}</S.TextColor>
+                        </S.PremiumUser>
+                      </S.PremiumUserTie>
+                      <S.PremiumPostInfo>
+                        <S.PremiumDate>신청날짜 : {post.date}</S.PremiumDate>
+                        <S.PremiumAvatarContentTie>
+                          <S.PremiumContent>
+                            신청인원 :{" "}
+                            <S.TextColor>{post.personnel}</S.TextColor>명
+                          </S.PremiumContent>
+                          <S.PremiumContent>
+                            잔여인원 : {post.remain}명
+                          </S.PremiumContent>
+                        </S.PremiumAvatarContentTie>
+                      </S.PremiumPostInfo>
+                    </S.PremiumPostContent>
+                    <S.ButtonTie>
+                      <S.Approve
+                        id={post.res_id}
+                        onClick={handleUpdateReservation}
+                      >
+                        승인
+                      </S.Approve>
+                      <S.Cancel>취소</S.Cancel>
+                    </S.ButtonTie>
+                  </S.PremiumPostBody>
+                </S.PremiumPosts>
               </div>
             ))}
           </S.PremiumWrapper>

@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   margin: auto;
   width: 830px;
   margin-top: 80px;
+  margin-bottom: 350px;
   @media ${tablet} {
     width: 90vw;
     flex-direction: column;
@@ -105,17 +106,7 @@ export const Title = styled.div`
 `;
 
 export const PremiumWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  animation: ${SlideBottom} 0.7s ease-in-out both;
-  margin-bottom: 300px;
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border-collapse: collapse;
-  padding: 10px;
   @media ${tablet} {
     flex-direction: column;
     flex-wrap: nowrap;
@@ -123,23 +114,26 @@ export const PremiumWrapper = styled.div`
     height: 100%;
     padding: 0px;
   }
+  margin-bottom: 10px;
 `;
 
 export const PremiumPosts = styled.div`
-  margin-bottom: 50px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 `;
 
 export const PremiumPostBody = styled.div`
+  width: 260px;
   display: flex;
   flex-direction: column;
 `;
 
 export const PremiumTemplate = styled.article`
   width: 100%;
-  height: 250px;
-  border-radius: 10px;
   overflow: hidden;
+  border-radius: 4px;
   margin-bottom: 7px;
 `;
 
@@ -160,7 +154,9 @@ export const PremiumPostTitle = styled.div`
 
 export const PremiumPostContent = styled.div``;
 
-export const PremiumPostInfo = styled.div``;
+export const PremiumPostInfo = styled.div`
+  height: 45px;
+`;
 
 export const PremiumUserName = styled.div`
   text-align: end;
@@ -193,7 +189,7 @@ export const ButtonTie = styled.div`
 `;
 
 export const AdButton = styled.button`
-  width: 180px;
+  width: 120px;
   height: 45px;
   cursor: pointer;
   font-size: 15px;
@@ -205,10 +201,21 @@ export const AdButton = styled.button`
   :hover {
     background-color: #e97100;
   }
+  &.Advertising {
+    width: 120px;
+    height: 45px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    border: none;
+    color: black;
+  }
 `;
 
 export const DeleteButton = styled.button`
-  width: 180px;
+  width: 120px;
   height: 45px;
   cursor: pointer;
   font-size: 15px;

@@ -89,7 +89,7 @@ export const PostBody = styled.div`
 export const Template = styled.article`
   width: 265px;
   height: 177px;
-  border-radius: 10px;
+  border-radius: 4px;
   overflow: hidden;
   margin-bottom: 10px;
 `;
