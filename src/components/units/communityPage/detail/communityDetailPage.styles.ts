@@ -37,6 +37,11 @@ export const Line = styled.div`
   margin-top: 20px;
 `;
 
+export const WrapperContents = styled.div`
+  width: 100%; /* 부모 요소의 너비 설정 */
+  overflow: hidden; /* 이미지가 넘치는 경우를 대비한 영역 제한 설정 */
+`;
+
 export const Contents = styled.div`
   margin-bottom: 30px;
   font-size: 16px;

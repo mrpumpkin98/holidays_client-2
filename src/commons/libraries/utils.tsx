@@ -61,3 +61,5 @@ export const formatDateString = (date: any) => {
     return "Invalid date format.";
   }
 };
+
+export function replaceImageTags(content: any) {}
