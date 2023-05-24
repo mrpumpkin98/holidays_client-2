@@ -1,5 +1,5 @@
 import { UseQueryFetchClassDetail } from "../../../commons/hooks/useQueries/class/useQueryFetchClassDetail";
-import CalendarUI from "../calendar/calendar.index";
+import CalendarUI from "./reservationCalendar/reservationCalendar.index";
 import * as S from "./classDetail.styles";
 import DOMPurify from "dompurify";
 import { useMutationDeleteClass } from "../../../commons/hooks/useMutations/class/useMutationDeleteClass";

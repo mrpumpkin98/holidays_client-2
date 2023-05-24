@@ -83,8 +83,8 @@ export const UseMutationClassReview = () => {
       const result = await updateClassReview({
         variables: {
           updateClassReviewInput: {
-            cr_id: router.query.class_id,
             content: data.content,
+            cr_id: data,
             grade: data.grade,
           },
         },
@@ -111,7 +111,6 @@ export const UseMutationClassReview = () => {
     try {
       const result = await deleteClassReview({
         variables: {
-          // cr_id: ,
           cr_id: data,
         },
         refetchQueries: [

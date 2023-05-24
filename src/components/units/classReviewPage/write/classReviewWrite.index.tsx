@@ -34,8 +34,7 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
     }
 
     setGrade(0);
-
-    setValue("content", ""); // content 필드 초기화
+    setValue("content", "");
   };
 
   return (
@@ -58,7 +57,6 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
               <S.TextArea7
                 rows={10}
                 maxLength={300}
-                // value=
                 placeholder="후기를 작성해주세요"
                 {...register("content")}
               />
