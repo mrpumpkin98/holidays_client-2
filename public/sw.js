@@ -1,11 +1,7 @@
-const { useEffect } = require("react");
+self.addEventListener("install", () => {
+  console.log("service worker installed");
+});
 
-useEffect(() => {
-  if ("serviceWOrker" in navigator) {
-    const registInit = async () => {
-      const registration = await navigator.serviceWorker.register("/sw.js");
-      registration.waiting?.postMessage("SKIP_WAITING");
-    };
-    registInit();
-  }
-}, []);
+self.addEventListener("activate", () => {
+  console.log("service worker activated");
+});
