@@ -217,10 +217,7 @@ export default function StaticRoutingPage() {
           >
             {data?.fetchClasses.map((post: any, index: number) => (
               <div key={index}>
-                <S.Posts
-                  id={post.class_id}
-                  // onClick={onClickSubmit}
-                >
+                <S.Posts id={post.class_id} onClick={onClickSubmit}>
                   <S.PostBody>
                     <S.PostContent>
                       <S.PostTitle>{post.title}</S.PostTitle>

@@ -8,6 +8,7 @@ import type { Dayjs } from "dayjs";
 
 import Modal from "./Modal/modal";
 import Backdrop from "./Modal/Backdrop";
+// import Calendar from "../../../../commons/calendar";
 
 export default function CalendarUI() {
   // 예약하기 버튼 눌렀을 때 뜨는 모달
@@ -97,26 +98,6 @@ export default function CalendarUI() {
       <S.Wrapper>
         {/* ------------ */}
 
-        {/* 예약하기 버튼 눌렀을 때 뜨는 모달 */}
-        {/* {isOpen && (
-          <Modal open={isOpen} onOk={onToggleModal} onCancel={onToggleModal}>
-            <S.Modal_wrapper>
-              <S.Modal_row>
-                <S.RowText>은행명 </S.RowText>
-                <S.RowText2>신한은행</S.RowText2>
-              </S.Modal_row>
-              <S.Modal_row>
-                <S.RowText>예금주 </S.RowText>
-                <S.RowText2>홍길동</S.RowText2>
-              </S.Modal_row>
-              <S.Modal_row>
-                <S.RowText>계좌번호 </S.RowText>
-                <S.RowText2>110 - 485 - 770080</S.RowText2>
-              </S.Modal_row>
-            </S.Modal_wrapper>
-          </Modal>
-        )} */}
-
         {showModal && <Modal onClose={handleModalClose} />}
         {showModal && <Backdrop onClick={handleModalClose} />}
 
@@ -128,14 +109,7 @@ export default function CalendarUI() {
             <S.Text>입력하세요.</S.Text>
           </S.Text>
 
-          {/* <S.Spaced direction="vertical">
-            <S.RangePicker
-              style={{ width: "291px" }}
-              size={size}
-              onChange={onChangeDate}
-            />
-          </S.Spaced> */}
-
+          {/* -----달력------- */}
           <S.Calendar style={wrapperStyle}>
             <Calendar
               fullscreen={false}
@@ -143,6 +117,7 @@ export default function CalendarUI() {
               headerRender={headerRender} // 추가(높이조정)
             />
           </S.Calendar>
+          {/* -----달력------- */}
 
           <S.NumberBox>
             <S.Num>인원</S.Num>
@@ -167,10 +142,8 @@ export default function CalendarUI() {
             <S.Price>₩ 714,065</S.Price>
           </S.Row>
         </S.Contents>
-        {/* <S.BtnWrapper onClick={onToggleModal}>예약하기</S.BtnWrapper> */}
-        <S.BtnWrapper onClick={handleModalOpen}>예약하기</S.BtnWrapper>
 
-        {/* <div>{value.format("YYYY-MM-DD")}</div> */}
+        <S.BtnWrapper onClick={handleModalOpen}>예약하기</S.BtnWrapper>
       </S.Wrapper>
     </>
   );

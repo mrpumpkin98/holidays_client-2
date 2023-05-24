@@ -113,8 +113,13 @@ export default function ClassWrite(props: IClassWriteProps) {
   // --------------------------------------------------------
 
   // 등록
-  const { onClickClassSubmit, fileList, setFileList } =
-    UseMutationCreateClass();
+  const {
+    onClickClassSubmit,
+    fileList,
+    setFileList,
+    selectedDates,
+    setSelectedDates,
+  } = UseMutationCreateClass();
 
   // 수정
   const { onClickClassUpdate } = useMutationUpdateClass();
@@ -283,8 +288,11 @@ export default function ClassWrite(props: IClassWriteProps) {
             />
             {/* <S.Error>{formState.errors.content?.message}</S.Error> */}
 
-            <S.Label>클래스 일정을 선택주해세요</S.Label>
-            <Calendar />
+            <S.Label>클래스 일정을 선택해주세요</S.Label>
+            <Calendar
+              selectedDates={selectedDates}
+              setSelectedDates={setSelectedDates}
+            />
             {/* <S.Error>에러</S.Error> */}
 
             <S.Label>입금 계좌</S.Label>

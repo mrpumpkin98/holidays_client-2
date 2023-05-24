@@ -40,15 +40,24 @@ export const UseMutationCreateClass = () => {
 
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
+  // 달력 //  9:03추가
+  const [selectedDates, setSelectedDates] = useState([]);
+
   // 등록하기 버튼
-  const onClickClassSubmit = async (data: IFormData, address: string) => {
+  const onClickClassSubmit = async (
+    data: IFormData,
+    address: string
+    // formattedDates: string[]
+  ) => {
     try {
+      console.log(selectedDates, "123124123124");
       const results = await Promise.all(
         fileList.map(
           (el) => el && uploadFile({ variables: { files: el.originFileObj } })
         )
       );
 
+      // 이미지
       const resultUrls = [];
       for (let i = 0; i < results.length; i++) {
         if (i === 0) {
@@ -66,6 +75,14 @@ export const UseMutationCreateClass = () => {
         }
       }
 
+      // 달력
+      const classSchedules = [];
+      for (let i = 0; i < selectedDates.length; i++) {
+        classSchedules.push({
+          date: selectedDates[i],
+          remain: Number(data.class_mNum),
+        });
+      }
       console.log("========");
       console.log(resultUrls);
       console.log("========");
@@ -86,10 +103,7 @@ export const UseMutationCreateClass = () => {
             accountNum: data.accountNum,
             accountName: data.accountName,
             bankName: data.bankName,
-            classSchedulesInput: {
-              date: "ddd",
-              remain: 11,
-            },
+            classSchedulesInput: classSchedules,
             imageInput: resultUrls,
           },
         },
@@ -107,5 +121,11 @@ export const UseMutationCreateClass = () => {
     }
   };
 
-  return { onClickClassSubmit, fileList, setFileList };
+  return {
+    onClickClassSubmit,
+    fileList,
+    setFileList,
+    selectedDates,
+    setSelectedDates,
+  };
 };
