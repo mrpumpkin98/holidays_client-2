@@ -2,14 +2,10 @@ import styled from "@emotion/styled";
 import { mobile } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
-  width: 1920px;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media ${mobile} {
-    width: 100vw;
-  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -19,7 +15,8 @@ export const ContentWrapper = styled.div`
   box-shadow: 0px 0px 5px gray;
 
   @media ${mobile} {
-    width: 90vw;
+    width: 95vw;
+    padding-bottom: 3vh;
   }
 `;
 
@@ -33,6 +30,8 @@ export const HeaderTitle = styled.div`
 
   @media ${mobile} {
     font-size: 2rem;
+    padding-top: 5vh;
+    margin-bottom: 5vh;
   }
 `;
 
@@ -43,10 +42,15 @@ export const InputWrapper = styled.div`
   padding-left: 80px;
   padding-right: 80px;
   margin-bottom: 40px;
+
+  @media ${mobile} {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
 `;
 
 export const Label = styled.div`
-  font-size: 24px;
+  font-size: 1.1rem;
   font-weight: 600px;
   margin-bottom: 10px;
 `;
@@ -54,13 +58,13 @@ export const Label = styled.div`
 export const Subtitle = styled.div`
   font-size: 0.7rem;
   color: #888888;
-  margin-bottom: 0px;
+  margin-bottom: 1vh;
 `;
 
 export const SubtitleLine = styled.div`
   width: 100%;
-  border: 0.3px dotted #888888;
-  margin-bottom: 1vh;
+  border: 0.05rem solid #888888;
+  margin-bottom: 3vh;
 `;
 
 export const defaultInput = styled.input`
@@ -69,7 +73,7 @@ export const defaultInput = styled.input`
   padding-top: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
-  font-size: 16px;
+  font-size: 0.8rem;
   border: none;
   background: #f5f5f5;
 `;
@@ -86,7 +90,7 @@ export const VerifyNumber = styled.input`
   padding-top: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
-  font-size: 18px;
+  font-size: 0.8rem;
   margin-right: 10px;
   border: none;
   background: #f5f5f5;
@@ -121,10 +125,11 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const SignUpButton = styled.button`
-  width: 485px;
-  height: 50px;
+  width: 100%;
+  margin-left: 5vw;
+  height: 7vh;
   border: none;
-  font-size: 24px;
+  font-size: 1.14rem;
   border-radius: 5px;
   cursor: pointer;
   &:hover {
@@ -134,18 +139,17 @@ export const SignUpButton = styled.button`
 `;
 
 export const VerifyFinished = styled.div`
-  width: 485px;
-  font-size: 16px;
-  color: orange;
+  font-size: 0.7rem;
+  color: #d49438;
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
+  margin-top: 0.5rem;
 `;
 
 export const Errors = styled.div`
-  margin-left: 5vw;
   font-size: 0.6rem;
   color: red;
-  margin-bottom: 2vh;
-  margin-top: -2vh;
+  position: relative;
+  top: -1.5rem;
+  margin-left: 10vw;
 `;

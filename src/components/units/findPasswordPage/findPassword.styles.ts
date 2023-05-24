@@ -30,6 +30,10 @@ export const HeaderTitle = styled.div`
   justify-content: center;
   padding-top: 50px;
   margin-bottom: 50px;
+
+  @media ${mobile} {
+    font-size: 1.5rem;
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -39,6 +43,12 @@ export const InputWrapper = styled.div`
   padding-left: 80px;
   padding-right: 80px;
   margin-bottom: 40px;
+
+  @media ${mobile} {
+    padding-left: 14vw;
+    padding-right: 14vw;
+    margin-bottom: 5vh;
+  }
 `;
 
 export const Label = styled.div`
@@ -63,7 +73,8 @@ export const defaultInput = styled.input`
   background: #f5f5f5;
 
   @media ${mobile} {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
+    padding: 1vh 0vh 1vh 1vh;
   }
 `;
 
@@ -74,6 +85,11 @@ export const FindButtonWrapper = styled.div`
   width: 100%;
   padding-left: 80px;
   padding-right: 80px;
+
+  @media ${mobile} {
+    padding-left: 14vw;
+    padding-right: 14vw;
+  }
 `;
 
 export const FindButton = styled.button`
@@ -86,5 +102,10 @@ export const FindButton = styled.button`
   &:hover {
     background: orange;
     color: white;
+  }
+
+  @media ${mobile} {
+    font-size: 1.2rem;
+    height: 6vh;
   }
 `;

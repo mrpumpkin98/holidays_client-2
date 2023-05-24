@@ -1,0 +1,22 @@
+{
+  "name": "holidays",
+  "short_name": "holidays",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/mainPage/hobbies.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/mainPage/hobbies.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

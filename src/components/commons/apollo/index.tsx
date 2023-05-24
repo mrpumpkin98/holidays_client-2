@@ -61,8 +61,15 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
 
   const client = new ApolloClient({
     link: ApolloLink.from([errorLink, uploadLink]),
-    "X-Apollo-Operation-Name": true,
     cache: GLOBAL_STATE,
+    defaultOptions: {
+      watchQuery: {
+        fetchPolicy: "no-cache",
+      },
+    },
+    headers: {
+      "X-Apollo-Operation-Name": "true", // 헤더 값을 문자열로 설정해야 함
+    },
   });
 
   // const client = new ApolloClient({

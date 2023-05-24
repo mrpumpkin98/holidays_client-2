@@ -141,19 +141,17 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
           <S.Subtitle
             style={{ textDecoration: "line-through", color: "#868686" }}
           >
-            정상가 50,000 원
+            50,000 원
           </S.Subtitle>
           <S.Subtitle>{">"}</S.Subtitle>
           <S.Subtitle style={{ scale: "1.1", color: "#f5b221" }}>
-            혜택가 15,000 원
+            15,000 원
           </S.Subtitle>
         </S.SubtitleWrapper>
         <S.DivideLine />
         <S.PaymentWrapper>
           <S.PaymentBtn onClick={onClickGeneralPay}>카드결제</S.PaymentBtn>
-          <S.PaymentBtn onClick={onClickKakaoPay}>
-            카카오페이 간편결제
-          </S.PaymentBtn>
+          <S.PaymentBtn onClick={onClickKakaoPay}>카카오 간편결제</S.PaymentBtn>
         </S.PaymentWrapper>
         <S.DivideLine />
         <S.Button className="Cancel" onClick={onClose}>

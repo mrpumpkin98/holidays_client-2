@@ -17,7 +17,7 @@ export const UseMutationLogin = () => {
 
   const [login] = useMutation(LOGIN);
 
-  const { data: qqq } = useQuery(FETCH_LOGIN_USER);
+  const { data } = useQuery(FETCH_LOGIN_USER);
 
   const SubmitLogin = async (data: any) => {
     try {
@@ -41,7 +41,7 @@ export const UseMutationLogin = () => {
       console.log(result);
       console.log(accessToken);
       alert("로그인이 완료되었습니다");
-      void router.push(`/mainPage`);
+      void router.push(`/classPage`);
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
       alert("로그인에 실패했습니다");

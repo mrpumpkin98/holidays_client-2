@@ -57,7 +57,7 @@ export const PaymentBtn = styled.button`
   height: 7vh;
 
   border-radius: 3px;
-  font-size: 1rem;
+  font-size: 0.9rem;
 
   border: none;
 
@@ -70,11 +70,11 @@ export const PaymentBtn = styled.button`
 `;
 
 export const Button = styled.button`
-  width: 7vw;
-  height: 3vh;
+  width: 10vw;
+  height: 5vh;
   border-radius: 3px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 400;
 
   &:hover {
