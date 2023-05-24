@@ -24,13 +24,6 @@ export default function ClassReviewList(props: IClassReviewListProps) {
   console.log(props.data);
   console.log("4====");
 
-  const [isEdit, setIsEdit] = useState(false);
-
-  const handleEditClick = (cr_id: any) => {
-    console.log("cr_id: ", cr_id);
-    setIsEdit(true);
-  };
-
   // 무한스크롤
   const onLoadMore = (): void => {
     if (data === undefined) return;
@@ -68,16 +61,13 @@ export default function ClassReviewList(props: IClassReviewListProps) {
         >
           <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>
             {props.data &&
-              props.data.fetchClassReviews.map((el: IFetchClassReviews) => (
-                <div key={el.cr_id}>
-                  <ClassReviewListEl
-                    el={el}
-                    isEdit={isEdit}
-                    setIsEdit={setIsEdit}
-                    handleEditClick={handleEditClick}
-                  />
-                </div>
-              ))}
+              props.data.fetchClassReviews.map(
+                (el: IFetchClassReviews, index) => (
+                  // <div key={el.cr_id}>
+                  <ClassReviewListEl el={el} index={index} />
+                  // </div>
+                )
+              )}
           </InfiniteScroll>
         </div>
       </S.Wrapper>
