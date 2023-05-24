@@ -21,7 +21,7 @@ export default {
   openGraph: {
     type: "website",
     site_name: "holidays",
-    images: [{ url: "https://example.com/example_square_image.png" }],
+    images: [{ url: "https://example.com/example_square_image.png123123123" }],
   },
   // Dynamic Values
   title: "Page holidays", // 실제 페이지 제목

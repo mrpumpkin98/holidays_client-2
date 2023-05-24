@@ -7,8 +7,19 @@ import { Global } from "@emotion/react";
 import { RecoilRoot } from "recoil";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/commons/layout";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      const registInit = async () => {
+        const registration = await navigator.serviceWorker.register("/sw.js");
+        registration.waiting?.postMessage("SKIP_WAITING");
+      };
+      registInit();
+    }
+  }, []);
+
   return (
     <>
       <DefaultSeo {...SEO} />
