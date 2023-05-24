@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { mobile } from "../../../commons/styles/breakPoints";
+import { mobile, mobileSmall } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -12,6 +12,10 @@ export const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media ${mobileSmall} {
+      width: 98vw;
+    }
   }
 `;
 
@@ -35,7 +39,11 @@ export const HeaderTitle = styled.div`
   margin-bottom: 50px;
   @media ${mobile} {
     width: 100%;
-    font-size: 48px;
+    font-size: 2rem;
+  }
+
+  @media ${mobileSmall} {
+    font-size: 1.5rem;
   }
 `;
 
@@ -58,9 +66,12 @@ export const Label = styled.div`
   font-weight: 600px;
   margin-bottom: 10px;
   @media ${mobile} {
-    font-size: 24px;
+    font-size: 1rem;
     font-weight: 550px;
     margin-bottom: 10px;
+  }
+  @media ${mobileSmall} {
+    font-size: 0.9rem;
   }
 `;
 
@@ -74,6 +85,11 @@ export const defaultInput = styled.input`
   font-size: 16px;
   border: none;
   background: #f5f5f5;
+
+  @media ${mobile} {
+    height: 6vh;
+    font-size: 0.7rem;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -98,6 +114,8 @@ export const LoginButton = styled.button`
   }
   @media ${mobile} {
     width: 89%;
+    height: 6vh;
+    font-size: 1.1rem;
   }
 `;
 
@@ -113,6 +131,14 @@ export const Subtitle = styled.div`
   cursor: pointer;
   &:hover {
     color: orange;
+  }
+
+  @media ${mobile} {
+    font-size: 1rem;
+  }
+
+  @media ${mobileSmall} {
+    font-size: 0.8rem;
   }
 `;
 
@@ -142,6 +168,7 @@ export const SocialNaverWrapper = styled.div`
   }
   @media ${mobile} {
     width: 89%;
+    height: 8vh;
   }
 `;
 
@@ -159,6 +186,7 @@ export const SocialKakaoWrapper = styled.div`
   }
   @media ${mobile} {
     width: 89%;
+    height: 8vh;
   }
 `;
 
@@ -176,6 +204,7 @@ export const SocialGoogleWrapper = styled.div`
   }
   @media ${mobile} {
     width: 89%;
+    height: 8vh;
   }
 `;
 
@@ -183,6 +212,11 @@ export const SocialLoginImage = styled.img`
   width: 36px;
   height: 36px;
   margin-right: 10px;
+
+  @media ${mobile} {
+    width: 7vw;
+    height: 4vh;
+  }
 `;
 
 export const SocialLogin = styled.a`
@@ -194,4 +228,12 @@ export const SocialLogin = styled.a`
   margin-left: 10px;
   color: black;
   text-decoration: none;
+
+  @media ${mobile} {
+    font-size: 1.1rem;
+  }
+
+  @media ${mobileSmall} {
+    font-size: 1rem;
+  }
 `;

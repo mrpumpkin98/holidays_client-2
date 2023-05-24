@@ -1,4 +1,6 @@
 import "../styles/globals.css";
+import { DefaultSeo } from "next-seo";
+import SEO from "../seo.config";
 import type { AppProps } from "next/app";
 import ApolloSetting from "../src/components/commons/apollo";
 import { Global } from "@emotion/react";
@@ -9,6 +11,7 @@ import Layout from "../src/components/commons/layout";
 export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
+      <DefaultSeo {...SEO} />
       <RecoilRoot>
         <ApolloSetting>
           <>

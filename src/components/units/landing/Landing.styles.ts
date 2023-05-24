@@ -369,6 +369,7 @@ export const Content3 = styled.div`
 
   @media ${mobile} {
     font-size: 1.3rem;
+    display: none;
   }
 `;
 
@@ -525,5 +526,7 @@ export const Logo = styled.img`
   margin-bottom: 2vh;
   @media ${mobile} {
     width: 60vw;
+    position: relative;
+    top: 110%;
   }
 `;

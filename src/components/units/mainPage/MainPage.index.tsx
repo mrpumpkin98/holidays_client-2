@@ -1,5 +1,6 @@
 import * as S from "./MainPage.style";
 import { useRouter } from "next/router";
+import { useAuth02 } from "../../commons/hooks/useAuths/useAuth02";
 
 export default function MainPageContainer(): JSX.Element {
   const router = useRouter();
