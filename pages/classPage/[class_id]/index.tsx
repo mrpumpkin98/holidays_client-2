@@ -5,7 +5,7 @@ import ClassReviewList from "../../../src/components/units/classReviewPage/list/
 import ClassReviewWrite from "../../../src/components/units/classReviewPage/write/classReviewWrite.index";
 
 export default function ClassDetailPage() {
-  const { data } = UseQueryFetchClassReview();
+  const { data, fetchMore } = UseQueryFetchClassReview();
   console.log(data);
 
   return (

@@ -7,17 +7,13 @@ import {
 
 // 후기
 export const FETCH_CLASS_REVIEWS = gql`
-  query fetchClassReviews($class_id: String!) {
-    fetchClassReviews(class_id: $class_id) {
+  query fetchClassReviews($class_id: String!, $page: Int = 1) {
+    fetchClassReviews(class_id: $class_id, page: $page) {
       cr_id
-      content
-      grade
-      createdAt
       name
-      # user_ {
-      #   user_id
-      #   name
-      # }
+      grade
+      content
+      createdAt
     }
   }
 `;
@@ -25,15 +21,15 @@ export const FETCH_CLASS_REVIEWS = gql`
 export const UseQueryFetchClassReview = () => {
   const router = useRouter();
 
-  const { data, refetch } = useQuery<
+  const { data, refetch, fetchMore } = useQuery<
     Pick<IQuery, "fetchClassReviews">,
     IQueryFetchClassReviewsArgs
   >(FETCH_CLASS_REVIEWS, {
     variables: {
-      // class_id: router.query.class_id,
       class_id: String(router.query.class_id),
+      page: 1,
     },
   });
 
-  return { data, refetch };
+  return { data, refetch, fetchMore };
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { SizeType } from "antd/es/config-provider/SizeContext";
-import * as S from "./calendar.styles";
+import * as S from "./reservationCalendar.styles";
 import { Calendar, theme } from "antd";
 import type { CalendarMode } from "antd/es/calendar/generateCalendar";
 // import { Modal } from "antd";

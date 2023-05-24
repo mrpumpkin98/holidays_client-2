@@ -14,12 +14,13 @@ import { classWriteSchema } from "./classWrite.validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import dynamic from "next/dynamic";
-// import MultipleDatePicker from "react-multiple-datepicker";
+
 import "react-quill/dist/quill.snow.css";
 import { useMutationUpdateClass } from "../../../commons/hooks/useMutations/class/useMutationUpdateClass";
 import { IClassWriteProps, IFormData } from "./classWrite.types";
 import { useMutationUploadFile } from "../../../commons/hooks/useMutations/class/useMutationUploadFile";
 import ClassImage from "./classWriteImage";
+import Calendar from "../../../commons/calendar";
 
 // 웹 에디터
 const ReactQuill = dynamic(async () => await import("react-quill"), {
@@ -111,16 +112,6 @@ export default function ClassWrite(props: IClassWriteProps) {
 
   // --------------------------------------------------------
 
-  // 달력
-  // const [selectedDates, setSelectedDates] = useState([]);
-
-  // const handleDateSelect = (dates: any) => {
-  //   setSelectedDates(dates);
-  //   console.log(dates);
-  // };
-
-  // --------------------------------------------------------
-
   // 등록
   const { onClickClassSubmit, fileList, setFileList } =
     UseMutationCreateClass();
@@ -208,17 +199,8 @@ export default function ClassWrite(props: IClassWriteProps) {
 
             <S.Label>대표 이미지를 올려주세요</S.Label>
             <ClassImage fileList={fileList} setFileList={setFileList} />
-
-            {/* --------------- */}
-
-            {/* <S.Img_box>
-              <S.Img />
-              <S.Img />
-            </S.Img_box> */}
             {/* <S.Error>에러</S.Error> */}
-            {/* ------- */}
 
-            {/* <S.Error>에러</S.Error> */}
             <S.Wrapper_body_middle>
               <S.Wrapper_body_middle_left>
                 <S.Label>클래스 소요 시간을 입력해주세요</S.Label>
@@ -302,26 +284,9 @@ export default function ClassWrite(props: IClassWriteProps) {
             {/* <S.Error>{formState.errors.content?.message}</S.Error> */}
 
             <S.Label>클래스 일정을 선택주해세요</S.Label>
-            {/* ------------ */}
-
-            {/* 달력 */}
-            {/* <MultipleDatePicker
-              onSubmit={handleDateSelect}
-              minDate={new Date()} // 현재보다 이전 날짜 선택 불가
-              {...register("date")}
-            />
-
-            <S.DatelistWrapper>
-              {selectedDates.map((date) => (
-                <S.Datelist key={date.toISOString()}>
-                  {date.toLocaleDateString()}
-                </S.Datelist>
-              ))}
-            </S.DatelistWrapper> */}
+            <Calendar />
             {/* <S.Error>에러</S.Error> */}
 
-            {/* ------------ */}
-            {/* <S.Error>에러</S.Error> */}
             <S.Label>입금 계좌</S.Label>
             <input
               type="text"

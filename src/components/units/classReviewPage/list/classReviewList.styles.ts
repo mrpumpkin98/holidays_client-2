@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   margin: auto; // 가운데 정렬
   margin-bottom: 70px;
+  /* background-color: pink; */
 `;
 
 export const Wrapper_header = styled.div`
