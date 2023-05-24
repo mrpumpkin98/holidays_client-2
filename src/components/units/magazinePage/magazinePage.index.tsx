@@ -1,12 +1,20 @@
 import { useState } from "react";
+import Backdrop from "../../commons/modals/magazineModal/Backdrop/Backdrop";
+import Modal from "../../commons/modals/magazineModal/Modal/modal";
 
-import Backdrop from "../../../../pages/magazinePage/Backdrop/Backdrop";
-import Modal from "../../../../pages/magazinePage/Modal/modal";
 import * as S from "./magazinePage.styles";
 
 export default function Magazine(): JSX.Element {
   const [showModal, setShowModal] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
   const handleModalOpen = (): void => {
     setShowModal(true);
   };
@@ -25,34 +33,36 @@ export default function Magazine(): JSX.Element {
         <S.Editor>2023. 5 에디터</S.Editor>
         <S.divideLine />
         <S.Body>
-          <S.ContentsLeft>
-            <S.ContentsImageLeft
-              src="/magazinePage/낚시.jpeg"
+          <S.Contents>
+            <S.ImageBox
               onClick={handleModalOpen}
-            />
-            <S.ContentsTextWrapperLeft>
-              <S.ContentsLabelLeft>낚시의 모든 것</S.ContentsLabelLeft>
-              <S.ContentsRemarksLeft>채비부터 포인트까지</S.ContentsRemarksLeft>
-            </S.ContentsTextWrapperLeft>
-          </S.ContentsLeft>
-          <S.ContentsRight>
-            <S.ContentsTextWrapperRight>
-              <S.ContentsLabelRight>시니어모델로 살아가기</S.ContentsLabelRight>
-              <S.ContentsRemarksRight>
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <S.ContentsTextWrapper
+                className={isHovered ? "visible" : "hidden"}
+              >
+                <S.ContentsLabel>낚시의 모든 것</S.ContentsLabel>
+                <S.ContentsRemarks>채비부터 포인트까지</S.ContentsRemarks>
+              </S.ContentsTextWrapper>
+            </S.ImageBox>
+          </S.Contents>
+          <S.Contents>
+            <S.ContentsTextWrapper>
+              <S.ContentsLabel>시니어모델로 살아가기</S.ContentsLabel>
+              <S.ContentsRemarks>
                 시니어 패션이란 어떤 것인가?
-              </S.ContentsRemarksRight>
-            </S.ContentsTextWrapperRight>
-            <S.ContentsImageRight src="/magazinePage/시니어모델.png" />
-          </S.ContentsRight>
-          <S.ContentsLeft>
-            <S.ContentsImageLeft src="/mainPage/매거진메인.png" />
-            <S.ContentsTextWrapperLeft>
-              <S.ContentsLabelLeft>빈센트의 인생 레시피</S.ContentsLabelLeft>
-              <S.ContentsRemarksLeft>
-                연령별 인생 레시피를 맛보다
-              </S.ContentsRemarksLeft>
-            </S.ContentsTextWrapperLeft>
-          </S.ContentsLeft>
+              </S.ContentsRemarks>
+            </S.ContentsTextWrapper>
+            <S.ContentsImage src="/magazinePage/시니어모델.png" />
+          </S.Contents>
+          <S.Contents>
+            <S.ContentsImage src="/mainPage/매거진메인.png" />
+            <S.ContentsTextWrapper>
+              <S.ContentsLabel>빈센트의 인생 레시피</S.ContentsLabel>
+              <S.ContentsRemarks>연령별 인생 레시피를 맛보다</S.ContentsRemarks>
+            </S.ContentsTextWrapper>
+          </S.Contents>
         </S.Body>
         {showModal && <Modal onClose={handleModalClose} />}
         {showModal && <Backdrop onClick={handleModalClose} />}

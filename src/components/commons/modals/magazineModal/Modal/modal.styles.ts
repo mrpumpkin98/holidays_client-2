@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { mobile } from "../src/commons/styles/breakPoints";
+import { mobile } from "../../../../../commons/styles/breakPoints";
 
 export const ModalWrapper = styled.div`
   position: fixed;

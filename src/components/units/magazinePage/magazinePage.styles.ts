@@ -3,7 +3,7 @@ import { mobile } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   /* height: 1000px;  */
-  width: 95vw;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,8 +22,8 @@ export const Header = styled.div`
 `;
 
 export const HeaderLogo = styled.img`
-  width: 270px;
-  height: 50px;
+  width: 25vw;
+  height: 7vh;
   margin-bottom: 10px;
 
   @media ${mobile} {
@@ -72,7 +72,7 @@ export const Body = styled.div`
     padding-bottom: 3rem;
   }
 `;
-export const ContentsLeft = styled.div`
+export const Contents = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-top: 100px;
@@ -84,22 +84,8 @@ export const ContentsLeft = styled.div`
     margin-top: 5vh;
   }
 `;
-export const ContentsRight = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding-left: 50px;
-  padding-right: 50px;
-  margin-top: 100px;
 
-  @media ${mobile} {
-    width: 95vw;
-    padding-left: 0rem;
-    padding-right: 0rem;
-    margin-top: 2rem;
-    justify-content: center;
-  }
-`;
-export const ContentsImageLeft = styled.img`
+export const ContentsImage = styled.img`
   width: 40vw;
   height: 40vh;
   margin-right: 100px;
@@ -119,26 +105,8 @@ export const ContentsImageLeft = styled.img`
     /* padding-right: 10vw; */
   }
 `;
-export const ContentsImageRight = styled.img`
-  width: 25vw;
-  height: 40vh;
-  margin-left: 100px;
-  border-radius: 15px;
-  box-shadow: 0px 0px 10px gray;
-  cursor: pointer;
-  transition: all 0.5s ease-in-out;
-  &:hover {
-    transform: scale(1.01);
-  }
 
-  @media ${mobile} {
-    width: 50vw;
-    height: 70vh;
-    margin-left: 0px;
-    /* margin-right: 23vw; */
-  }
-`;
-export const ContentsTextWrapperLeft = styled.div`
+export const ContentsTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   /* height: 700px; */
@@ -150,31 +118,50 @@ export const ContentsTextWrapperLeft = styled.div`
     display: none;
   }
 `;
-export const ContentsTextWrapperRight = styled.div`
+export const ContentsLabel = styled.div`
+  font-size: 48px;
+  color: #ffffff;
+`;
+export const ContentsRemarks = styled.div`
+  font-size: 36px;
+  margin-top: 20px;
+  font-weight: 335;
+  color: #ffffff;
+`;
+
+export const ImageBox = styled.div`
+  width: 70vw;
+  height: 50vh;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px gray;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.008);
+  }
+  margin-right: 7vw;
+
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding-bottom: 110px;
-  width: 40vw;
+  justify-content: center;
+
+  background-image: url("/magazinePage/낚시.jpeg");
+  background-size: cover;
+
+  .visible {
+    visibility: visible;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hidden {
+    visibility: hidden;
+    transition: opacity 1s ease-in-out;
+  }
 
   @media ${mobile} {
-    display: none;
+    width: 95vw;
+    height: 40vh;
+    padding-left: 0rem;
+    margin-right: 0px;
+    /* padding-right: 10vw; */
   }
-`;
-export const ContentsLabelLeft = styled.div`
-  font-size: 48px;
-`;
-export const ContentsRemarksLeft = styled.div`
-  font-size: 36px;
-  margin-top: 20px;
-  font-weight: 335;
-`;
-export const ContentsLabelRight = styled.div`
-  font-size: 48px;
-`;
-export const ContentsRemarksRight = styled.div`
-  font-size: 36px;
-  margin-top: 20px;
-  font-weight: 335;
 `;

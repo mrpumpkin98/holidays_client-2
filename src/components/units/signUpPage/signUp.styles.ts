@@ -126,7 +126,8 @@ export const ButtonWrapper = styled.div`
 
 export const SignUpButton = styled.button`
   width: 100%;
-  margin-left: 5vw;
+  margin-left: 10vw;
+  margin-right: 10vw;
   height: 7vh;
   border: none;
   font-size: 1.14rem;
