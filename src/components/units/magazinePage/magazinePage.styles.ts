@@ -40,7 +40,7 @@ export const HeaderTitle = styled.div`
   }
 `;
 export const Editor = styled.div`
-  width: 100vw;
+  width: 90vw;
   display: flex;
   justify-content: flex-end;
   margin-top: 30px;
@@ -112,24 +112,25 @@ export const ContentsTextWrapper = styled.div`
   /* height: 700px; */
   justify-content: flex-end;
   padding-bottom: 50px;
-  width: 30vw;
+  width: 50vw;
 
   @media ${mobile} {
-    display: none;
+    /* display: none; */
+    width: 80vw;
   }
 `;
 export const ContentsLabel = styled.div`
-  font-size: 48px;
+  font-size: 2rem;
   color: #ffffff;
 `;
 export const ContentsRemarks = styled.div`
-  font-size: 36px;
-  margin-top: 20px;
+  font-size: 1.5rem;
+  margin-top: 1rem;
   font-weight: 335;
   color: #ffffff;
 `;
 
-export const ImageBox = styled.div`
+export const ImageBox1 = styled.div`
   width: 70vw;
   height: 50vh;
   border-radius: 15px;
@@ -163,5 +164,106 @@ export const ImageBox = styled.div`
     padding-left: 0rem;
     margin-right: 0px;
     /* padding-right: 10vw; */
+  }
+`;
+
+export const ImageBox2 = styled.div`
+  width: 70vw;
+  height: 50vh;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px gray;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.008);
+  }
+  margin-right: 7vw;
+
+  display: flex;
+  justify-content: center;
+
+  background-image: url("/magazinePage/시니어모델.png");
+  background-size: cover;
+
+  .visible {
+    visibility: visible;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hidden {
+    visibility: hidden;
+    transition: opacity 1s ease-in-out;
+  }
+
+  @media ${mobile} {
+    width: 95vw;
+    height: 40vh;
+    padding-left: 0rem;
+    margin-right: 0px;
+    /* padding-right: 10vw; */
+  }
+`;
+
+export const ImageBox3 = styled.div`
+  width: 70vw;
+  height: 50vh;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px gray;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.008);
+  }
+  margin-right: 7vw;
+
+  display: flex;
+  justify-content: center;
+
+  background-image: url("/magazinePage/낚시.jpeg");
+  background-size: cover;
+
+  .visible {
+    visibility: visible;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hidden {
+    visibility: hidden;
+    transition: opacity 1s ease-in-out;
+  }
+
+  @media ${mobile} {
+    width: 95vw;
+    height: 40vh;
+    padding-left: 0rem;
+    margin-right: 0px;
+    /* padding-right: 10vw; */
+  }
+`;
+
+export const ContentsTextWrapper2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* height: 700px; */
+  justify-content: flex-end;
+  padding-bottom: 50px;
+  width: 50vw;
+
+  @media ${mobile} {
+    /* display: none; */
+    width: 80vw;
+  }
+`;
+
+export const ContentsTextWrapper3 = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* height: 700px; */
+  justify-content: flex-end;
+  padding-bottom: 50px;
+  width: 30vw;
+
+  @media ${mobile} {
+    /* display: none; */
   }
 `;

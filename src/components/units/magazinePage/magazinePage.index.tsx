@@ -34,7 +34,7 @@ export default function Magazine(): JSX.Element {
         <S.divideLine />
         <S.Body>
           <S.Contents>
-            <S.ImageBox
+            <S.ImageBox1
               onClick={handleModalOpen}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -45,24 +45,28 @@ export default function Magazine(): JSX.Element {
                 <S.ContentsLabel>낚시의 모든 것</S.ContentsLabel>
                 <S.ContentsRemarks>채비부터 포인트까지</S.ContentsRemarks>
               </S.ContentsTextWrapper>
-            </S.ImageBox>
+            </S.ImageBox1>
           </S.Contents>
           <S.Contents>
-            <S.ContentsTextWrapper>
-              <S.ContentsLabel>시니어모델로 살아가기</S.ContentsLabel>
-              <S.ContentsRemarks>
-                시니어 패션이란 어떤 것인가?
-              </S.ContentsRemarks>
-            </S.ContentsTextWrapper>
-            <S.ContentsImage src="/magazinePage/시니어모델.png" />
+            <S.ImageBox2
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <S.ContentsTextWrapper2
+                className={isHovered ? "visible" : "hidden"}
+              >
+                <S.ContentsLabel>나는 모델이다</S.ContentsLabel>
+                <S.ContentsRemarks>시니어 모델로 살아가기</S.ContentsRemarks>
+              </S.ContentsTextWrapper2>
+            </S.ImageBox2>
           </S.Contents>
-          <S.Contents>
+          {/* <S.Contents>
             <S.ContentsImage src="/mainPage/매거진메인.png" />
             <S.ContentsTextWrapper>
               <S.ContentsLabel>빈센트의 인생 레시피</S.ContentsLabel>
               <S.ContentsRemarks>연령별 인생 레시피를 맛보다</S.ContentsRemarks>
             </S.ContentsTextWrapper>
-          </S.Contents>
+          </S.Contents> */}
         </S.Body>
         {showModal && <Modal onClose={handleModalClose} />}
         {showModal && <Backdrop onClick={handleModalClose} />}
