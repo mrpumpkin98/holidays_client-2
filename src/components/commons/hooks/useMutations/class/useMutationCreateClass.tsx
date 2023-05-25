@@ -5,6 +5,7 @@ import { getFirstTwoChars } from "../../../../../commons/libraries/utils";
 import { ChangeEvent, useState } from "react";
 import { useMutationUploadFile } from "./useMutationUploadFile";
 import { UploadFile } from "antd";
+import { FETCH_CLASSES } from "../../useQueries/class/UseQueryFetchClasses";
 
 export const CREATE_CLASS = gql`
   mutation createClass($createClassInput: CreateClassInput!) {
@@ -107,6 +108,8 @@ export const UseMutationCreateClass = () => {
             imageInput: resultUrls,
           },
         },
+
+        refetchQueries: [{ query: FETCH_CLASSES }],
       });
 
       alert("클래스 등록에 성공하였습니다.");

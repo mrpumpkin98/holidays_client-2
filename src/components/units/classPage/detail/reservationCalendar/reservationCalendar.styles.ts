@@ -106,7 +106,7 @@ export const Calendar = styled.div`
 `;
 
 // 예약하기 버튼
-export const BtnWrapper = styled.div`
+export const BtnWrapper = styled.button`
   background-color: #f28316;
   color: #ffffff;
   font-size: 15px;

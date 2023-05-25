@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { UseMutationWishList } from "../../../commons/hooks/useMutations/class/useMutationWishList";
 import ClassReviewWrite from "../../classReviewPage/write/classReviewWrite.index";
 import SlickPage from "./classDetailSlick";
+import { UseQueryFetchWishLists } from "../../../commons/hooks/useQueries/class/UseQueryFetchWishlists";
 
 // 카카오지도
 declare const window: typeof globalThis & {
@@ -19,6 +20,9 @@ export default function ClassDetail() {
 
   const { data } = UseQueryFetchClassDetail();
   console.log(data, "~~~~~~~~~~~~~~");
+
+  const { data: isPick } = UseQueryFetchWishLists();
+  console.log(isPick?.fetchWishlistOfMine, "@@@@@@@@@@@@@");
 
   // 카카오지도
   useEffect(() => {
@@ -80,15 +84,15 @@ export default function ClassDetail() {
   } = UseMutationWishList();
 
   //  새로고침 시에도 하트 색 유지
-  useEffect(() => {
-    const isWishlistActive =
-      localStorage.getItem("isWishlistActive") === "true";
-    setIsWishlistActive(isWishlistActive);
-  }, []);
+  // useEffect(() => {
+  //   const isWishlistActive =
+  //     localStorage.getItem("isWishlistActive") === "true";
+  //   setIsWishlistActive(isWishlistActive);
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem("isWishlistActive", isWishlistActive.toString());
-  }, [isWishlistActive]);
+  // useEffect(() => {
+  //   localStorage.setItem("isWishlistActive", isWishlistActive.toString());
+  // }, [isWishlistActive]);
 
   // 수정 페이지로 이동
   const onClickMoveToClassEdit = () => {
@@ -118,7 +122,7 @@ export default function ClassDetail() {
             <S.Wrapper_body_header>
               <S.Title>{data?.fetchClassDetail.content_summary}</S.Title>
 
-              {isWishlistActive ? (
+              {isPick?.fetchWishlistOfMine ? (
                 <S.Heart_fill
                   onClick={() =>
                     onClickDeleteWishlist(data?.fetchClassDetail.class_id)
