@@ -121,13 +121,20 @@ export default function CalendarUI() {
 
           <S.NumberBox>
             <S.Num>인원</S.Num>
-            <S.Number
+            {/* <S.Number
               size="large"
               min={1}
               max={100}
               defaultValue={1}
               // onChange={onChangeNumber}
+            /> */}
+            <S.Number
+              type="int"
+              placeholder="인원을 입력해주세요"
+              // {...register("class_mNum")}
+              // defaultValue={props.data?.fetchClassDetail.class_mNum}
             />
+            <S.Number2>명</S.Number2>
           </S.NumberBox>
 
           <S.Row>

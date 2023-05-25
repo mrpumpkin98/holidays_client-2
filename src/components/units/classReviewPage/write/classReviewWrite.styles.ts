@@ -38,6 +38,8 @@ export const { TextArea } = Input;
 
 export const TextArea7 = styled.textarea`
   border: none;
+  padding-top: 10px;
+  padding-left: 16px;
 `;
 
 // export const TextAreaaa = styled(TextArea)`
@@ -66,6 +68,9 @@ export const ReviewWriteBtn = styled.button`
   border: none;
   font-size: 15px;
   font-weight: 700;
+
+  margin-left: 1008px;
+
   cursor: pointer;
 
   :hover {

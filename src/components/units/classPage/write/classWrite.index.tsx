@@ -169,7 +169,7 @@ export default function ClassWrite(props: IClassWriteProps) {
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <S.Wrapper_body>
             <S.Label>카테고리를 선택해주세요</S.Label>
-            <select
+            <S.CustomSelect
               {...register("category")}
               // defaultValue={props.data?.category}
               defaultValue={props.data?.fetchClassDetail.category}
@@ -178,12 +178,11 @@ export default function ClassWrite(props: IClassWriteProps) {
               <option value="여가">여가</option>
               <option value="운동">운동</option>
               <option value="요리">요리</option>
-            </select>
+            </S.CustomSelect>
             {/* <S.Error>{formState.errors.category?.message}</S.Error> */}
 
             <S.Label>클래스 이름을 입력해주세요</S.Label>
-
-            <input
+            <S.TextInput
               type="text"
               placeholder="클래스 이름을 입력해주세요"
               {...register("title")}
@@ -192,7 +191,7 @@ export default function ClassWrite(props: IClassWriteProps) {
             {/* <S.Error>{formState.errors.title?.message}</S.Error> */}
 
             <S.Label>클래스 한줄요약을 입력해주세요</S.Label>
-            <input
+            <S.TextInput
               type="text"
               placeholder="클래스 한줄요약을 입력해주세요"
               {...register("content_summary")}
@@ -202,16 +201,18 @@ export default function ClassWrite(props: IClassWriteProps) {
 
             {/* <S.Error>에러</S.Error> */}
 
-            <S.Label>대표 이미지를 올려주세요</S.Label>
+            <S.Label>
+              대표 이미지를 올려주세요 (최대 5개까지 업로드 가능)
+            </S.Label>
             <ClassImage fileList={fileList} setFileList={setFileList} />
             {/* <S.Error>에러</S.Error> */}
 
             <S.Wrapper_body_middle>
               <S.Wrapper_body_middle_left>
-                <S.Label>클래스 소요 시간을 입력해주세요</S.Label>
+                <S.Label>클래스 소요 시간을 선택해주세요</S.Label>
 
                 {/* <S.Time size="large" onChange={onChangeTime} /> */}
-                <select
+                <S.CustomSelect
                   {...register("total_time")}
                   defaultValue={props.data?.fetchClassDetail.total_time}
                 >
@@ -219,12 +220,12 @@ export default function ClassWrite(props: IClassWriteProps) {
                   <option value="2시간">2시간</option>
                   <option value="3시간">3시간</option>
                   <option value="4시간">4시간</option>
-                </select>
+                </S.CustomSelect>
                 {/* <S.Error>{formState.errors.total_time?.message}</S.Error> */}
               </S.Wrapper_body_middle_left>
               <S.Wrapper_body_middle_right>
                 <S.Label>클래스 최대 인원을 입력해주세요</S.Label>
-                <input
+                <S.TextInput3
                   type="int"
                   placeholder="클래스 최대 인원을 입력해주세요"
                   {...register("class_mNum")}
@@ -234,7 +235,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               </S.Wrapper_body_middle_right>
             </S.Wrapper_body_middle>
             <S.Label>클래스 가격을 입력해주세요</S.Label>
-            <input
+            <S.TextInput
               type="int"
               placeholder="숫자만 입력해주세요"
               {...register("price")}
@@ -249,7 +250,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               <S.Wrapper_body_map_right>
                 <S.Wrapper_body_map_right_top>
                   {/* <S.AddressInput /> */}
-                  <input
+                  <S.TextInput2
                     type="text"
                     readOnly
                     value={
@@ -265,7 +266,7 @@ export default function ClassWrite(props: IClassWriteProps) {
 
                 <S.Wrapper_body_map_right_bottom>
                   <S.AddressDetail_text>상세주소 입력</S.AddressDetail_text>
-                  <input
+                  <S.TextInput3
                     type="text"
                     placeholder="상세주소를 입력해주세요"
                     {...register("address_detail")}
@@ -296,7 +297,7 @@ export default function ClassWrite(props: IClassWriteProps) {
             {/* <S.Error>에러</S.Error> */}
 
             <S.Label>입금 계좌</S.Label>
-            <input
+            <S.TextInput
               type="text"
               placeholder="'-' 빼고 숫자만 입력해주세요."
               {...register("accountNum")}
@@ -307,7 +308,7 @@ export default function ClassWrite(props: IClassWriteProps) {
             <S.BankWrapper>
               <div>
                 <S.Label>예금주</S.Label>
-                <input
+                <S.TextInput3
                   type="text"
                   placeholder="예금주를 작성해주세요"
                   {...register("accountName")}
@@ -318,7 +319,7 @@ export default function ClassWrite(props: IClassWriteProps) {
 
               <div>
                 <S.Label>입금 은행</S.Label>
-                <input
+                <S.TextInput3
                   type="text"
                   placeholder="입금 은행을 작성해주세요"
                   {...register("bankName")}

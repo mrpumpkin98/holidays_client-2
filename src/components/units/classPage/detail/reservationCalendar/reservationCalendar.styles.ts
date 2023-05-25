@@ -41,6 +41,7 @@ export const NumberBox = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  align-items: center;
 
   padding: 0px 0px 20px 0px;
   margin: 10px 0px 30px 0px;
@@ -56,9 +57,17 @@ export const Num = styled.div`
   margin-right: 20px;
 `;
 
-export const Number = styled(InputNumber)`
-  width: 200px;
+export const Number = styled.input`
   margin-bottom: 10px;
+  padding-left: 10px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+`;
+
+export const Number2 = styled.div`
+  font-size: 15px;
+  margin-left: 10px;
+  margin-bottom: 5px;
 `;
 
 export const Row = styled.div`

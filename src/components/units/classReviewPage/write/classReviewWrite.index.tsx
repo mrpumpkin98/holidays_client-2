@@ -73,7 +73,7 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
                 {...register("content")}
               />
               <S.ButtonWrapper>
-                <S.Length>/ 300</S.Length>
+                {/* <S.Length>/ 300</S.Length> */}
 
                 <S.ReviewWriteBtn type="submit">
                   {props.isEdit ? "수정" : "등록"}
