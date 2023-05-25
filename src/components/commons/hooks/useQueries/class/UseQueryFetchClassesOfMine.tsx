@@ -8,6 +8,7 @@ export const FECTCH_CLASS_OF_MINE = gql`
       content_summary
       price
       total_time
+      category
       address
       address_detail
       is_ad

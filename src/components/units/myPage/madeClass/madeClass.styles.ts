@@ -121,17 +121,21 @@ export const PremiumPosts = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  width: 100%;
 `;
 
 export const PremiumPostBody = styled.div`
-  width: 260px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding: 15px;
+`;
+
+export const Card = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 export const PremiumTemplate = styled.article`
-  width: 100%;
   height: 200px;
   overflow: hidden;
   border-radius: 4px;
@@ -151,33 +155,78 @@ export const PremiumPostImg = styled.img`
 export const PremiumPostTitle = styled.div`
   font-weight: 700;
   font-size: 20px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 `;
 
-export const PremiumPostContent = styled.div``;
+export const PremiumPostContent = styled.div`
+  width: 690px;
+  padding: 20px;
+`;
 
-export const PremiumPostInfo = styled.div`
-  height: 45px;
+export const PremiumPostInfo = styled.div``;
+
+export const PremiumUserSummary = styled.div`
+  font-size: 15px;
+  color: rgb(81, 91, 96);
+  margin-bottom: 10px;
+`;
+
+export const Tie = styled.div`
+  display: flex;
+`;
+
+export const PremiumUserCategory = styled.div`
+  width: fit-content;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgb(81, 91, 96);
+  background-color: rgb(254, 249, 243);
+  border: 1px solid rgb(242, 131, 22);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-right: 10px;
+`;
+
+export const PremiumUserTime = styled.div`
+  font-size: 15px;
+  color: rgb(81, 91, 96);
+  margin-bottom: 10px;
 `;
 
 export const PremiumUserName = styled.div`
-  text-align: end;
-  color: #f28316;
-  font-size: 14px;
-  font-weight: 700;
+  margin-bottom: 5px;
+  width: fit-content;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgb(81, 91, 96);
+  background-color: rgb(242, 250, 249);
+  border: 1px solid rgb(0, 150, 136);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 10px;
 `;
 
 export const PremiumAvatarContentTie = styled.div``;
 
 export const PremiumContent = styled.div`
-  font-size: 16px;
   margin-bottom: 5px;
 `;
 
 export const PremiumPriceTie = styled.div``;
 
 export const PremiumPrice = styled.div`
-  text-align: end;
   font-size: 16px;
   font-weight: 700;
   margin: 5px 0px;
@@ -186,13 +235,14 @@ export const PremiumPrice = styled.div`
 export const ButtonTie = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin-top: 8px;
 `;
 
 export const AdButton = styled.button`
   width: 120px;
   height: 45px;
+  margin-top: 40px;
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
@@ -225,4 +275,5 @@ export const DeleteButton = styled.button`
   border-radius: 4px;
   background-color: #f2f2f2;
   border: none;
+  margin-top: 20px;
 `;

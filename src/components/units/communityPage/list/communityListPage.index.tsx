@@ -1,13 +1,20 @@
 import { useRouter } from "next/router";
-import * as S from "./communityListPage.styles";
 import { useQuery } from "@apollo/client";
 import { FECTCH_BOARDS } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoards";
 import { formatDateString } from "../../../../commons/libraries/utils";
+import { MouseEventHandler } from "react";
+
 import InfiniteScroll from "react-infinite-scroller";
+import * as S from "./communityListPage.styles";
 
 export default function communityListPage() {
   const router = useRouter();
   const { data, refetch, fetchMore } = useQuery(FECTCH_BOARDS);
+
+  ///////////////////////////////////////////////////////////////
+  // write 페이지로 이동
+  //////////////////////////////////////////////////////////////
+
   const onClickWrite = () => {
     void router.push("/communityPage/write");
   };
@@ -16,9 +23,11 @@ export default function communityListPage() {
   //  게시물 이동
   //////////////////////////////////////////////////////////////
 
-  const onClickSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
-    router.push(`/communityPage/${event.currentTarget.id}`);
-    console.log(event.currentTarget.id);
+  const onClickSubmit: MouseEventHandler<HTMLDivElement> = (event) => {
+    const target = event.currentTarget;
+    const postId = target.id;
+    router.push(`/communityPage/${postId}`);
+    console.log(postId);
   };
 
   ///////////////////////////////////////////////////////////////

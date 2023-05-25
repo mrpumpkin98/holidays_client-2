@@ -16,6 +16,7 @@ import { UseMutationCreateBoard } from "../../../commons/hooks/useMutations/boar
 import { UseMutationUploadFile } from "../../../commons/hooks/useMutations/uploadFile/UseMutationUploadFile";
 import { FETCH_BOARD_DETAIL } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoardsDetail";
 import dynamic from "next/dynamic";
+import { UploadFile } from "antd";
 
 const ToastEditor = dynamic(
   async () => await import("../../../commons/toastUI"),
@@ -24,34 +25,16 @@ const ToastEditor = dynamic(
   }
 );
 
-interface ProductInput {
-  name: string;
-  productCategoryId: string;
-  description: string;
-  discountRate: number;
-  image: string;
-  price: number;
-  quantity: number;
-  veganLevel: number;
-  option1: string;
-  option2: string;
-  option3: string;
-  option4: string;
-  option5: string;
-  productOption?: {
-    option6?: string;
-    option7?: string;
-    option8?: string;
-    option9?: string;
-    option10?: string;
-    option11?: string;
-  };
-}
+interface ProductInput {}
+
+type EditorInstance = {
+  getInstance: () => { getHTML: () => string };
+};
 
 export default function CommunityWritePage(props: any) {
   const router = useRouter();
-  const [fileUrls, setFileUrls] = useState([""]);
-  const contentsRef = useRef(null);
+  const [fileUrls, setFileUrls] = useState("");
+  const contentsRef = useRef<EditorInstance | null>(null);
   const [createBoard] = UseMutationCreateBoard();
   const [uploadFile] = UseMutationUploadFile();
   const { data } = useQuery(FETCH_BOARD_DETAIL, {
@@ -72,7 +55,8 @@ export default function CommunityWritePage(props: any) {
   };
 
   const onChangeContents = (text: any) => {
-    const editorInstance = contentsRef.current?.getInstance().getHTML();
+    const editorInstance: string =
+      contentsRef.current?.getInstance()?.getHTML() ?? "";
     setContent(text === "<p><br><p>" ? "" : editorInstance);
   };
 
@@ -85,7 +69,7 @@ export default function CommunityWritePage(props: any) {
           content: content,
           imageInput: [
             {
-              url: "테스트",
+              url: fileUrls,
               type: 1,
               is_main: 1,
             },
@@ -93,12 +77,22 @@ export default function CommunityWritePage(props: any) {
         },
       },
     });
-    void router.push("/seller");
-    console.log(result);
+    void router.push(`/communityPage/${result.data?.createBoard}`);
+    console.log(result?.data?.createBoard);
   };
 
   const onClickCancel = () => {
     router.push(`/communityPage`);
+  };
+
+  ///////////////////////////////////////////////////////////////
+  //  이미지 등록
+  //////////////////////////////////////////////////////////////
+
+  const onChangeFileUrls = (fileUrl: string): void => {
+    const newFileUrls = fileUrl;
+    // newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
   };
 
   return (
@@ -119,14 +113,11 @@ export default function CommunityWritePage(props: any) {
         </S.Box>
         <S.ImageWrapper>
           <S.UploadButton>
-            {fileUrls.map((el, index) => (
-              <Uploads01
-                key={uuidv4()}
-                index={index}
-                fileUrl={el}
-                onChangeFileUrls={props.onChangeFileUrls}
-              />
-            ))}
+            <Uploads01
+              key={uuidv4()}
+              fileUrl={fileUrls}
+              onChangeFileUrls={onChangeFileUrls}
+            />
           </S.UploadButton>
         </S.ImageWrapper>
         <S.InputWrapper>

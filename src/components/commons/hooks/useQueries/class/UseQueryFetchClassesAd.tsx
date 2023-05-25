@@ -20,6 +20,7 @@ export const FETCH_CLASSES_AD: any = gql`
       address
       address_detail
       url
+      category
     }
   }
 `;

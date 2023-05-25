@@ -1,10 +1,9 @@
 import { useState } from "react";
-import * as S from "./community.styles";
 import { useQuery } from "@apollo/client";
-import { FECTCH_BOARDS } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoards";
 import { formatDateString } from "../../../../commons/libraries/utils";
 import { FECTCH_BOARDS_OF_MINE } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoardsOfMine";
 import { LoadingOutlined } from "@ant-design/icons";
+import * as S from "./community.styles";
 
 export default function ProposalClass() {
   const [Contents, setContents] = useState(false);

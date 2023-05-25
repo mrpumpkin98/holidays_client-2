@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
-import * as S from "./communityDetailPage.styles";
 import { useQuery } from "@apollo/client";
-import DOMPurify from "dompurify";
 import { FETCH_BOARD_DETAIL } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoardsDetail";
 import { replaceImageTags } from "../../../../commons/libraries/utils";
+import DOMPurify from "dompurify";
+import * as S from "./communityDetailPage.styles";
 
 export default function communityDetailPage() {
   const router = useRouter();
@@ -32,7 +32,7 @@ export default function communityDetailPage() {
           />
         </S.WrapperContents>
         <S.Line />
-        <S.CommentWrite placeholder="댓글을 입력해 주세요" />
+        {/* <S.CommentWrite placeholder="댓글을 입력해 주세요" />
         <S.CommentBox>
           <S.CommentUser>최 팀장</S.CommentUser>
           <S.CommentTime>2023.05.23</S.CommentTime>
@@ -41,7 +41,7 @@ export default function communityDetailPage() {
             올리신 걸 보니..
           </S.CommentContents>
         </S.CommentBox>
-        <S.Line />
+        <S.Line /> */}
       </S.Wrapper>
     </>
   );

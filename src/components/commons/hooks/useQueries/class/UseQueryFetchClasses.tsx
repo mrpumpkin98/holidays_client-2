@@ -22,6 +22,7 @@ export const FETCH_CLASSES: any = gql`
       address
       address_detail
       url
+      category
     }
   }
 `;

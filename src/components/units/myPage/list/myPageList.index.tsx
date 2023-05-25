@@ -1,10 +1,10 @@
 import { useState } from "react";
-import * as S from "./myPageList.styles";
-import Modal1 from "../../../commons/modals/editProFileModal/Modal/modal";
-import Backdrop from "../../../commons/modals/editProFileModal/Backdrop/Backdrop";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import { FETCH_LOGIN_USER } from "../../../commons/hooks/useQueries/user/UseQueryFetchLoginUser";
+import * as S from "./myPageList.styles";
+import Modal1 from "../../../commons/modals/editProFileModal/Modal/modal";
+import Backdrop from "../../../commons/modals/editProFileModal/Backdrop/Backdrop";
 
 export default function StaticRoutingPage() {
   const router = useRouter();

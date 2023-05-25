@@ -5,20 +5,12 @@ import { useRecoilState } from "recoil";
 
 interface ModalProps {
   onClose: () => void;
+  isSelected: boolean;
 }
 
-const regions = [
-  "서비스 전체",
-  "레슨",
-  "홈/리빙",
-  "이벤트",
-  "비즈니스",
-  "디자인/개발",
-  "건강/미용",
-  "기타",
-];
+const regions = ["서비스 전체", "교육", "여가", "운동", "요리", "기타"];
 
-const Modal: React.FC<ModalProps> = ({ onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, children, isSelected }) => {
   const [selectServiceRegion, setSelectServiceRegion] =
     useRecoilState(selectService);
 
