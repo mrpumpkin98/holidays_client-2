@@ -13,11 +13,11 @@ const dropdownOverlayStyle = {
 const buttonStyle = {
   marginLeft: "14px",
   cursor: "pointer",
-  fontSize: "10px",
+  fontSize: "14px",
   fontWeight: 700,
   backgroundColor: "#f28316",
-  width: "100px",
-  height: "40px",
+  width: "90px",
+  height: "36px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -46,10 +46,6 @@ const DropdownWriting: React.FC = () => {
 
   const handleCommunityPage = (event: any) => {
     router.push("/communityPage/write");
-  };
-
-  const handleReservationPage = (event: any) => {
-    router.push("/myPage/reservation/");
   };
 
   const items: MenuProps["items"] = [
@@ -92,19 +88,6 @@ const DropdownWriting: React.FC = () => {
         </a>
       ),
     },
-    {
-      key: "4",
-      label: (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={handleReservationPage}
-          style={{ fontSize: "14px", fontWeight: 500 }}
-        >
-          예약 관리
-        </a>
-      ),
-    },
   ];
 
   return (
@@ -113,7 +96,7 @@ const DropdownWriting: React.FC = () => {
       placement="bottom"
       overlayStyle={dropdownOverlayStyle}
     >
-      <Button style={buttonStyle}>글쓰기</Button>
+      <div style={buttonStyle}>글쓰기</div>
     </Dropdown>
   );
 };

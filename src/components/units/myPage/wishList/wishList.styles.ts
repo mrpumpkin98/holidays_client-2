@@ -102,7 +102,6 @@ export const Title = styled.div`
 export const PremiumWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   animation: ${SlideBottom} 0.7s ease-in-out both;
   margin-bottom: 300px;
   width: 100%;
@@ -116,6 +115,7 @@ export const PremiumWrapper = styled.div`
 export const PremiumPosts = styled.div`
   margin-bottom: 50px;
   cursor: pointer;
+  width: 250px;
 `;
 
 export const PremiumPostBody = styled.div`
@@ -133,6 +133,7 @@ export const PremiumTemplate = styled.article`
 
 export const PremiumPostImg = styled.img`
   width: 100%;
+  height: 250px;
   object-fit: cover;
   transition: all 0.4s ease-in-out;
   :hover {

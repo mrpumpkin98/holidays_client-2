@@ -304,6 +304,7 @@ export const PostTitle = styled.div`
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 5px;
+  padding-left: 3px;
 `;
 
 export const PostContent = styled.div`
@@ -312,7 +313,9 @@ export const PostContent = styled.div`
   padding: 10px;
 `;
 
-export const PostInfo = styled.div``;
+export const PostInfo = styled.div`
+  padding-left: 3px;
+`;
 
 export const Address = styled.div`
   color: #4a4247;
@@ -327,8 +330,27 @@ export const Content = styled.div`
   margin-bottom: 5px;
 `;
 
-export const PriceTie = styled.div``;
+export const PriceTie = styled.div`
+  width: 550px;
+  text-align: end;
+`;
 
 export const Price = styled.div`
-  font-size: 16px;
+  font-size: 15px;
+`;
+
+export const Class = styled.div`
+  width: 5rem;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgb(81, 91, 96);
+  background-color: rgb(254, 249, 243);
+  border: 1px solid rgb(242, 131, 22);
+  padding: 3px 8px;
+  border-radius: 5px;
+  margin-bottom: 6px;
 `;

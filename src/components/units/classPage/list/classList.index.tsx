@@ -15,17 +15,6 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useRouter } from "next/router";
 import { FETCH_CLASSES_AD } from "../../../commons/hooks/useQueries/class/UseQueryFetchClassesAd";
 
-const initialPremiumPost = {
-  src: "/classPage/list.png",
-  title: "백세인생 관절운동",
-  address: "서울시 / 구로구",
-  content:
-    "관절을 튼튼하게 도와주는 관절 운동 클래스 입니다!! 남녀노소 즐길 수 있어요",
-  price: "55,000원",
-};
-
-const initialPremiumPosts = Array(2).fill(initialPremiumPost);
-
 interface PostType {
   class_id: number;
   title: string;
@@ -169,7 +158,7 @@ export default function StaticRoutingPage() {
                 <S.PremiumPosts>
                   <S.PremiumPostBody>
                     <S.PremiumTemplate>
-                      <S.PremiumPostImg src="/classPage/list.png" />
+                      <S.PremiumPostImg src={post.url} />
                     </S.PremiumTemplate>
                     <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
                     <S.PremiumPostContent>
@@ -217,17 +206,13 @@ export default function StaticRoutingPage() {
           >
             {data?.fetchClasses.map((post: any, index: number) => (
               <div key={index}>
-                <S.Posts
-                  id={post.class_id}
-                  // onClick={onClickSubmit}
-                >
+                <S.Posts id={post.class_id} onClick={onClickSubmit}>
                   <S.PostBody>
                     <S.PostContent>
+                      <S.Class>비즈니스</S.Class>
                       <S.PostTitle>{post.title}</S.PostTitle>
                       <S.PostInfo>
-                        <S.AvatarContentTie>
-                          <S.Content>{post.content_summary}</S.Content>
-                        </S.AvatarContentTie>
+                        <S.AvatarContentTie></S.AvatarContentTie>
                         <S.Address>주소 : {post.address}</S.Address>
                         <S.Address>진행시간 : {post.total_time}</S.Address>
                       </S.PostInfo>
@@ -235,7 +220,7 @@ export default function StaticRoutingPage() {
                         <S.Price>{Money(post.price)}</S.Price>
                       </S.PriceTie>
                     </S.PostContent>
-                    <S.PostImg src="/classPage/list.png" />
+                    <S.PostImg src={post.url} />
                   </S.PostBody>
                 </S.Posts>
               </div>

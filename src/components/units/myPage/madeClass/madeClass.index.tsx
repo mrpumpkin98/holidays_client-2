@@ -9,12 +9,14 @@ import { useRouter } from "next/router";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import styled from "@emotion/styled";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function madeClass() {
   const router = useRouter();
 
   const [Contents, setContents] = useState(false);
-  const { data, refetch } = useQuery(FECTCH_CLASS_OF_MINE);
+  const { data, loading, refetch } = useQuery(FECTCH_CLASS_OF_MINE);
   ///////////////////////////////////////////////////////////////
   //  게시물 이동
   //////////////////////////////////////////////////////////////
@@ -37,9 +39,54 @@ export default function madeClass() {
     slidesToScroll: 3,
   };
 
+  const SliderComponent = styled(Slider)`
+    .slick-arrow {
+      width: 40px;
+      height: 40px;
+    }
+
+    .slick-prev {
+      z-index: 999999;
+    }
+
+    .slick-next {
+      z-index: 999999;
+    }
+
+    // --------------
+
+    .slick-next:before,
+    .slick-prev:before {
+      content: "";
+      width: 40px;
+      height: 40px;
+      background-color: #ddd;
+      border-radius: 50%;
+    }
+    .slick-next:before {
+      background-size: 10px;
+      background-image: url("/next.png");
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .slick-prev:before {
+      background-size: 10px;
+      background-image: url("/before.png");
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  `;
+
   return (
     <S.Wrapper>
-      {Contents ? (
+      {loading ? (
+        // 로딩 페이지 또는 대체 이미지를 보여줄 수 있는 JSX를 작성하세요
+        // 예시: <div>로딩 중...</div>
+        <div>
+          <LoadingOutlined />
+        </div>
+      ) : !data || data.fetchClassesOfMine.length === 0 ? (
         <>
           <S.ListNameIconWrapper>
             <S.ListName>내가 만든 클래스</S.ListName>
@@ -61,13 +108,13 @@ export default function madeClass() {
           </S.ListNameIconWrapper>
           <S.Line />
           <S.PremiumWrapper>
-            <Slider {...settings}>
+            <SliderComponent {...settings}>
               {data?.fetchClassesOfMine.map((post: any, index: any) => (
                 <div key={index}>
                   <S.PremiumPosts>
                     <S.PremiumPostBody>
                       <S.PremiumTemplate>
-                        <S.PremiumPostImg src="/myPage/test.png" />
+                        <S.PremiumPostImg src={post.url} />
                       </S.PremiumTemplate>
                       <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
                       <S.PremiumPostContent>
@@ -101,7 +148,7 @@ export default function madeClass() {
                   </S.PremiumPosts>
                 </div>
               ))}
-            </Slider>
+            </SliderComponent>
           </S.PremiumWrapper>
         </>
       )}

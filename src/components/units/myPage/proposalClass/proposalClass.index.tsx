@@ -3,14 +3,21 @@ import * as S from "./proposalClass.styles";
 import { useQuery } from "@apollo/client";
 import { FETCH_RESERVATIONS_OF_USER } from "../../../commons/hooks/useQueries/class/UseQueryFetchReservationsOfUser";
 import { Money } from "../../../../commons/libraries/utils";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function MypagePoint() {
   const [Contents, setContents] = useState(false);
-  const { data, refetch } = useQuery(FETCH_RESERVATIONS_OF_USER);
+  const { data, loading, refetch } = useQuery(FETCH_RESERVATIONS_OF_USER);
 
   return (
     <S.Wrapper>
-      {Contents ? (
+      {loading ? (
+        // 로딩 페이지 또는 대체 이미지를 보여줄 수 있는 JSX를 작성하세요
+        // 예시: <div>로딩 중...</div>
+        <div>
+          <LoadingOutlined />
+        </div>
+      ) : !data || data.fetchReservationsOfUser.length === 0 ? (
         <>
           <S.ListNameIconWrapper>
             <S.ListName>내가 신청한 클래스</S.ListName>
@@ -37,35 +44,24 @@ export default function MypagePoint() {
                 <S.PremiumPosts>
                   <S.PremiumPostBody>
                     <S.PremiumTemplate>
-                      <S.PremiumPostImg src="/classPage/list.png" />
+                      <S.PremiumPostImg src={post.url} />
                     </S.PremiumTemplate>
                     <S.PremiumPostContent>
-                      <S.PremiumPostTitle>
-                        {post.class_.title}
-                      </S.PremiumPostTitle>
+                      <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
                       <S.PremiumPostInfo>
                         <S.PremiumUser>
-                          생성자명 :{" "}
-                          <S.TextColor>{post.user_.name}</S.TextColor>
+                          생성자명 : <S.TextColor>{post.name}</S.TextColor>
                         </S.PremiumUser>
                         <S.PremiumAvatarContentTie>
                           <S.PremiumContent>
-                            신청날짜 : {post.res_date}
+                            신청날짜 : {post.date}
                           </S.PremiumContent>
                           <S.PremiumContent>
                             신청인원 : {post.personnel}명
                           </S.PremiumContent>
-                          <S.PremiumContent>
-                            예약승인 : <S.TextColor>{post.status}</S.TextColor>
-                          </S.PremiumContent>
                         </S.PremiumAvatarContentTie>
                       </S.PremiumPostInfo>
                     </S.PremiumPostContent>
-                    <S.PremiumPriceTie>
-                      <S.PremiumPrice>
-                        금액 : {Money(post.class_.price * post.personnel)}
-                      </S.PremiumPrice>
-                    </S.PremiumPriceTie>
                   </S.PremiumPostBody>
                 </S.PremiumPosts>
               </S.Posts>

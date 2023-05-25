@@ -3,16 +3,23 @@ import * as S from "./wishList.styles";
 import { useQuery } from "@apollo/client";
 import { FECTCH_CLASS_WISHLISTS } from "../../../commons/hooks/useQueries/class/UseQueryFetchWishlists";
 import { Money } from "../../../../commons/libraries/utils";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function WishList() {
   const [Contents, setContents] = useState(false);
-  const { data, refetch } = useQuery(FECTCH_CLASS_WISHLISTS);
+  const { data, loading, refetch } = useQuery(FECTCH_CLASS_WISHLISTS);
   const onClickWrite = () => {
     console.log(data);
   };
   return (
     <S.Wrapper>
-      {Contents ? (
+      {loading ? (
+        // 로딩 페이지 또는 대체 이미지를 보여줄 수 있는 JSX를 작성하세요
+        // 예시: <div>로딩 중...</div>
+        <div>
+          <LoadingOutlined />
+        </div>
+      ) : !data || data.fetchWishlists.length === 0 ? (
         <>
           <S.ListNameIconWrapper>
             <S.ListName>위시리스트 </S.ListName>
@@ -39,7 +46,7 @@ export default function WishList() {
                 <S.PremiumPosts>
                   <S.PremiumPostBody>
                     <S.PremiumTemplate>
-                      <S.PremiumPostImg src="/classPage/list.png" />
+                      <S.PremiumPostImg src={post.url} />
                     </S.PremiumTemplate>
                     <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
                     <S.PremiumPostContent>
