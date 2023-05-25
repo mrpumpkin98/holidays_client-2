@@ -22,11 +22,19 @@ import { useMutationUploadFile } from "../../../commons/hooks/useMutations/class
 import ClassImage from "./classWriteImage";
 import Calendar from "../../../commons/calendar";
 import { useAuth02 } from "../../../commons/hooks/useAuths/useAuth02";
+import { UseMutationUploadFile } from "../../../commons/hooks/useMutations/uploadFile/UseMutationUploadFile";
 
 // 웹 에디터
 const ReactQuill = dynamic(async () => await import("react-quill"), {
   ssr: false,
 });
+
+const ToastEditor = dynamic(
+  async () => await import("../../../commons/toastUI"),
+  {
+    ssr: false,
+  }
+);
 
 // 카카오지도
 declare const window: typeof globalThis & {
@@ -39,6 +47,11 @@ export default function ClassWrite(props: IClassWriteProps) {
 
   // 우편주소(카카오지도)
   const [fulladdress, setFulladdress] = useState("");
+
+  // 세부내용(ToastEditor)
+  const contentsRef = useRef(null);
+  const [content, setContent] = useState("");
+  const [uploadFile] = UseMutationUploadFile();
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -144,13 +157,20 @@ export default function ClassWrite(props: IClassWriteProps) {
     }
   };
 
-  // 세부내용
-  const onChangeContents = (value: string): void => {
-    console.log(value);
+  // 세부내용(웹에디터)
+  // const onChangeContents = (value: string): void => {
+  //   console.log(value);
 
-    setValue("content", value === "<p><br></p>" ? "" : value);
+  //   setValue("content", value === "<p><br></p>" ? "" : value);
 
-    void trigger("content");
+  //   void trigger("content");
+  // };
+
+  // 세부내용(ToastEditor)
+  const onChangeContents = (text: any) => {
+    const editorInstance = contentsRef.current?.getInstance().getHTML();
+    // setContent(text === "<p><br><p>" ? "" : editorInstance);
+    setValue("content", editorInstance === "<p><br></p>" ? "" : editorInstance);
   };
 
   return (
@@ -280,7 +300,7 @@ export default function ClassWrite(props: IClassWriteProps) {
             </S.Wrapper_body_map>
             {/* <S.Error>에러</S.Error> */}
             <S.Label>클래스 세부내용을 입력해주세요</S.Label>
-            <ReactQuill
+            {/* <ReactQuill
               style={{
                 width: "730px",
                 height: "431px",
@@ -289,7 +309,14 @@ export default function ClassWrite(props: IClassWriteProps) {
               onChange={onChangeContents}
               placeholder="클래스 세부내용을 입력해주세요"
               defaultValue={props.data?.fetchClassDetail.content}
+            /> */}
+
+            <ToastEditor
+              contentsRef={contentsRef}
+              onChangeContents={onChangeContents}
+              initialValue={props.data?.fetchClassDetail.content}
             />
+
             {/* <S.Error>{formState.errors.content?.message}</S.Error> */}
 
             <S.Label>클래스 일정을 선택해주세요</S.Label>

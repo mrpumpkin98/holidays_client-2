@@ -66,7 +66,7 @@ const SliderComponent = styled(Slider)`
 const Wrapper = styled.div`
   width: 1113px;
   height: 466px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 15px;
 `;
 
