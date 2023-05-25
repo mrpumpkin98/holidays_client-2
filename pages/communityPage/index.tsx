@@ -1,9 +1,5 @@
 import CommunityPage from "../../src/components/units/communityPage/list/communityListPage.index";
 
-export default function GraphqlMutationPage() {
-  return (
-    <div>
-      <CommunityPage />
-    </div>
-  );
+export default function GraphqlMutationPage(): JSX.Element {
+  return <CommunityPage />;
 }

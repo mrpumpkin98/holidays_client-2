@@ -3,6 +3,11 @@ import { access } from "fs";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../../commons/stores";
+import {
+  IMutation,
+  IMutationLoginArgs,
+  IQuery,
+} from "../../../../../commons/types/generated/types";
 import { FETCH_LOGIN_USER } from "../../useQueries/user/UseQueryFetchLoginUser";
 
 export const LOGIN = gql`
@@ -15,11 +20,13 @@ export const UseMutationLogin = () => {
   const router = useRouter();
   const [, setAccessToken] = useRecoilState(accessTokenState);
 
-  const [login] = useMutation(LOGIN);
+  const [login] = useMutation<Pick<IMutation, "login">, IMutationLoginArgs>(
+    LOGIN
+  );
 
-  const { data } = useQuery(FETCH_LOGIN_USER);
+  const { data } = useQuery<Pick<IQuery, "fetchLoginUser">>(FETCH_LOGIN_USER);
 
-  const SubmitLogin = async (data: any) => {
+  const SubmitLogin = async (data: IMutationLoginArgs) => {
     try {
       const result = await login({
         variables: {

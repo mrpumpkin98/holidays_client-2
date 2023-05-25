@@ -1,33 +1,34 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "./login.style";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { UseMutationLogin } from "../../commons/hooks/useMutations/login/useMutationLogin";
 import { useForm } from "react-hook-form";
 import { LoginSchema } from "./login.validation";
+import { IMutationLoginArgs } from "../../../commons/types/generated/types";
 
 export default function LogIn(): JSX.Element {
-  const router = useRouter();
+  const router: NextRouter = useRouter();
   const { SubmitLogin } = UseMutationLogin();
 
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState } = useForm<IMutationLoginArgs>({
     resolver: yupResolver(LoginSchema),
     mode: "onSubmit",
   });
 
-  const onSubmitForm = async (data: any) => {
+  const onSubmitForm = async (data: IMutationLoginArgs) => {
     void SubmitLogin(data);
   };
 
-  const onClickFindID = () => {
+  const onClickFindID = (): void => {
     alert("현재 아이디 찾기 서비스는 일시적으로 제한되었습니다.");
     // router.push(`/login/findIdPage`);
   };
 
-  const onClickFindPassword = () => {
+  const onClickFindPassword = (): void => {
     router.push(`/loginPage/findPasswordPage`);
   };
 
-  const onClickSignUp = () => {
+  const onClickSignUp = (): void => {
     router.push(`/signUpPage`);
   };
 

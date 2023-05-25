@@ -1,9 +1,5 @@
 import Reservation from "../../../src/components/units/myPage/reservation/reservation.index";
 
-export default function community() {
-  return (
-    <div>
-      <Reservation />
-    </div>
-  );
+export default function community(): JSX.Element {
+  return <Reservation />;
 }

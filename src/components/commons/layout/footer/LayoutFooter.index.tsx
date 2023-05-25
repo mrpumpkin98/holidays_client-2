@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import * as S from "./LayoutFooter.styles";
 
-export default function LayouFooter(): JSX.Element {
+export default function LayoutFooter(): JSX.Element {
   const router = useRouter();
 
   return (

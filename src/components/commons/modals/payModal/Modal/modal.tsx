@@ -5,6 +5,10 @@ import { useAuth01 } from "../../../hooks/useAuths/useAuth01";
 import { UseQueryFetchLoginUser } from "../../../hooks/useQueries/user/UseQueryFetchLoginUser";
 import Head from "next/head";
 import * as S from "./modal.styles";
+import {
+  IMutation,
+  IMutationCreateClassAdArgs,
+} from "../../../../../commons/types/generated/types";
 
 export const CREATE_CLASS_AD = gql`
   mutation createClassAd($createClassAdInput: CreateClassAdInput!) {
@@ -24,7 +28,10 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
   useAuth01();
   const router = useRouter();
 
-  const [createClassAd] = useMutation(CREATE_CLASS_AD);
+  const [createClassAd] = useMutation<
+    Pick<IMutation, "createClassAd">,
+    IMutationCreateClassAdArgs
+  >(CREATE_CLASS_AD);
   const { data: userData } = UseQueryFetchLoginUser();
 
   console.log(router.query.class_id);
@@ -32,13 +39,14 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
 
   useEffect(() => {
     if (userData) {
-      console.log(userData?.name);
+      console.log(userData?.fetchLoginUser.name);
     }
   }, [userData]);
 
+  // 일반결제 (이니시스 or 나이스)
   const onClickGeneralPay = () => {
-    // 일반결제 (이니시스 or 나이스)
     if (typeof window.IMP === "undefined") return console.log("중지");
+    // if (router.query.class_id === "undefined") return;
     const IMP = window.IMP;
 
     IMP.init("imp25268840");
@@ -65,7 +73,7 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
                   imp_uid: rsp.imp_uid,
                   amount: 15000, // Replace with your desired amount
                   method: "card", // Replace with your desired payment method
-                  class_id: router.query.class_id, // Replace with your desired class ID
+                  class_id: String(router.query.class_id), // Replace with your desired class ID
                 },
               },
             });
@@ -81,10 +89,10 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
     );
   };
 
+  // 간편결제 (카카오페이)
   const onClickKakaoPay = async () => {
-    // 간편결제 (카카오페이)
-    console.log(userData.fetchLoginUser.name);
-    if (userData.fetchLoginUser.name === "undefined")
+    console.log(userData?.fetchLoginUser.name);
+    if (userData?.fetchLoginUser.name === "undefined")
       return console.log("data 없음");
     if (typeof window.IMP === "undefined") return console.log("중지");
 
@@ -114,7 +122,7 @@ const PayModal: React.FC<ModalProps> = ({ onClose, children }) => {
                 imp_uid: rsp.imp_uid,
                 amount: 15000,
                 method: "card",
-                class_id: router.query.class_id,
+                class_id: String(router.query.class_id),
               },
             },
           });

@@ -4,7 +4,7 @@ import ClassQuestionUI from "../../../src/components/units/classQuestionPage/cla
 import ClassReviewList from "../../../src/components/units/classReviewPage/list/classReviewList.index";
 import ClassReviewWrite from "../../../src/components/units/classReviewPage/write/classReviewWrite.index";
 
-export default function ClassDetailPage() {
+export default function ClassDetailPage(): JSX.Element {
   const { data, fetchMore } = UseQueryFetchClassReview();
   console.log(data);
 

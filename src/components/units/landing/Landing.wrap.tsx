@@ -24,7 +24,7 @@ const Wrap = styled.div`
     display: none;
   } */
 `;
-export default function LandingWrapper() {
+export default function LandingWrapper(): JSX.Element {
   return (
     <Wrap>
       <LandingWebInfo />

@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import * as S from "./Landing.styles";
 import { useInView } from "react-intersection-observer";
 
-export default function LastLandingPage() {
+export default function LastLandingPage(): JSX.Element {
   const router = useRouter();
 
-  const onClickMoveToHome = () => {
+  const onClickMoveToHome = (): void => {
     router.push("/classPage");
   };
 

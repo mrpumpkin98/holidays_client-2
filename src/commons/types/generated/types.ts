@@ -160,6 +160,7 @@ export type IFetchClasses = {
   address_detail: Scalars['String'];
   class_id: Scalars['String'];
   content_summary: Scalars['String'];
+  is_ad: Scalars['Int'];
   price: Scalars['Int'];
   title: Scalars['String'];
   total_time: Scalars['String'];
@@ -176,6 +177,29 @@ export type IFetchClassesPopular = {
   row_count: Scalars['Int'];
   title: Scalars['String'];
   total_time: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type IFetchReservationsOfClass = {
+  __typename?: 'FetchReservationsOfClass';
+  class_id: Scalars['String'];
+  date: Scalars['String'];
+  name: Scalars['String'];
+  personnel: Scalars['String'];
+  remain: Scalars['Int'];
+  res_id: Scalars['String'];
+  title: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type IFetchReservationsOfUser = {
+  __typename?: 'FetchReservationsOfUser';
+  class_id: Scalars['String'];
+  date: Scalars['String'];
+  name: Scalars['String'];
+  personnel: Scalars['String'];
+  res_id: Scalars['String'];
+  title: Scalars['String'];
   url: Scalars['String'];
 };
 
@@ -221,6 +245,8 @@ export type IMagazine = {
 export type IMutation = {
   __typename?: 'Mutation';
   cancelClassAd: Scalars['Boolean'];
+  checkEmailToken: Scalars['Boolean'];
+  checkPhoneToken: Scalars['Boolean'];
   createBoard: Scalars['String'];
   createBoardReview: Scalars['String'];
   createClass: Scalars['String'];
@@ -238,6 +264,8 @@ export type IMutation = {
   deleteReservation: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
   deleteWishlist: Scalars['Boolean'];
+  getTokenEmail: Scalars['String'];
+  getTokenPhone: Scalars['String'];
   login: Scalars['String'];
   logout: Scalars['String'];
   restoreAccessToken: Scalars['String'];
@@ -254,6 +282,18 @@ export type IMutation = {
 
 export type IMutationCancelClassAdArgs = {
   createClassAdInput: ICreateClassAdInput;
+};
+
+
+export type IMutationCheckEmailTokenArgs = {
+  email: Scalars['String'];
+  token: Scalars['String'];
+};
+
+
+export type IMutationCheckPhoneTokenArgs = {
+  phone: Scalars['String'];
+  token: Scalars['String'];
 };
 
 
@@ -341,6 +381,17 @@ export type IMutationDeleteWishlistArgs = {
 };
 
 
+export type IMutationGetTokenEmailArgs = {
+  email: Scalars['String'];
+  method: Scalars['String'];
+};
+
+
+export type IMutationGetTokenPhoneArgs = {
+  phone: Scalars['String'];
+};
+
+
 export type IMutationLoginArgs = {
   email: Scalars['String'];
   pwd: Scalars['String'];
@@ -378,6 +429,7 @@ export type IMutationUpdateUserArgs = {
 
 
 export type IMutationUpdateUserPwdArgs = {
+  email: Scalars['String'];
   pwd: Scalars['String'];
 };
 
@@ -400,8 +452,8 @@ export type IQuery = {
   fetchClassesOfMine: Array<IFetchClasses>;
   fetchClassesPopular: Array<IFetchClassesPopular>;
   fetchLoginUser: IUser;
-  fetchReservationsOfClass: Array<IReservation>;
-  fetchReservationsOfUser: Array<IReservation>;
+  fetchReservationsOfClass: Array<IFetchReservationsOfClass>;
+  fetchReservationsOfUser: Array<IFetchReservationsOfUser>;
   fetchUserIdByPhone: IUser;
   fetchWishlistOfMine: Scalars['Boolean'];
   fetchWishlists: Array<IFetchWishlists>;
@@ -463,11 +515,6 @@ export type IQueryFetchClassesPopularArgs = {
 };
 
 
-export type IQueryFetchReservationsOfClassArgs = {
-  class_id: Scalars['String'];
-};
-
-
 export type IQueryFetchUserIdByPhoneArgs = {
   phone: Scalars['String'];
 };
@@ -475,21 +522,6 @@ export type IQueryFetchUserIdByPhoneArgs = {
 
 export type IQueryFetchWishlistOfMineArgs = {
   class_id: Scalars['String'];
-};
-
-export enum IReservation_Status_Enum {
-  Complete = 'COMPLETE',
-  Waiting = 'WAITING'
-}
-
-export type IReservation = {
-  __typename?: 'Reservation';
-  class_: IClass;
-  personnel: Scalars['Int'];
-  res_date: Scalars['String'];
-  res_id: Scalars['String'];
-  status: IReservation_Status_Enum;
-  user_: IUser;
 };
 
 export type IUpdateBoardInput = {

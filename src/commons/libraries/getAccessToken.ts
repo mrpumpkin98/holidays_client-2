@@ -7,7 +7,7 @@ const RESTORE_ACCESS_TOKEN = gql`
   }
 `;
 
-export const getAccessToken = async () => {
+export const getAccessToken = async (): Promise<string> => {
   try {
     const graphQLClient = new GraphQLClient(
       "https://happyholidays-server.site/graphql",
@@ -18,10 +18,11 @@ export const getAccessToken = async () => {
     const result = await graphQLClient.request<{ restoreAccessToken: string }>(
       RESTORE_ACCESS_TOKEN
     );
-    const newAccessToken = result.restoreAccessToken;
+    const newAccessToken: string = result.restoreAccessToken;
 
     return newAccessToken;
   } catch (error) {
     if (error instanceof Error) console.log(error.message);
+    throw error;
   }
 };

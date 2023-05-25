@@ -7,7 +7,7 @@ import PayModal from "../../commons/modals/payModal/Modal/modal";
 import * as S from "./paymentPage.styles";
 
 export default function PaymentPage(): JSX.Element {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const handleModalOpen = (): void => {
     setShowModal(true);

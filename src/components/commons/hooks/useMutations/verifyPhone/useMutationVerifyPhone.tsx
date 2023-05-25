@@ -1,6 +1,10 @@
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
-import { IMutation } from "../../../../../commons/types/generated/types";
+import {
+  IMutation,
+  IMutationCheckPhoneTokenArgs,
+  IMutationGetTokenPhoneArgs,
+} from "../../../../../commons/types/generated/types";
 
 export const GET_TOKEN_PHONE = gql`
   mutation getTokenPhone($phone: String!) {
@@ -15,9 +19,17 @@ export const CHECK_PHONE_TOKEN = gql`
 `;
 
 export const UseMutationGetTokenPhone = () => {
-  const [time, setTime] = useState(false);
-  const [getTokenPhone] = useMutation(GET_TOKEN_PHONE);
+  const [time, setTime] = useState<boolean>(false);
+  const [getTokenPhone] = useMutation<
+    Pick<IMutation, "getTokenPhone">,
+    IMutationGetTokenPhoneArgs
+  >(GET_TOKEN_PHONE);
+  const [checkPhoneToken] = useMutation<
+    Pick<IMutation, "checkPhoneToken">,
+    IMutationCheckPhoneTokenArgs
+  >(CHECK_PHONE_TOKEN);
 
+  // 5분간 유지되는 토큰 발급
   const getTokenPhoneTimer = async (phone: string) => {
     if (!time) {
       try {
@@ -33,16 +45,15 @@ export const UseMutationGetTokenPhone = () => {
 
         console.log(result.data?.getTokenPhone);
       } catch (error) {
-        alert("휴대폰 인증에 실패했습니다.");
+        if (error instanceof Error) alert("휴대폰 인증에 실패했습니다.");
       }
     } else {
       alert("이미 인증번호 받기를 누르셨습니다.");
     }
   };
 
-  const [checkPhoneToken] = useMutation(CHECK_PHONE_TOKEN);
-
-  const checkPhoneTokenTimer = async (data: any) => {
+  // 토큰 확인 (시간 내)
+  const checkPhoneTokenTimer = async (data: IMutationCheckPhoneTokenArgs) => {
     try {
       const result = await checkPhoneToken({
         variables: {

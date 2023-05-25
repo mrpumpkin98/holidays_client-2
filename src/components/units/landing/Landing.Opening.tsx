@@ -3,7 +3,7 @@ import { useInView } from "react-intersection-observer";
 // import { useSpring, animated } from "react-spring";
 import { useRouter } from "next/router";
 
-export default function LandingWebInfo() {
+export default function LandingWebInfo(): JSX.Element {
   const [ref, inView] = useInView({
     root: null, // root : 대상에 대한 경계를 지정합니다. 지정하지 않는다면 뷰포트를 경계로 지정합니다.
     // rootMargin: "800px", //rootMargin : root에 대한 margin을 설정합니다. 이는 CSS의 margin과 비슷합니다.
@@ -12,7 +12,7 @@ export default function LandingWebInfo() {
 
   const router = useRouter();
 
-  const onClickLogo = () => {
+  const onClickLogo = (): void => {
     router.push("/classPage");
   };
 
@@ -34,48 +34,48 @@ export default function LandingWebInfo() {
         <S.LeftWrapper>
           <S.LeftItem1 className={inView ? "isActive" : ""} ref={ref}>
             <S.Pick className={inView ? "isActive" : ""} ref={ref}>
-              <div style={{ fontSize: "23px" }}>
-                다양한 분야의
+              <div style={{ fontSize: "1.35rem" }}>
+                원하는 분야의
                 <br />
                 원데이 클래스를
                 <br />
-                만나보세요
+                신청해 보세요
               </div>
               <br />
             </S.Pick>
             <S.Content3 className={inView ? "isActive" : ""} ref={ref}>
-              여러분에게도
+              누구에게나
               <br />
-              강사님이
-              <br />될 기회가 열려 있습니다
+              강사님이 될 기회가
+              <br /> 열려 있습니다
             </S.Content3>
           </S.LeftItem1>
           <S.LeftItem2 className={inView ? "isActive" : ""} ref={ref}>
             <S.Pick className={inView ? "isActive" : ""} ref={ref}>
-              <div style={{ fontSize: "23px" }}>
-                다양한 의견을
+              <div style={{ fontSize: "1.35rem" }}>
+                홀리데이즈의
                 <br />
-                나눌 수 있는
+                사랑방에서
                 <br />
-                사랑방
+                의견을 나누어 보세요
               </div>
               <br />
             </S.Pick>
             <S.Content3 className={inView ? "isActive" : ""} ref={ref}>
               하루에도 수만 건의
               <br />
-              의견들이 <br />
+              다양한 의견들이 <br />
               홀리데이즈를 <br /> 오가고 있습니다
             </S.Content3>
           </S.LeftItem2>
           <S.LeftItem3 className={inView ? "isActive" : ""} ref={ref}>
             <S.Pick className={inView ? "isActive" : ""} ref={ref}>
-              <div style={{ fontSize: "23px" }}>
-                여러 전문 지식을
+              <div style={{ fontSize: "1.35rem" }}>
+                홀리데이즈만의
                 <br />
-                맛볼 수 있는
+                전문 매거진에서
                 <br />
-                홀리데이 매거진
+                새로운 지식을 얻어보세요
               </div>
               <br />
             </S.Pick>
