@@ -6,8 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto; // 가운데 정렬
-
-  /* background-color: orange; */
+  margin-top: 70px;
 `;
 
 export const Wrapper_header = styled.div`
@@ -47,6 +46,7 @@ export const Wrapper_header_bottom_right = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-left: 1040px;
 `;
 
 // 수정, 삭제 버튼

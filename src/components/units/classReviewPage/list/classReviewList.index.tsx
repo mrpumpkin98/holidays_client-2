@@ -52,11 +52,10 @@ export default function ClassReviewList(props: IClassReviewListProps) {
       <S.Wrapper>
         <div
           style={{
-            width: "1113px",
+            width: "1130px",
             height: "500px",
             overflow: "auto",
             margin: "auto",
-            // background: "skyblue",
           }}
         >
           <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>

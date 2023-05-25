@@ -103,7 +103,7 @@ export default function ClassDetail() {
             {data?.fetchClassDetail.title}
           </S.Wrapper_header_top>
           <S.Wrapper_header_bottom>
-            <S.Review_count>후기 595개</S.Review_count>
+            {/* <S.Review_count>후기 595개</S.Review_count> */}
             <S.Wrapper_header_bottom_right>
               <S.Btn onClick={onClickMoveToClassEdit}>수정</S.Btn>
               <S.Btn onClick={onClickClassDelete}>삭제</S.Btn>
@@ -159,6 +159,14 @@ export default function ClassDetail() {
                     <S.ClassInfo_container_right>
                       <S.Label>카테고리</S.Label>
                       <S.SubLabel>{data?.fetchClassDetail.category}</S.SubLabel>
+                    </S.ClassInfo_container_right>
+                  </S.ClassInfo_container>
+
+                  <S.ClassInfo_container>
+                    <S.Icon src="/classPage/price.png" />
+                    <S.ClassInfo_container_right>
+                      <S.Label>클래스 가격</S.Label>
+                      <S.SubLabel>{data?.fetchClassDetail.price} 원</S.SubLabel>
                     </S.ClassInfo_container_right>
                   </S.ClassInfo_container>
                 </S.ClassInfo_wrapper>

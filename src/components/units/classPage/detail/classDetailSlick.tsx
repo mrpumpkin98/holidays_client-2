@@ -6,6 +6,22 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const SliderComponent = styled(Slider)`
+  .slick-dots {
+    bottom: 25px;
+  }
+
+  .slick-dots li.slick-active button:before {
+    /* color: white; */
+    color: black;
+  }
+
+  .slick-dots li button:before {
+    /* color: white; */
+    color: black;
+  }
+
+  /* ---------------- */
+
   .slick-arrow {
     display: block;
     width: 40px;
@@ -34,14 +50,14 @@ const SliderComponent = styled(Slider)`
   }
   .slick-next:before {
     background-size: 10px;
-    background-image: url("/next.png");
+    background-image: url("/classPage/next.png");
     background-position: center;
     background-repeat: no-repeat;
   }
 
   .slick-prev:before {
     background-size: 10px;
-    background-image: url("/before.png");
+    background-image: url("/classPage/before.png");
     background-position: center;
     background-repeat: no-repeat;
   }
@@ -52,30 +68,26 @@ const Wrapper = styled.div`
   height: 466px;
   border: 1px solid black;
   border-radius: 15px;
-
-  background-color: pink;
 `;
 
 // 이미지
 const Img = styled.img`
-  width: 480px;
-  height: 480px;
+  /* width: 480px; */
+  width: 1113px;
+  height: 466px;
 
   /* margin: 30px 0px 70px 0px; */
-  background-color: beige;
-  border: 1px solid red;
+  /* background-color: beige; */
+  border-radius: 15px;
 `;
 
 // -------
 
 export const MarketImg = styled.div`
-  background: #c9c9c9;
   /* border: 3px solid green; */
   width: 480px;
-  background-image: url("/images/market/profile.png");
   background-position: center;
   height: 480px;
-  border: 1px solid red;
 `;
 
 // -------
@@ -96,12 +108,7 @@ export default function SlickPage(props: any) {
   return (
     <Wrapper>
       <SliderComponent {...settings}>
-        {props.src &&
-          props.src.map((el: any) => (
-            <MarketImg>
-              <Img src={`${el.url}`} />
-            </MarketImg>
-          ))}
+        {props.src && props.src.map((el: any) => <Img src={`${el.url}`} />)}
       </SliderComponent>
     </Wrapper>
   );

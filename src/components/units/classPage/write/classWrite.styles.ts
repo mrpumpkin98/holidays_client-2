@@ -13,6 +13,21 @@ export const Wrapper = styled.div`
   margin: auto; // 가운데 정렬
 `;
 
+export const TextInput = styled.input`
+  width: 728px;
+  height: 61px;
+  padding-left: 16px;
+  margin-bottom: 10px;
+  border: 1px solid #bdbdbd;
+`;
+
+export const CustomSelect = styled.select`
+  width: 354px;
+  height: 61px;
+  border: 1px solid #bdbdbd;
+  padding: 0px 16px 0px 16px;
+`;
+
 export const Wrapper_header = styled.div`
   width: 728px;
 
@@ -34,10 +49,21 @@ export const BankWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const TextInput2 = styled(Input)`
+export const TextInput2 = styled.input`
+  width: 250px;
+  height: 61px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+  margin-bottom: 10px;
+`;
+
+// 상세주소
+export const TextInput3 = styled.input`
   width: 354px;
   height: 61px;
   margin-bottom: 10px;
+  border: 1px solid #bdbdbd;
+  padding-left: 16px;
 `;
 
 export const BtnWrapper = styled.div`
@@ -105,30 +131,6 @@ export const Label = styled.div`
   padding: 30px 0px 20px 0px;
 `;
 
-// type qqq = UseFormRegisterReturn;
-
-// type IOptions = StyledComponent<
-//   qqq &
-//     SelectProps<unknown, BaseOptionType | DefaultOptionType> & {
-//       children?: ReactNode;
-//     } & {
-//       ref?: Ref<BaseSelectRef> | undefined;
-//     }
-// >;
-
-// 카테고리, 소요시간
-export const Option = styled(Select)`
-  /* width: 100px; */
-  width: 150px;
-  margin-bottom: 10px;
-`;
-
-export const TextInput = styled(Input)`
-  width: 728px;
-  height: 61px;
-  margin-bottom: 10px;
-`;
-
 export const Error = styled.div`
   font-size: 16px;
   color: red;
@@ -150,17 +152,6 @@ export const Img = styled.img`
   border-radius: 5px;
   margin-right: 17px;
   border: 1px solid rgba(189, 189, 189, 1);
-`;
-
-// 추가함 5.21
-export const ModalImgBtn = styled.button`
-  cursor: pointer;
-`;
-
-// 추가함 5.21
-export const UploadFileHidden = styled.input`
-  background-color: pink;
-  cursor: pointer;
 `;
 
 // 클래스 소요 시간, 클래스 최대 인원
@@ -223,7 +214,7 @@ export const AddressInput = styled(Input)`
 
 export const AddressBtn = styled.button`
   width: 106px;
-  height: 56px;
+  height: 61px;
   background-color: rgba(0, 0, 0, 1);
   color: rgba(255, 255, 255, 1);
   font-size: 16px;

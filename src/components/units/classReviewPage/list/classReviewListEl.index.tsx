@@ -3,6 +3,7 @@ import { UseMutationClassReview } from "../../../commons/hooks/useMutations/clas
 import ClassReviewWrite from "../write/classReviewWrite.index";
 import * as S from "./classReviewList.styles";
 import { useState } from "react";
+import { getDate } from "../../../../commons/libraries/utils";
 
 export default function ClassReviewListEl(props: any) {
   const [aaa, setAaa] = useState(false);
@@ -41,7 +42,7 @@ export default function ClassReviewListEl(props: any) {
                 </S.DeleteBtn>
               </S.BtnWrapper>
             </S.Wrapper_header_top>
-            <S.Date>{props.el.createdAt}</S.Date>
+            <S.Date>{getDate(props.el.createdAt)}</S.Date>
           </S.Wrapper_header>
           <S.Contents>{props.el.content}</S.Contents>
         </S.Row>
