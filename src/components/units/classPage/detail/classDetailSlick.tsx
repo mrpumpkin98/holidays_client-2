@@ -11,13 +11,13 @@ const SliderComponent = styled(Slider)`
   }
 
   .slick-dots li.slick-active button:before {
-    /* color: white; */
-    color: black;
+    color: white;
+    /* color: black; */
   }
 
   .slick-dots li button:before {
-    /* color: white; */
-    color: black;
+    color: white;
+    /* color: black; */
   }
 
   /* ---------------- */

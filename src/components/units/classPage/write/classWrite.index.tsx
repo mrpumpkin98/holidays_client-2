@@ -21,6 +21,7 @@ import { IClassWriteProps, IFormData } from "./classWrite.types";
 import { useMutationUploadFile } from "../../../commons/hooks/useMutations/class/useMutationUploadFile";
 import ClassImage from "./classWriteImage";
 import Calendar from "../../../commons/calendar";
+import { useAuth02 } from "../../../commons/hooks/useAuths/useAuth02";
 
 // 웹 에디터
 const ReactQuill = dynamic(async () => await import("react-quill"), {
@@ -34,6 +35,8 @@ declare const window: typeof globalThis & {
 };
 
 export default function ClassWrite(props: IClassWriteProps) {
+  useAuth02;
+
   // 우편주소(카카오지도)
   const [fulladdress, setFulladdress] = useState("");
 
@@ -133,7 +136,7 @@ export default function ClassWrite(props: IClassWriteProps) {
   // 등록하기, 수정하기 제출
   const onSubmitForm = async (data: IFormData) => {
     const { ...value } = data;
-    // value.images = imageUrls; // 추가함 5.21
+
     if (!props.isEdit) {
       await onClickClassSubmit(value, fulladdress);
     } else {
