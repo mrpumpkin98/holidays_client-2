@@ -4,6 +4,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { mobile } from "../../../../commons/styles/breakPoints";
 
 const SliderComponent = styled(Slider)`
   .slick-dots {
@@ -68,17 +69,23 @@ const Wrapper = styled.div`
   height: 466px;
   /* border: 1px solid black; */
   border-radius: 15px;
+
+  @media ${mobile} {
+    width: 720px;
+    height: 300px;
+  }
 `;
 
 // 이미지
 const Img = styled.img`
-  /* width: 480px; */
   width: 1113px;
   height: 466px;
-
-  /* margin: 30px 0px 70px 0px; */
-  /* background-color: beige; */
   border-radius: 15px;
+
+  @media ${mobile} {
+    width: 720px;
+    height: 300px;
+  }
 `;
 
 // -------

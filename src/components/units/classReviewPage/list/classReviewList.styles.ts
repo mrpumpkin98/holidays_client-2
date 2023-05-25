@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
+import { mobile } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 1113px;
@@ -7,7 +8,22 @@ export const Wrapper = styled.div`
   flex-direction: column;
   margin: auto; // 가운데 정렬
   margin-bottom: 70px;
-  /* background-color: pink; */
+
+  @media ${mobile} {
+    width: 700px;
+    /* background-color: skyblue; */
+  }
+`;
+
+export const Box = styled.div`
+  width: 1130px;
+  overflow: auto;
+  margin: auto;
+
+  @media ${mobile} {
+    width: 720px;
+    /* background-color: yellow; */
+  }
 `;
 
 export const Wrapper_header = styled.div`
@@ -24,12 +40,21 @@ export const ReviewCount = styled.div`
 
 export const Row = styled.div`
   margin-bottom: 20px;
+  /* background-color: purple; */
+
+  @media ${mobile} {
+    /* width: 420px; */
+  }
 `;
 
 export const Wrapper_header_top = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  @media ${mobile} {
+    width: 700px;
+  }
 `;
 
 export const ReviewWriter = styled.div`
@@ -46,6 +71,10 @@ export const BtnWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-left: 811px;
+
+  @media ${mobile} {
+    margin-left: 380px;
+  }
 `;
 
 export const UpdateBtn = styled.div`

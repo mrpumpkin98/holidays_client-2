@@ -140,7 +140,7 @@ export default function ClassWrite(props: IClassWriteProps) {
   // 수정
   const { onClickClassUpdate } = useMutationUpdateClass();
 
-  const { register, setValue, trigger, handleSubmit } = useForm<IFormData>({
+  const { register, setValue, handleSubmit } = useForm<IFormData>({
     // resolver: yupResolver(classWriteSchema),
     // mode: "onSubmit",
     mode: "onChange",
@@ -225,7 +225,7 @@ export default function ClassWrite(props: IClassWriteProps) {
             {/* <S.Error>에러</S.Error> */}
 
             <S.Label>
-              대표 이미지를 올려주세요 (최대 5개까지 업로드 가능)
+              대표 이미지를 올려주세요 (최대 5개까지 업로드 가능합니다)
             </S.Label>
             <ClassImage fileList={fileList} setFileList={setFileList} />
             {/* <S.Error>에러</S.Error> */}
@@ -250,7 +250,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                 <S.Label>클래스 최대 인원을 입력해주세요</S.Label>
                 <S.TextInput3
                   type="int"
-                  placeholder="클래스 최대 인원을 입력해주세요"
+                  placeholder="숫자만 입력해주세요"
                   {...register("class_mNum")}
                   defaultValue={props.data?.fetchClassDetail.class_mNum}
                 />
@@ -269,7 +269,6 @@ export default function ClassWrite(props: IClassWriteProps) {
             <S.Label>클래스 위치를 입력해주세요</S.Label>
             <S.Wrapper_body_map>
               <S.Map id="map" />
-
               <S.Wrapper_body_map_right>
                 <S.Wrapper_body_map_right_top>
                   {/* <S.AddressInput /> */}
@@ -286,7 +285,6 @@ export default function ClassWrite(props: IClassWriteProps) {
                     주소 검색
                   </S.AddressBtn>
                 </S.Wrapper_body_map_right_top>
-
                 <S.Wrapper_body_map_right_bottom>
                   <S.AddressDetail_text>상세주소 입력</S.AddressDetail_text>
                   <S.TextInput3
@@ -296,10 +294,12 @@ export default function ClassWrite(props: IClassWriteProps) {
                     defaultValue={props.data?.fetchClassDetail.address_detail}
                   />
                 </S.Wrapper_body_map_right_bottom>
+                {/* <S.Error>{formState.errors.address_detail?.message}</S.Error> */}
               </S.Wrapper_body_map_right>
             </S.Wrapper_body_map>
+
             {/* <S.Error>에러</S.Error> */}
-            <S.Label>클래스 세부내용을 입력해주세요</S.Label>
+            <S.Label>클래스 세부내용을 작성해주세요</S.Label>
             {/* <ReactQuill
               style={{
                 width: "730px",
@@ -311,22 +311,21 @@ export default function ClassWrite(props: IClassWriteProps) {
               defaultValue={props.data?.fetchClassDetail.content}
             /> */}
 
-            <ToastEditor
-              contentsRef={contentsRef}
-              onChangeContents={onChangeContents}
-              initialValue={props.data?.fetchClassDetail.content}
-            />
-
-            {/* <S.Error>{formState.errors.content?.message}</S.Error> */}
+            <S.ToastEditor>
+              <ToastEditor
+                contentsRef={contentsRef}
+                onChangeContents={onChangeContents}
+                initialValue={props.data?.fetchClassDetail.content}
+              />
+            </S.ToastEditor>
 
             <S.Label>클래스 일정을 선택해주세요</S.Label>
             <Calendar
               selectedDates={selectedDates}
               setSelectedDates={setSelectedDates}
             />
-            {/* <S.Error>에러</S.Error> */}
 
-            <S.Label>입금 계좌</S.Label>
+            <S.Label>입금 계좌를 작성해주세요</S.Label>
             <S.TextInput
               type="text"
               placeholder="'-' 빼고 숫자만 입력해주세요."
@@ -337,7 +336,7 @@ export default function ClassWrite(props: IClassWriteProps) {
 
             <S.BankWrapper>
               <div>
-                <S.Label>예금주</S.Label>
+                <S.Label>예금주를 작성해주세요</S.Label>
                 <S.TextInput3
                   type="text"
                   placeholder="예금주를 작성해주세요"
@@ -348,7 +347,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               </div>
 
               <div>
-                <S.Label>입금 은행</S.Label>
+                <S.Label>입금 은행을 작성해주세요</S.Label>
                 <S.TextInput3
                   type="text"
                   placeholder="입금 은행을 작성해주세요"

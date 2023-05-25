@@ -44,6 +44,7 @@ export const useMutationUpdateClass = () => {
             classSchedulesInput: {
               // date: data.date,
               // remain: data.remain,
+              cs_id: "gg",
               date: "ddd수정",
               remain: 77,
             },
