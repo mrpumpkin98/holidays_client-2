@@ -1,6 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import { FETCH_CLASS_DETAIL } from "../../useQueries/class/useQueryFetchClassDetail";
+import { FETCH_CLASS_WISHLISTS_OF_MINE } from "../../useQueries/class/UseQueryFetchWishlists";
 
 // 찜 추가
 const CREATE_WISHLIST = gql`
@@ -33,7 +34,8 @@ export const UseMutationWishList = () => {
         },
         refetchQueries: [
           {
-            query: FETCH_CLASS_DETAIL,
+            // query: FETCH_CLASS_DETAIL,
+            query: FETCH_CLASS_WISHLISTS_OF_MINE,
             variables: { class_id: class_id },
           },
         ],
@@ -57,7 +59,9 @@ export const UseMutationWishList = () => {
         },
         refetchQueries: [
           {
-            query: FETCH_CLASS_DETAIL,
+            // query: FETCH_CLASS_DETAIL,
+            query: FETCH_CLASS_WISHLISTS_OF_MINE,
+
             variables: { class_id: class_id },
           },
         ],
