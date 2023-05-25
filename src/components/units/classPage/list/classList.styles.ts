@@ -174,6 +174,7 @@ export const PremiumTemplate = styled.article`
   width: 350px;
   height: 200px;
   border-radius: 10px;
+  margin-bottom: 10px;
   overflow: hidden;
 `;
 
@@ -189,9 +190,8 @@ export const PremiumPostImg = styled.img`
 `;
 
 export const PremiumPostTitle = styled.div`
-  font-weight: 700;
+  font-family: "Arita-SemiBold";
   font-size: 18px;
-  margin-top: 7px;
   margin-left: 2px;
 `;
 
@@ -204,9 +204,30 @@ export const PremiumPostInfo = styled.div`
 `;
 
 export const PremiumAddress = styled.div`
+  margin-bottom: 5px;
+  width: fit-content;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgb(81, 91, 96);
+  background-color: rgb(242, 250, 249);
+  border: 1px solid rgb(0, 150, 136);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: auto; /* 변경된 부분 */
+  margin-bottom: 10px;
+`;
+
+export const PremiumTime = styled.div`
   color: #4a4247;
   font-size: 13px;
   margin-top: 3px;
+  margin-bottom: 10px;
 `;
 
 export const PremiumAvatarContentTie = styled.div`
@@ -301,8 +322,8 @@ export const PostImg = styled.img`
 `;
 
 export const PostTitle = styled.div`
-  font-weight: 700;
-  font-size: 20px;
+  font-family: "Arita-SemiBold";
+  font-size: 18px;
   margin-bottom: 5px;
   padding-left: 3px;
 `;
@@ -318,6 +339,26 @@ export const PostInfo = styled.div`
 `;
 
 export const Address = styled.div`
+  margin-bottom: 5px;
+  width: fit-content;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgb(81, 91, 96);
+  background-color: rgb(242, 250, 249);
+  border: 1px solid rgb(0, 150, 136);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: auto; /* 변경된 부분 */
+  margin-bottom: 10px;
+`;
+
+export const Time = styled.div`
   color: #4a4247;
   font-size: 12px;
   margin-bottom: 5px;
@@ -337,10 +378,11 @@ export const PriceTie = styled.div`
 
 export const Price = styled.div`
   font-size: 15px;
+  font-family: "Arita-SemiBold";
 `;
 
 export const Class = styled.div`
-  width: 5rem;
+  width: fit-content;
   height: 26px;
   display: flex;
   align-items: center;
@@ -351,6 +393,8 @@ export const Class = styled.div`
   background-color: rgb(254, 249, 243);
   border: 1px solid rgb(242, 131, 22);
   padding: 3px 8px;
-  border-radius: 5px;
+  border-radius: 4px;
   margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
 `;

@@ -1,29 +1,38 @@
-import { Button } from "antd";
-import { Wrapper } from "../list/myPageList.styles";
-import * as S from "./madeClass.styles";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { FECTCH_CLASS_OF_MINE } from "../../../commons/hooks/useQueries/class/UseQueryFetchClassesOfMine";
 import { Money } from "../../../../commons/libraries/utils";
 import { useRouter } from "next/router";
+import { LoadingOutlined } from "@ant-design/icons";
+import * as S from "./madeClass.styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styled from "@emotion/styled";
-import { LoadingOutlined } from "@ant-design/icons";
 
 export default function madeClass() {
   const router = useRouter();
 
   const [Contents, setContents] = useState(false);
   const { data, loading, refetch } = useQuery(FECTCH_CLASS_OF_MINE);
+
+  ///////////////////////////////////////////////////////////////
+  //  광고하기로 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickAD: MouseEventHandler<HTMLButtonElement> = (event) => {
+    router.push(`/paymentPage/${event.currentTarget.id}`);
+    console.log(event.currentTarget.id);
+  };
+
   ///////////////////////////////////////////////////////////////
   //  게시물 이동
   //////////////////////////////////////////////////////////////
 
-  const onClickSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
-    router.push(`/paymentPage/${event.currentTarget.id}`);
-    console.log(event.currentTarget.id);
+  const onClickSubmit: MouseEventHandler<HTMLDivElement> = (event) => {
+    const target = event.currentTarget;
+    const postId = target.id;
+    router.push(`/classPage/${postId}`);
+    console.log(postId);
   };
 
   ///////////////////////////////////////////////////////////////
@@ -33,51 +42,11 @@ export default function madeClass() {
   const settings = {
     arrows: true,
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 800,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: 1,
+    slidesToScroll: 1,
   };
-
-  const SliderComponent = styled(Slider)`
-    .slick-arrow {
-      width: 40px;
-      height: 40px;
-    }
-
-    .slick-prev {
-      z-index: 999999;
-    }
-
-    .slick-next {
-      z-index: 999999;
-    }
-
-    // --------------
-
-    .slick-next:before,
-    .slick-prev:before {
-      content: "";
-      width: 40px;
-      height: 40px;
-      background-color: #ddd;
-      border-radius: 50%;
-    }
-    .slick-next:before {
-      background-size: 10px;
-      background-image: url("/next.png");
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .slick-prev:before {
-      background-size: 10px;
-      background-image: url("/before.png");
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-  `;
-
   return (
     <S.Wrapper>
       {loading ? (
@@ -108,30 +77,41 @@ export default function madeClass() {
           </S.ListNameIconWrapper>
           <S.Line />
           <S.PremiumWrapper>
-            <SliderComponent {...settings}>
+            <Slider {...settings}>
               {data?.fetchClassesOfMine.map((post: any, index: any) => (
                 <div key={index}>
                   <S.PremiumPosts>
                     <S.PremiumPostBody>
-                      <S.PremiumTemplate>
-                        <S.PremiumPostImg src={post.url} />
-                      </S.PremiumTemplate>
-                      <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
-                      <S.PremiumPostContent>
-                        <S.PremiumPostInfo>
-                          <S.PremiumUserName>{post.address}</S.PremiumUserName>
-                          <S.PremiumAvatarContentTie></S.PremiumAvatarContentTie>
-                        </S.PremiumPostInfo>
-                        <S.PremiumPriceTie>
-                          <S.PremiumPrice>{Money(post.price)}</S.PremiumPrice>
-                        </S.PremiumPriceTie>
-                      </S.PremiumPostContent>
+                      <S.Card id={post.class_id} onClick={onClickSubmit}>
+                        <S.PremiumTemplate>
+                          <S.PremiumPostImg src={post.url} />
+                        </S.PremiumTemplate>
+                        <S.PremiumPostContent>
+                          <S.Tie>
+                            <S.PremiumUserCategory>
+                              {post.category}
+                            </S.PremiumUserCategory>
+                            <S.PremiumUserName>
+                              {post.address}
+                            </S.PremiumUserName>
+                          </S.Tie>
+                          <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
+                          <S.PremiumPostInfo>
+                            <S.PremiumUserSummary>
+                              {post.content_summary}
+                            </S.PremiumUserSummary>
+                            <S.PremiumUserTime>
+                              진행시간 : {post.total_time}
+                            </S.PremiumUserTime>
+                          </S.PremiumPostInfo>
+                          <S.PremiumPriceTie>
+                            <S.PremiumPrice>{Money(post.price)}</S.PremiumPrice>
+                          </S.PremiumPriceTie>
+                        </S.PremiumPostContent>
+                      </S.Card>
                       <S.ButtonTie>
                         {post.is_ad === 0 ? (
-                          <S.AdButton
-                            id={post.class_id}
-                            onClick={onClickSubmit}
-                          >
+                          <S.AdButton id={post.class_id} onClick={onClickAD}>
                             광고하기
                           </S.AdButton>
                         ) : (
@@ -148,7 +128,7 @@ export default function madeClass() {
                   </S.PremiumPosts>
                 </div>
               ))}
-            </SliderComponent>
+            </Slider>
           </S.PremiumWrapper>
         </>
       )}

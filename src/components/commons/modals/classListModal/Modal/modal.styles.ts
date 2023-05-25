@@ -46,7 +46,7 @@ export const ContentsWrapper = styled.div`
   margin-bottom: 150px;
 `;
 
-export const Contents = styled.div`
+export const Contents = styled.div<{ isSelected: boolean }>`
   font-size: 15px;
   padding: 15px 0px 15px 20px;
   overflow: auto;

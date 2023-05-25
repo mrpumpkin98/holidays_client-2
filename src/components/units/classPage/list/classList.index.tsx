@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import Backdrop from "../../../commons/modals/classListModal/Backdrop/Backdrop";
 import Modal from "../../../commons/modals/classListModal/Modal/modal";
 import ModalComponent from "../../../commons/modals/areaListModal/Modal/modal";
@@ -27,7 +27,9 @@ interface PostType {
 export default function StaticRoutingPage() {
   const router = useRouter();
 
-  // 카테고리 및 검색
+  ///////////////////////////////////////////////////////////////
+  //  카테고리 및 검색
+  //////////////////////////////////////////////////////////////
 
   const selectedRegion = useRecoilValue(selectedRegionState);
   const selectServiceRegion = useRecoilValue(selectService);
@@ -88,9 +90,11 @@ export default function StaticRoutingPage() {
   //  게시물 이동
   //////////////////////////////////////////////////////////////
 
-  const onClickSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
-    router.push(`/classPage/${event.currentTarget.id}`);
-    console.log(event.currentTarget.id);
+  const onClickSubmit: MouseEventHandler<HTMLDivElement> = (event) => {
+    const target = event.currentTarget;
+    const postId = target.id;
+    router.push(`/classPage/${postId}`);
+    console.log(postId);
   };
 
   ///////////////////////////////////////////////////////////////
@@ -123,6 +127,7 @@ export default function StaticRoutingPage() {
           onClose={() => {
             handleModalClose();
           }}
+          isSelected={true}
         />
       )}
       {showModal && <Backdrop onClick={handleModalClose} />}
@@ -155,23 +160,19 @@ export default function StaticRoutingPage() {
           <S.PremiumWrapper>
             {AdData?.fetchClassesAd.map((post: any, index: number) => (
               <div key={index}>
-                <S.PremiumPosts>
+                <S.PremiumPosts id={post.class_id} onClick={onClickSubmit}>
                   <S.PremiumPostBody>
                     <S.PremiumTemplate>
                       <S.PremiumPostImg src={post.url} />
                     </S.PremiumTemplate>
+                    <S.Class>{post.category}</S.Class>
                     <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
                     <S.PremiumPostContent>
-                      <S.PremiumContent>
-                        {post.content_summary}
-                      </S.PremiumContent>
                       <S.PremiumPostInfo>
-                        <S.PremiumAddress>
+                        <S.PremiumTime>
                           진행시간 : {post.total_time}
-                        </S.PremiumAddress>
-                        <S.PremiumAddress>
-                          주소 : {post.address}
-                        </S.PremiumAddress>
+                        </S.PremiumTime>
+                        <S.PremiumAddress>{post.address}</S.PremiumAddress>
                         <S.PremiumAvatarContentTie></S.PremiumAvatarContentTie>
                       </S.PremiumPostInfo>
                       <S.PremiumPriceTie>
@@ -209,14 +210,14 @@ export default function StaticRoutingPage() {
                 <S.Posts id={post.class_id} onClick={onClickSubmit}>
                   <S.PostBody>
                     <S.PostContent>
-                      <S.Class>비즈니스</S.Class>
+                      <S.Class>{post.category}</S.Class>
                       <S.PostTitle>{post.title}</S.PostTitle>
                       <S.PostInfo>
                         <S.AvatarContentTie></S.AvatarContentTie>
-                        <S.Address>주소 : {post.address}</S.Address>
-                        <S.Address>진행시간 : {post.total_time}</S.Address>
+                        <S.Time>진행시간 : {post.total_time}</S.Time>
                       </S.PostInfo>
                       <S.PriceTie>
+                        <S.Address>{post.address}</S.Address>
                         <S.Price>{Money(post.price)}</S.Price>
                       </S.PriceTie>
                     </S.PostContent>

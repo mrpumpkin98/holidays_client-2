@@ -4,7 +4,7 @@ import type { ChangeEvent } from "react";
 import { checkValidationImage } from "./Uploads01.validation";
 import Uploads01UI from "./Uploads01.presenter";
 import type { IUploads01Props } from "./Uploads01.types";
-import { UPLOAD_FILE } from "./Uploads01.queries";
+import { UPLOAD_FILE } from "../../../components/commons/hooks/useMutations/uploadFile/UseMutationUploadFile";
 import { Modal } from "antd";
 
 export default function Uploads01(props: IUploads01Props): JSX.Element {
@@ -18,13 +18,14 @@ export default function Uploads01(props: IUploads01Props): JSX.Element {
   const onChangeFile = async (
     event: ChangeEvent<HTMLInputElement>
   ): Promise<void> => {
-    const files = event.target.files?.[0];
-    const isValid = checkValidationImage(files);
+    const file = event.target.files?.[0];
+    const isValid = checkValidationImage(file);
     if (!isValid) return;
 
     try {
-      const result = await uploadFile({ variables: { files } });
-      props.onChangeFileUrls(result.data.uploadFile.url, props.index);
+      const result = await uploadFile({ variables: { files: [file] } }); // Provide "files" variable as an array
+      console.log(result.data.uploadFile[0]);
+      props.onChangeFileUrls(result.data.uploadFile[0]);
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
