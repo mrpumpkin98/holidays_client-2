@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { MenuProps } from "antd";
 import { Button, Dropdown, Space, Image } from "antd";
 import { useRouter } from "next/router";
@@ -20,6 +20,7 @@ const DropdownMyPage: React.FC = () => {
   const router = useRouter();
   const { data, refetch } = useQuery(FETCH_LOGIN_USER);
   const [logout] = useMutation(LOGOUT);
+  const [isLoggedOut, setIsLoggedOut] = useState(false);
 
   const handleMyPageClick = (event: any) => {
     event.preventDefault();
@@ -30,7 +31,14 @@ const DropdownMyPage: React.FC = () => {
     logout({
       refetchQueries: [{ query: FETCH_LOGIN_USER }],
     });
+    setIsLoggedOut(true);
   };
+
+  useEffect(() => {
+    if (isLoggedOut) {
+      window.location.reload();
+    }
+  }, [isLoggedOut]);
 
   const items: MenuProps["items"] = [
     {

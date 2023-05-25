@@ -4,14 +4,21 @@ import { useQuery } from "@apollo/client";
 import { FECTCH_BOARDS } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoards";
 import { formatDateString } from "../../../../commons/libraries/utils";
 import { FECTCH_BOARDS_OF_MINE } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoardsOfMine";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function ProposalClass() {
   const [Contents, setContents] = useState(false);
-  const { data, refetch } = useQuery(FECTCH_BOARDS_OF_MINE);
+  const { data, loading, refetch } = useQuery(FECTCH_BOARDS_OF_MINE);
   return (
     <>
       <S.Wrapper>
-        {!data ? (
+        {loading ? (
+          // 로딩 페이지 또는 대체 이미지를 보여줄 수 있는 JSX를 작성하세요
+          // 예시: <div>로딩 중...</div>
+          <div>
+            <LoadingOutlined />
+          </div>
+        ) : !data || data.fetchBoardsOfMine.length === 0 ? (
           <>
             <S.ListNameIconWrapper>
               <S.ListName>내 사랑방 리스트</S.ListName>
@@ -38,7 +45,7 @@ export default function ProposalClass() {
                   <S.PremiumPosts>
                     <S.PremiumPostBody>
                       <S.PremiumTemplate>
-                        <S.PremiumPostImg src="/classPage/list.png" />
+                        <S.PremiumPostImg src={post.url} />
                       </S.PremiumTemplate>
                       <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
                       <S.PremiumUser>{post.name}</S.PremiumUser>

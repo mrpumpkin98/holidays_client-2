@@ -127,7 +127,7 @@ export const PremiumTemplate = styled.article`
 
 export const PremiumPostImg = styled.img`
   width: 150px;
-  height: 100%;
+  height: 150px;
   object-fit: cover;
   border-radius: 4px;
 `;

@@ -66,7 +66,7 @@ export default function communityListPage() {
               <S.Posts id={post.board_id} onClick={onClickSubmit}>
                 <S.PostBody>
                   <S.Template>
-                    <S.PostImg src="/communityPage/exampleImage1.png" />
+                    <S.PostImg src={post.url} />
                   </S.Template>
                   <S.PostTitle>{post.title}</S.PostTitle>
                   <S.PostContent>

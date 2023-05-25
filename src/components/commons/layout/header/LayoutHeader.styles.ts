@@ -13,7 +13,8 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #faf8f2;
+  background-color: white;
+  border-bottom: 1px solid #e1e1e1;
   position: fixed;
   z-index: 9998;
 
@@ -56,7 +57,7 @@ export const MenuWrapper = styled.div`
 `;
 
 export const Menu = styled.div`
-  font-weight: 700;
+  font-family: "Arita-SemiBold";
   font-size: 18px;
   cursor: pointer;
   :hover {
@@ -95,6 +96,12 @@ export const Icon = styled.img`
   height: 23px;
   cursor: pointer;
   margin: 0px 5px;
+`;
+
+export const Reservation = styled.div`
+  font-size: 14px;
+  margin-right: 14px;
+  cursor: pointer;
 `;
 
 export const Crcle = styled.div`

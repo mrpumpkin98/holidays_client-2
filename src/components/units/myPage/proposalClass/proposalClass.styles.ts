@@ -97,7 +97,9 @@ export const Title = styled.div`
 
 export const PremiumWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-collapse: collapse;
   justify-content: space-between;
   align-items: center;
   animation: ${SlideBottom} 0.7s ease-in-out both;
@@ -108,10 +110,11 @@ export const PremiumWrapper = styled.div`
 export const Posts = styled.div``;
 
 export const PremiumPosts = styled.div`
-  border-bottom: 1px solid #e1e1e1;
+  border: 1px solid #e1e1e1;
   border-radius: 4px;
-  width: 895px;
+  width: 447px;
   padding: 15px 10px 15px 5px;
+  margin-bottom: 7px;
   :hover {
     box-shadow: 0px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
   }
@@ -129,7 +132,7 @@ export const PremiumTemplate = styled.article`
 
 export const PremiumPostImg = styled.img`
   width: 150px;
-  height: 100%;
+  height: 150px;
   object-fit: cover;
   border-radius: 4px;
 `;

@@ -19,6 +19,7 @@ export const FETCH_CLASSES_AD: any = gql`
       total_time
       address
       address_detail
+      url
     }
   }
 `;

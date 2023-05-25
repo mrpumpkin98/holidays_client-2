@@ -3,11 +3,12 @@ import * as S from "./reservation.styles";
 import { FETCH_RESERVATIONS_OF_CLASS } from "../../../commons/hooks/useQueries/class/UseQueryFetchReservationsOfClass";
 import { useMutation, useQuery } from "@apollo/client";
 import { UPDATE_RESERVATION } from "../../../commons/hooks/useMutations/class/useMutationUpdateReservation";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export default function Reservation() {
   const [Contents, setContents] = useState(false);
   const [rse_id, setRse_id] = useState();
-  const { data, refetch } = useQuery(FETCH_RESERVATIONS_OF_CLASS);
+  const { data, loading, refetch } = useQuery(FETCH_RESERVATIONS_OF_CLASS);
   const [updateReservation] = useMutation(UPDATE_RESERVATION);
 
   const handleUpdateReservation = (event: any) => {
@@ -22,7 +23,13 @@ export default function Reservation() {
   };
   return (
     <S.Wrapper>
-      {Contents ? (
+      {loading ? (
+        // 로딩 페이지 또는 대체 이미지를 보여줄 수 있는 JSX를 작성하세요
+        // 예시: <div>로딩 중...</div>
+        <div>
+          <LoadingOutlined />
+        </div>
+      ) : !data || data.fetchReservationsOfClass.length === 0 ? (
         <>
           <S.ListNameIconWrapper>
             <S.ListName>예약 관리</S.ListName>
@@ -49,7 +56,7 @@ export default function Reservation() {
                 <S.PremiumPosts>
                   <S.PremiumPostBody>
                     <S.PremiumTemplate>
-                      <S.PremiumPostImg src="/classPage/list.png" />
+                      <S.PremiumPostImg src={post.url} />
                     </S.PremiumTemplate>
                     <S.PremiumPostContent>
                       <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>

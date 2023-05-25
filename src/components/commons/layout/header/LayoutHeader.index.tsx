@@ -14,6 +14,10 @@ export default function LayoutHeader(): JSX.Element {
   const { data, refetch } = useQuery(FETCH_LOGIN_USER);
   const userName = data?.fetchLoginUser.name;
 
+  useEffect(() => {
+    refetch();
+  }, [userName]);
+
   const onClickLogIn = () => {
     void router.push("/loginPage");
   };
@@ -38,28 +42,8 @@ export default function LayoutHeader(): JSX.Element {
     void router.push("/");
   };
 
-  // 글쓰기 모달기능
-
-  const [showModal, setShowModal] = useState(false);
-
-  const handleModalOpen = (): void => {
-    setShowModal(true);
-  };
-
-  const handleModalClose = (): void => {
-    setShowModal(false);
-  };
-
-  // 내정보 모달기능
-
-  const [showModal2, setShowModal2] = useState(false);
-
-  const handleModalOpen2 = (): void => {
-    setShowModal2(true);
-  };
-
-  const handleModalClose2 = (): void => {
-    setShowModal2(false);
+  const handleReservationPage = (event: any) => {
+    router.push("/myPage/reservation/");
   };
 
   return (
@@ -77,7 +61,10 @@ export default function LayoutHeader(): JSX.Element {
         </S.NaviWrapper>
         {userName ? (
           <S.ButtonTie>
-            <S.Icon src="/images/bell.png" />
+            <S.Reservation>알림</S.Reservation>
+            <S.Reservation onClick={handleReservationPage}>
+              예약 관리
+            </S.Reservation>
             <DropdownMyPage />
             <DropdownWriting />
           </S.ButtonTie>
