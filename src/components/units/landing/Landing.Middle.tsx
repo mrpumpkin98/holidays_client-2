@@ -1,7 +1,7 @@
 import * as S from "./Landing.styles";
 import { useInView } from "react-intersection-observer";
 
-export default function LandingCategory() {
+export default function LandingCategory(): JSX.Element {
   const [ref, inView] = useInView({
     root: null,
     rootMargin: "100px",
@@ -15,7 +15,7 @@ export default function LandingCategory() {
           <S.MidWrap>
             <S.MidPic1Wrap className={inView ? "isActive" : ""} ref={ref}>
               <S.Span1 className={inView ? "isActive" : ""} ref={ref}>
-                다양한 분야의
+                새롭고 이로운 지식
               </S.Span1>
               <S.Span className={inView ? "isActive" : ""} ref={ref}>
                 Education
@@ -28,7 +28,7 @@ export default function LandingCategory() {
             </S.MidPic1Wrap>
             <S.MidPic2Wrap className={inView ? "isActive" : ""} ref={ref}>
               <S.Span1 className={inView ? "isActive" : ""} ref={ref}>
-                수많은 종류의
+                당신의 건강을 지켜줄
               </S.Span1>
               <S.Span className={inView ? "isActive" : ""} ref={ref}>
                 WorkOut

@@ -1,6 +1,12 @@
 import { gql, useMutation } from "@apollo/client";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { ChangeEvent, MouseEventHandler, useState } from "react";
+import {
+  IMutation,
+  IMutationCheckEmailTokenArgs,
+  IMutationGetTokenEmailArgs,
+  IMutationUpdateUserPwdArgs,
+} from "../../../commons/types/generated/types";
 import * as S from "./findPassword.styles";
 
 const UPDATE_USER_PWD = gql`
@@ -9,7 +15,7 @@ const UPDATE_USER_PWD = gql`
   }
 `;
 
-export const GET_TOKEN_EMAIL = gql`
+const GET_TOKEN_EMAIL = gql`
   mutation getTokenEmail($email: String!, $method: String!) {
     getTokenEmail(email: $email, method: $method)
   }
@@ -21,8 +27,8 @@ const CHECK_EMAIL_TOKEN = gql`
   }
 `;
 
-export default function FindPassword() {
-  const router = useRouter();
+export default function FindPassword(): JSX.Element {
+  const router: NextRouter = useRouter();
 
   // 이메일 입력값 담기
   const [email, setEmail] = useState<string>("");
@@ -37,9 +43,18 @@ export default function FindPassword() {
   const [verifyNum, SetVerifyNum] = useState<string>("");
 
   // 뮤테이션 함수
-  const [getTokenEmail] = useMutation(GET_TOKEN_EMAIL);
-  const [checkEmailToken] = useMutation(CHECK_EMAIL_TOKEN);
-  const [updateUserPwd] = useMutation(UPDATE_USER_PWD);
+  const [getTokenEmail] = useMutation<
+    Pick<IMutation, "getTokenEmail">,
+    IMutationGetTokenEmailArgs
+  >(GET_TOKEN_EMAIL);
+  const [checkEmailToken] = useMutation<
+    Pick<IMutation, "checkEmailToken">,
+    IMutationCheckEmailTokenArgs
+  >(CHECK_EMAIL_TOKEN);
+  const [updateUserPwd] = useMutation<
+    Pick<IMutation, "updateUserPwd">,
+    IMutationUpdateUserPwdArgs
+  >(UPDATE_USER_PWD);
 
   // 비밀번호 유효성 검사 함수
   const isPasswordValid = (password: string): boolean => {
@@ -72,7 +87,7 @@ export default function FindPassword() {
   };
 
   // 비밀번호 입력값, 확인
-  const onChangePwd = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangePwd = (event: ChangeEvent<HTMLInputElement>): void => {
     const newPwd = event.target.value;
     setPwd(newPwd);
     if (!isPasswordValid(newPwd)) {
@@ -88,7 +103,7 @@ export default function FindPassword() {
   };
 
   // 이메일 인증번호 입력값
-  const onChangeVerifyNum = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeVerifyNum = (event: ChangeEvent<HTMLInputElement>): void => {
     SetVerifyNum(event.target.value);
   };
 
@@ -126,7 +141,7 @@ export default function FindPassword() {
         },
       });
       console.log(result);
-      if (result.data.checkEmailToken) {
+      if (result.data?.checkEmailToken) {
         SetVerified(true);
       } else {
         alert("인증번호가 틀렸습니다, 다시 시도해 주세요");

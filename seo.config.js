@@ -3,7 +3,7 @@ export default {
   additionalLinkTags: [
     {
       rel: "icon",
-      href: "/favicon.ico",
+      href: "/appIcons/icon-192x192.png",
     },
     {
       rel: "manifest",
@@ -15,6 +15,10 @@ export default {
     {
       name: "theme-color",
       content: "#FFFFFF",
+    },
+    {
+      name: "apple-mobile-web-app-capable",
+      content: "yes",
     },
     // ...
   ],

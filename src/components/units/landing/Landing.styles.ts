@@ -85,6 +85,7 @@ export const MidWrap = styled.div`
   @media ${mobile} {
     display: flex;
     flex-direction: column;
+    margin-top: 10vh;
   }
 `;
 
@@ -97,7 +98,13 @@ export const Span = styled.div`
   }
 
   @media ${mobile} {
-    font-size: 20px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 `;
 
@@ -293,6 +300,7 @@ export const LeftWrapper = styled.div`
     height: 70%;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 3vh;
   }
 `;
 
@@ -364,8 +372,9 @@ export const LeftItem3 = styled.div`
 `;
 
 export const Content3 = styled.div`
-  font-size: 0.9rem;
-  font-weight: 300;
+  font-size: 1rem;
+  font-weight: 200;
+  margin-top: 2vh;
 
   @media ${mobile} {
     font-size: 1.3rem;
@@ -392,20 +401,22 @@ export const RightWrapper = styled.div`
 `;
 
 export const MainLogo = styled.img`
-  width: 22vw;
-  height: 7vh;
+  width: 10.32rem;
+  height: 2rem;
   margin-bottom: 1.5rem;
   opacity: 1;
   cursor: pointer;
+  transform: scale(1.5);
 
   .isActive {
     opacity: 1;
   }
 
   @media ${mobile} {
-    width: 35vw;
-    height: 9vh;
+    width: 10.32rem;
+    height: 2rem;
     margin-bottom: 15px;
+    transform: scale(1.1);
   }
 `;
 
@@ -526,7 +537,6 @@ export const Logo = styled.img`
   margin-bottom: 2vh;
   @media ${mobile} {
     width: 60vw;
-    position: relative;
-    top: 110%;
+    margin-top: 3vh;
   }
 `;

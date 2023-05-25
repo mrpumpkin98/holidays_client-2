@@ -2,57 +2,73 @@ import { gql, useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
+import {
+  IMutation,
+  IMutationCheckEmailTokenArgs,
+  IMutationCheckPhoneTokenArgs,
+  IMutationGetTokenEmailArgs,
+  IMutationGetTokenPhoneArgs,
+} from "../../../commons/types/generated/types";
 import { UseMutationCreateUser } from "../../commons/hooks/useMutations/signup/UseMutationCreateUser";
-import { CHECK_PHONE_TOKEN } from "../../commons/hooks/useMutations/verify/checkPhoneToken";
-import { GET_TOKEN_PHONE } from "../../commons/hooks/useMutations/verify/getTokenPhone";
+import {
+  CHECK_PHONE_TOKEN,
+  GET_TOKEN_PHONE,
+} from "../../commons/hooks/useMutations/verifyPhone/useMutationVerifyPhone";
+
 import * as S from "./signUp.styles";
+import { IFormSignUpData } from "./signUp.types";
 import { SignUpSchema } from "./signUp.validation";
 
-export const GET_TOKEN_EMAIL = gql`
+const GET_TOKEN_EMAIL = gql`
   mutation getTokenEmail($email: String!, $method: String!) {
     getTokenEmail(email: $email, method: $method)
   }
 `;
 
-export const CHECK_EMAIL_TOKEN = gql`
+const CHECK_EMAIL_TOKEN = gql`
   mutation checkEmailToken($email: String!, $token: String!) {
     checkEmailToken(email: $email, token: $token)
   }
 `;
 
-interface IFormSignUpData {
-  email: string;
-  pwd: string;
-  name: string;
-  birth_date?: string;
-  passwordCheck?: string;
-  phone?: string;
-}
-
 export default function SignUp(): JSX.Element {
   // 이메일 인증 관련 (1. 인증 2. 인증완료 3. 인증번호)
-  const [verify, SetVerify] = useState(false);
-  const [verified, SetVerified] = useState(false);
-  const [verifyNum, SetVerifyNum] = useState("");
+  const [verify, SetVerify] = useState<boolean>(false);
+  const [verified, SetVerified] = useState<boolean>(false);
+  const [verifyNum, SetVerifyNum] = useState<string>("");
 
   // 휴대전화 인증 관련 (1. 인증 2. 인증완료 3. 인증번호)
-  const [phoneVerify, SetPhoneVerify] = useState(false);
-  const [phoneVerified, SetPhoneVerified] = useState(false);
-  const [phoneVerifyNum, SetPhoneVerifyNum] = useState("");
+  const [phoneVerify, SetPhoneVerify] = useState<boolean>(false);
+  const [phoneVerified, SetPhoneVerified] = useState<boolean>(false);
+  const [phoneVerifyNum, SetPhoneVerifyNum] = useState<string>("");
 
   // 뮤테이션
-  const [getTokenEmail] = useMutation(GET_TOKEN_EMAIL);
-  const [checkEmailToken] = useMutation(CHECK_EMAIL_TOKEN);
-  const [getTokenPhone] = useMutation(GET_TOKEN_PHONE);
-  const [checkPhoneToken] = useMutation(CHECK_PHONE_TOKEN);
+  const [getTokenEmail] = useMutation<
+    Pick<IMutation, "getTokenEmail">,
+    IMutationGetTokenEmailArgs
+  >(GET_TOKEN_EMAIL);
+  const [checkEmailToken] = useMutation<
+    Pick<IMutation, "checkEmailToken">,
+    IMutationCheckEmailTokenArgs
+  >(CHECK_EMAIL_TOKEN);
+  const [getTokenPhone] = useMutation<
+    Pick<IMutation, "getTokenPhone">,
+    IMutationGetTokenPhoneArgs
+  >(GET_TOKEN_PHONE);
+  const [checkPhoneToken] = useMutation<
+    Pick<IMutation, "checkPhoneToken">,
+    IMutationCheckPhoneTokenArgs
+  >(CHECK_PHONE_TOKEN);
 
   // 이메일 인증번호 입력값
-  const onChangeVerifyNum = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeVerifyNum = (event: ChangeEvent<HTMLInputElement>): void => {
     SetVerifyNum(event.target.value);
   };
 
   // 휴대전화 인증번호 입력값
-  const onChangePhoneVerifyNum = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangePhoneVerifyNum = (
+    event: ChangeEvent<HTMLInputElement>
+  ): void => {
     SetPhoneVerifyNum(event.target.value);
   };
 
@@ -121,13 +137,13 @@ export default function SignUp(): JSX.Element {
         },
       });
       console.log(result);
-      if (result.data.checkEmailToken) {
+      if (result.data?.checkEmailToken) {
         SetVerified(true);
       } else {
         alert("인증번호가 틀렸습니다, 다시 시도해 주세요");
       }
     } catch (error) {
-      console.log("번호 인증 실패");
+      if (error instanceof Error) console.log("번호 인증 실패");
     }
   };
 
@@ -160,12 +176,12 @@ export default function SignUp(): JSX.Element {
       const phone = getValues("phone");
       const result = await checkPhoneToken({
         variables: {
-          phone,
+          phone: String(phone),
           token: phoneVerifyNum,
         },
       });
       console.log(result);
-      if (result.data.checkPhoneToken) {
+      if (result.data?.checkPhoneToken) {
         SetPhoneVerified(true);
       } else {
         alert("인증번호가 틀렸습니다, 다시 시도해 주세요");

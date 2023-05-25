@@ -5,14 +5,14 @@ import Modal from "../../commons/modals/magazineModal/Modal/modal";
 import * as S from "./magazinePage.styles";
 
 export default function Magazine(): JSX.Element {
-  const [showModal, setShowModal] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (): void => {
     setIsHovered(true);
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (): void => {
     setIsHovered(false);
   };
   const handleModalOpen = (): void => {
