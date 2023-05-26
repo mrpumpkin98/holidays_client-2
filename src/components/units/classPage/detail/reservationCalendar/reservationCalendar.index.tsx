@@ -167,17 +167,17 @@ export default function CalendarUI(props: IReservationCreateProps) {
               <S.Number2>명</S.Number2>
             </S.NumberBox>
 
-            <S.Row>
+            {/* <S.Row>
               <S.Num2>1명</S.Num2>
               <S.Price>₩ 625,730</S.Price>
-            </S.Row>
+            </S.Row> */}
 
-            <S.Line />
+            {/* <S.Line /> */}
 
-            <S.Row>
+            {/* <S.Row>
               <S.Sum>총 합계</S.Sum>
               <S.Price>₩ 714,065</S.Price>
-            </S.Row>
+            </S.Row> */}
           </S.Contents>
 
           <S.BtnWrapper

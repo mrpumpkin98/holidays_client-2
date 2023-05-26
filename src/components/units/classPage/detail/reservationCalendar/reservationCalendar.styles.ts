@@ -49,11 +49,9 @@ export const NumberBox = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  padding: 0px 0px 20px 0px;
-  margin: 10px 0px 30px 0px;
-
+  padding: 0px 0px 25px 0px;
+  margin-top: 10px;
   border-bottom: 1px solid rgba(189, 189, 189, 1);
-  /* background-color: pink; */
 `;
 
 export const Num = styled.div`
