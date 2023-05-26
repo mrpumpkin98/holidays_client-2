@@ -15,6 +15,7 @@ interface IEditorPageProps {
 
 function ToastEditor(props: IEditorPageProps) {
   const [uploadFile] = UseMutationUploadFile();
+
   return (
     <Editor
       placeholder="상품을 설명해주세요."

@@ -20,7 +20,7 @@ export const ListName = styled.h1`
 export const Icon = styled.img`
   width: 25px;
   height: 25px;
-  margin-top: 7px;
+  margin-top: 2px;
   margin-left: 10px;
 `;
 

@@ -11,6 +11,11 @@ export default function communityDetailPage() {
     variables: { board_id: router.query.board_id },
   });
 
+  // 이미지가 없을 경우에 대한 스타일 처리
+  const titleImgStyle = data?.fetchBoardDetail?.image_[0]?.url
+    ? undefined
+    : { display: "none" };
+
   return (
     <>
       <S.Wrapper>
@@ -19,6 +24,10 @@ export default function communityDetailPage() {
           <S.UserName>{data?.fetchBoardDetail?.user_?.name}</S.UserName>
           <S.Time>2023.05.23</S.Time>
         </S.UserTie>
+        <S.TitleImg
+          src={data?.fetchBoardDetail?.image_[0]?.url}
+          style={titleImgStyle}
+        />
         <S.Line />
         <S.WrapperContents>
           <S.Contents
