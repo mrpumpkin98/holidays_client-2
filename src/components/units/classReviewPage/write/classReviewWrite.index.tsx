@@ -1,8 +1,5 @@
 import { useForm } from "react-hook-form";
-import {
-  UseMutationClassReview,
-  UseMutationClassReviewSubmit,
-} from "../../../commons/hooks/useMutations/class/useMutationReview";
+import { UseMutationClassReviewSubmit } from "../../../commons/hooks/useMutations/class/useMutationReview";
 import * as S from "./classReviewWrite.styles";
 import {
   IClassReviewWriteProps,
@@ -27,7 +24,6 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
       content: props.isEdit ? props.el?.content : "",
       grade: props.isEdit ? props.el?.grade : 0,
       cr_id: props.el?.cr_id,
-      // grade: 3,
     },
     mode: "onChange",
   });
@@ -74,14 +70,12 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
               />
 
               <S.ButtonWrapper>
-                {/* <S.Length>/ 300</S.Length> */}
                 <S.ReviewWriteBtn type="submit">
                   {props.isEdit ? "수정" : "등록"}
                 </S.ReviewWriteBtn>
               </S.ButtonWrapper>
             </S.ReviewBox>
           </S.Wrapper_body>
-          {/* <S.Error>에러</S.Error> */}
         </form>
       </S.Wrapper>
     </>

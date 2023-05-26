@@ -3,11 +3,7 @@ import type { SizeType } from "antd/es/config-provider/SizeContext";
 import * as S from "./reservationCalendar.styles";
 import { Calendar, theme } from "antd";
 import type { CalendarMode } from "antd/es/calendar/generateCalendar";
-// import { Modal } from "antd";
 import type { Dayjs } from "dayjs";
-
-import Modal from "./Modal/modal";
-import Backdrop from "./Modal/Backdrop";
 import { UseQueryFetchClassSchedules } from "../../../../commons/hooks/useQueries/class/useQueryFetchClassSchedules";
 import { UseMutationReservation } from "../../../../commons/hooks/useMutations/class/useMutationCreateReservation";
 import { useForm } from "react-hook-form";
@@ -15,22 +11,17 @@ import {
   IFormData,
   IReservationCreateProps,
 } from "./reservationCalendar.types";
-// import Calendar from "../../../../commons/calendar";
 
 export default function CalendarUI(props: IReservationCreateProps) {
-  const [date, setDate] = useState<string>();
+  const [date, setDate] = useState<string>("");
 
   // -------
   const { data } = UseQueryFetchClassSchedules();
-  console.log(data, "!!!!!!!");
 
   const { onClickReservation } = UseMutationReservation();
 
   const { register, handleSubmit, setValue } = useForm<IFormData>({
     defaultValues: {
-      // res_date: "test!",
-      // personnel: "99",
-
       res_date: date,
       personnel: props.personnel,
     },
@@ -41,30 +32,9 @@ export default function CalendarUI(props: IReservationCreateProps) {
   // 예약하기 제출
   const onSubmitForm = async (data: IFormData) => {
     const { ...value } = data;
-    // setValue("res_date", date); // 추가
-    console.log("res_date", data);
-    console.log(headerRender, "1231242124");
+
     await onClickReservation(value);
-    // await onClickReservation(data, date);
   };
-
-  // ----------------
-
-  // 예약하기 버튼 눌렀을 때 뜨는 모달
-  // const [showModal, setShowModal] = useState(false);
-
-  // const handleModalOpen = (): void => {
-  //   setShowModal(true);
-  // };
-
-  // const handleModalClose = (): void => {
-  //   setShowModal(false);
-  // };
-
-  // ----------------
-
-  // // 달력 크기 지정
-  // const [size] = useState<SizeType>("large");
 
   useEffect(() => {
     // date 변수가 변경될 때마다 defaultValues를 업데이트
@@ -117,7 +87,6 @@ export default function CalendarUI(props: IReservationCreateProps) {
           {year}년 {month}월
         </div>
         <div>
-          {/* <select value={date} onChange={(value: string) => setDate(value)}> */}
           <select value={date} onChange={(event) => setDate(date)}>
             {monthOptions}
           </select>
@@ -131,13 +100,6 @@ export default function CalendarUI(props: IReservationCreateProps) {
   return (
     <>
       <S.Wrapper>
-        {/* ------------ */}
-
-        {/* {showModal && <Modal onClose={handleModalClose} />}
-        {showModal && <Backdrop onClick={handleModalClose} />} */}
-
-        {/* ------------ */}
-
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <S.Contents>
             <S.Text>
@@ -150,7 +112,6 @@ export default function CalendarUI(props: IReservationCreateProps) {
               <Calendar
                 fullscreen={false}
                 onPanelChange={onPanelChange}
-                // onChange={onChangeDate}
                 headerRender={headerRender} // 추가(높이조정)
               />
             </S.Calendar>
@@ -162,31 +123,12 @@ export default function CalendarUI(props: IReservationCreateProps) {
                 type="int"
                 placeholder="인원을 입력해주세요"
                 {...register("personnel")}
-                // defaultValue={props.data?.fetchClassDetail.class_mNum}
               />
               <S.Number2>명</S.Number2>
             </S.NumberBox>
-
-            {/* <S.Row>
-              <S.Num2>1명</S.Num2>
-              <S.Price>₩ 625,730</S.Price>
-            </S.Row> */}
-
-            {/* <S.Line /> */}
-
-            {/* <S.Row>
-              <S.Sum>총 합계</S.Sum>
-              <S.Price>₩ 714,065</S.Price>
-            </S.Row> */}
           </S.Contents>
 
-          <S.BtnWrapper
-            // onClick={handleModalOpen}
-            // onClick={onClickReservation}
-            type="submit"
-          >
-            예약하기
-          </S.BtnWrapper>
+          <S.BtnWrapper type="submit">예약하기</S.BtnWrapper>
         </form>
       </S.Wrapper>
     </>
