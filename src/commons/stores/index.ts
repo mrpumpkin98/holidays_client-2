@@ -25,3 +25,8 @@ export const selectService = atom<string | null>({
   key: "selectService",
   default: "",
 });
+
+export const selectServiceFromLanding = atom<string | null>({
+  key: "selectServiceFirstFromLanding",
+  default: "",
+});
