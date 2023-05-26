@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  margin-top: 100px;
+  /* margin-top: 100px; */
   width: 640px;
   padding-bottom: 30px;
   box-shadow: 0px 0px 5px gray;
@@ -17,6 +17,7 @@ export const ContentWrapper = styled.div`
   @media ${mobile} {
     width: 95vw;
     padding-bottom: 3vh;
+    box-shadow: 0px 0px 0px gray;
   }
 `;
 
@@ -109,6 +110,11 @@ export const VerifyButton = styled.button`
   &:hover {
     background: orange;
     color: white;
+  }
+
+  @media ${mobile} {
+    width: 20vw;
+    font-size: 0.8rem;
   }
 `;
 

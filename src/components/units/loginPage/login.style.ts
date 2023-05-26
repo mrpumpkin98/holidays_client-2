@@ -20,13 +20,12 @@ export const Wrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  margin-top: 100px;
   width: 640px;
   padding-bottom: 30px;
   box-shadow: 0px 0px 5px gray;
   @media ${mobile} {
     width: 90%;
-    margin-top: 10vh;
+    box-shadow: 0px 0px 0px gray;
   }
 `;
 
