@@ -14,15 +14,26 @@ export const Wrapper = styled.div`
   box-shadow: 0px 0px 10px gray;
 `;
 
-export const Title = styled.h1`
-  margin-bottom: 19px;
-  font-size: 25px;
+export const TitleImg = styled.img`
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
 `;
 
-export const UserTie = styled.div``;
+export const Title = styled.h1`
+  margin-bottom: 19px;
+  font-size: 50px;
+`;
+
+export const UserTie = styled.div`
+  margin-bottom: 30px;
+`;
 
 export const UserName = styled.div`
   font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 `;
 
 export const Time = styled.div`

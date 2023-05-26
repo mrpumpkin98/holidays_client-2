@@ -1,15 +1,25 @@
 import { useState } from "react";
 import * as S from "./wishList.styles";
 import { useQuery } from "@apollo/client";
-import { FECTCH_CLASS_WISHLISTS } from "../../../commons/hooks/useQueries/class/UseQueryFetchWishlists";
+import { FETCH_CLASS_WISHLISTS_OF_MINE } from "../../../commons/hooks/useQueries/class/UseQueryFetchWishlists";
 import { Money } from "../../../../commons/libraries/utils";
 import { LoadingOutlined } from "@ant-design/icons";
+import { useRouter } from "next/router";
 
 export default function WishList() {
+  const router = useRouter();
   const [Contents, setContents] = useState(false);
-  const { data, loading, refetch } = useQuery(FECTCH_CLASS_WISHLISTS);
+  const { data, loading, refetch } = useQuery(FETCH_CLASS_WISHLISTS_OF_MINE);
   const onClickWrite = () => {
     console.log(data);
+  };
+
+  ///////////////////////////////////////////////////////////////
+  //  화면 없을때 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickMenu = () => {
+    void router.push("/classPage");
   };
   return (
     <S.Wrapper>
@@ -30,7 +40,7 @@ export default function WishList() {
             <S.Emoji>🤔</S.Emoji>
             <S.Text>아직 워시리스트가 없어요</S.Text>
             <S.MainText>클래스를 찾아 보실까요?</S.MainText>
-            <S.Button>클래스 찾아보기</S.Button>
+            <S.Button onClick={onClickMenu}>클래스 찾아보기</S.Button>
           </S.Box>
         </>
       ) : (

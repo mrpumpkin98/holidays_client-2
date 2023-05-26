@@ -11,6 +11,9 @@ export const FETCH_BOARD_DETAIL = gql`
       user_ {
         name
       }
+      image_ {
+        url
+      }
     }
   }
 `;

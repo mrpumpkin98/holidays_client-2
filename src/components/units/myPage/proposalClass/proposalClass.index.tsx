@@ -4,10 +4,20 @@ import { useQuery } from "@apollo/client";
 import { FETCH_RESERVATIONS_OF_USER } from "../../../commons/hooks/useQueries/class/UseQueryFetchReservationsOfUser";
 import { Money } from "../../../../commons/libraries/utils";
 import { LoadingOutlined } from "@ant-design/icons";
+import { useRouter } from "next/router";
 
 export default function MypagePoint() {
+  const router = useRouter();
   const [Contents, setContents] = useState(false);
   const { data, loading, refetch } = useQuery(FETCH_RESERVATIONS_OF_USER);
+
+  ///////////////////////////////////////////////////////////////
+  //  화면 없을때 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickMenu = () => {
+    void router.push("/classPage");
+  };
 
   return (
     <S.Wrapper>
@@ -28,7 +38,7 @@ export default function MypagePoint() {
             <S.Emoji>🤔</S.Emoji>
             <S.Text>아직 신청한 클래스가 없어요</S.Text>
             <S.MainText>클래스를 찾아 보실까요?</S.MainText>
-            <S.Button>클래스 찾아보기</S.Button>
+            <S.Button onClick={onClickMenu}>클래스 찾아보기</S.Button>
           </S.Box>
         </>
       ) : (

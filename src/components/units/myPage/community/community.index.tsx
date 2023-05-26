@@ -4,10 +4,21 @@ import { formatDateString } from "../../../../commons/libraries/utils";
 import { FECTCH_BOARDS_OF_MINE } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoardsOfMine";
 import { LoadingOutlined } from "@ant-design/icons";
 import * as S from "./community.styles";
+import { useRouter } from "next/router";
 
 export default function ProposalClass() {
+  const router = useRouter();
   const [Contents, setContents] = useState(false);
   const { data, loading, refetch } = useQuery(FECTCH_BOARDS_OF_MINE);
+
+  ///////////////////////////////////////////////////////////////
+  //  화면 없을때 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickMenu = () => {
+    void router.push("/communityPage/write");
+  };
+
   return (
     <>
       <S.Wrapper>
@@ -28,7 +39,9 @@ export default function ProposalClass() {
               <S.Emoji>🤔</S.Emoji>
               <S.Text>아직 작성한 사랑방 게시물이 없어요</S.Text>
               <S.MainText>사랑방 게시물을 작성해 보실까요?</S.MainText>
-              <S.Button>사랑방 게시물 작성해보기</S.Button>
+              <S.Button onClick={onClickMenu}>
+                사랑방 게시물 작성해보기
+              </S.Button>
             </S.Box>
           </>
         ) : (
