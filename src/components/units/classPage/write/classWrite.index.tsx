@@ -1,27 +1,20 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import * as S from "./classWrite.styles";
-
 import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload } from "antd";
 import type { RcFile, UploadProps } from "antd/es/upload";
 import type { UploadFile } from "antd/es/upload/interface";
-
-// import MultipleDatePicker from "react-multiple-datepicker";
 import DaumPostcodeEmbed from "react-daum-postcode"; //  우편번호
 import type { Address } from "react-daum-postcode";
 import { UseMutationCreateClass } from "../../../commons/hooks/useMutations/class/useMutationCreateClass";
-import { classWriteSchema } from "./classWrite.validation";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import dynamic from "next/dynamic";
-
 import "react-quill/dist/quill.snow.css";
 import { useMutationUpdateClass } from "../../../commons/hooks/useMutations/class/useMutationUpdateClass";
 import { IClassWriteProps, IFormData } from "./classWrite.types";
 import { useMutationUploadFile } from "../../../commons/hooks/useMutations/class/useMutationUploadFile";
 import ClassImage from "./classWriteImage";
 import Calendar from "../../../commons/calendar";
-import { useAuth02 } from "../../../commons/hooks/useAuths/useAuth02";
 import { UseMutationUploadFile } from "../../../commons/hooks/useMutations/uploadFile/UseMutationUploadFile";
 
 // 웹 에디터

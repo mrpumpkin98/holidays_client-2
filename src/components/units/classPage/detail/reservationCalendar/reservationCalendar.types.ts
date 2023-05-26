@@ -1,6 +1,6 @@
 export interface IReservationCreateProps {
-  date: string;
-  personnel: string;
+  date?: string;
+  personnel?: string;
 }
 
 export interface IFormData {

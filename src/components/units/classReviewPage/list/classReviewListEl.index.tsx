@@ -6,8 +6,6 @@ import { useState } from "react";
 import { getDate } from "../../../../commons/libraries/utils";
 
 export default function ClassReviewListEl(props: any) {
-  const [aaa, setAaa] = useState(false);
-
   // 삭제, 수정 버튼
   const { onClickDelete, isEdit, setIsEdit } = UseMutationClassReview();
   console.log("=====");
