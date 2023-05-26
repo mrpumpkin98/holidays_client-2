@@ -1,5 +1,5 @@
 import { MouseEventHandler, useState } from "react";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { FECTCH_CLASS_OF_MINE } from "../../../commons/hooks/useQueries/class/UseQueryFetchClassesOfMine";
 import { Money } from "../../../../commons/libraries/utils";
 import { useRouter } from "next/router";
@@ -8,12 +8,34 @@ import * as S from "./madeClass.styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { DELETE_CLASS } from "../../../commons/hooks/useMutations/class/useMutationDeleteClass";
+import { FETCH_CLASSES } from "../../../commons/hooks/useQueries/class/UseQueryFetchClasses";
 
 export default function madeClass() {
   const router = useRouter();
-
+  const [resClass, setResClass] = useState();
   const [Contents, setContents] = useState(false);
   const { data, loading, refetch } = useQuery(FECTCH_CLASS_OF_MINE);
+  const [deleteClass] = useMutation(DELETE_CLASS);
+
+  ///////////////////////////////////////////////////////////////
+  //  게시물 삭제
+  //////////////////////////////////////////////////////////////
+
+  const handleDelete = (event: any) => {
+    setResClass(event.currentTarget.id); // res_id 업데이트
+    deleteClass({
+      variables: {
+        class_id: String(event.currentTarget.id),
+      },
+      refetchQueries: [
+        { query: FETCH_CLASSES },
+        { query: FECTCH_CLASS_OF_MINE },
+      ],
+    });
+    console.log(event.currentTarget.id);
+    alert("승인을 취소했습니다.");
+  };
 
   ///////////////////////////////////////////////////////////////
   //  광고하기로 이동
@@ -130,7 +152,12 @@ export default function madeClass() {
                             광고중
                           </S.AdButton>
                         )}
-                        <S.DeleteButton>삭제하기</S.DeleteButton>
+                        <S.DeleteButton
+                          id={post.class_id}
+                          onClick={handleDelete}
+                        >
+                          삭제하기
+                        </S.DeleteButton>
                       </S.ButtonTie>
                     </S.PremiumPostBody>
                   </S.PremiumPosts>

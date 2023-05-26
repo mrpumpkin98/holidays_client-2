@@ -165,13 +165,15 @@ export default function StaticRoutingPage() {
                     <S.PremiumTemplate>
                       <S.PremiumPostImg src={post.url} />
                     </S.PremiumTemplate>
-                    <S.Class>{post.category}</S.Class>
+                    <S.ClassWrapper>
+                      <S.Class>{post.category}</S.Class>
+                      <S.PremiumTime>
+                        진행시간 : {post.total_time}
+                      </S.PremiumTime>
+                    </S.ClassWrapper>
                     <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
                     <S.PremiumPostContent>
                       <S.PremiumPostInfo>
-                        <S.PremiumTime>
-                          진행시간 : {post.total_time}
-                        </S.PremiumTime>
                         <S.PremiumAddress>{post.address}</S.PremiumAddress>
                         <S.PremiumAvatarContentTie></S.PremiumAvatarContentTie>
                       </S.PremiumPostInfo>
@@ -210,11 +212,13 @@ export default function StaticRoutingPage() {
                 <S.Posts id={post.class_id} onClick={onClickSubmit}>
                   <S.PostBody>
                     <S.PostContent>
-                      <S.Class>{post.category}</S.Class>
+                      <S.ClassWrapper>
+                        <S.Class>{post.category}</S.Class>
+                        <S.Time>진행시간 : {post.total_time}</S.Time>
+                      </S.ClassWrapper>
                       <S.PostTitle>{post.title}</S.PostTitle>
                       <S.PostInfo>
                         <S.AvatarContentTie></S.AvatarContentTie>
-                        <S.Time>진행시간 : {post.total_time}</S.Time>
                       </S.PostInfo>
                       <S.PriceTie>
                         <S.Address>{post.address}</S.Address>

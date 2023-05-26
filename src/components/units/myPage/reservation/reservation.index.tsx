@@ -5,13 +5,17 @@ import { useMutation, useQuery } from "@apollo/client";
 import { UPDATE_RESERVATION } from "../../../commons/hooks/useMutations/class/useMutationUpdateReservation";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
+import { DELETE_RESERVATION } from "../../../commons/hooks/useMutations/class/useMutationDeleteReservation";
+import { FECTCH_CLASS_OF_MINE } from "../../../commons/hooks/useQueries/class/UseQueryFetchClassesOfMine";
 
 export default function Reservation() {
   const router = useRouter();
   const [Contents, setContents] = useState(false);
   const [rse_id, setRse_id] = useState();
+  const [res_id, setRes_id] = useState();
   const { data, loading, refetch } = useQuery(FETCH_RESERVATIONS_OF_CLASS);
   const [updateReservation] = useMutation(UPDATE_RESERVATION);
+  const [deleteReservation] = useMutation(DELETE_RESERVATION);
 
   const handleUpdateReservation = (event: any) => {
     setRse_id(event.currentTarget.id); // rse_id 업데이트
@@ -22,6 +26,22 @@ export default function Reservation() {
       refetchQueries: [{ query: FETCH_RESERVATIONS_OF_CLASS }],
     });
     console.log(event.currentTarget.id);
+    alert("승인을 완료했습니다.");
+  };
+
+  const handleDeleteReservation = (event: any) => {
+    setRes_id(event.currentTarget.id); // res_id 업데이트
+    deleteReservation({
+      variables: {
+        res_id: String(event.currentTarget.id),
+      },
+      refetchQueries: [
+        { query: FETCH_RESERVATIONS_OF_CLASS },
+        { query: FECTCH_CLASS_OF_MINE },
+      ],
+    });
+    console.log(event.currentTarget.id);
+    alert("승인을 취소했습니다.");
   };
 
   ///////////////////////////////////////////////////////////////
@@ -96,7 +116,12 @@ export default function Reservation() {
                       >
                         승인
                       </S.Approve>
-                      <S.Cancel>취소</S.Cancel>
+                      <S.Cancel
+                        id={post.res_id}
+                        onClick={handleDeleteReservation}
+                      >
+                        취소
+                      </S.Cancel>
                     </S.ButtonTie>
                   </S.PremiumPostBody>
                 </S.PremiumPosts>

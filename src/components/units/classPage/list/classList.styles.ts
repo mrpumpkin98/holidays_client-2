@@ -224,10 +224,21 @@ export const PremiumAddress = styled.div`
 `;
 
 export const PremiumTime = styled.div`
-  color: #4a4247;
-  font-size: 13px;
-  margin-top: 3px;
-  margin-bottom: 10px;
+  width: fit-content;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgb(81, 91, 96);
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 5px;
+  margin-right: 4px;
 `;
 
 export const PremiumAvatarContentTie = styled.div`
@@ -359,9 +370,21 @@ export const Address = styled.div`
 `;
 
 export const Time = styled.div`
-  color: #4a4247;
+  width: fit-content;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 12px;
+  line-height: 20px;
+  color: rgb(81, 91, 96);
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
   margin-bottom: 5px;
+  margin-right: 4px;
 `;
 
 export const AvatarContentTie = styled.div``;
@@ -381,6 +404,10 @@ export const Price = styled.div`
   font-family: "Arita-SemiBold";
 `;
 
+export const ClassWrapper = styled.div`
+  display: flex;
+`;
+
 export const Class = styled.div`
   width: fit-content;
   height: 26px;
@@ -397,4 +424,5 @@ export const Class = styled.div`
   margin-bottom: 6px;
   white-space: nowrap;
   overflow: hidden;
+  margin-right: 10px;
 `;
