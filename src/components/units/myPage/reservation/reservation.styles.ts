@@ -147,6 +147,7 @@ export const PremiumPostInfo = styled.div``;
 export const PremiumDate = styled.div`
   color: #4a4247;
   font-size: 14px;
+  margin-top: 2px;
 `;
 
 export const PremiumAvatarContentTie = styled.div``;
@@ -154,6 +155,7 @@ export const PremiumAvatarContentTie = styled.div``;
 export const PremiumContent = styled.div`
   color: #4a4247;
   font-size: 14px;
+  margin-top: 2px;
 `;
 
 export const TextColor = styled.span`
@@ -162,7 +164,9 @@ export const TextColor = styled.span`
   font-weight: 500;
 `;
 
-export const PremiumUserTie = styled.div``;
+export const PremiumUserTie = styled.div`
+  margin-top: 10px;
+`;
 
 export const PremiumUser = styled.div`
   font-size: 14px;

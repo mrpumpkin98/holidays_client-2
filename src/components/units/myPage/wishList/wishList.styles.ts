@@ -149,13 +149,28 @@ export const PremiumPostTitle = styled.div`
 
 export const PremiumPostContent = styled.div``;
 
-export const PremiumPostInfo = styled.div``;
+export const PremiumPostInfo = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 export const PremiumUser = styled.div`
-  text-align: end;
-  color: #f28316;
-  font-size: 14px;
-  font-weight: 700;
+  width: fit-content;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgb(81, 91, 96);
+  background-color: rgb(242, 250, 249);
+  border: 1px solid rgb(0, 150, 136);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-bottom: 5px;
+  margin-right: 4px;
 `;
 
 export const PremiumAvatarContentTie = styled.div``;
@@ -174,6 +189,19 @@ export const PremiumPrice = styled.div`
 `;
 
 export const PremiumTime = styled.div`
-  font-size: 14px;
+  width: fit-content;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 20px;
+  color: rgb(81, 91, 96);
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
   margin-bottom: 5px;
+  margin-right: 4px;
 `;

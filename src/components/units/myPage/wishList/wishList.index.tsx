@@ -1,15 +1,18 @@
 import { useState } from "react";
 import * as S from "./wishList.styles";
 import { useQuery } from "@apollo/client";
-import { FETCH_CLASS_WISHLISTS_OF_MINE } from "../../../commons/hooks/useQueries/class/UseQueryFetchWishlists";
 import { Money } from "../../../../commons/libraries/utils";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
+import {
+  FETCH_CLASS_WISHLISTS_OF_MINE,
+  FETCH_WISH_LISTS,
+} from "../../../commons/hooks/useQueries/class/UseQueryFetchWishlists";
 
 export default function WishList() {
   const router = useRouter();
   const [Contents, setContents] = useState(false);
-  const { data, loading, refetch } = useQuery(FETCH_CLASS_WISHLISTS_OF_MINE);
+  const { data, loading, refetch } = useQuery(FETCH_WISH_LISTS);
   const onClickWrite = () => {
     console.log(data);
   };
@@ -60,9 +63,11 @@ export default function WishList() {
                     </S.PremiumTemplate>
                     <S.PremiumPostTitle>{post.title}</S.PremiumPostTitle>
                     <S.PremiumPostContent>
-                      <S.PremiumTime>{post.total_time}</S.PremiumTime>
                       <S.PremiumPostInfo>
                         <S.PremiumUser>{post.address}</S.PremiumUser>
+                        <S.PremiumTime>
+                          진행시간 : {post.total_time}
+                        </S.PremiumTime>
                       </S.PremiumPostInfo>
                       <S.PremiumPriceTie>
                         <S.PremiumPrice>{Money(post.price)}</S.PremiumPrice>
