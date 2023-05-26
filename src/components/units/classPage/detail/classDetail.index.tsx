@@ -115,7 +115,9 @@ export default function ClassDetail() {
           </S.Wrapper_header_bottom>
         </S.Wrapper_header>
 
-        <SlickPage src={data?.fetchClassDetail?.image_} />
+        <S.SlickWrapper>
+          <SlickPage src={data?.fetchClassDetail?.image_} />
+        </S.SlickWrapper>
 
         <S.Wrapper_body>
           <S.Wrapper_body_left>

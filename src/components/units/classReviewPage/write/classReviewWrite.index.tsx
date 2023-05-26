@@ -72,9 +72,9 @@ export default function ClassReviewWrite(props: IClassReviewWriteProps) {
                 placeholder="후기를 작성해주세요"
                 {...register("content")}
               />
+
               <S.ButtonWrapper>
                 {/* <S.Length>/ 300</S.Length> */}
-
                 <S.ReviewWriteBtn type="submit">
                   {props.isEdit ? "수정" : "등록"}
                 </S.ReviewWriteBtn>

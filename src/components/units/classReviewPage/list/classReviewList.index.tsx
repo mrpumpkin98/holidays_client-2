@@ -70,13 +70,13 @@ export default function ClassReviewList(props: IClassReviewListProps) {
   return (
     <>
       <S.Wrapper>
-        <div
+        <S.Box
           style={{
-            width: "1130px",
-            // height: "500px",
+            // width: "1130px",
+            // // height: "500px",
             height: divHeight,
-            overflow: "auto",
-            margin: "auto",
+            // overflow: "auto",
+            // margin: "auto",
           }}
         >
           <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>
@@ -89,7 +89,7 @@ export default function ClassReviewList(props: IClassReviewListProps) {
                 )
               )}
           </InfiniteScroll>
-        </div>
+        </S.Box>
       </S.Wrapper>
     </>
   );

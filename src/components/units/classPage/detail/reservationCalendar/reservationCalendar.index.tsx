@@ -51,7 +51,7 @@ export default function CalendarUI(props: IReservationCreateProps) {
   // ----------------
 
   // 예약하기 버튼 눌렀을 때 뜨는 모달
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
   // const handleModalOpen = (): void => {
   //   setShowModal(true);
@@ -126,7 +126,6 @@ export default function CalendarUI(props: IReservationCreateProps) {
     );
   };
 
-  // 달력 높이조정(추가 end)
   // --------------
 
   return (
@@ -143,7 +142,7 @@ export default function CalendarUI(props: IReservationCreateProps) {
           <S.Contents>
             <S.Text>
               <S.Text>요금을 확인하려면 날짜를</S.Text>
-              <S.Text>입력하세요.</S.Text>
+              <S.Text>선택하세요.</S.Text>
             </S.Text>
 
             {/* -----달력------- */}
@@ -168,17 +167,17 @@ export default function CalendarUI(props: IReservationCreateProps) {
               <S.Number2>명</S.Number2>
             </S.NumberBox>
 
-            <S.Row>
+            {/* <S.Row>
               <S.Num2>1명</S.Num2>
               <S.Price>₩ 625,730</S.Price>
-            </S.Row>
+            </S.Row> */}
 
-            <S.Line />
+            {/* <S.Line /> */}
 
-            <S.Row>
+            {/* <S.Row>
               <S.Sum>총 합계</S.Sum>
               <S.Price>₩ 714,065</S.Price>
-            </S.Row>
+            </S.Row> */}
           </S.Contents>
 
           <S.BtnWrapper

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Input, Rate } from "antd";
+import { mobile } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 1113px;
@@ -12,6 +13,11 @@ export const Wrapper = styled.div`
 export const Wrapper_body = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media ${mobile} {
+    width: 720px;
+    margin-left: 15px;
+  }
 `;
 
 export const Wrapper_body_header = styled.div`
@@ -41,10 +47,6 @@ export const TextArea7 = styled.textarea`
   padding-top: 10px;
   padding-left: 16px;
 `;
-
-// export const TextAreaaa = styled(TextArea)`
-//   border: none;
-// `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -76,6 +78,10 @@ export const ReviewWriteBtn = styled.button`
   :hover {
     background-color: #e97100;
     color: #ffffff;
+  }
+
+  @media ${mobile} {
+    margin-left: 620px;
   }
 `;
 
