@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { InputNumber } from "antd";
 import { DatePicker, Space } from "antd";
+import { mobile } from "../../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 341px;
@@ -13,11 +14,16 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media ${mobile} {
+    width: 500px;
+    margin: auto;
+    margin-top: 30px;
+  }
 `;
 
 export const Contents = styled.div`
   width: 291px;
-  /* background-color: orange; */
   display: flex;
   flex-direction: column;
   padding: 30px 0px 30px 0px;
@@ -43,11 +49,9 @@ export const NumberBox = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  padding: 0px 0px 20px 0px;
-  margin: 10px 0px 30px 0px;
-
+  padding: 0px 0px 25px 0px;
+  margin-top: 10px;
   border-bottom: 1px solid rgba(189, 189, 189, 1);
-  /* background-color: pink; */
 `;
 
 export const Num = styled.div`
@@ -114,6 +118,7 @@ export const BtnWrapper = styled.button`
   width: 291px;
   height: 50px;
   border-radius: 10px;
+  border: none;
 
   display: flex;
   justify-content: center;
@@ -126,6 +131,11 @@ export const BtnWrapper = styled.button`
   :hover {
     background-color: #e97100;
     color: #ffffff;
+  }
+
+  @media ${mobile} {
+    height: 70px;
+    margin-bottom: 40px;
   }
 `;
 

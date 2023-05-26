@@ -1,40 +1,33 @@
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import * as S from "./classWrite.styles";
-
 import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload } from "antd";
 import type { RcFile, UploadProps } from "antd/es/upload";
 import type { UploadFile } from "antd/es/upload/interface";
-
-// import MultipleDatePicker from "react-multiple-datepicker";
 import DaumPostcodeEmbed from "react-daum-postcode"; //  우편번호
 import type { Address } from "react-daum-postcode";
 import { UseMutationCreateClass } from "../../../commons/hooks/useMutations/class/useMutationCreateClass";
-import { classWriteSchema } from "./classWrite.validation";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import dynamic from "next/dynamic";
-
 import "react-quill/dist/quill.snow.css";
 import { useMutationUpdateClass } from "../../../commons/hooks/useMutations/class/useMutationUpdateClass";
 import { IClassWriteProps, IFormData } from "./classWrite.types";
 import { useMutationUploadFile } from "../../../commons/hooks/useMutations/class/useMutationUploadFile";
 import ClassImage from "./classWriteImage";
 import Calendar from "../../../commons/calendar";
-import { useAuth02 } from "../../../commons/hooks/useAuths/useAuth02";
 import { UseMutationUploadFile } from "../../../commons/hooks/useMutations/uploadFile/UseMutationUploadFile";
 
 // 웹 에디터
-const ReactQuill = dynamic(async () => await import("react-quill"), {
-  ssr: false,
-});
-
 const ToastEditor = dynamic(
   async () => await import("../../../commons/toastUI"),
   {
     ssr: false,
   }
 );
+
+type EditorInstance = {
+  getInstance: () => { getHTML: () => string };
+};
 
 // 카카오지도
 declare const window: typeof globalThis & {
@@ -43,13 +36,14 @@ declare const window: typeof globalThis & {
 };
 
 export default function ClassWrite(props: IClassWriteProps) {
-  useAuth02;
+  // useAuth02;
 
   // 우편주소(카카오지도)
   const [fulladdress, setFulladdress] = useState("");
 
   // 세부내용(ToastEditor)
-  const contentsRef = useRef(null);
+  // const contentsRef = useRef(null);
+  const contentsRef = useRef<EditorInstance | null>(null);
   const [content, setContent] = useState("");
   const [uploadFile] = UseMutationUploadFile();
 
@@ -68,7 +62,6 @@ export default function ClassWrite(props: IClassWriteProps) {
           level: 3,
         };
 
-        // 지도를 생성합니다
         const map = new window.kakao.maps.Map(container, options);
         console.log(map);
 
@@ -140,9 +133,7 @@ export default function ClassWrite(props: IClassWriteProps) {
   // 수정
   const { onClickClassUpdate } = useMutationUpdateClass();
 
-  const { register, setValue, trigger, handleSubmit } = useForm<IFormData>({
-    // resolver: yupResolver(classWriteSchema),
-    // mode: "onSubmit",
+  const { register, setValue, handleSubmit } = useForm<IFormData>({
     mode: "onChange",
   });
 
@@ -157,19 +148,11 @@ export default function ClassWrite(props: IClassWriteProps) {
     }
   };
 
-  // 세부내용(웹에디터)
-  // const onChangeContents = (value: string): void => {
-  //   console.log(value);
-
-  //   setValue("content", value === "<p><br></p>" ? "" : value);
-
-  //   void trigger("content");
-  // };
-
   // 세부내용(ToastEditor)
   const onChangeContents = (text: any) => {
-    const editorInstance = contentsRef.current?.getInstance().getHTML();
-    // setContent(text === "<p><br><p>" ? "" : editorInstance);
+    const editorInstance: string =
+      contentsRef.current?.getInstance()?.getHTML() ?? "";
+
     setValue("content", editorInstance === "<p><br></p>" ? "" : editorInstance);
   };
 
@@ -194,7 +177,6 @@ export default function ClassWrite(props: IClassWriteProps) {
             <S.Label>카테고리를 선택해주세요</S.Label>
             <S.CustomSelect
               {...register("category")}
-              // defaultValue={props.data?.category}
               defaultValue={props.data?.fetchClassDetail.category}
             >
               <option value="교육">교육</option>
@@ -202,7 +184,6 @@ export default function ClassWrite(props: IClassWriteProps) {
               <option value="운동">운동</option>
               <option value="요리">요리</option>
             </S.CustomSelect>
-            {/* <S.Error>{formState.errors.category?.message}</S.Error> */}
 
             <S.Label>클래스 이름을 입력해주세요</S.Label>
             <S.TextInput
@@ -211,7 +192,6 @@ export default function ClassWrite(props: IClassWriteProps) {
               {...register("title")}
               defaultValue={props.data?.fetchClassDetail.title}
             />
-            {/* <S.Error>{formState.errors.title?.message}</S.Error> */}
 
             <S.Label>클래스 한줄요약을 입력해주세요</S.Label>
             <S.TextInput
@@ -220,21 +200,16 @@ export default function ClassWrite(props: IClassWriteProps) {
               {...register("content_summary")}
               defaultValue={props.data?.fetchClassDetail.content_summary}
             />
-            {/* <S.Error>{formState.errors.content_summary?.message}</S.Error> */}
-
-            {/* <S.Error>에러</S.Error> */}
 
             <S.Label>
-              대표 이미지를 올려주세요 (최대 5개까지 업로드 가능)
+              대표 이미지를 올려주세요 (최대 5개까지 업로드 가능합니다)
             </S.Label>
             <ClassImage fileList={fileList} setFileList={setFileList} />
-            {/* <S.Error>에러</S.Error> */}
 
             <S.Wrapper_body_middle>
               <S.Wrapper_body_middle_left>
                 <S.Label>클래스 소요 시간을 선택해주세요</S.Label>
 
-                {/* <S.Time size="large" onChange={onChangeTime} /> */}
                 <S.CustomSelect
                   {...register("total_time")}
                   defaultValue={props.data?.fetchClassDetail.total_time}
@@ -244,17 +219,15 @@ export default function ClassWrite(props: IClassWriteProps) {
                   <option value="3시간">3시간</option>
                   <option value="4시간">4시간</option>
                 </S.CustomSelect>
-                {/* <S.Error>{formState.errors.total_time?.message}</S.Error> */}
               </S.Wrapper_body_middle_left>
               <S.Wrapper_body_middle_right>
                 <S.Label>클래스 최대 인원을 입력해주세요</S.Label>
                 <S.TextInput3
                   type="int"
-                  placeholder="클래스 최대 인원을 입력해주세요"
+                  placeholder="숫자만 입력해주세요"
                   {...register("class_mNum")}
                   defaultValue={props.data?.fetchClassDetail.class_mNum}
                 />
-                {/* <S.Error>{formState.errors.class_mNum?.message}</S.Error> */}
               </S.Wrapper_body_middle_right>
             </S.Wrapper_body_middle>
             <S.Label>클래스 가격을 입력해주세요</S.Label>
@@ -264,15 +237,12 @@ export default function ClassWrite(props: IClassWriteProps) {
               {...register("price")}
               defaultValue={props.data?.fetchClassDetail.price}
             />
-            {/* <S.Error>{formState.errors.price?.message}</S.Error> */}
 
             <S.Label>클래스 위치를 입력해주세요</S.Label>
             <S.Wrapper_body_map>
               <S.Map id="map" />
-
               <S.Wrapper_body_map_right>
                 <S.Wrapper_body_map_right_top>
-                  {/* <S.AddressInput /> */}
                   <S.TextInput2
                     type="text"
                     readOnly
@@ -286,7 +256,6 @@ export default function ClassWrite(props: IClassWriteProps) {
                     주소 검색
                   </S.AddressBtn>
                 </S.Wrapper_body_map_right_top>
-
                 <S.Wrapper_body_map_right_bottom>
                   <S.AddressDetail_text>상세주소 입력</S.AddressDetail_text>
                   <S.TextInput3
@@ -298,64 +267,50 @@ export default function ClassWrite(props: IClassWriteProps) {
                 </S.Wrapper_body_map_right_bottom>
               </S.Wrapper_body_map_right>
             </S.Wrapper_body_map>
-            {/* <S.Error>에러</S.Error> */}
-            <S.Label>클래스 세부내용을 입력해주세요</S.Label>
-            {/* <ReactQuill
-              style={{
-                width: "730px",
-                height: "431px",
-                marginBottom: "75px",
-              }}
-              onChange={onChangeContents}
-              placeholder="클래스 세부내용을 입력해주세요"
-              defaultValue={props.data?.fetchClassDetail.content}
-            /> */}
 
-            <ToastEditor
-              contentsRef={contentsRef}
-              onChangeContents={onChangeContents}
-              initialValue={props.data?.fetchClassDetail.content}
-            />
+            <S.Label>클래스 세부내용을 작성해주세요</S.Label>
 
-            {/* <S.Error>{formState.errors.content?.message}</S.Error> */}
+            <S.ToastEditor>
+              <ToastEditor
+                contentsRef={contentsRef}
+                onChangeContents={onChangeContents}
+                initialValue={props.data?.fetchClassDetail.content}
+              />
+            </S.ToastEditor>
 
             <S.Label>클래스 일정을 선택해주세요</S.Label>
             <Calendar
               selectedDates={selectedDates}
               setSelectedDates={setSelectedDates}
             />
-            {/* <S.Error>에러</S.Error> */}
 
-            <S.Label>입금 계좌</S.Label>
+            <S.Label>입금 계좌를 작성해주세요</S.Label>
             <S.TextInput
               type="text"
               placeholder="'-' 빼고 숫자만 입력해주세요."
               {...register("accountNum")}
               defaultValue={props.data?.fetchClassDetail.accountNum}
             />
-            {/* <S.Error>{formState.errors.accountNum?.message}</S.Error> */}
 
             <S.BankWrapper>
               <div>
-                <S.Label>예금주</S.Label>
+                <S.Label>예금주를 작성해주세요</S.Label>
                 <S.TextInput3
                   type="text"
                   placeholder="예금주를 작성해주세요"
                   {...register("accountName")}
                   defaultValue={props.data?.fetchClassDetail.accountName}
                 />
-                {/* <S.Error>{formState.errors.accountName?.message}</S.Error> */}
               </div>
 
               <div>
-                <S.Label>입금 은행</S.Label>
+                <S.Label>입금 은행을 작성해주세요</S.Label>
                 <S.TextInput3
                   type="text"
                   placeholder="입금 은행을 작성해주세요"
                   {...register("bankName")}
                   defaultValue={props.data?.fetchClassDetail.bankName}
                 />
-                {/* <S.Error>{formState.errors.bankName?.message}</S.Error> */}
               </div>
             </S.BankWrapper>
             <S.BtnWrapper>

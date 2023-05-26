@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
+  /* margin-top: 100px; */
   width: 640px;
   padding-bottom: 30px;
   box-shadow: 0px 0px 5px gray;
@@ -235,4 +236,12 @@ export const SocialLogin = styled.a`
   @media ${mobileSmall} {
     font-size: 1rem;
   }
+`;
+
+export const Error = styled.div`
+  color: red;
+  font-size: 0.76rem;
+  margin-left: 6vw;
+  margin-bottom: 5vh;
+  margin-top: -3vh;
 `;

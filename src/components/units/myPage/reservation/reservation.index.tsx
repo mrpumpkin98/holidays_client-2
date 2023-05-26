@@ -4,8 +4,10 @@ import { FETCH_RESERVATIONS_OF_CLASS } from "../../../commons/hooks/useQueries/c
 import { useMutation, useQuery } from "@apollo/client";
 import { UPDATE_RESERVATION } from "../../../commons/hooks/useMutations/class/useMutationUpdateReservation";
 import { LoadingOutlined } from "@ant-design/icons";
+import { useRouter } from "next/router";
 
 export default function Reservation() {
+  const router = useRouter();
   const [Contents, setContents] = useState(false);
   const [rse_id, setRse_id] = useState();
   const { data, loading, refetch } = useQuery(FETCH_RESERVATIONS_OF_CLASS);
@@ -21,6 +23,15 @@ export default function Reservation() {
     });
     console.log(event.currentTarget.id);
   };
+
+  ///////////////////////////////////////////////////////////////
+  //  화면 없을때 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickMenu = () => {
+    void router.push("/classPage");
+  };
+
   return (
     <S.Wrapper>
       {loading ? (
@@ -40,7 +51,7 @@ export default function Reservation() {
             <S.Emoji>🤔</S.Emoji>
             <S.Text>받은 클래스 예약이 없어요</S.Text>
             <S.MainText>내가 만든 클래스에 들어가 보실까요?</S.MainText>
-            <S.Button>클래스 찾아보기</S.Button>
+            <S.Button onClick={onClickMenu}>클래스 찾아보기</S.Button>
           </S.Box>
         </>
       ) : (

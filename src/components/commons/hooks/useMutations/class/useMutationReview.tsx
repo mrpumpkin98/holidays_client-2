@@ -138,7 +138,7 @@ export const UseMutationClassReview = () => {
   return { onClickWrite, onClickUpdate, onClickDelete, isEdit, setIsEdit };
 };
 
-export const UseMutationClassReviewSubmit = (propsSetIsEdit) => {
+export const UseMutationClassReviewSubmit = (propsSetIsEdit: any) => {
   const router = useRouter();
 
   const [isEdit, setIsEdit] = useState(false);

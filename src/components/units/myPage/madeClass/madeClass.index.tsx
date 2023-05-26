@@ -36,6 +36,14 @@ export default function madeClass() {
   };
 
   ///////////////////////////////////////////////////////////////
+  //  화면 없을때 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickMenu = () => {
+    void router.push("/classPage/write");
+  };
+
+  ///////////////////////////////////////////////////////////////
   // 이미지 캐러셀
   //////////////////////////////////////////////////////////////
 
@@ -66,7 +74,7 @@ export default function madeClass() {
             <S.Emoji>🤔</S.Emoji>
             <S.Text>아직 만든 클래스가 없어요</S.Text>
             <S.MainText>클래스를 만들어 보실까요?</S.MainText>
-            <S.Button>클래스 만들어보기</S.Button>
+            <S.Button onClick={onClickMenu}>클래스 만들어보기</S.Button>
           </S.Box>
         </>
       ) : (

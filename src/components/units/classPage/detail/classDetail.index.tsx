@@ -19,10 +19,8 @@ export default function ClassDetail() {
   const router = useRouter();
 
   const { data } = UseQueryFetchClassDetail();
-  console.log(data, "~~~~~~~~~~~~~~");
 
   const { data: isPick } = UseQueryFetchWishLists();
-  console.log(isPick?.fetchWishlistOfMine, "@@@@@@@@@@@@@");
 
   // 카카오지도
   useEffect(() => {
@@ -76,23 +74,8 @@ export default function ClassDetail() {
   const { onClickClassDelete } = useMutationDeleteClass();
 
   // 찜
-  const {
-    onClickCreateWishlist,
-    onClickDeleteWishlist,
-    isWishlistActive,
-    setIsWishlistActive,
-  } = UseMutationWishList();
-
-  //  새로고침 시에도 하트 색 유지
-  // useEffect(() => {
-  //   const isWishlistActive =
-  //     localStorage.getItem("isWishlistActive") === "true";
-  //   setIsWishlistActive(isWishlistActive);
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem("isWishlistActive", isWishlistActive.toString());
-  // }, [isWishlistActive]);
+  const { onClickCreateWishlist, onClickDeleteWishlist } =
+    UseMutationWishList();
 
   // 수정 페이지로 이동
   const onClickMoveToClassEdit = () => {
@@ -107,7 +90,6 @@ export default function ClassDetail() {
             {data?.fetchClassDetail.title}
           </S.Wrapper_header_top>
           <S.Wrapper_header_bottom>
-            {/* <S.Review_count>후기 595개</S.Review_count> */}
             <S.Wrapper_header_bottom_right>
               <S.Btn onClick={onClickMoveToClassEdit}>수정</S.Btn>
               <S.Btn onClick={onClickClassDelete}>삭제</S.Btn>
@@ -115,7 +97,9 @@ export default function ClassDetail() {
           </S.Wrapper_header_bottom>
         </S.Wrapper_header>
 
-        <SlickPage src={data?.fetchClassDetail?.image_} />
+        <S.SlickWrapper>
+          <SlickPage src={data?.fetchClassDetail?.image_} />
+        </S.SlickWrapper>
 
         <S.Wrapper_body>
           <S.Wrapper_body_left>
@@ -140,14 +124,6 @@ export default function ClassDetail() {
             <S.Wrapper_body_bottom>
               <S.Wrapper_body_bottom_left>
                 <S.ClassInfo_wrapper>
-                  <S.ClassInfo_container>
-                    <S.Icon src="/classPage/calender.png" />
-                    <S.ClassInfo_container_right>
-                      <S.Label>클래스 진행</S.Label>
-                      <S.SubLabel>매주 화, 목</S.SubLabel>
-                    </S.ClassInfo_container_right>
-                  </S.ClassInfo_container>
-
                   <S.ClassInfo_container>
                     <S.Icon src="/classPage/clock.png" />
                     <S.ClassInfo_container_right>

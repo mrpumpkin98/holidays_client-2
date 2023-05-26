@@ -128,7 +128,7 @@ export const ListName = styled.h2`
 export const Icon = styled.img`
   width: 23px;
   height: 23px;
-  margin-top: 9px;
+  margin-top: 2px;
   margin-left: 10px;
 `;
 

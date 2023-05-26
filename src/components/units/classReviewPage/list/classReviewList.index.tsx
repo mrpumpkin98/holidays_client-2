@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { IFetchClassReviews } from "../../../../commons/types/generated/types";
-
 import { UseQueryFetchClassReview } from "../../../commons/hooks/useQueries/class/useQueryFetchClassReview";
 import * as S from "./classReviewList.styles";
-import { useToggle } from "../write/useToggle";
-import ClassReviewWrite from "../write/classReviewWrite.index";
 import ClassReviewListEl from "./classReviewListEl.index";
 import InfiniteScroll from "react-infinite-scroller";
 
@@ -70,26 +67,20 @@ export default function ClassReviewList(props: IClassReviewListProps) {
   return (
     <>
       <S.Wrapper>
-        <div
+        <S.Box
           style={{
-            width: "1130px",
-            // height: "500px",
             height: divHeight,
-            overflow: "auto",
-            margin: "auto",
           }}
         >
           <InfiniteScroll pageStart={0} loadMore={onLoadMore} hasMore={true}>
             {props.data &&
               props.data.fetchClassReviews.map(
-                (el: IFetchClassReviews, index) => (
-                  // <div key={el.cr_id}>
+                (el: IFetchClassReviews, index: any) => (
                   <ClassReviewListEl el={el} index={index} />
-                  // </div>
                 )
               )}
           </InfiniteScroll>
-        </div>
+        </S.Box>
       </S.Wrapper>
     </>
   );

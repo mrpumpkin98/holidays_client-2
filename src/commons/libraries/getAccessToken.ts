@@ -23,5 +23,6 @@ export const getAccessToken = async () => {
     return newAccessToken;
   } catch (error) {
     if (error instanceof Error) console.log(error.message);
+    // throw error;
   }
 };

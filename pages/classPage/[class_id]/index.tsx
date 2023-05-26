@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { UseQueryFetchClassReview } from "../../../src/components/commons/hooks/useQueries/class/useQueryFetchClassReview";
 import ClassDetail from "../../../src/components/units/classPage/detail/classDetail.index";
 import ClassQuestionUI from "../../../src/components/units/classQuestionPage/classQuestion.index";
@@ -5,13 +6,14 @@ import ClassReviewList from "../../../src/components/units/classReviewPage/list/
 import ClassReviewWrite from "../../../src/components/units/classReviewPage/write/classReviewWrite.index";
 
 export default function ClassDetailPage(): JSX.Element {
-  const { data, fetchMore } = UseQueryFetchClassReview();
+  const { data } = UseQueryFetchClassReview();
+  const [isEdit, setIsEdit] = useState(false);
   console.log(data);
 
   return (
     <>
       <ClassDetail />
-      <ClassReviewWrite isEdit={false} />
+      <ClassReviewWrite isEdit={false} setIsEdit={setIsEdit} />
       <ClassReviewList data={data} />
       <ClassQuestionUI />
     </>

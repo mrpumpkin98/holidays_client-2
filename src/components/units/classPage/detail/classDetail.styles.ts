@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
+import { mobile } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 1113px;
@@ -15,6 +16,11 @@ export const Wrapper_header = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  @media ${mobile} {
+    width: 720px;
+    margin-left: 15px;
+  }
 `;
 
 export const Wrapper_header_top = styled.div`
@@ -32,6 +38,13 @@ export const Wrapper_header_bottom = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-bottom: 10px;
+
+  @media ${mobile} {
+    width: 720px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 // 후기 개수
@@ -47,6 +60,21 @@ export const Wrapper_header_bottom_right = styled.div`
   flex-direction: row;
   justify-content: space-between;
   margin-left: 1040px;
+
+  @media ${mobile} {
+    margin-left: 650px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+// slick
+export const SlickWrapper = styled.div`
+  @media ${mobile} {
+    width: 720px;
+    margin-left: 15px;
+  }
 `;
 
 // 수정, 삭제 버튼
@@ -73,6 +101,11 @@ export const Wrapper_body_header = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 30px;
+
+  @media ${mobile} {
+    width: 720px;
+    margin-left: 15px;
+  }
 `;
 
 export const Title = styled.div`
@@ -99,6 +132,11 @@ export const Wrapper_body_bottom = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  @media ${mobile} {
+    width: 720px;
+    margin-left: 15px;
+  }
 `;
 
 export const Wrapper_body_bottom_left = styled.div`
@@ -111,7 +149,6 @@ export const Wrapper_body_bottom_right = styled.div``;
 export const Remarks = styled.div`
   color: rgba(189, 189, 189, 1);
   font-size: 13px;
-  /* background-color: darkblue; */
   padding: 25px 0px 25px 0px;
 `;
 
@@ -153,15 +190,13 @@ export const Label = styled.div`
 
 export const SubLabel = styled.div`
   font-size: 13px;
-
-  color: rgba(189, 189, 189, 1);
+  color: gray;
 `;
 
 // 클래스 소개
 export const Contents_wrapper = styled.div``;
 
 export const Contents = styled.div`
-  /* background-color: skyblue; */
   height: 1000px;
 `;
 
@@ -170,14 +205,22 @@ export const Wrapper_footer = styled.div`
   margin-top: 100px;
   padding-top: 30px;
   border-top: 1px solid rgba(189, 189, 189, 1);
+
+  @media ${mobile} {
+    width: 720px;
+    margin-left: 15px;
+  }
 `;
 
 // 지도
 export const Map = styled.div`
   width: 1113px;
   height: 478px;
-  background-color: beige;
   border-radius: 5px;
+
+  @media ${mobile} {
+    width: 720px;
+  }
 `;
 
 export const Address = styled.div`
@@ -195,11 +238,17 @@ export const AddressDetail = styled.div`
 `;
 
 // ------
-export const Wrapper_body_right = styled.div`
-  margin-top: 20px;
-`;
-
 export const Wrapper_body = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media ${mobile} {
+    display: flex;
+    flex-direction: column;
+    width: 720px;
+  }
+`;
+
+export const Wrapper_body_right = styled.div`
+  margin-top: 20px;
 `;

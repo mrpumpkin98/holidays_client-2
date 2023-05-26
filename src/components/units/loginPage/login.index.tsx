@@ -46,7 +46,7 @@ export default function LogIn(): JSX.Element {
                 {...register("email")}
               />
             </S.InputWrapper>
-            <div>{formState.errors.email?.message}</div>
+            <S.Error>{formState.errors.email?.message}</S.Error>
             <S.InputWrapper>
               <S.Label>비밀번호</S.Label>
               <S.defaultInput
@@ -55,7 +55,7 @@ export default function LogIn(): JSX.Element {
                 {...register("pwd")}
               />
             </S.InputWrapper>
-            <div>{formState.errors.pwd?.message}</div>
+            <S.Error>{formState.errors.pwd?.message}</S.Error>
             <S.ButtonWrapper>
               <S.LoginButton type="submit">로그인</S.LoginButton>
             </S.ButtonWrapper>
