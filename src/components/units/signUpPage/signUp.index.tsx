@@ -222,7 +222,7 @@ export default function SignUp(): JSX.Element {
                       onChange={onChangeVerifyNum}
                     />
                   )}
-                  <S.VerifyButton onClick={handleVerify}>
+                  <S.VerifyButton type="button" onClick={handleVerify}>
                     {verify ? "인증 완료" : "인증번호 발송"}
                   </S.VerifyButton>
                 </S.VerifyWrapper>
@@ -278,7 +278,7 @@ export default function SignUp(): JSX.Element {
                       onChange={onChangePhoneVerifyNum}
                     />
                   )}
-                  <S.VerifyButton onClick={handlePhoneVerify}>
+                  <S.VerifyButton type="button" onClick={handlePhoneVerify}>
                     {phoneVerify ? "인증 완료" : "인증번호 발송"}
                   </S.VerifyButton>
                 </S.VerifyWrapper>

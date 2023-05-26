@@ -26,7 +26,7 @@ export const ContentWrapper = styled.div`
   box-shadow: 0px 0px 5px gray;
   @media ${mobile} {
     width: 90%;
-    margin-top: 10vh;
+    box-shadow: 0px 0px 0px gray;
   }
 `;
 

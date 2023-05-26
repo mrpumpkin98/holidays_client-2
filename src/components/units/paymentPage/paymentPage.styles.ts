@@ -1,6 +1,6 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { mobile } from "../../../commons/styles/breakPoints";
+import { mobile, mobileSmall } from "../../../commons/styles/breakPoints";
 
 const bounce = keyframes`
   0% {
@@ -49,6 +49,10 @@ export const Wrapper = styled.div`
 
     /* padding-left: 25vw; */
   }
+
+  @media ${mobileSmall} {
+    width: 100vw;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -63,6 +67,10 @@ export const TitleIconWrapper = styled.div`
 
   @media ${mobile} {
     width: 90vw;
+  }
+
+  @media ${mobileSmall} {
+    width: 70vw;
   }
 `;
 
@@ -84,11 +92,18 @@ export const TitleIcon = styled.img`
 
     position: relative;
     top: 1.1rem;
-    left: 1rem;
+    left: 4rem;
     transform: rotate(-20deg);
     transform-origin: left bottom;
 
     animation: ${bounce} 3s ease-in-out;
+  }
+
+  @media ${mobileSmall} {
+    width: 12vw;
+    height: 12vh;
+
+    top: -0.1rem;
   }
 `;
 
@@ -109,6 +124,10 @@ export const TitleWrapper = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 15vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 100vw;
   }
 `;
 
@@ -139,12 +158,17 @@ export const Title = styled.div`
   animation: ${fadeInAnimation} 2s ease-in-out 3s forwards;
 
   @media ${mobile} {
-    font-size: 2.8rem;
+    font-size: 3rem;
 
     opacity: 0;
     animation-delay: 3s;
     animation-fill-mode: forwards;
     animation: ${fadeInAnimation} 2s ease-in-out 3s forwards;
+  }
+
+  @media ${mobileSmall} {
+    font-size: 2rem;
+    margin-left: 5vw;
   }
 `;
 
@@ -165,6 +189,11 @@ export const Subtitle = styled.div`
     animation-delay: 3s;
     animation-fill-mode: forwards;
     animation: ${fadeInAnimation} 2s ease-in-out 4s forwards;
+  }
+
+  @media ${mobileSmall} {
+    font-size: 1.4rem;
+    margin-left: 6vw;
   }
 `;
 
@@ -187,6 +216,11 @@ export const InformWrapper = styled.div`
     margin-top: 7vh;
     margin-left: 13vw;
   }
+
+  @media ${mobileSmall} {
+    width: 70vw;
+    margin-bottom: 3vh;
+  }
 `;
 
 export const Label = styled.div`
@@ -194,8 +228,12 @@ export const Label = styled.div`
   margin-bottom: 10px;
 
   @media ${mobile} {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-bottom: 10px;
+  }
+
+  @media ${mobileSmall} {
+    font-size: 0.62rem;
   }
 `;
 
@@ -215,6 +253,10 @@ export const ButtonWrapper = styled.div`
     justify-content: center;
     margin-top: 10vh;
     margin-bottom: 20vh;
+  }
+
+  @media ${mobileSmall} {
+    margin-bottom: 5vh;
   }
 `;
 
@@ -244,6 +286,10 @@ export const PaymentButton = styled.button`
     width: 80vw;
     height: 10vh;
     margin-left: 18vw;
+  }
+
+  @media ${mobileSmall} {
+    margin-left: 27vw;
   }
 `;
 

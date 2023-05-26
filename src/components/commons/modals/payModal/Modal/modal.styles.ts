@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mobileSmall, mobile } from "../../../../../commons/styles/breakPoints";
 
 export const ModalWrapper = styled.div`
   border-radius: 5px;
@@ -18,6 +19,14 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media ${mobile} {
+    width: 60vw;
+  }
+
+  @media ${mobileSmall} {
+    width: 80vw;
+  }
 `;
 
 export const Header = styled.h1`
@@ -26,6 +35,15 @@ export const Header = styled.h1`
   justify-content: center;
   font-size: 1.4rem;
   font-weight: 500;
+
+  @media ${mobile} {
+    width: 55vw;
+  }
+
+  @media ${mobileSmall} {
+    font-size: 1.1rem;
+    width: 75vw;
+  }
 `;
 
 export const SubtitleWrapper = styled.div`
@@ -44,12 +62,24 @@ export const DivideLine = styled.div`
   border: 0.01rem solid #868686;
   margin-top: 1rem;
   margin-bottom: 1rem;
+
+  @media ${mobile} {
+    width: 50vw;
+  }
+
+  @media ${mobileSmall} {
+    width: 60vw;
+  }
 `;
 
 export const PaymentWrapper = styled.div`
   width: 35vw;
   display: flex;
   justify-content: space-between;
+
+  @media ${mobileSmall} {
+    width: 60vw;
+  }
 `;
 
 export const PaymentBtn = styled.button`
@@ -67,6 +97,10 @@ export const PaymentBtn = styled.button`
     background: #f5b221;
     color: #ffffff;
   }
+
+  @media ${mobileSmall} {
+    width: 28vw;
+  }
 `;
 
 export const Button = styled.button`
@@ -82,6 +116,10 @@ export const Button = styled.button`
     color: #ffffff;
     border: none;
   }
+
+  @media ${mobileSmall} {
+    width: 20vw;
+  }
 `;
 
 export const HeadLogo = styled.img`
@@ -89,4 +127,8 @@ export const HeadLogo = styled.img`
   height: 5vh;
 
   margin-bottom: 2vh;
+
+  @media ${mobileSmall} {
+    width: 30vw;
+  }
 `;
