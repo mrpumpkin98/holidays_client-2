@@ -50,7 +50,6 @@ export default function ClassReviewListEl(props: any) {
       {isEdit && (
         <ClassReviewWrite isEdit={isEdit} setIsEdit={setIsEdit} el={props.el} />
       )}
-      {/* {isEdit && <div onClick={() => setIsEdit(false)}>클릭</div>} */}
     </div>
   );
 }

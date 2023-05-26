@@ -190,14 +190,13 @@ export const Label = styled.div`
 
 export const SubLabel = styled.div`
   font-size: 13px;
-  color: rgba(189, 189, 189, 1);
+  color: gray;
 `;
 
 // 클래스 소개
 export const Contents_wrapper = styled.div``;
 
 export const Contents = styled.div`
-  /* background-color: skyblue; */
   height: 1000px;
 `;
 
