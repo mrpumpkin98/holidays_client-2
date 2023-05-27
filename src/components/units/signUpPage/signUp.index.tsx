@@ -1,5 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Modal } from "antd";
 import { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
@@ -89,12 +90,12 @@ export default function SignUp(): JSX.Element {
   // 최종 회원가입 요청
   const onSubmitForm = async (data: IFormSignUpData) => {
     if (!verified) {
-      alert("이메일을 인증해 주세요");
+      Modal.error({ content: "이메일을 인증해 주세요" });
       return;
     }
 
     if (usePhoneNum && !phoneVerified) {
-      alert("전화번호를 인증해주세요");
+      Modal.error({ content: "전화번호를 인증해 주세요" });
       return;
     }
 
@@ -115,11 +116,11 @@ export default function SignUp(): JSX.Element {
           method: "create",
         },
       });
-      console.log(result);
+      // console.log(result);
       SetVerify(true);
     } catch (error) {
       // 에러 처리
-      console.log("이메일 인증번호 발급 실패");
+      // console.log("이메일 인증번호 발급 실패");
       alert("이메일을 확인해 주세요");
     }
   };
@@ -136,14 +137,14 @@ export default function SignUp(): JSX.Element {
           token: verifyNum,
         },
       });
-      console.log(result);
+      // console.log(result);
       if (result.data?.checkEmailToken) {
         SetVerified(true);
       } else {
-        alert("인증번호가 틀렸습니다, 다시 시도해 주세요");
+        Modal.error({ content: "인증번호가 틀렸습니다, 다시 시도해 주세요" });
       }
     } catch (error) {
-      if (error instanceof Error) console.log("번호 인증 실패");
+      // if (error instanceof Error) console.log("번호 인증 실패");
     }
   };
 
@@ -162,11 +163,11 @@ export default function SignUp(): JSX.Element {
           phone,
         },
       });
-      console.log(result);
+      // console.log(result);
       SetPhoneVerify(true);
     } catch (error) {
       // 에러 처리
-      console.log("휴대전화 인증번호 발급 실패");
+      // console.log("휴대전화 인증번호 발급 실패");
     }
   };
 
@@ -180,15 +181,15 @@ export default function SignUp(): JSX.Element {
           token: phoneVerifyNum,
         },
       });
-      console.log(result);
+      // console.log(result);
       if (result.data?.checkPhoneToken) {
         SetPhoneVerified(true);
       } else {
-        alert("인증번호가 틀렸습니다, 다시 시도해 주세요");
+        Modal.error({ content: "인증번호가 틀렸습니다." });
       }
     } catch (error) {
-      console.log("휴대전화 번호 발급 실패");
-      alert("이메일을 확인해 주세요");
+      // console.log("휴대전화 번호 발급 실패");
+      Modal.error({ content: "전화번호를 확인해 주세요" });
     }
   };
 

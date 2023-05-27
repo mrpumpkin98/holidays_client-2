@@ -1,4 +1,5 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
+import { Modal } from "antd";
 import { access } from "fs";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
@@ -43,15 +44,14 @@ export const UseMutationLogin = () => {
       }
 
       setAccessToken(accessToken);
-      localStorage.setItem("accessToken", accessToken);
+      // localStorage.setItem("accessToken", accessToken);
 
-      console.log(result);
-      console.log(accessToken);
-      alert("로그인이 완료되었습니다");
+      // console.log(result);
+      // console.log(accessToken);
+      Modal.info({ content: "로그인이 완료되었습니다" });
       void router.push(`/classPage`);
     } catch (error) {
-      if (error instanceof Error) console.log(error.message);
-      alert("로그인에 실패했습니다");
+      if (error instanceof Error) alert("로그인에 실패했습니다");
     }
   };
 

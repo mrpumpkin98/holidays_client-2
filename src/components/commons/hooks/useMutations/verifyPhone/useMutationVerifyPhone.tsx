@@ -68,7 +68,7 @@ export const UseMutationGetTokenPhone = () => {
         alert("인증번호가 일치하지 않습니다. 다시 시도해 주세요.");
       }
     } catch (error) {
-      if (error instanceof Error) console.log(error.message);
+      // if (error instanceof Error) console.log(error.message);
     }
   };
 

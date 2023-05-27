@@ -1,7 +1,7 @@
-import { atom, RecoilState, RecoilValueReadOnly, selector } from "recoil";
+import { atom, selector } from "recoil";
 import { getAccessToken } from "../libraries/getAccessToken";
 
-export const accessTokenState: RecoilState<string> = atom({
+export const accessTokenState = atom({
   key: "accessTokenState",
   default: "",
 });

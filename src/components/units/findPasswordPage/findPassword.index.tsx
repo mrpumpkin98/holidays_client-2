@@ -1,4 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
+import { Modal } from "antd";
 import { NextRouter, useRouter } from "next/router";
 import { ChangeEvent, MouseEventHandler, useState } from "react";
 import {
@@ -68,7 +69,7 @@ export default function FindPassword(): JSX.Element {
     HTMLButtonElement
   > = async (): Promise<void> => {
     if (!isPasswordValid(pwd)) {
-      alert("비밀번호가 올바른 형식이 아닙니다.");
+      Modal.error({ content: "비밀번호가 올바른 형식이 아닙니다." });
       return;
     }
     try {
@@ -78,11 +79,15 @@ export default function FindPassword(): JSX.Element {
           email,
         },
       });
-      console.log(result);
-      alert("비밀번호 설정이 완료되었습니다. 다시 로그인해 주세요.");
+      // console.log(result);
+      Modal.info({
+        content: "비밀번호 설정이 완료되었습니다. 다시 로그인해 주세요.",
+      });
       router.push(`/loginPage`);
     } catch (error) {
-      alert("비밀번호 재설정 실패");
+      Modal.error({
+        content: "비밀번호 재설정에 실패했습니다. 다시 시도해 주세요.",
+      });
     }
   };
 
@@ -119,13 +124,14 @@ export default function FindPassword(): JSX.Element {
           method: "update",
         },
       });
-      console.log(result);
+      // console.log(result);
       SetVerify(true);
     } catch (error) {
       // 에러 처리
-      console.log("이메일 인증번호 발급 실패");
-      console.error(error);
-      alert("이메일을 확인해 주세요");
+      // console.log("이메일 인증번호 발급 실패");
+      // console.error(error);
+      // alert("이메일을 확인해 주세요");
+      Modal.error({ content: "이메일을 확인해 주세요." });
     }
   };
 
@@ -140,14 +146,15 @@ export default function FindPassword(): JSX.Element {
           token: verifyNum,
         },
       });
-      console.log(result);
+      // console.log(result);
       if (result.data?.checkEmailToken) {
         SetVerified(true);
       } else {
-        alert("인증번호가 틀렸습니다, 다시 시도해 주세요");
+        Modal.error({ content: "인증번호가 틀렸습니다, 다시 시도해 주세요" });
       }
     } catch (error) {
-      console.log("이메일 인증 실패");
+      // console.log("이메일 인증 실패");
+      Modal.error({ content: "이메일 인증에 실패했습니다." });
     }
   };
 

@@ -5,6 +5,7 @@ import { UseMutationLogin } from "../../commons/hooks/useMutations/login/useMuta
 import { useForm } from "react-hook-form";
 import { LoginSchema } from "./login.validation";
 import { IMutationLoginArgs } from "../../../commons/types/generated/types";
+import { Modal } from "antd";
 
 export default function LogIn(): JSX.Element {
   const router: NextRouter = useRouter();
@@ -20,7 +21,9 @@ export default function LogIn(): JSX.Element {
   };
 
   const onClickFindID = (): void => {
-    alert("현재 아이디 찾기 서비스는 일시적으로 제한되었습니다.");
+    Modal.error({
+      content: "현재 아이디 찾기 서비스는 일시적으로 제한되었습니다.",
+    });
     // router.push(`/login/findIdPage`);
   };
 
@@ -36,7 +39,9 @@ export default function LogIn(): JSX.Element {
     <>
       <S.Wrapper>
         <S.ContentWrapper>
-          <S.HeaderTitle>로그인</S.HeaderTitle>
+          <S.HeaderTitle>
+            <S.HeaderLogo src="/images/logo2.png" />
+          </S.HeaderTitle>
           <form onSubmit={handleSubmit(onSubmitForm)}>
             <S.InputWrapper>
               <S.Label>아이디</S.Label>

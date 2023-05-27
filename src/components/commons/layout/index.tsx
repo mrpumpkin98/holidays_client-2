@@ -2,17 +2,12 @@ import LayoutHeader from "./header/LayoutHeader.index";
 import LayoutFooter from "./footer/LayoutFooter.index";
 import styled from "@emotion/styled";
 import { useRouter } from "next/router";
-const HIDDEN = [
-  "/loginPage",
-  "/signUpPage",
-  "/landingPage",
-  "/",
-  "/loginPage/findPasswordPage",
-];
+const HIDDEN = ["/landingPage", "/loginPage"];
 
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 80vh;
 
   @media only screen and (max-width: 768px) {
     width: 100vw;
