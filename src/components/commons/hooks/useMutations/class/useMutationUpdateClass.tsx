@@ -41,9 +41,9 @@ export const useMutationUpdateClass = () => {
             accountName: data.accountName,
             bankName: data.bankName,
             classSchedulesInput: {
-              cs_id: "gg",
-              date: "ddd수정",
-              remain: 77,
+              cs_id: "cs_id",
+              date: "date",
+              remain: 7,
             },
             imageInput: {
               url: "111",
@@ -60,8 +60,6 @@ export const useMutationUpdateClass = () => {
         ],
       });
       alert("클래스 수정이 완료되었습니다.");
-
-      console.log("class_id: ", router.query.class_id);
 
       void router.push(`/classPage/${router.query.class_id}`);
     } catch (error) {

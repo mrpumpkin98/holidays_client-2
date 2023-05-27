@@ -35,7 +35,7 @@ declare const window: typeof globalThis & {
 };
 
 export default function ClassWrite(props: IClassWriteProps) {
-  // useAuth02();
+  useAuth02();
 
   const router = useRouter();
 
@@ -43,7 +43,7 @@ export default function ClassWrite(props: IClassWriteProps) {
     router.back();
   };
 
-  // 세부내용(ToastEditor)
+  // ToastEditor
   const contentsRef = useRef<EditorInstance | null>(null);
 
   const onChangeContents = (text: any) => {
