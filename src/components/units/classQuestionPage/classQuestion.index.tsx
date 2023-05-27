@@ -10,7 +10,7 @@ export interface IFormData {
 export default function ClassQuestionUI() {
   const { onClickClassInQuiry } = useMutationCreateInQuiry();
 
-  const { register, handleSubmit } = useForm<IFormData>({
+  const { register, handleSubmit, setValue } = useForm<IFormData>({
     mode: "onChange",
   });
 
@@ -19,6 +19,8 @@ export default function ClassQuestionUI() {
     const { ...value } = data;
 
     onClickClassInQuiry(value);
+
+    setValue("content", "");
   };
 
   return (
@@ -32,7 +34,7 @@ export default function ClassQuestionUI() {
               <S.TextArea7
                 rows={10}
                 maxLength={300}
-                placeholder="문의 시 관리자에게 카카오톡으로 전송됩니다."
+                placeholder="문의 시 관리자에게 메세지로 전송됩니다."
                 {...register("content")}
               />
 

@@ -153,15 +153,17 @@ export default function ClassDetail() {
 
                 <S.Contents_wrapper>
                   <S.Title>클래스 소개</S.Title>
-                  {typeof window !== "undefined" && (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: DOMPurify.sanitize(
-                          data?.fetchClassDetail?.content
-                        ),
-                      }}
-                    />
-                  )}
+                  <S.Contents>
+                    {typeof window !== "undefined" && (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: DOMPurify.sanitize(
+                            data?.fetchClassDetail?.content
+                          ),
+                        }}
+                      />
+                    )}
+                  </S.Contents>
                 </S.Contents_wrapper>
               </S.Wrapper_body_bottom_left>
             </S.Wrapper_body_bottom>

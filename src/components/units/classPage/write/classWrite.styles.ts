@@ -5,13 +5,21 @@ import { DefaultOptionType } from "antd/es/cascader";
 import { BaseOptionType } from "antd/es/select";
 import { ReactNode, Ref } from "react";
 import type { UseFormRegisterReturn } from "react-hook-form";
-import { mobile } from "../../../../commons/styles/breakPoints";
+import { mobile, mobileSmall } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 728px;
   display: flex;
   flex-direction: column;
   margin: auto; // 가운데 정렬
+
+  @media ${mobile} {
+    width: 80vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+  }
 `;
 
 export const TextInput = styled.input`
@@ -22,7 +30,11 @@ export const TextInput = styled.input`
   border: 1px solid #bdbdbd;
 
   @media ${mobile} {
-    width: 720px;
+    width: 80vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
@@ -33,13 +45,15 @@ export const CustomSelect = styled.select`
   padding: 0px 16px 0px 16px;
 
   @media ${mobile} {
-    width: 720px;
+    width: 80vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
 export const Wrapper_header = styled.div`
-  width: 728px;
-
   margin-top: 150px;
   margin-bottom: 30px;
 `;
@@ -63,20 +77,6 @@ export const BankWrapper = styled.div`
   }
 `;
 
-export const TextInput2 = styled.input`
-  width: 250px;
-  height: 61px;
-  padding-left: 16px;
-  border: 1px solid #bdbdbd;
-  margin-bottom: 10px;
-  margin-right: 7px;
-
-  @media ${mobile} {
-    width: 610px;
-    margin-right: 10px;
-  }
-`;
-
 // 상세주소
 export const TextInput3 = styled.input`
   width: 354px;
@@ -86,36 +86,38 @@ export const TextInput3 = styled.input`
   padding-left: 16px;
 
   @media ${mobile} {
-    width: 720px;
+    width: 80vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
 export const BtnWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  /* width: 270px; */
-  width: 720px;
 
   justify-content: space-between;
   margin: auto;
-  margin-top: 120px;
+  margin-top: 100px;
   margin-bottom: 150px;
 
   @media ${mobile} {
-    width: 720px;
-    margin-top: 80px;
-    margin-bottom: 80px;
+    width: 80vh;
+    margin-top: 5.5vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+    margin-top: 5.5vh;
   }
 `;
 
 // 취소 버튼
 export const CancelBtn = styled.div`
   background: rgba(202, 190, 179, 1);
-
-  /* width: 120px;
-  height: 50px; */
-
-  width: 350px;
+  width: 354px;
   height: 80px;
 
   border-radius: 5px;
@@ -134,8 +136,12 @@ export const CancelBtn = styled.div`
   }
 
   @media ${mobile} {
-    width: 350px;
-    height: 80px;
+    width: 38vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 24vh;
+    height: 10vh;
   }
 `;
 
@@ -145,8 +151,7 @@ export const SubmitBtn = styled.button`
   color: #ffffff;
   border-radius: 5px;
 
-  /* width: 120px; */
-  width: 350px;
+  width: 354px;
   height: 80px;
 
   display: flex;
@@ -164,8 +169,12 @@ export const SubmitBtn = styled.button`
   }
 
   @media ${mobile} {
-    width: 350px;
-    height: 80px;
+    width: 38vh;
+  }
+
+  @media ${mobileSmall} {
+    height: 10vh;
+    width: 24vh;
   }
 `;
 
@@ -183,7 +192,6 @@ export const Error = styled.div`
   color: red;
   padding-left: 10px;
   padding-bottom: 30px;
-  /* border: 2px solid red; */
 `;
 
 // 세부내용 웹에디터
@@ -229,7 +237,6 @@ export const Time = styled(TimePicker)`
 `;
 
 export const Number = styled(InputNumber)`
-  /* width: 200px; */
   margin-bottom: 10px;
 `;
 
@@ -258,8 +265,13 @@ export const Map = styled.div`
   @media ${mobile} {
     display: flex;
     flex-direction: column;
-    width: 720px;
-    height: 330px;
+    width: 80vh;
+    height: 35vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+    height: 27vh;
   }
 `;
 
@@ -277,16 +289,37 @@ export const Wrapper_body_map_right_top = styled.div`
   margin-bottom: 10px;
 
   @media ${mobile} {
-    width: 720px;
     display: flex;
     flex-direction: row;
-    margin-top: 25px;
+    margin-top: 4.5vh;
+    width: 80vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
 export const AddressInput = styled(Input)`
   width: 258px;
   height: 56px;
+`;
+
+export const TextInput2 = styled.input`
+  width: 250px;
+  height: 61px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+  margin-bottom: 10px;
+  margin-right: 7px;
+
+  @media ${mobile} {
+    width: 65vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 40vh;
+  }
 `;
 
 export const AddressBtn = styled.button`
@@ -318,7 +351,6 @@ export const AddressDetail = styled(Input)`
 
 // 클래스 세부 내용
 export const Contents = styled.div`
-  /* width: 366px; */
   height: 300px;
   border: 1px solid rgba(189, 189, 189, 1);
   background-color: rgba(255, 255, 255, 1);

@@ -51,6 +51,10 @@ export const UseMutationCreateClass = () => {
     // formattedDates: string[]
   ) => {
     try {
+      console.log("===ggg==");
+      console.log(data);
+      console.log("===ggg==");
+
       console.log(selectedDates, "123124123124");
       const results = await Promise.all(
         fileList.map(

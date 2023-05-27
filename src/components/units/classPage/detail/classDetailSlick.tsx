@@ -4,7 +4,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { mobile } from "../../../../commons/styles/breakPoints";
+import { mobile, mobileSmall } from "../../../../commons/styles/breakPoints";
 
 const SliderComponent = styled(Slider)`
   .slick-dots {
@@ -28,14 +28,17 @@ const SliderComponent = styled(Slider)`
     width: 40px;
     height: 40px;
   }
+
   .slick-prev {
     left: 5%;
-    z-index: 999999;
+    /* z-index: 999999; */
+    z-index: 50;
   }
 
   .slick-next {
     right: 5%;
-    z-index: 999999;
+    /* z-index: 999999; */
+    z-index: 50;
   }
 
   // --------------
@@ -71,8 +74,13 @@ const Wrapper = styled.div`
   border-radius: 15px;
 
   @media ${mobile} {
-    width: 720px;
-    height: 300px;
+    width: 95vh;
+    height: 43vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+    height: 30vh;
   }
 `;
 
@@ -83,8 +91,13 @@ const Img = styled.img`
   border-radius: 15px;
 
   @media ${mobile} {
-    width: 720px;
-    height: 300px;
+    width: 95vh;
+    height: 43vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+    height: 30vh;
   }
 `;
 

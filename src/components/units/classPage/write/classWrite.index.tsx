@@ -16,6 +16,10 @@ import { useMutationUploadFile } from "../../../commons/hooks/useMutations/class
 import ClassImage from "./classWriteImage";
 import Calendar from "../../../commons/calendar";
 import { UseMutationUploadFile } from "../../../commons/hooks/useMutations/uploadFile/UseMutationUploadFile";
+import { useAuth02 } from "../../../commons/hooks/useAuths/useAuth02";
+import { classWriteSchema } from "./classWrite.validation";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
 
 // 웹 에디터
 const ToastEditor = dynamic(
@@ -36,7 +40,13 @@ declare const window: typeof globalThis & {
 };
 
 export default function ClassWrite(props: IClassWriteProps) {
-  // useAuth02;
+  // useAuth02();
+
+  const router = useRouter();
+
+  const onClickCancel = async () => {
+    router.back();
+  };
 
   // 우편주소(카카오지도)
   const [fulladdress, setFulladdress] = useState("");
@@ -133,8 +143,10 @@ export default function ClassWrite(props: IClassWriteProps) {
   // 수정
   const { onClickClassUpdate } = useMutationUpdateClass();
 
-  const { register, setValue, handleSubmit } = useForm<IFormData>({
+  const { register, setValue, handleSubmit, formState } = useForm<IFormData>({
+    resolver: yupResolver(classWriteSchema),
     mode: "onChange",
+    // mode: "onSubmit",
   });
 
   // 등록하기, 수정하기 제출
@@ -192,6 +204,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               {...register("title")}
               defaultValue={props.data?.fetchClassDetail.title}
             />
+            <S.Error>{formState.errors.title?.message}</S.Error>
 
             <S.Label>클래스 한줄요약을 입력해주세요</S.Label>
             <S.TextInput
@@ -200,9 +213,10 @@ export default function ClassWrite(props: IClassWriteProps) {
               {...register("content_summary")}
               defaultValue={props.data?.fetchClassDetail.content_summary}
             />
+            <S.Error>{formState.errors.content_summary?.message}</S.Error>
 
             <S.Label>
-              대표 이미지를 올려주세요 (최대 5개까지 업로드 가능합니다)
+              대표 이미지를 올려주세요 (최대 5개까지 업로드 가능)
             </S.Label>
             <ClassImage fileList={fileList} setFileList={setFileList} />
 
@@ -228,6 +242,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                   {...register("class_mNum")}
                   defaultValue={props.data?.fetchClassDetail.class_mNum}
                 />
+                <S.Error>{formState.errors.class_mNum?.message}</S.Error>
               </S.Wrapper_body_middle_right>
             </S.Wrapper_body_middle>
             <S.Label>클래스 가격을 입력해주세요</S.Label>
@@ -237,6 +252,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               {...register("price")}
               defaultValue={props.data?.fetchClassDetail.price}
             />
+            <S.Error>{formState.errors.price?.message}</S.Error>
 
             <S.Label>클래스 위치를 입력해주세요</S.Label>
             <S.Wrapper_body_map>
@@ -264,6 +280,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                     {...register("address_detail")}
                     defaultValue={props.data?.fetchClassDetail.address_detail}
                   />
+                  <S.Error>{formState.errors.address_detail?.message}</S.Error>
                 </S.Wrapper_body_map_right_bottom>
               </S.Wrapper_body_map_right>
             </S.Wrapper_body_map>
@@ -291,6 +308,7 @@ export default function ClassWrite(props: IClassWriteProps) {
               {...register("accountNum")}
               defaultValue={props.data?.fetchClassDetail.accountNum}
             />
+            <S.Error>{formState.errors.accountNum?.message}</S.Error>
 
             <S.BankWrapper>
               <div>
@@ -301,6 +319,7 @@ export default function ClassWrite(props: IClassWriteProps) {
                   {...register("accountName")}
                   defaultValue={props.data?.fetchClassDetail.accountName}
                 />
+                <S.Error>{formState.errors.accountName?.message}</S.Error>
               </div>
 
               <div>
@@ -311,10 +330,12 @@ export default function ClassWrite(props: IClassWriteProps) {
                   {...register("bankName")}
                   defaultValue={props.data?.fetchClassDetail.bankName}
                 />
+                <S.Error>{formState.errors.bankName?.message}</S.Error>
               </div>
             </S.BankWrapper>
+
             <S.BtnWrapper>
-              <S.CancelBtn>취소</S.CancelBtn>
+              <S.CancelBtn onClick={onClickCancel}>취소</S.CancelBtn>
               <S.SubmitBtn type="submit">
                 {props.isEdit ? "수정" : "등록"}
               </S.SubmitBtn>

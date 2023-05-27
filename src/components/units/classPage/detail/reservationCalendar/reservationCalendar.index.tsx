@@ -103,8 +103,7 @@ export default function CalendarUI(props: IReservationCreateProps) {
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <S.Contents>
             <S.Text>
-              <S.Text>요금을 확인하려면 날짜를</S.Text>
-              <S.Text>선택하세요.</S.Text>
+              <S.Text>예약을 하시려면 날짜를 선택하세요.</S.Text>
             </S.Text>
 
             {/* -----달력------- */}

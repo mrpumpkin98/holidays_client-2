@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
-import { mobile } from "../../../../commons/styles/breakPoints";
+import { mobile, mobileSmall } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 1113px;
@@ -8,6 +8,14 @@ export const Wrapper = styled.div`
   flex-direction: column;
   margin: auto; // 가운데 정렬
   margin-top: 70px;
+
+  @media ${mobile} {
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+  }
 `;
 
 export const Wrapper_header = styled.div`
@@ -18,8 +26,11 @@ export const Wrapper_header = styled.div`
   flex-direction: column;
 
   @media ${mobile} {
-    width: 720px;
-    margin-left: 15px;
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
@@ -27,6 +38,14 @@ export const Wrapper_header_top = styled.div`
   height: 59px;
   font-size: 24px;
   font-weight: 700;
+
+  @media ${mobile} {
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+  }
 `;
 
 export const Wrapper_header_bottom = styled.div`
@@ -40,10 +59,17 @@ export const Wrapper_header_bottom = styled.div`
   padding-bottom: 10px;
 
   @media ${mobile} {
-    width: 720px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50vh;
   }
 `;
 
@@ -62,18 +88,25 @@ export const Wrapper_header_bottom_right = styled.div`
   margin-left: 1040px;
 
   @media ${mobile} {
-    margin-left: 650px;
+    margin-left: 85vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  @media ${mobileSmall} {
+    margin-left: 40vh;
   }
 `;
 
 // slick
 export const SlickWrapper = styled.div`
   @media ${mobile} {
-    width: 720px;
-    margin-left: 15px;
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
@@ -103,8 +136,11 @@ export const Wrapper_body_header = styled.div`
   margin-top: 30px;
 
   @media ${mobile} {
-    width: 720px;
-    margin-left: 15px;
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
@@ -120,12 +156,22 @@ export const Heart = styled(HeartOutlined)`
   width: 18px;
   height: 20px;
   cursor: pointer;
+
+  :hover {
+    background-color: seashell;
+    border-radius: 25px;
+  }
 `;
 
 export const Heart_fill = styled(HeartFilled)`
   width: 18px;
   height: 20px;
   cursor: pointer;
+
+  :hover {
+    background-color: antiquewhite;
+    border-radius: 25px;
+  }
 `;
 
 export const Wrapper_body_bottom = styled.div`
@@ -134,8 +180,11 @@ export const Wrapper_body_bottom = styled.div`
   justify-content: space-between;
 
   @media ${mobile} {
-    width: 720px;
-    margin-left: 15px;
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
@@ -158,6 +207,17 @@ export const ClassInfo_wrapper = styled.div`
   padding: 10px 0px 10px 0px;
   border-top: 1px solid rgba(189, 189, 189, 1);
   border-bottom: 1px solid rgba(189, 189, 189, 1);
+
+  @media ${mobile} {
+    display: flex;
+    flex-direction: row;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const ClassInfo_container = styled.div`
@@ -166,6 +226,16 @@ export const ClassInfo_container = styled.div`
   align-items: center;
 
   padding: 15px 0px 15px 0px;
+
+  @media ${mobile} {
+    width: 25vh;
+    margin-left: 5vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 20vh;
+    margin-left: 0vh;
+  }
 `;
 
 export const Icon = styled.img`
@@ -194,10 +264,24 @@ export const SubLabel = styled.div`
 `;
 
 // 클래스 소개
-export const Contents_wrapper = styled.div``;
+export const Contents_wrapper = styled.div`
+  @media ${mobile} {
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+  }
+`;
 
 export const Contents = styled.div`
-  height: 1000px;
+  @media ${mobile} {
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+  }
 `;
 
 // 클래스 위치
@@ -207,8 +291,11 @@ export const Wrapper_footer = styled.div`
   border-top: 1px solid rgba(189, 189, 189, 1);
 
   @media ${mobile} {
-    width: 720px;
-    margin-left: 15px;
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
@@ -219,7 +306,13 @@ export const Map = styled.div`
   border-radius: 5px;
 
   @media ${mobile} {
-    width: 720px;
+    width: 95vh;
+    height: 45vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+    height: 30vh;
   }
 `;
 
@@ -245,10 +338,18 @@ export const Wrapper_body = styled.div`
   @media ${mobile} {
     display: flex;
     flex-direction: column;
-    width: 720px;
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
 export const Wrapper_body_right = styled.div`
   margin-top: 20px;
+
+  @media ${mobile} {
+    margin-top: 10vh;
+  }
 `;

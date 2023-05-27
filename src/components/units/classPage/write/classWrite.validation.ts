@@ -6,8 +6,7 @@ export const classWriteSchema = yup.object({
   content_summary: yup.string().required("클래스 한줄요약을 입력해주세요"),
   total_time: yup.string().required("클래스 소요 시간을 입력해주세요"),
   class_mNum: yup.string().required("클래스 최대 인원을 입력해주세요"),
-  // price: yup.string().required("클래스 가격을 입력해주세요"),
-  // price: yup.number().required("클래스 가격을 입력해주세요"),
+
   price: yup
     .number()
     .required("클래스 가격을 입력해주세요")

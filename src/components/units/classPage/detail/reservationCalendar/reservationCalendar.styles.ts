@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { InputNumber } from "antd";
 import { DatePicker, Space } from "antd";
-import { mobile } from "../../../../../commons/styles/breakPoints";
+import { mobile, mobileSmall } from "../../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 341px;
@@ -16,9 +16,13 @@ export const Wrapper = styled.div`
   align-items: center;
 
   @media ${mobile} {
-    width: 500px;
-    margin: auto;
-    margin-top: 30px;
+    width: 95vh;
+    margin-top: 3.5vh;
+    margin-bottom: 3.5vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
@@ -32,6 +36,10 @@ export const Contents = styled.div`
 export const Text = styled.div`
   font-weight: 600;
   font-size: 17px;
+
+  @media ${mobile} {
+    margin-top: 1.5vh;
+  }
 `;
 
 // 클래스 일정(달력)
@@ -56,16 +64,16 @@ export const NumberBox = styled.div`
 
 export const Num = styled.div`
   font-size: 15px;
-  /* font-weight: 600; */
   margin-bottom: 5px;
   margin-right: 20px;
 `;
 
 export const Number = styled.input`
   margin-bottom: 10px;
-  padding-left: 10px;
   border: 1px solid #bdbdbd;
   border-radius: 5px;
+  text-align: right;
+  padding-right: 17px;
 `;
 
 export const Number2 = styled.div`
@@ -134,8 +142,12 @@ export const BtnWrapper = styled.button`
   }
 
   @media ${mobile} {
-    height: 70px;
-    margin-bottom: 40px;
+    height: 10vh;
+    margin-bottom: 7.5vh;
+  }
+
+  @media ${mobileSmall} {
+    height: 8vh;
   }
 `;
 
@@ -147,7 +159,6 @@ export const Modal_wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 25px 0px 25px 40px;
-  /* margin: auto; */
 `;
 
 export const Modal_row = styled.div`

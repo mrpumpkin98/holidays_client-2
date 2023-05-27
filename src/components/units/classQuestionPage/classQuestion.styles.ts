@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Input } from "antd";
-import { mobile } from "../../../commons/styles/breakPoints";
+import { mobile, mobileSmall } from "../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 1113px;
@@ -11,16 +11,19 @@ export const Wrapper = styled.div`
   /* border: 1px solid blue; */
   padding-top: 90px;
   border-top: 1px solid rgba(189, 189, 189, 1);
+
+  @media ${mobile} {
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+  }
 `;
 
 export const Wrapper_body = styled.div`
   display: flex;
   flex-direction: column;
-
-  @media ${mobile} {
-    width: 720px;
-    margin-left: 15px;
-  }
 `;
 
 export const Wrapper_body_header = styled.div`
@@ -82,7 +85,11 @@ export const ReviewWriteBtn = styled.button`
   }
 
   @media ${mobile} {
-    margin-left: 620px;
+    margin-left: 85vh;
+  }
+
+  @media ${mobileSmall} {
+    margin-left: 36vh;
   }
 `;
 
