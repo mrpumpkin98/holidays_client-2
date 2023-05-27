@@ -39,7 +39,7 @@ export default function LayoutHeader(): JSX.Element {
   // 메인페이지 이동
 
   const onClickMain = (event: any): void => {
-    void router.push("/");
+    void router.push("/classPage");
   };
 
   const handleReservationPage = (event: any) => {

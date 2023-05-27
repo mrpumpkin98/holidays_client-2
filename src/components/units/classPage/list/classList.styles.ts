@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { SlideBottom } from "../../../../commons/styles/keyframes";
-import { tablet } from "../../../../commons/styles/breakPoints";
+import { mobile, tablet } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -17,8 +17,10 @@ export const Banner = styled.div`
   height: 400px;
   width: 1000px;
   margin-top: 30px;
-  @media ${tablet} {
+  @media ${mobile} {
     width: 90vw;
+    height: 60vw;
+    margin-top: 3vw;
     display: flex;
     flex-direction: column;
   }
@@ -105,8 +107,8 @@ export const SearchBox = styled.input`
     outline: none;
   }
   @media ${tablet} {
-    width: 100%;
-    margin-top: 0px;
+    width: 95vw;
+    margin-top: 1vw;
   }
 `;
 
@@ -138,6 +140,9 @@ export const Body = styled.div`
   justify-content: center;
   width: 1000px;
   margin-bottom: 100px;
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const PremiumAD = styled.div`
@@ -290,10 +295,11 @@ export const BodyWrapper = styled.div`
   flex-wrap: wrap;
   margin-top: 20px;
   margin-left: 260px;
-  @media ${tablet} {
-    margin-left: 0px;
-    width: 90vw;
+  @media ${mobile} {
+    width: 100%;
+    margin-left: 0vw;
     margin-top: 0vw;
+    justify-content: center;
   }
 `;
 
@@ -305,8 +311,8 @@ export const Posts = styled.div`
   :hover {
     box-shadow: 0px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
   }
-  @media ${tablet} {
-    width: 90vw;
+  @media ${mobile} {
+    width: 100%;
   }
 `;
 
@@ -315,6 +321,8 @@ export const PostBody = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+  @media ${mobile} {
+  }
 `;
 
 export const Template = styled.article`
@@ -337,6 +345,10 @@ export const PostTitle = styled.div`
   font-size: 18px;
   margin-bottom: 5px;
   padding-left: 3px;
+  @media ${mobile} {
+    font-size: 15px;
+    margin: 3vw 0vw;
+  }
 `;
 
 export const PostContent = styled.div`
@@ -367,6 +379,9 @@ export const Address = styled.div`
   overflow: hidden;
   margin-left: auto; /* 변경된 부분 */
   margin-bottom: 10px;
+  @media ${mobile} {
+    margin-left: 0%;
+  }
 `;
 
 export const Time = styled.div`
@@ -397,11 +412,18 @@ export const Content = styled.div`
 export const PriceTie = styled.div`
   width: 550px;
   text-align: end;
+  @media ${mobile} {
+    width: 100%;
+    text-align: start;
+  }
 `;
 
 export const Price = styled.div`
   font-size: 15px;
   font-family: "Arita-SemiBold";
+  @media ${mobile} {
+    margin-top: 3vw;
+  }
 `;
 
 export const ClassWrapper = styled.div`

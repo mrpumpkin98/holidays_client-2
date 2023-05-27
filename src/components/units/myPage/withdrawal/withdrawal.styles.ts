@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { mobile } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 600px;
@@ -13,6 +14,11 @@ export const Wrapper = styled.div`
   align-items: center;
   border: none;
   box-shadow: 0px 0px 10px gray;
+  @media ${mobile} {
+    width: 100%;
+    padding: 0px 5vw;
+    box-shadow: none;
+  }
 `;
 
 export const TitleMain = styled.div`
@@ -68,6 +74,9 @@ export const WriterWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding-top: 40px;
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const Writer = styled.input`
@@ -79,6 +88,9 @@ export const Writer = styled.input`
   box-shadow: rgb(234 235 239 / 80%) 0px 2px 4px 0px;
   border-radius: 4px;
   border: 1px solid rgb(218, 220, 224);
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const Password = styled.input`
@@ -90,6 +102,9 @@ export const Password = styled.input`
   box-shadow: rgb(234 235 239 / 80%) 0px 2px 4px 0px;
   border-radius: 4px;
   border: 1px solid rgb(218, 220, 224);
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const Label = styled.div`
@@ -105,6 +120,9 @@ export const Label = styled.div`
 
 export const InputWrapper = styled.div`
   padding-top: 40px;
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const Subject = styled.input`
@@ -116,6 +134,9 @@ export const Subject = styled.input`
   box-shadow: rgb(234 235 239 / 80%) 0px 2px 4px 0px;
   border-radius: 4px;
   border: 1px solid rgb(218, 220, 224);
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const Contents = styled.textarea`
@@ -128,11 +149,17 @@ export const Contents = styled.textarea`
   box-shadow: rgb(234 235 239 / 80%) 0px 2px 4px 0px;
   border-radius: 4px;
   border: 1px solid rgb(218, 220, 224);
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const ImageWrapper = styled.div`
   width: 470px;
   padding-top: 40px;
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const UploadButton = styled.div`
@@ -178,6 +205,9 @@ export const CancelButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-family: "SCDream4";
+  @media ${mobile} {
+    width: 40vw;
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -192,6 +222,9 @@ export const SubmitButton = styled.button`
   border-radius: 4px;
   background-color: ${(props: any) => (props.Active ? "gold" : " #f7f8fa")};
   font-family: "SCDream4";
+  @media ${mobile} {
+    width: 40vw;
+  }
 `;
 
 export const Error = styled.div`

@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
 import { SlideBottom } from "../../../../commons/styles/keyframes";
+import { mobile } from "../../../../commons/styles/breakPoints";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
   width: 900px;
   margin-top: 80px;
+  @media ${mobile} {
+    width: 100%;
+    padding: 0px 5vw;
+  }
 `;
 
 export const ListNameIconWrapper = styled.div`
@@ -40,6 +45,9 @@ export const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const Emoji = styled.div`
@@ -72,6 +80,10 @@ export const Button = styled.div`
   margin-bottom: 30px;
   :hover {
     background-color: #e97100;
+  }
+
+  @media ${mobile} {
+    width: 80vw;
   }
 `;
 

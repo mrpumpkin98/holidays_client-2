@@ -5,7 +5,7 @@ import {
   SmileOutlined,
 } from "@ant-design/icons";
 import { Modal } from "antd";
-import { tablet } from "../../../../commons/styles/breakPoints";
+import { mobile, tablet } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -102,6 +102,9 @@ export const Reservation = styled.div`
   font-size: 14px;
   margin-right: 14px;
   cursor: pointer;
+  @media ${mobile} {
+    display: none;
+  }
 `;
 
 export const Crcle = styled.div`

@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
 import { SlideBottom } from "../../../../commons/styles/keyframes";
+import { mobile } from "../../../../commons/styles/breakPoints";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
   width: 830px;
   margin-top: 80px;
+  @media ${mobile} {
+    width: 100%;
+    padding: 0px 5vw;
+  }
 `;
 
 export const ListNameIconWrapper = styled.div`
@@ -110,12 +115,22 @@ export const PremiumWrapper = styled.div`
   flex-wrap: wrap;
   border-collapse: collapse;
   padding: 10px;
+  @media ${mobile} {
+    width: 100%;
+    padding: 0vw;
+    justify-content: center;
+    margin-bottom: 30vw;
+  }
 `;
 
 export const PremiumPosts = styled.div`
   margin-bottom: 50px;
   cursor: pointer;
   width: 250px;
+  @media ${mobile} {
+    width: 89vw;
+    margin-bottom: 10vw;
+  }
 `;
 
 export const PremiumPostBody = styled.div`
@@ -145,6 +160,9 @@ export const PremiumPostTitle = styled.div`
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 5px;
+  @media ${mobile} {
+    margin: 3vw 0vw;
+  }
 `;
 
 export const PremiumPostContent = styled.div``;
