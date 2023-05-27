@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   align-items: center;
 
   @media ${tablet} {
-    height: 30vw;
+    height: 60vw;
   }
 `;
 
@@ -27,26 +27,29 @@ export const InnerWrapper = styled.div`
   margin: auto;
   @media ${tablet} {
     width: 90vw;
+    flex-direction: column;
   }
 `;
 
 export const LogoWrapper = styled.div`
   margin-right: 50px;
   @media ${tablet} {
-    margin-right: 4vw;
+    margin-right: 0vw;
   }
 `;
 
 export const Logo = styled.img`
   @media ${tablet} {
-    width: 18vw;
+    width: 30vw;
+    margin-bottom: 3vw;
   }
 `;
 
 export const Text = styled.div`
   font-size: 16px;
   @media ${tablet} {
-    font-size: 1vw;
+    font-size: 3vw;
+    margin-bottom: 3vw;
   }
 `;
 

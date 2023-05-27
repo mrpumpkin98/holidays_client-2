@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { SlideBottom } from "../../../../commons/styles/keyframes";
-import { tablet } from "../../../../commons/styles/breakPoints";
+import { mobile, tablet } from "../../../../commons/styles/breakPoints";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,19 +8,24 @@ export const Wrapper = styled.div`
   width: 830px;
   margin-top: 80px;
   margin-bottom: 350px;
-  @media ${tablet} {
-    width: 90vw;
-    flex-direction: column;
+  @media ${mobile} {
+    width: 100%;
+    padding: 0vw 5vw;
+    margin-bottom: 30vw;
   }
 `;
 
 export const ListNameIconWrapper = styled.div`
   display: flex;
   margin-top: 50px;
+  @media ${mobile} {
+  }
 `;
 
 export const ListName = styled.h1`
   font-size: 23px;
+  @media ${mobile} {
+  }
 `;
 
 export const Icon = styled.img`
@@ -34,6 +39,8 @@ export const Line = styled.div`
   width: 100%;
   border: 1px solid #cabeb3;
   margin: 30px 0px 50px 0px;
+  @media ${mobile} {
+  }
 `;
 
 export const Box = styled.div`
@@ -107,14 +114,11 @@ export const Title = styled.div`
 
 export const PremiumWrapper = styled.div`
   width: 100%;
-  @media ${tablet} {
-    flex-direction: column;
-    flex-wrap: nowrap;
+  margin-bottom: 10px;
+  @media ${mobile} {
     width: 100%;
-    height: 100%;
     padding: 0px;
   }
-  margin-bottom: 10px;
 `;
 
 export const PremiumPosts = styled.div`
@@ -122,17 +126,26 @@ export const PremiumPosts = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  @media ${mobile} {
+  }
 `;
 
 export const PremiumPostBody = styled.div`
   display: flex;
   flex-direction: row;
   padding: 15px;
+  @media ${mobile} {
+    flex-direction: column;
+    padding: 0vw;
+  }
 `;
 
 export const Card = styled.div`
   display: flex;
   flex-direction: row;
+  @media ${mobile} {
+    flex-direction: column;
+  }
 `;
 
 export const PremiumTemplate = styled.article`
@@ -156,11 +169,18 @@ export const PremiumPostTitle = styled.div`
   font-weight: 700;
   font-size: 20px;
   margin-bottom: 10px;
+  @media ${mobile} {
+    font-size: 17px;
+  }
 `;
 
 export const PremiumPostContent = styled.div`
   width: 690px;
   padding: 20px;
+  @media ${mobile} {
+    width: 100%;
+    padding: 1vw 3vw 0vw 3vw;
+  }
 `;
 
 export const PremiumPostInfo = styled.div``;
@@ -237,10 +257,15 @@ export const ButtonTie = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 8px;
+  @media ${mobile} {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5vw;
+  }
 `;
 
 export const AdButton = styled.button`
-  width: 120px;
+  width: 125px;
   height: 45px;
   margin-top: 40px;
   cursor: pointer;
@@ -254,7 +279,7 @@ export const AdButton = styled.button`
     background-color: #e97100;
   }
   &.Advertising {
-    width: 120px;
+    width: 125px;
     height: 45px;
     cursor: pointer;
     font-size: 15px;
@@ -264,10 +289,16 @@ export const AdButton = styled.button`
     border: none;
     color: black;
   }
+  @media ${mobile} {
+    margin-top: 0vw;
+    &.Advertising {
+      width: 43vw;
+    }
+  }
 `;
 
 export const DeleteButton = styled.button`
-  width: 120px;
+  width: 125px;
   height: 45px;
   cursor: pointer;
   font-size: 15px;
@@ -276,4 +307,8 @@ export const DeleteButton = styled.button`
   background-color: #f2f2f2;
   border: none;
   margin-top: 20px;
+  @media ${mobile} {
+    margin-top: 0vw;
+    width: 43vw;
+  }
 `;

@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
 import { SlideBottom } from "../../../../commons/styles/keyframes";
+import { mobile } from "../../../../commons/styles/breakPoints";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
   width: 900px;
   margin-top: 80px;
+  @media ${mobile} {
+    width: 100%;
+    padding: 0px 5vw;
+  }
 `;
 
 export const ListNameIconWrapper = styled.div`
@@ -103,6 +108,10 @@ export const PremiumWrapper = styled.div`
   animation: ${SlideBottom} 0.7s ease-in-out both;
   margin-bottom: 300px;
   width: 100%;
+  @media ${mobile} {
+    width: 100%;
+    margin-bottom: 50vw;
+  }
 `;
 
 export const PremiumPosts = styled.div`
@@ -113,16 +122,27 @@ export const PremiumPosts = styled.div`
   :hover {
     box-shadow: 0px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
   }
+  @media ${mobile} {
+    width: 100%;
+    padding: 0vw;
+  }
 `;
 
 export const PremiumPostBody = styled.div`
   display: flex;
   flex-direction: row;
+  @media ${mobile} {
+    flex-direction: column;
+  }
 `;
 
 export const PremiumTemplate = styled.article`
   border-radius: 6px;
   padding-left: 5px;
+  @media ${mobile} {
+    width: 100%;
+    padding-left: 0vw;
+  }
 `;
 
 export const PremiumPostImg = styled.img`
@@ -130,16 +150,26 @@ export const PremiumPostImg = styled.img`
   height: 150px;
   object-fit: cover;
   border-radius: 4px;
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const PremiumPostTitle = styled.div`
   font-weight: 700;
   font-size: 17px;
+  @media ${mobile} {
+    padding-top: 5vw;
+  }
 `;
 
 export const PremiumPostContent = styled.div`
   padding: 10px;
   width: 543px;
+  @media ${mobile} {
+    padding: 0vw;
+    width: 100%;
+  }
 `;
 
 export const PremiumPostInfo = styled.div``;
@@ -177,6 +207,10 @@ export const ButtonTie = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  @media ${mobile} {
+    margin: 5vw 0vw;
+    justify-content: space-between;
+  }
 `;
 
 export const Approve = styled.button`
@@ -193,6 +227,11 @@ export const Approve = styled.button`
   :hover {
     background-color: #e97100;
   }
+
+  @media ${mobile} {
+    margin: 0vw;
+    width: 43vw;
+  }
 `;
 
 export const Cancel = styled.button`
@@ -205,4 +244,8 @@ export const Cancel = styled.button`
   font-size: 14px;
   font-weight: 700;
   margin: 0px 5px;
+  @media ${mobile} {
+    margin: 0vw;
+    width: 43vw;
+  }
 `;
