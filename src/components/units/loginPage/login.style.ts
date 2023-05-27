@@ -20,11 +20,12 @@ export const Wrapper = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-  /* margin-top: 100px; */
+  margin-top: 10vh;
   width: 640px;
   padding-bottom: 30px;
   box-shadow: 0px 0px 5px gray;
   @media ${mobile} {
+    margin-top: 0px;
     width: 90%;
     box-shadow: 0px 0px 0px gray;
   }
@@ -45,6 +46,11 @@ export const HeaderTitle = styled.div`
   @media ${mobileSmall} {
     font-size: 1.5rem;
   }
+`;
+
+export const HeaderLogo = styled.img`
+  width: 20vw;
+  height: 4.5vh;
 `;
 
 export const InputWrapper = styled.div`
