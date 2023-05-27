@@ -13,15 +13,11 @@ const SliderComponent = styled(Slider)`
 
   .slick-dots li.slick-active button:before {
     color: white;
-    /* color: black; */
   }
 
   .slick-dots li button:before {
     color: white;
-    /* color: black; */
   }
-
-  /* ---------------- */
 
   .slick-arrow {
     display: block;
@@ -31,17 +27,13 @@ const SliderComponent = styled(Slider)`
 
   .slick-prev {
     left: 5%;
-    /* z-index: 999999; */
     z-index: 50;
   }
 
   .slick-next {
     right: 5%;
-    /* z-index: 999999; */
     z-index: 50;
   }
-
-  // --------------
 
   .slick-next:before,
   .slick-prev::before {
@@ -70,7 +62,6 @@ const SliderComponent = styled(Slider)`
 const Wrapper = styled.div`
   width: 1113px;
   height: 466px;
-  /* border: 1px solid black; */
   border-radius: 15px;
 
   @media ${mobile} {
@@ -101,16 +92,11 @@ const Img = styled.img`
   }
 `;
 
-// -------
-
 export const MarketImg = styled.div`
-  /* border: 3px solid green; */
   width: 480px;
   background-position: center;
   height: 480px;
 `;
-
-// -------
 
 export default function SlickPage(props: any) {
   var settings = {
@@ -120,10 +106,6 @@ export default function SlickPage(props: any) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-
-  console.log("ggggggggg");
-  console.log(props.src);
-  console.log("ggggggggg");
 
   return (
     <Wrapper>

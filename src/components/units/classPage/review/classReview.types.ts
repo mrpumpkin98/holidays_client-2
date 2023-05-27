@@ -2,7 +2,7 @@ import { IFetchClassReviews } from "../../../../commons/types/generated/types";
 
 export interface IClassReviewWriteProps {
   isEdit: boolean;
-  setIsEdit: any; // 추가
+  setIsEdit: any;
   el?: IFetchClassReviews;
 }
 

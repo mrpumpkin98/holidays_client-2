@@ -1,20 +1,21 @@
 import { useForm } from "react-hook-form";
 import { useMutationCreateInQuiry } from "../../commons/hooks/useMutations/class/useMutationCreateClassInQuiry";
 import * as S from "./classQuestion.styles";
+import { classQuestionSchema } from "./classQuestion.validation";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export interface IFormData {
-  // class_id: string;
   content: string;
 }
 
 export default function ClassQuestionUI() {
   const { onClickClassInQuiry } = useMutationCreateInQuiry();
 
-  const { register, handleSubmit, setValue } = useForm<IFormData>({
+  const { register, handleSubmit, setValue, formState } = useForm<IFormData>({
+    resolver: yupResolver(classQuestionSchema),
     mode: "onChange",
   });
 
-  //  제출
   const onSubmitForm = async (data: IFormData) => {
     const { ...value } = data;
 
@@ -39,13 +40,11 @@ export default function ClassQuestionUI() {
               />
 
               <S.ButtonWrapper>
-                {/* <S.Length>77 / 300</S.Length> */}
-
                 <S.ReviewWriteBtn>문의하기</S.ReviewWriteBtn>
               </S.ButtonWrapper>
             </S.ReviewBox>
           </S.Wrapper_body>
-          {/* <S.Error>에러</S.Error> */}
+          <S.Error>{formState.errors.content?.message}</S.Error>
         </form>
       </S.Wrapper>
     </>

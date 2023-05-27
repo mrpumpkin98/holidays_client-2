@@ -11,42 +11,39 @@ import {
   IFormData,
   IReservationCreateProps,
 } from "./reservationCalendar.types";
+import { reservationSchema } from "./reservationCalendar.validation";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export default function CalendarUI(props: IReservationCreateProps) {
   const [date, setDate] = useState<string>("");
 
-  // -------
   const { data } = UseQueryFetchClassSchedules();
 
   const { onClickReservation } = UseMutationReservation();
 
-  const { register, handleSubmit, setValue } = useForm<IFormData>({
+  const { register, handleSubmit, setValue, formState } = useForm<IFormData>({
+    resolver: yupResolver(reservationSchema),
+
     defaultValues: {
       res_date: date,
       personnel: props.personnel,
     },
     mode: "onChange",
-    // mode: "onSubmit",
   });
 
-  // 예약하기 제출
   const onSubmitForm = async (data: IFormData) => {
     const { ...value } = data;
-
     await onClickReservation(value);
+    setValue("personnel", "");
   };
 
   useEffect(() => {
-    // date 변수가 변경될 때마다 defaultValues를 업데이트
     setValue("res_date", date);
   }, [date, setValue]);
 
-  // 달력
   const { token } = theme.useToken();
 
-  const onPanelChange = (value: Dayjs, mode: CalendarMode) => {
-    console.log(value.format("YYYY-MM-DD"), mode);
-  };
+  const onPanelChange = (value: Dayjs, mode: CalendarMode) => {};
 
   const wrapperStyle: React.CSSProperties = {
     width: 291,
@@ -54,17 +51,15 @@ export default function CalendarUI(props: IReservationCreateProps) {
     borderRadius: token.borderRadiusLG,
   };
 
-  // -------
-  // 달력 높이조정(추가 start)
   const headerStyle: React.CSSProperties = {
-    height: "32px", // header 높이 조절
+    height: "32px",
     lineHeight: "32px",
     textAlign: "center",
     fontWeight: "bold",
     fontSize: "16px",
   };
 
-  const headerRender = ({ value, type, onChange, onTypeChange }: any) => {
+  const headerRender = ({ value }: any) => {
     const start = 0;
     const end = 12;
     const monthOptions = [];
@@ -95,8 +90,6 @@ export default function CalendarUI(props: IReservationCreateProps) {
     );
   };
 
-  // --------------
-
   return (
     <>
       <S.Wrapper>
@@ -105,17 +98,13 @@ export default function CalendarUI(props: IReservationCreateProps) {
             <S.Text>
               <S.Text>예약을 하시려면 날짜를 선택하세요.</S.Text>
             </S.Text>
-
-            {/* -----달력------- */}
             <S.Calendar style={wrapperStyle}>
               <Calendar
                 fullscreen={false}
                 onPanelChange={onPanelChange}
-                headerRender={headerRender} // 추가(높이조정)
+                headerRender={headerRender}
               />
             </S.Calendar>
-            {/* -----달력------- */}
-
             <S.NumberBox>
               <S.Num>인원</S.Num>
               <S.Number
@@ -126,6 +115,7 @@ export default function CalendarUI(props: IReservationCreateProps) {
               <S.Number2>명</S.Number2>
             </S.NumberBox>
           </S.Contents>
+          <S.Error>{formState.errors.personnel?.message}</S.Error>
 
           <S.BtnWrapper type="submit">예약하기</S.BtnWrapper>
         </form>

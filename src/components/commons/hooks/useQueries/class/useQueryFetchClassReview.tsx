@@ -5,7 +5,6 @@ import {
   IQueryFetchClassReviewsArgs,
 } from "../../../../../commons/types/generated/types";
 
-// 후기
 export const FETCH_CLASS_REVIEWS = gql`
   query fetchClassReviews($class_id: String!, $page: Int = 1) {
     fetchClassReviews(class_id: $class_id, page: $page) {

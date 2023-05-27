@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const FETCH_RESERVATIONS_OF_CLASS = gql`
   query fetchReservationsOfClass {

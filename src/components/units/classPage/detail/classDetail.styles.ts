@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   width: 1113px;
   display: flex;
   flex-direction: column;
-  margin: auto; // 가운데 정렬
+  margin: auto;
   margin-top: 70px;
 
   @media ${mobile} {
@@ -73,7 +73,6 @@ export const Wrapper_header_bottom = styled.div`
   }
 `;
 
-// 후기 개수
 export const Review_count = styled.div`
   font-size: 15px;
 `;
@@ -99,7 +98,6 @@ export const Wrapper_header_bottom_right = styled.div`
   }
 `;
 
-// slick
 export const SlickWrapper = styled.div`
   @media ${mobile} {
     width: 95vh;
@@ -110,7 +108,6 @@ export const SlickWrapper = styled.div`
   }
 `;
 
-// 수정, 삭제 버튼
 export const Btn = styled.div`
   font-size: 15px;
   cursor: pointer;
@@ -151,7 +148,6 @@ export const Title = styled.div`
   padding: 40px 0px 20px 0px;
 `;
 
-// 빈 하트(찜)
 export const Heart = styled(HeartOutlined)`
   width: 18px;
   height: 20px;
@@ -192,7 +188,6 @@ export const Wrapper_body_bottom_left = styled.div`
   width: 711px;
 `;
 
-// 달력 위치
 export const Wrapper_body_bottom_right = styled.div``;
 
 export const Remarks = styled.div`
@@ -263,7 +258,6 @@ export const SubLabel = styled.div`
   color: gray;
 `;
 
-// 클래스 소개
 export const Contents_wrapper = styled.div`
   @media ${mobile} {
     width: 95vh;
@@ -284,7 +278,6 @@ export const Contents = styled.div`
   }
 `;
 
-// 클래스 위치
 export const Wrapper_footer = styled.div`
   margin-top: 100px;
   padding-top: 30px;
@@ -299,7 +292,6 @@ export const Wrapper_footer = styled.div`
   }
 `;
 
-// 지도
 export const Map = styled.div`
   width: 1113px;
   height: 478px;
@@ -330,7 +322,6 @@ export const AddressDetail = styled.div`
   margin-left: 10px;
 `;
 
-// ------
 export const Wrapper_body = styled.div`
   display: flex;
   justify-content: space-between;

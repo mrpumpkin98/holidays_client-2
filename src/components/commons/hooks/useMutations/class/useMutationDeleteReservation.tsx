@@ -1,4 +1,4 @@
-import { gql, useMutation } from "@apollo/client";
+import { gql } from "@apollo/client";
 
 export const DELETE_RESERVATION = gql`
   mutation deleteReservation($res_id: String!) {

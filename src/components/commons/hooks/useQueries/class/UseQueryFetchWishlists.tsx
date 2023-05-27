@@ -23,12 +23,10 @@ export const FETCH_WISH_LISTS = gql`
 
 export const UseQueryFetchWishLists = () => {
   const router = useRouter();
-  console.log("router.query.class_id", router.query.class_id);
+
   const query = useQuery(FETCH_CLASS_WISHLISTS_OF_MINE, {
     variables: { class_id: router.query.class_id },
   });
-
-  console.log(query, "###########");
 
   return query;
 };

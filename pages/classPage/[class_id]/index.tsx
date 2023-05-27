@@ -11,7 +11,6 @@ export default function ClassDetailPage(): JSX.Element {
 
   const { data } = UseQueryFetchClassReview();
   const [isEdit, setIsEdit] = useState(false);
-  console.log(data);
 
   return (
     <>

@@ -1,10 +1,7 @@
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as S from "./classWrite.styles";
-import { PlusOutlined } from "@ant-design/icons";
-import { Modal, Upload } from "antd";
-import type { RcFile, UploadProps } from "antd/es/upload";
-import type { UploadFile } from "antd/es/upload/interface";
-import DaumPostcodeEmbed from "react-daum-postcode"; //  우편번호
+import { Modal } from "antd";
+import DaumPostcodeEmbed from "react-daum-postcode";
 import type { Address } from "react-daum-postcode";
 import { UseMutationCreateClass } from "../../../commons/hooks/useMutations/class/useMutationCreateClass";
 import { useForm } from "react-hook-form";
@@ -12,10 +9,8 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { useMutationUpdateClass } from "../../../commons/hooks/useMutations/class/useMutationUpdateClass";
 import { IClassWriteProps, IFormData } from "./classWrite.types";
-import { useMutationUploadFile } from "../../../commons/hooks/useMutations/class/useMutationUploadFile";
 import ClassImage from "./classWriteImage";
 import Calendar from "../../../commons/calendar";
-import { UseMutationUploadFile } from "../../../commons/hooks/useMutations/uploadFile/UseMutationUploadFile";
 import { useAuth02 } from "../../../commons/hooks/useAuths/useAuth02";
 import { classWriteSchema } from "./classWrite.validation";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -48,14 +43,32 @@ export default function ClassWrite(props: IClassWriteProps) {
     router.back();
   };
 
+  // 세부내용(ToastEditor)
+  const contentsRef = useRef<EditorInstance | null>(null);
+
+  const onChangeContents = (text: any) => {
+    const editorInstance: string =
+      contentsRef.current?.getInstance()?.getHTML() ?? "";
+
+    setValue("content", editorInstance === "<p><br></p>" ? "" : editorInstance);
+  };
+
   // 우편주소(카카오지도)
   const [fulladdress, setFulladdress] = useState("");
 
-  // 세부내용(ToastEditor)
-  // const contentsRef = useRef(null);
-  const contentsRef = useRef<EditorInstance | null>(null);
-  const [content, setContent] = useState("");
-  const [uploadFile] = UseMutationUploadFile();
+  const [isOpen, setIsOpen] = useState(false);
+
+  // 우편번호 모달창
+  const onToggleModal = (): void => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleComplete = (data: Address): void => {
+    onToggleModal();
+
+    setValue("address", data.address);
+    setFulladdress(data.address);
+  };
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -73,7 +86,6 @@ export default function ClassWrite(props: IClassWriteProps) {
         };
 
         const map = new window.kakao.maps.Map(container, options);
-        console.log(map);
 
         let geocoder = new window.kakao.maps.services.Geocoder();
 
@@ -111,27 +123,6 @@ export default function ClassWrite(props: IClassWriteProps) {
     };
   }, [fulladdress]);
 
-  // --------------------------------------------------------
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  // 우편번호 모달창
-  const onToggleModal = (): void => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const handleComplete = (data: Address): void => {
-    console.log(data.address);
-
-    onToggleModal();
-
-    setValue("address", data.address);
-    setFulladdress(data.address);
-  };
-
-  // --------------------------------------------------------
-
-  // 등록
   const {
     onClickClassSubmit,
     fileList,
@@ -140,16 +131,13 @@ export default function ClassWrite(props: IClassWriteProps) {
     setSelectedDates,
   } = UseMutationCreateClass();
 
-  // 수정
   const { onClickClassUpdate } = useMutationUpdateClass();
 
   const { register, setValue, handleSubmit, formState } = useForm<IFormData>({
     resolver: yupResolver(classWriteSchema),
     mode: "onChange",
-    // mode: "onSubmit",
   });
 
-  // 등록하기, 수정하기 제출
   const onSubmitForm = async (data: IFormData) => {
     const { ...value } = data;
 
@@ -160,18 +148,9 @@ export default function ClassWrite(props: IClassWriteProps) {
     }
   };
 
-  // 세부내용(ToastEditor)
-  const onChangeContents = (text: any) => {
-    const editorInstance: string =
-      contentsRef.current?.getInstance()?.getHTML() ?? "";
-
-    setValue("content", editorInstance === "<p><br></p>" ? "" : editorInstance);
-  };
-
   return (
     <>
       <S.Wrapper>
-        {/* 우편번호 모달 */}
         {isOpen && (
           <Modal open={isOpen} onOk={onToggleModal} onCancel={onToggleModal}>
             <DaumPostcodeEmbed onComplete={handleComplete} />

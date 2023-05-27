@@ -2,9 +2,7 @@ import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IClassWriteProps {
   data?: Pick<IQuery, "fetchClassDetail">;
-
   isEdit: boolean;
-  // fulladdress: string;
 }
 
 export interface IFormData {
@@ -24,9 +22,4 @@ export interface IFormData {
   bankName: string;
   date: string;
   remain: string;
-
-  // images?: string[];
-  // images?: [IImageInput];
-  // images?: { url: string }[];
-  // images?: IImageInput[];
 }

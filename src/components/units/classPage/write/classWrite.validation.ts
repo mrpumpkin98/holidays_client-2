@@ -1,5 +1,5 @@
 import * as yup from "yup";
-// 클래스등록 스케마
+
 export const classWriteSchema = yup.object({
   category: yup.string().required("카테고리를 선택해주세요."),
   title: yup.string().required("클래스 이름을 입력해주세요"),
@@ -14,8 +14,6 @@ export const classWriteSchema = yup.object({
 
   address_detail: yup.string().required("주소를 입력해주세요"),
 
-  content: yup.string().required("세부내용을 입력해주세요."),
-  contents: yup.string().required("세부내용을 입력해주세요."),
   accountNum: yup
     .number()
     .required("입금 계좌를 입력해주세요.")

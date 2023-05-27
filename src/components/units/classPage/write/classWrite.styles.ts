@@ -1,17 +1,13 @@
-import styled, { StyledComponent } from "@emotion/styled";
-import { Input, Select, InputNumber, TimePicker, SelectProps } from "antd";
-import { DatePicker, Space } from "antd";
-import { DefaultOptionType } from "antd/es/cascader";
-import { BaseOptionType } from "antd/es/select";
-import { ReactNode, Ref } from "react";
-import type { UseFormRegisterReturn } from "react-hook-form";
+import styled from "@emotion/styled";
+import { Input, InputNumber, TimePicker, SelectProps } from "antd";
+import { DatePicker } from "antd";
 import { mobile, mobileSmall } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 728px;
   display: flex;
   flex-direction: column;
-  margin: auto; // 가운데 정렬
+  margin: auto;
 
   @media ${mobile} {
     width: 80vh;
@@ -66,7 +62,6 @@ export const Wrapper_header_left = styled.div`
   font-weight: 700;
 `;
 
-// 예금주, 입금 은행
 export const BankWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -77,7 +72,6 @@ export const BankWrapper = styled.div`
   }
 `;
 
-// 상세주소
 export const TextInput3 = styled.input`
   width: 354px;
   height: 61px;
@@ -178,7 +172,6 @@ export const SubmitBtn = styled.button`
   }
 `;
 
-// 작성 시작
 export const Wrapper_body = styled.div``;
 
 export const Label = styled.div`
@@ -194,12 +187,10 @@ export const Error = styled.div`
   padding-bottom: 30px;
 `;
 
-// 세부내용 웹에디터
 export const ToastEditor = styled.div`
   margin-bottom: 10px;
 `;
 
-// 대표 이미지
 export const Img_box = styled.div`
   display: flex;
   flex-direction: row;
@@ -244,7 +235,6 @@ export const Wrapper_body_middle_right = styled.div`
   width: 360px;
 `;
 
-// 클래스 위치
 export const Wrapper_body_map = styled.div`
   display: flex;
   flex-direction: row;
@@ -349,7 +339,6 @@ export const AddressDetail = styled(Input)`
   height: 56px;
 `;
 
-// 클래스 세부 내용
 export const Contents = styled.div`
   height: 300px;
   border: 1px solid rgba(189, 189, 189, 1);
@@ -357,7 +346,6 @@ export const Contents = styled.div`
   margin-bottom: 10px;
 `;
 
-// 클래스 일정(달력)
 export const DatelistWrapper = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;

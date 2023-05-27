@@ -1,12 +1,10 @@
 import styled from "@emotion/styled";
-import { InputNumber } from "antd";
 import { DatePicker, Space } from "antd";
 import { mobile, mobileSmall } from "../../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 341px;
 
-  /* height: 328px; */
   box-shadow: 0px 0px 7px gray;
   border-radius: 20px;
   position: sticky;
@@ -33,6 +31,11 @@ export const Contents = styled.div`
   padding: 30px 0px 30px 0px;
 `;
 
+export const Error = styled.div`
+  font-size: 14px;
+  color: red;
+`;
+
 export const Text = styled.div`
   font-weight: 600;
   font-size: 17px;
@@ -42,7 +45,6 @@ export const Text = styled.div`
   }
 `;
 
-// 클래스 일정(달력)
 export const Spaced = styled(Space)`
   margin-top: 30px;
   margin-bottom: 15px;
@@ -83,7 +85,6 @@ export const Number2 = styled.div`
 `;
 
 export const Row = styled.div`
-  /* background-color: pink; */
   width: 291px;
   display: flex;
   flex-direction: row;
@@ -98,7 +99,6 @@ export const Line = styled.div`
 
 export const Num2 = styled.div`
   font-size: 17px;
-  /* font-weight: 600; */
 `;
 
 export const Price = styled.div`
@@ -111,13 +111,11 @@ export const Sum = styled.div`
   font-weight: 600;
 `;
 
-// 달력
 export const Calendar = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
 `;
 
-// 예약하기 버튼
 export const BtnWrapper = styled.button`
   background-color: #f28316;
   color: #ffffff;
@@ -151,27 +149,22 @@ export const BtnWrapper = styled.button`
   }
 `;
 
-// -----------------------
-// 모달 css
 export const Modal_wrapper = styled.div`
   width: 400px;
-  /* background-color: skyblue; */
+
   display: flex;
   flex-direction: column;
   margin: 25px 0px 25px 40px;
 `;
 
 export const Modal_row = styled.div`
-  /* background-color: yellowgreen; */
   display: flex;
   flex-direction: column;
-  /* border: 1px solid gray; */
+
   padding: 10px 0px 10px 0px;
 `;
 
 export const RowText = styled.div`
-  /* background-color: tomato; */
-  /* width: 80px; */
   font-size: 17px;
   font-weight: 700;
 `;

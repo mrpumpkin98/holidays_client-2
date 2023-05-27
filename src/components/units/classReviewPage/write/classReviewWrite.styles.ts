@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   width: 1113px;
   display: flex;
   flex-direction: column;
-  margin: auto; // 가운데 정렬
+  margin: auto;
   margin-bottom: 50px;
 
   @media ${mobile} {
@@ -29,7 +29,6 @@ export const Wrapper_body_header = styled.div`
   margin-bottom: 10px;
 `;
 
-// 별점
 export const Star = styled(Rate)`
   margin-bottom: 10px;
 `;
