@@ -10,7 +10,6 @@ export const ModalWrapper = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  /* width: 700px; */
   width: 800px;
 
   height: 500px;
@@ -64,8 +63,6 @@ export const CloseButton = styled.button`
   }
 `;
 
-// -------
-// 예약 정보
 export const Text = styled.div`
   font-size: 16px;
   font-weight: 600;
@@ -110,8 +107,6 @@ export const Row_right2 = styled.div`
   color: gray;
 `;
 
-// -----------
-
 export const RowText = styled.div`
   background-color: #eae7e7;
   padding: 10px;
@@ -121,7 +116,6 @@ export const RowText = styled.div`
   padding-left: 16px;
 `;
 
-// 예금주 입금 계좌
 export const RowText22 = styled.div`
   background-color: #eae7e7;
   font-size: 16px;
@@ -146,8 +140,6 @@ export const RowText2 = styled.div`
   padding-left: 16px;
 `;
 
-// -------
-// 아래 설명란
 export const Explain = styled.div`
   margin-top: 20px;
 `;

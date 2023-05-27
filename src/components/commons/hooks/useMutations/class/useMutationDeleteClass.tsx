@@ -12,9 +12,7 @@ export const useMutationDeleteClass = () => {
 
   const [deleteClass] = useMutation(DELETE_CLASS);
 
-  // 삭제하기 버튼
   const onClickClassDelete = async () => {
-    console.log("삭제하기 버튼 클릭 됨");
     try {
       void deleteClass({
         variables: { class_id: router.query.class_id },
@@ -22,7 +20,6 @@ export const useMutationDeleteClass = () => {
 
       alert("클래스 삭제가 완료되었습니다.");
 
-      // 클래스 리스트 페이지로 이동
       void router.push(`/classPage`);
     } catch (error) {
       if (error instanceof Error) console.log(error.message);

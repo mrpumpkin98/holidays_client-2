@@ -27,21 +27,10 @@ export default function ClassReviewList(props: IClassReviewListProps) {
     } else {
       setDivHeight("auto");
     }
-
-    console.log(divHeight, "divHeightdivHeightdivHeightdivHeight");
   }, [props.data]);
 
   const { data, fetchMore } = UseQueryFetchClassReview();
 
-  console.log("1====");
-  console.log(props);
-  console.log("2====");
-  console.log(props.el);
-  console.log("3====");
-  console.log(props.data);
-  console.log("4====");
-
-  // 무한스크롤
   const onLoadMore = (): void => {
     if (data === undefined) return;
     void fetchMore({

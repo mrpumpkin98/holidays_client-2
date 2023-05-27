@@ -1,24 +1,27 @@
 import { useForm } from "react-hook-form";
 import { useMutationCreateInQuiry } from "../../commons/hooks/useMutations/class/useMutationCreateClassInQuiry";
 import * as S from "./classQuestion.styles";
+import { classQuestionSchema } from "./classQuestion.validation";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export interface IFormData {
-  // class_id: string;
   content: string;
 }
 
 export default function ClassQuestionUI() {
   const { onClickClassInQuiry } = useMutationCreateInQuiry();
 
-  const { register, handleSubmit } = useForm<IFormData>({
+  const { register, handleSubmit, setValue, formState } = useForm<IFormData>({
+    resolver: yupResolver(classQuestionSchema),
     mode: "onChange",
   });
 
-  //  제출
   const onSubmitForm = async (data: IFormData) => {
     const { ...value } = data;
 
     onClickClassInQuiry(value);
+
+    setValue("content", "");
   };
 
   return (
@@ -32,18 +35,16 @@ export default function ClassQuestionUI() {
               <S.TextArea7
                 rows={10}
                 maxLength={300}
-                placeholder="문의 시 관리자에게 카카오톡으로 전송됩니다."
+                placeholder="문의 시 관리자에게 메세지로 전송됩니다."
                 {...register("content")}
               />
 
               <S.ButtonWrapper>
-                {/* <S.Length>77 / 300</S.Length> */}
-
                 <S.ReviewWriteBtn>문의하기</S.ReviewWriteBtn>
               </S.ButtonWrapper>
             </S.ReviewBox>
           </S.Wrapper_body>
-          {/* <S.Error>에러</S.Error> */}
+          <S.Error>{formState.errors.content?.message}</S.Error>
         </form>
       </S.Wrapper>
     </>

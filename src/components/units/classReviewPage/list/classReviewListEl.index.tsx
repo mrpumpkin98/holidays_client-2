@@ -1,25 +1,12 @@
-import { useRecoilState } from "recoil";
 import { UseMutationClassReview } from "../../../commons/hooks/useMutations/class/useMutationReview";
 import ClassReviewWrite from "../write/classReviewWrite.index";
 import * as S from "./classReviewList.styles";
-import { useState } from "react";
 import { getDate } from "../../../../commons/libraries/utils";
 
 export default function ClassReviewListEl(props: any) {
-  // 삭제, 수정 버튼
   const { onClickDelete, isEdit, setIsEdit } = UseMutationClassReview();
-  console.log("=====");
-  console.log(props.index, isEdit);
-  console.log("=====");
-
-  // const onClickEdit = (): void => {
-  //   props.setIsEdit(true);
-  // };
-
-  // const [isEdit, setIsEdit] = useState(false);
 
   const handleEditClick = (cr_id: any) => {
-    console.log("cr_id: ", cr_id);
     setIsEdit(true);
   };
 
@@ -45,6 +32,7 @@ export default function ClassReviewListEl(props: any) {
           <S.Contents>{props.el.content}</S.Contents>
         </S.Row>
       )}
+
       {isEdit && (
         <ClassReviewWrite isEdit={isEdit} setIsEdit={setIsEdit} el={props.el} />
       )}

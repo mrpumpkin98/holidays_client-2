@@ -17,7 +17,6 @@ export default function ClassEditPage() {
   >(FETCH_CLASS_DETAIL, {
     variables: { class_id: String(router.query.class_id) },
   });
-  console.log(data);
 
   return <ClassWrite isEdit={true} data={data} />;
 }

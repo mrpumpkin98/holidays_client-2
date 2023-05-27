@@ -4,7 +4,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { mobile } from "../../../../commons/styles/breakPoints";
+import { mobile, mobileSmall } from "../../../../commons/styles/breakPoints";
 
 const SliderComponent = styled(Slider)`
   .slick-dots {
@@ -13,32 +13,27 @@ const SliderComponent = styled(Slider)`
 
   .slick-dots li.slick-active button:before {
     color: white;
-    /* color: black; */
   }
 
   .slick-dots li button:before {
     color: white;
-    /* color: black; */
   }
-
-  /* ---------------- */
 
   .slick-arrow {
     display: block;
     width: 40px;
     height: 40px;
   }
+
   .slick-prev {
     left: 5%;
-    z-index: 999999;
+    z-index: 50;
   }
 
   .slick-next {
     right: 5%;
-    z-index: 999999;
+    z-index: 50;
   }
-
-  // --------------
 
   .slick-next:before,
   .slick-prev::before {
@@ -67,12 +62,16 @@ const SliderComponent = styled(Slider)`
 const Wrapper = styled.div`
   width: 1113px;
   height: 466px;
-  /* border: 1px solid black; */
   border-radius: 15px;
 
   @media ${mobile} {
-    width: 720px;
-    height: 300px;
+    width: 95vh;
+    height: 43vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+    height: 30vh;
   }
 `;
 
@@ -83,21 +82,21 @@ const Img = styled.img`
   border-radius: 15px;
 
   @media ${mobile} {
-    width: 720px;
-    height: 300px;
+    width: 95vh;
+    height: 43vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
+    height: 30vh;
   }
 `;
 
-// -------
-
 export const MarketImg = styled.div`
-  /* border: 3px solid green; */
   width: 480px;
   background-position: center;
   height: 480px;
 `;
-
-// -------
 
 export default function SlickPage(props: any) {
   var settings = {
@@ -107,10 +106,6 @@ export default function SlickPage(props: any) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-
-  console.log("ggggggggg");
-  console.log(props.src);
-  console.log("ggggggggg");
 
   return (
     <Wrapper>

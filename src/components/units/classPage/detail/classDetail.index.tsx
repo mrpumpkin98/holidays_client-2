@@ -10,7 +10,6 @@ import ClassReviewWrite from "../../classReviewPage/write/classReviewWrite.index
 import SlickPage from "./classDetailSlick";
 import { UseQueryFetchWishLists } from "../../../commons/hooks/useQueries/class/UseQueryFetchWishlists";
 
-// 카카오지도
 declare const window: typeof globalThis & {
   kakao: any;
 };
@@ -21,6 +20,15 @@ export default function ClassDetail() {
   const { data } = UseQueryFetchClassDetail();
 
   const { data: isPick } = UseQueryFetchWishLists();
+
+  const { onClickClassDelete } = useMutationDeleteClass();
+
+  const { onClickCreateWishlist, onClickDeleteWishlist } =
+    UseMutationWishList();
+
+  const onClickMoveToClassEdit = () => {
+    router.push(`/classPage/${router.query.class_id}/edit`);
+  };
 
   // 카카오지도
   useEffect(() => {
@@ -38,7 +46,6 @@ export default function ClassDetail() {
         };
 
         const map = new window.kakao.maps.Map(container, options);
-        console.log(map);
 
         let geocoder = new window.kakao.maps.services.Geocoder();
 
@@ -69,18 +76,6 @@ export default function ClassDetail() {
       });
     };
   }, [data?.fetchClassDetail?.address]);
-
-  // 삭제
-  const { onClickClassDelete } = useMutationDeleteClass();
-
-  // 찜
-  const { onClickCreateWishlist, onClickDeleteWishlist } =
-    UseMutationWishList();
-
-  // 수정 페이지로 이동
-  const onClickMoveToClassEdit = () => {
-    router.push(`/classPage/${router.query.class_id}/edit`);
-  };
 
   return (
     <>
@@ -153,21 +148,22 @@ export default function ClassDetail() {
 
                 <S.Contents_wrapper>
                   <S.Title>클래스 소개</S.Title>
-                  {typeof window !== "undefined" && (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: DOMPurify.sanitize(
-                          data?.fetchClassDetail?.content
-                        ),
-                      }}
-                    />
-                  )}
+                  <S.Contents>
+                    {typeof window !== "undefined" && (
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: DOMPurify.sanitize(
+                            data?.fetchClassDetail?.content
+                          ),
+                        }}
+                      />
+                    )}
+                  </S.Contents>
                 </S.Contents_wrapper>
               </S.Wrapper_body_bottom_left>
             </S.Wrapper_body_bottom>
           </S.Wrapper_body_left>
 
-          {/* 달력 */}
           <S.Wrapper_body_right>
             <CalendarUI />
           </S.Wrapper_body_right>

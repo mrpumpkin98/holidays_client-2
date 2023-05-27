@@ -4,11 +4,13 @@ import ClassDetail from "../../../src/components/units/classPage/detail/classDet
 import ClassQuestionUI from "../../../src/components/units/classQuestionPage/classQuestion.index";
 import ClassReviewList from "../../../src/components/units/classReviewPage/list/classReviewList.index";
 import ClassReviewWrite from "../../../src/components/units/classReviewPage/write/classReviewWrite.index";
+import { useAuth01 } from "../../../src/components/commons/hooks/useAuths/useAuth01";
 
 export default function ClassDetailPage(): JSX.Element {
+  useAuth01();
+
   const { data } = UseQueryFetchClassReview();
   const [isEdit, setIsEdit] = useState(false);
-  console.log(data);
 
   return (
     <>

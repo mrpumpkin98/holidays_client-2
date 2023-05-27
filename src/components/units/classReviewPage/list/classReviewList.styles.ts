@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
-import { mobile } from "../../../../commons/styles/breakPoints";
+import { mobile, mobileSmall } from "../../../../commons/styles/breakPoints";
 
 export const Wrapper = styled.div`
   width: 1113px;
@@ -10,8 +10,11 @@ export const Wrapper = styled.div`
   margin-bottom: 70px;
 
   @media ${mobile} {
-    width: 700px;
-    /* background-color: skyblue; */
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
@@ -21,8 +24,11 @@ export const Box = styled.div`
   margin: auto;
 
   @media ${mobile} {
-    width: 720px;
-    /* background-color: yellow; */
+    width: 95vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 50vh;
   }
 `;
 
@@ -41,10 +47,6 @@ export const ReviewCount = styled.div`
 export const Row = styled.div`
   margin-bottom: 20px;
   /* background-color: purple; */
-
-  @media ${mobile} {
-    /* width: 420px; */
-  }
 `;
 
 export const Wrapper_header_top = styled.div`
@@ -53,7 +55,11 @@ export const Wrapper_header_top = styled.div`
   align-items: center;
 
   @media ${mobile} {
-    width: 700px;
+    width: 92vh;
+  }
+
+  @media ${mobileSmall} {
+    width: 47vh;
   }
 `;
 
@@ -62,7 +68,11 @@ export const ReviewWriter = styled.div`
 `;
 
 // 별점
-export const Star = styled(Rate)``;
+export const Star = styled(Rate)`
+  @media ${mobileSmall} {
+    width: 20vh;
+  }
+`;
 
 export const BtnWrapper = styled.div`
   width: 65px;
@@ -73,7 +83,11 @@ export const BtnWrapper = styled.div`
   margin-left: 811px;
 
   @media ${mobile} {
-    margin-left: 380px;
+    margin-left: 50vh;
+  }
+
+  @media ${mobileSmall} {
+    margin-left: 6vh;
   }
 `;
 

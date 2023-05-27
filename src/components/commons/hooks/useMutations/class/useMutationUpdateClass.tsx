@@ -16,7 +16,6 @@ export const useMutationUpdateClass = () => {
 
   const [updateClass] = useMutation(UPDATE_CLASS);
 
-  // 수정하기 버튼
   const onClickClassUpdate = async (data: IFormData, address: string) => {
     try {
       if (typeof router.query.class_id !== "string") {
@@ -38,15 +37,13 @@ export const useMutationUpdateClass = () => {
             address_category: getFirstTwoChars(address),
             total_time: data.total_time,
             content: data.content,
-            accountNum: data.accountNum,
+            accountNum: String(data.accountNum),
             accountName: data.accountName,
             bankName: data.bankName,
             classSchedulesInput: {
-              // date: data.date,
-              // remain: data.remain,
-              cs_id: "gg",
-              date: "ddd수정",
-              remain: 77,
+              cs_id: "cs_id",
+              date: "date",
+              remain: 7,
             },
             imageInput: {
               url: "111",
@@ -63,10 +60,6 @@ export const useMutationUpdateClass = () => {
         ],
       });
       alert("클래스 수정이 완료되었습니다.");
-      console.log(result);
-
-      // 클래스 디테일 페이지로 이동
-      console.log("class_id: ", router.query.class_id);
 
       void router.push(`/classPage/${router.query.class_id}`);
     } catch (error) {
