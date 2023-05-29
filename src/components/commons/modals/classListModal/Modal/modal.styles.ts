@@ -43,7 +43,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const ContentsWrapper = styled.div`
-  margin-bottom: 150px;
+  margin-bottom: 50px;
 `;
 
 export const Contents = styled.div<{ isSelected: boolean }>`

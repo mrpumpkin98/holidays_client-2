@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import * as S from "./proposalClass.styles";
 import { useQuery } from "@apollo/client";
 import { FETCH_RESERVATIONS_OF_USER } from "../../../commons/hooks/useQueries/class/UseQueryFetchReservationsOfUser";
@@ -17,6 +17,17 @@ export default function MypagePoint() {
 
   const onClickMenu = () => {
     void router.push("/classPage");
+  };
+
+  ///////////////////////////////////////////////////////////////
+  //  게시물 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickSubmit: MouseEventHandler<HTMLDivElement> = (event) => {
+    const target = event.currentTarget;
+    const postId = target.id;
+    router.push(`/classPage/${postId}`);
+    console.log(postId);
   };
 
   return (
@@ -52,7 +63,7 @@ export default function MypagePoint() {
             {data?.fetchReservationsOfUser.map((post: any, index: any) => (
               <S.Posts key={index}>
                 <S.PremiumPosts>
-                  <S.PremiumPostBody>
+                  <S.PremiumPostBody id={post.class_id} onClick={onClickSubmit}>
                     <S.PremiumTemplate>
                       <S.PremiumPostImg src={post.url} />
                     </S.PremiumTemplate>

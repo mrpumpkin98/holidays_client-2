@@ -16,6 +16,8 @@ export const Wrapper = styled.div`
 export const ListNameIconWrapper = styled.div`
   display: flex;
   margin-top: 50px;
+  @media ${mobile} {
+  }
 `;
 
 export const ListName = styled.h1`
@@ -45,6 +47,9 @@ export const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media ${mobile} {
+    width: 100%;
+  }
 `;
 
 export const Emoji = styled.div`
@@ -54,11 +59,18 @@ export const Emoji = styled.div`
 export const Text = styled.p`
   font-size: 22px;
   color: #828282;
+  @media ${mobile} {
+    font-size: 20px;
+    margin-top: 5vw;
+  }
 `;
 
 export const MainText = styled.p`
   font-size: 25px;
   color: #4a4247;
+  @media ${mobile} {
+    font-size: 22px;
+  }
 `;
 
 export const Button = styled.div`
@@ -77,6 +89,10 @@ export const Button = styled.div`
   margin-bottom: 30px;
   :hover {
     background-color: #e97100;
+  }
+
+  @media ${mobile} {
+    width: 80vw;
   }
 `;
 
