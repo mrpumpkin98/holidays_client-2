@@ -122,6 +122,10 @@ export const Slick = styled.div`
 
 export const Wrapper_body_left = styled.div`
   width: 711px;
+
+  @media ${mobileSmall} {
+    width: 50vh;
+  }
 `;
 
 export const Wrapper_body_header = styled.div`
