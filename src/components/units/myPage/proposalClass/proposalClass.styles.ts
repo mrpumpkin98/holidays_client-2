@@ -57,11 +57,18 @@ export const Emoji = styled.div`
 export const Text = styled.p`
   font-size: 22px;
   color: #828282;
+  @media ${mobile} {
+    font-size: 20px;
+    margin-top: 5vw;
+  }
 `;
 
 export const MainText = styled.p`
   font-size: 25px;
   color: #4a4247;
+  @media ${mobile} {
+    font-size: 22px;
+  }
 `;
 
 export const Button = styled.div`
@@ -127,6 +134,7 @@ export const PremiumPosts = styled.div`
   width: 447px;
   padding: 15px 10px 15px 5px;
   margin-bottom: 7px;
+  cursor: pointer;
   :hover {
     box-shadow: 0px 0px 10px rgba(0.2, 0.2, 0.2, 0.2);
   }

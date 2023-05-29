@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import * as S from "./wishList.styles";
 import { useQuery } from "@apollo/client";
 import { Money } from "../../../../commons/libraries/utils";
@@ -24,6 +24,18 @@ export default function WishList() {
   const onClickMenu = () => {
     void router.push("/classPage");
   };
+
+  ///////////////////////////////////////////////////////////////
+  //  게시물 이동
+  //////////////////////////////////////////////////////////////
+
+  const onClickSubmit: MouseEventHandler<HTMLDivElement> = (event) => {
+    const target = event.currentTarget;
+    const postId = target.id;
+    router.push(`/classPage/${postId}`);
+    console.log(postId);
+  };
+
   return (
     <S.Wrapper>
       {loading ? (
@@ -57,7 +69,7 @@ export default function WishList() {
             {data?.fetchWishlists.map((post: any, index: any) => (
               <div key={index}>
                 <S.PremiumPosts>
-                  <S.PremiumPostBody>
+                  <S.PremiumPostBody id={post.class_id} onClick={onClickSubmit}>
                     <S.PremiumTemplate>
                       <S.PremiumPostImg src={post.url} />
                     </S.PremiumTemplate>

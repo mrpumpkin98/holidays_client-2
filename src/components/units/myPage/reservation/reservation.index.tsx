@@ -7,6 +7,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
 import { DELETE_RESERVATION } from "../../../commons/hooks/useMutations/class/useMutationDeleteReservation";
 import { FECTCH_CLASS_OF_MINE } from "../../../commons/hooks/useQueries/class/UseQueryFetchClassesOfMine";
+import { FETCH_RESERVATIONS_OF_USER } from "../../../commons/hooks/useQueries/class/UseQueryFetchReservationsOfUser";
 
 export default function Reservation() {
   const router = useRouter();
@@ -23,7 +24,11 @@ export default function Reservation() {
       variables: {
         rse_id: String(event.currentTarget.id),
       },
-      refetchQueries: [{ query: FETCH_RESERVATIONS_OF_CLASS }],
+      refetchQueries: [
+        { query: FETCH_RESERVATIONS_OF_CLASS },
+        { query: FECTCH_CLASS_OF_MINE },
+        { query: FETCH_RESERVATIONS_OF_USER },
+      ],
     });
     console.log(event.currentTarget.id);
     alert("승인을 완료했습니다.");
@@ -38,6 +43,7 @@ export default function Reservation() {
       refetchQueries: [
         { query: FETCH_RESERVATIONS_OF_CLASS },
         { query: FECTCH_CLASS_OF_MINE },
+        { query: FETCH_RESERVATIONS_OF_USER },
       ],
     });
     console.log(event.currentTarget.id);

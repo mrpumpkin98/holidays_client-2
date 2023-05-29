@@ -17,6 +17,7 @@ import { UseMutationUploadFile } from "../../../commons/hooks/useMutations/uploa
 import { FETCH_BOARD_DETAIL } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoardsDetail";
 import dynamic from "next/dynamic";
 import { UploadFile } from "antd";
+import { FECTCH_BOARDS } from "../../../commons/hooks/useQueries/board/UseQueryFetchBoards";
 
 const ToastEditor = dynamic(
   async () => await import("../../../commons/toastUI"),
@@ -76,6 +77,7 @@ export default function CommunityWritePage(props: any) {
           ],
         },
       },
+      refetchQueries: [{ query: FECTCH_BOARDS }],
     });
     void router.push(`/communityPage/${result.data?.createBoard}`);
     console.log(result?.data?.createBoard);
