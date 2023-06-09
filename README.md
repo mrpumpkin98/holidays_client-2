@@ -49,7 +49,7 @@
 2023년 5월 8일 ~ 2023년 5월 26일
 
 ## 기술
-- HTML, CSS, JavaScript, TypeScript, React, Next.js, GraphQL, Rest-API
+- HTML, CSS, JavaScript, TypeScript, React, Next.js, GraphQL
 - PWA, AWS, 도커
 - GIT
 
