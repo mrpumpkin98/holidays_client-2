@@ -53,6 +53,21 @@
 - PWA, AWS, 도커
 - GIT
 
+## 프로젝트 기록
+- [Team Project 1일차](https://velog.io/@sju4486/TIL-Team-Project-1%EC%9D%BC%EC%B0%A8)
+- [Team Project 2일차](https://velog.io/@sju4486/TIL-Team-Project-2%EC%9D%BC%EC%B0%A8)
+- [Team Project 3일차](https://velog.io/@sju4486/TIL-Team-Project-3%EC%9D%BC%EC%B0%A8)
+- [Team Project 4일차](https://velog.io/@sju4486/TIL-Team-Project-4%EC%9D%BC%EC%B0%A8)
+- [Team Project 5일차](https://velog.io/@sju4486/TIL-Team-Project-5%EC%9D%BC%EC%B0%A8)
+- [Team Project 6일차](https://velog.io/@sju4486/TIL-Team-Project-6%EC%9D%BC%EC%B0%A8)
+- [Team Project 7일차](https://velog.io/@sju4486/TIL-Team-Project-7%EC%9D%BC%EC%B0%A8)
+- [Team Project 8일차](https://velog.io/@sju4486/TIL-Team-Project-8%EC%9D%BC%EC%B0%A8)
+- [Team Project 9일차](https://velog.io/@sju4486/TIL-Team-Project-9%EC%9D%BC%EC%B0%A8)
+- [Team Project 10일차](https://velog.io/@sju4486/TIL-Team-Project-10%EC%9D%BC%EC%B0%A8-yjod680s)
+- [Team Project 11일차](https://velog.io/@sju4486/TIL-Team-Project-11%EC%9D%BC%EC%B0%A8)
+- [Team Project 12일차](https://velog.io/@sju4486/TIL-Team-Project-12%EC%9D%BC%EC%B0%A8)
+- [Team Project 회고록](https://velog.io/@sju4486/TIL-Team-Project-%ED%9A%8C%EA%B3%A0%EB%A1%9D)
+
 ## 구현 기능
 
 ![1](https://github.com/code-bootcamp/holidays_client/assets/114569429/b62f819d-630d-468e-a2ca-c279eb513abc)
